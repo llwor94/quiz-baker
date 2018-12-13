@@ -18,7 +18,7 @@ ___
 
 Get started by forking and cloning this repo and running `create-react-app`. Remember to submit a Pull Request on your first commit. 
 
-[We have built an API for you to use in this project](https://lambda-study-app.herokuapp.com/api/)
+[We have built an API for you to use in this project](https://lambda-study-app.herokuapp.com/api/)   
 [Here is the repo for the API if you are interested in taking a look at how this all works on the backend!](https://github.com/llwor94/study-app-api)
 
 The application has two major parts. The quiz section, and the forum section. 
