@@ -12,6 +12,7 @@ Feel free to work on this alone or find a partner to build with. If you choose t
 
 The server is still in beta. Changes may be made to it that could require minor changes to your own code. Join the `#fsw15-winter-break-project` channel to be alerted about any updates as well as to chat with your fellow students about the project.
 
+___
 
 ## The Project
 
@@ -28,7 +29,9 @@ You will have to do a some further reading into [axios](https://github.com/axios
 * ### Authentication 
 
 This project requires authentication.
-In the `/api/auth/login` and `/api/auth/register` routes the success response will provide you with a token. Simply store that token value on your local storage and send that value in to any route that requires authentication. [Here is an example](https://codesandbox.io/s/yq2rp725p1). Feel free to play around with it and look at the console for the response objects that are being logged there.
+In the `/api/auth/login` and `/api/auth/register` routes the success response will provide you with a token. Simply store that token value on your local storage and send that value in to any route that requires authentication. [Here is an example](https://codesandbox.io/s/yq2rp725p1). Feel free to play around with it and look at the console for the response objects that are being logged there. 
+
+To log out a user, simply remove the token from your local storage.
 
 ---
 
