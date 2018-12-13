@@ -23,11 +23,11 @@ The documentation will guide you as to how to interact with these routes and it 
 
 You will have to do a some further reading into [axios](https://github.com/axios/axios) regarding setting headers and sending in param queries. 
 
-### Authentication 
+* ### Authentication 
 
 This project requires authentication.
 In the `/api/auth/login` and `/api/auth/register` routes the success response will provide you with a token. Simply store that token value on your local storage and send that value in to any route that requires authentication. [Here is an example](https://codesandbox.io/s/yq2rp725p1). Feel free to play around with it and look at the console for the response objects that are being logged there.
 
-___
+---
 
 Reach out to Lauren or Trevor with any questions you may have. Good luck and have fun!
