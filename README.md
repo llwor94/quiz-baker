@@ -16,7 +16,7 @@ ___
 
 ## The Project
 
-Get started by forking this repo and running `create-react-app`. Remember to submit a Pull Request on your first commit. 
+Get started by forking and cloning this repo and running `create-react-app`. Remember to submit a Pull Request on your first commit. 
 
 [We have built an API for you to use in this project](https://lambda-study-app.herokuapp.com/api/)
 
