@@ -35,4 +35,5 @@ To log out a user, simply remove the token from your local storage.
 
 ---
 
-Reach out to Lauren or Trevor with any questions you may have. Good luck and have fun!
+We will have a demo after break where you will be able to share your projects with the cohort if you choose. 
+Feel free to reach out to Lauren or Trevor with any questions you may have. Good luck and have fun!
