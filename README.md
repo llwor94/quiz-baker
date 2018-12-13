@@ -15,6 +15,8 @@ The server is still in beta. Changes may be made to it that could require minor 
 
 ## The Project
 
+Get started by forking this repo and running `create-react-app`. Remember to submit a Pull Request on your first commit. 
+
 [We have built an API for you to use in this project](https://lambda-study-app.herokuapp.com/api/)
 
 The application has two major parts. The quiz section, and the forum section. 
