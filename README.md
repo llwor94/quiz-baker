@@ -37,5 +37,5 @@ To log out a user, simply remove the token from your local storage.
 ---
 
 We will have a demo after break where you will be able to share your projects with the cohort if you choose. 
-Feel free to reach out to Lauren or Trevor with any questions you may have. Good luck and have fun!   
+Feel free to reach out to Lauren, Trevor or Ashwin with any questions you may have. Good luck and have fun!   
 [Here is the repo for the API if you are interested in taking a look at how this all works on the backend!](https://github.com/llwor94/study-app-api)
