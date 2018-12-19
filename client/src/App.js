@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
 import { createGlobalStyle } from 'styled-components';
+import { connect } from 'react-redux';
+import { Route, Switch, Redirect } from 'react-router-dom';
+
+import LoginContainer from './containers/Login';
+import RegisterContainer from './containers/Register';
+import DashboardContainer from './containers/Dashboard';
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -19,10 +25,28 @@ class App extends Component {
 		return (
 			<div>
 				<GlobalStyle />
-				<p>Hello World</p>
+
+				<Switch>
+					<Route
+						exact
+						path='/'
+						render={props =>
+							!this.props.user ? (
+								<Redirect to='/login' />
+							) : (
+								<DashboardContainer {...props} user={this.props.user} />
+							)}
+					/>
+					<Route path='/login' component={LoginContainer} />
+					<Route path='/register' component={RegisterContainer} />
+				</Switch>
 			</div>
 		);
 	}
 }
 
-export default App;
+const mapStateToProps = ({ authReducer }) => ({
+	user: authReducer.user,
+});
+
+export default connect(mapStateToProps)(App);
