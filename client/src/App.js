@@ -30,12 +30,7 @@ class App extends Component {
 					<Route
 						exact
 						path='/'
-						render={props =>
-							!this.props.user ? (
-								<Redirect to='/login' />
-							) : (
-								<DashboardContainer {...props} user={this.props.user} />
-							)}
+						render={props => <DashboardContainer {...props} user={this.props.user} />}
 					/>
 					<Route path='/login' component={LoginContainer} />
 					<Route path='/register' component={RegisterContainer} />
