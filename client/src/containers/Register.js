@@ -12,12 +12,14 @@ const Register = ({ register }) => {
 		password: undefined,
 	});
 
+	const [ error, setError ] = useState(null);
+
 	const handleChange = e => {
 		setValue({ ...user, [e.target.name]: e.target.value });
 	};
 
 	const handleSubmit = () => {
-		console.log(_.some(user, undefined));
+		if (_.some(user, _.isEmpty)) setError('Please complete all of the required fields');
 	};
 
 	return (
@@ -43,6 +45,7 @@ const Register = ({ register }) => {
 				handleChange={handleChange}
 				placeholder='Please choose a password...'
 			/>
+			{error && <p>{error}</p>}
 		</Wrapper>
 	);
 };

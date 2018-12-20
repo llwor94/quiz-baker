@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 
+import { login } from '../store/actions/authActions';
 import { Wrapper, Input } from '../components/Auth';
 
-const Login = () => {
+const Login = ({ login }) => {
 	const [ user, setValue ] = useState({
 		email: undefined,
 		password: undefined,
@@ -19,6 +20,7 @@ const Login = () => {
 	const handleSubmit = e => {
 		e.preventDefault();
 		if (_.some(user, _.isEmpty)) setError('Please complete all of the required fields');
+		login(user);
 	};
 
 	return (
@@ -42,4 +44,4 @@ const Login = () => {
 	);
 };
 
-export default Login;
+export default connect(null, { login })(Login);

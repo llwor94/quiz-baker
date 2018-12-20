@@ -8,7 +8,6 @@ import {
 } from '../actions';
 
 const initialState = {
-	loggedIn: false,
 	user: undefined,
 };
 
