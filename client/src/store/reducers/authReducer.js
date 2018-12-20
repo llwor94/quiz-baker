@@ -9,10 +9,48 @@ import {
 
 const initialState = {
 	user: undefined,
+	loading: false,
+	error: undefined,
 };
 
-const authReducer = (state = initialState, action) => {
-	switch (action.type) {
+const authReducer = (state = initialState, { payload, type }) => {
+	switch (type) {
+		case LOG_IN_REQUEST:
+			return {
+				...state,
+				loading: true,
+				error: undefined,
+			};
+		case LOG_IN_SUCCESS:
+			return {
+				...state,
+				loading: false,
+				user: payload,
+			};
+		case LOG_IN_FAILURE:
+			return {
+				...state,
+				loading: false,
+				error: payload,
+			};
+		case SIGN_UP_REQUEST:
+			return {
+				...state,
+				loading: true,
+				error: undefined,
+			};
+		case SIGN_UP_SUCCESS:
+			return {
+				...state,
+				loading: false,
+				user: payload,
+			};
+		case SIGN_UP_FAILURE:
+			return {
+				...state,
+				loading: false,
+				error: payload,
+			};
 		default:
 			return state;
 	}

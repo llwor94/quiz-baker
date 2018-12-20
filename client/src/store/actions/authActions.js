@@ -10,9 +10,14 @@ export const register = user => dispatch => {
 		method: 'post',
 		url: `${URL}/register`,
 		data: user,
-	}).then(response => {
-		console.log(response);
-	});
+	})
+		.then(({ data }) => {
+			localStorage.setItem('token', data.token);
+			dispatch({ type: actions.SIGN_UP_SUCCESS, payload: data.user });
+		})
+		.catch(({ response }) =>
+			dispatch({ type: actions.SIGN_UP_FAILURE, payload: response.data.message }),
+		);
 };
 
 export const login = user => dispatch => {
@@ -22,8 +27,11 @@ export const login = user => dispatch => {
 		url: `${URL}/login`,
 		data: user,
 	})
-		.then(response => {
-			console.log(response);
+		.then(({ data }) => {
+			localStorage.setItem('token', data.token);
+			dispatch({ type: actions.LOG_IN_SUCCESS, payload: data.user });
 		})
-		.catch(err => console.log(err.response));
+		.catch(({ response }) =>
+			dispatch({ type: actions.LOG_IN_FAILURE, payload: response.data.message }),
+		);
 };

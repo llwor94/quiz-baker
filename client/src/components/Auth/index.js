@@ -15,12 +15,13 @@ const FormWrapper = styled.div`
 	}
 `;
 
-export const Wrapper = ({ title, handleSubmit, children }) => (
+export const Wrapper = ({ title, handleSubmit, submitDisabled, error, children }) => (
 	<FormWrapper>
 		<h1>{title}</h1>
 		<form onSubmit={handleSubmit}>
 			{children}
-			<input value='submit' type='submit' />
+			{error && <p>{error}</p>}
+			<input value='submit' type='submit' disabled={submitDisabled} />
 		</form>
 	</FormWrapper>
 );
@@ -36,12 +37,27 @@ const InputWrapper = styled.input`
 	border: none;
 `;
 
-export const Input = ({ name, type, handleChange, value, placeholder }) => (
-	<InputWrapper
-		name={name}
-		type={type}
-		onChange={handleChange}
-		value={value}
-		placeholder={placeholder}
-	/>
+export const Input = ({
+	name,
+	type,
+	handleChange,
+	value,
+	placeholder,
+	handleBlur,
+	disabled,
+	error,
+}) => (
+	<div>
+		<InputWrapper
+			name={name}
+			type={type}
+			onChange={handleChange}
+			value={value}
+			placeholder={placeholder}
+			onBlur={handleBlur}
+			autoComplete='off'
+			disabled={disabled}
+		/>
+		{error && <p>{error}</p>}
+	</div>
 );
