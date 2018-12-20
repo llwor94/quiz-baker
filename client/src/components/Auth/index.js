@@ -15,9 +15,9 @@ const FormWrapper = styled.div`
 	}
 `;
 
-export const Wrapper = ({ title, handleSubmit, submitDisabled, error, children }) => (
+export const Wrapper = ({ type, handleSubmit, submitDisabled, error, children }) => (
 	<FormWrapper>
-		<h1>{title}</h1>
+		<h1>{type}</h1>
 		<form onSubmit={handleSubmit}>
 			{children}
 			{error && <p>{error}</p>}
@@ -41,6 +41,7 @@ export const Input = ({
 	name,
 	type,
 	handleChange,
+	handleKeyUp,
 	value,
 	placeholder,
 	handleBlur,
@@ -51,8 +52,9 @@ export const Input = ({
 		<InputWrapper
 			name={name}
 			type={type}
-			onChange={handleChange}
 			value={value}
+			onChange={handleChange}
+			onKeyUp={handleKeyUp}
 			placeholder={placeholder}
 			onBlur={handleBlur}
 			autoComplete='off'

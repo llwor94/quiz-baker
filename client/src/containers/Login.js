@@ -11,7 +11,7 @@ const Login = ({ login, serverError }) => {
 		password: undefined,
 	});
 
-	const [ error, setError ] = useState(null);
+	const [ error, setError ] = useState(undefined);
 
 	useEffect(
 		() => {
@@ -22,17 +22,21 @@ const Login = ({ login, serverError }) => {
 
 	const handleChange = e => {
 		setValue({ ...user, [e.target.name]: e.target.value });
-		setError(null);
+		setError(undefined);
 	};
 
 	const handleSubmit = e => {
 		e.preventDefault();
-		if (_.some(user, _.isEmpty)) setError('Please complete all of the required fields');
-		else login(user);
+		login(user);
 	};
 
 	return (
-		<Wrapper handleSubmit={handleSubmit} submitDisabled={_.some(user, _.isEmpty)} type='login'>
+		<Wrapper
+			type='login'
+			handleSubmit={handleSubmit}
+			submitDisabled={_.some(user, _.isEmpty)}
+			error={error}
+		>
 			<Input
 				name='email'
 				type='email'
@@ -47,8 +51,6 @@ const Login = ({ login, serverError }) => {
 				handleChange={handleChange}
 				placeholder='Please enter your password...'
 			/>
-
-			{error && <p>{error}</p>}
 		</Wrapper>
 	);
 };
