@@ -7,27 +7,27 @@ import debounce from 'lodash/debounce';
 import { register } from '../store/actions/authActions';
 import { Wrapper, Input } from '../components/Auth';
 
-const checkData = debounce(async ({ target: { name, value } }) => {
-	console.log(props.setError);
-	if (value) {
+const checkData = debounce(async ({ target }, setError, error) => {
+	if (target.value) {
 		let user = await axios({
 			method: 'get',
 			url: 'https://lambda-study-app.herokuapp.com/api/users',
 			params: {
-				[name]: value,
+				[target.name]: target.value,
 			},
 		});
-		return user;
-		// if (user) {
-		// 	name === 'username'
-		// 		? props.setError({ ...props.error, username: 'This username is unavailable.' })
-		// 		: props.setError({
-		// 				...props.error,
-		// 				email: 'A user with this email address already exists.',
-		// 			});
-		// }
+		if (user.data) {
+			target.name === 'username'
+				? setError({ ...error, username: 'This username is unavailable.' })
+				: setError({
+						...error,
+						email: 'A user with this email address already exists.',
+					});
+		} else {
+			setError({ ...error, [target.name]: undefined });
+		}
 	}
-}, 1200);
+}, 500);
 
 const Register = ({ register, serverError }) => {
 	const [ userInput, setInputValue ] = useState({
@@ -43,56 +43,31 @@ const Register = ({ register, serverError }) => {
 		password: undefined,
 	});
 
-	const handleChange = e => {
+	const handleChange = async e => {
 		e.persist();
 		setInputValue({ ...userInput, [e.target.name]: e.target.value });
-		checkData(e);
-	};
-
-	// const checkData = e => {
-	// 	e.persist();
-	// 	if (e.target.value) {
-	// 		axios({
-	// 			method: 'get',
-	// 			url: 'https://lambda-study-app.herokuapp.com/api/users',
-	// 			params: {
-	// 				[e.target.name]: e.target.value,
-	// 			},
-	// 		}).then(({ data }) => {
-	// 			if (data) {
-	// 				e.target.name === 'username'
-	// 					? setError({ ...error, username: 'This username is unavailable.' })
-	// 					: setError({
-	// 							...error,
-	// 							email: 'A user with this email address already exists.',
-	// 						});
-	// 			} else {
-	// 				setError({ ...error, [e.target.name]: undefined });
-	// 			}
-	// 		});
-	// 	}
-	// };
-
-	const comparePasswords = e => {
-		e.persist();
-		if (e.target.value !== userInput.password) {
-			setError({ ...error, password: 'Your passwords do not match' });
-		} else {
-			setError({ ...error, password: undefined });
+		if (e.target.name === 'username' || e.target.name === 'email') {
+			await checkData(e, setError, error);
+		} else if (e.target.name === 'passwordCheck') {
+			if (e.target.value !== userInput.password) {
+				setError({ ...error, password: 'Your passwords do not match' });
+			} else {
+				setError({ ...error, password: undefined });
+			}
 		}
 	};
 
 	const handleSubmit = e => {
 		e.preventDefault();
 		console.log(userInput);
-		//register(user);
+		register(userInput);
 	};
 
 	return (
 		<Wrapper
 			type='register'
 			handleSubmit={handleSubmit}
-			submitDisabled={_.some(userInput, _.isEmpty) || _.every(error, _.isEmpty)}
+			submitDisabled={_.some(userInput, _.isEmpty) || !_.every(error, _.isEmpty)}
 			error={serverError}
 		>
 			<Input
@@ -107,7 +82,7 @@ const Register = ({ register, serverError }) => {
 				name='username'
 				type='text'
 				value={userInput.username}
-				handleChange={e => handleChange(e.target)}
+				handleChange={handleChange}
 				placeholder='Please choose a username...'
 				error={error.username}
 			/>
@@ -115,16 +90,15 @@ const Register = ({ register, serverError }) => {
 				name='password'
 				type='password'
 				value={userInput.password}
-				handleChange={e => handleChange(e.target)}
+				handleChange={handleChange}
 				placeholder='Please choose a password...'
 			/>
 			<Input
 				name='passwordCheck'
 				type='password'
 				value={userInput.passwordCheck}
-				handleChange={e => handleChange(e.target)}
+				handleChange={handleChange}
 				placeholder='Please reenter your password...'
-				handleBlur={comparePasswords}
 				disabled={!userInput.password}
 				error={error.password}
 			/>

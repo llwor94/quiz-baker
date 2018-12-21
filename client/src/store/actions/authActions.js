@@ -6,6 +6,7 @@ let URL = 'https://lambda-study-app.herokuapp.com/api/auth';
 
 export const register = user => dispatch => {
 	dispatch({ type: actions.SIGN_UP_REQUEST });
+	console.log(user);
 	axios({
 		method: 'post',
 		url: `${URL}/register`,
