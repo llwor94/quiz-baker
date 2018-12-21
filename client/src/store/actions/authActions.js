@@ -3,6 +3,7 @@ import axios from 'axios';
 import * as actions from './index';
 
 let URL = 'https://lambda-study-app.herokuapp.com/api/auth';
+let devURL = 'http://localhost:3400/api/auth';
 
 export const register = user => dispatch => {
 	dispatch({ type: actions.SIGN_UP_REQUEST });

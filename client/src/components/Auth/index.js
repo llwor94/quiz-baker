@@ -37,26 +37,14 @@ const InputWrapper = styled.input`
 	border: none;
 `;
 
-export const Input = ({
-	name,
-	type,
-	handleChange,
-	handleKeyUp,
-	value,
-	placeholder,
-	handleBlur,
-	disabled,
-	error,
-}) => (
+export const Input = ({ name, type, handleChange, value, placeholder, disabled, error }) => (
 	<div>
 		<InputWrapper
 			name={name}
 			type={type}
 			value={value}
 			onChange={handleChange}
-			onKeyUp={handleKeyUp}
 			placeholder={placeholder}
-			onBlur={handleBlur}
 			autoComplete='off'
 			disabled={disabled}
 		/>
