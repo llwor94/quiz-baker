@@ -29,7 +29,7 @@ const checkData = debounce(async ({ target }, setError, error) => {
 	}
 }, 500);
 
-const Register = ({ register, serverError }) => {
+const Register = ({ register, serverError, ...props }) => {
 	const [ userInput, setInputValue ] = useState({
 		username: undefined,
 		email: undefined,
@@ -59,7 +59,6 @@ const Register = ({ register, serverError }) => {
 
 	const handleSubmit = e => {
 		e.preventDefault();
-		console.log(userInput);
 		register(userInput);
 	};
 
@@ -69,13 +68,14 @@ const Register = ({ register, serverError }) => {
 			handleSubmit={handleSubmit}
 			submitDisabled={_.some(userInput, _.isEmpty) || !_.every(error, _.isEmpty)}
 			error={serverError}
+			location={props.location}
 		>
 			<Input
 				name='email'
 				type='email'
 				value={userInput.email}
 				handleChange={handleChange}
-				placeholder='Please enter your email...'
+				placeholder='Email'
 				error={error.email}
 			/>
 			<Input
@@ -83,7 +83,7 @@ const Register = ({ register, serverError }) => {
 				type='text'
 				value={userInput.username}
 				handleChange={handleChange}
-				placeholder='Please choose a username...'
+				placeholder='Username'
 				error={error.username}
 			/>
 			<Input
@@ -91,14 +91,14 @@ const Register = ({ register, serverError }) => {
 				type='password'
 				value={userInput.password}
 				handleChange={handleChange}
-				placeholder='Please choose a password...'
+				placeholder='Password'
 			/>
 			<Input
 				name='passwordCheck'
 				type='password'
 				value={userInput.passwordCheck}
 				handleChange={handleChange}
-				placeholder='Please reenter your password...'
+				placeholder='Re-enter password'
 				disabled={!userInput.password}
 				error={error.password}
 			/>

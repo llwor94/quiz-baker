@@ -5,7 +5,7 @@ import _ from 'lodash';
 import { login } from '../store/actions/authActions';
 import { Wrapper, Input } from '../components/Auth';
 
-const Login = ({ login, serverError }) => {
+const Login = ({ login, serverError, ...props }) => {
 	const [ user, setValue ] = useState({
 		email: undefined,
 		password: undefined,
@@ -36,20 +36,21 @@ const Login = ({ login, serverError }) => {
 			handleSubmit={handleSubmit}
 			submitDisabled={_.some(user, _.isEmpty)}
 			error={error}
+			location={props.location}
 		>
 			<Input
 				name='email'
 				type='email'
 				value={user.email}
 				handleChange={handleChange}
-				placeholder='Please enter your email...'
+				placeholder='Email'
 			/>
 			<Input
 				name='password'
 				type='password'
 				value={user.password}
 				handleChange={handleChange}
-				placeholder='Please enter your password...'
+				placeholder='Password'
 			/>
 		</Wrapper>
 	);

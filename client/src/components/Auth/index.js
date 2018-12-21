@@ -1,45 +1,102 @@
 import React from 'react';
 import styled from 'styled-components';
+import { InputText } from 'primereact/inputtext';
+import { Button } from 'primereact/button';
+import { Link } from 'react-router-dom';
 
 const FormWrapper = styled.div`
-	text-align: center;
 	max-width: 550px;
 	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
 
 	h1 {
-		margin: 30px 0;
+		margin: 40px 0 10px;
 		text-transform: uppercase;
 		letter-spacing: 5px;
 		color: black;
 		font-weight: normal;
+		text-align: center;
+	}
+
+	form {
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+		padding: 30px;
 	}
 `;
 
-export const Wrapper = ({ type, handleSubmit, submitDisabled, error, children }) => (
-	<FormWrapper>
-		<h1>{type}</h1>
-		<form onSubmit={handleSubmit}>
-			{children}
-			{error && <p>{error}</p>}
-			<input value='submit' type='submit' disabled={submitDisabled} />
-		</form>
-	</FormWrapper>
-);
+const Redirect = styled.div`
+	display: flex;
+	justify-content: center;
 
-const InputWrapper = styled.input`
-	padding: 10px;
-	display: block;
+	span {
+		padding-right: 4px;
+	}
+`;
+
+export const Wrapper = ({ type, handleSubmit, submitDisabled, error, children, location }) => {
+	return (
+		<FormWrapper>
+			<h1>{type}</h1>
+			<form onSubmit={handleSubmit}>
+				{children}
+				{error && <p>{error}</p>}
+				<Button
+					label={type}
+					disabled={submitDisabled}
+					style={{ marginTop: '20px', textTransform: 'uppercase' }}
+				/>
+			</form>
+			{type === 'login' ? (
+				<Redirect>
+					<span>Don't have an account?</span>
+					<Link to='/register'>Sign up now</Link>
+				</Redirect>
+			) : (
+				<Redirect>
+					<span>Already have an account?</span>
+					<Link to='/login'>Login</Link>
+				</Redirect>
+			)}
+		</FormWrapper>
+	);
+};
+
+const InputWrapper = styled.div`
+	display: flex;
+	padding: 15px 0;
+	justify-content: center;
+	align-items: center;
+`;
+
+const StyledInput = styled(InputText)`
 	width: 100%;
-	border-radius: 3px;
-	font-size: inherit;
-	font-family: inherit;
-	color: inherit;
-	border: none;
+	padding: 15px;
 `;
 
 export const Input = ({ name, type, handleChange, value, placeholder, disabled, error }) => (
-	<div>
-		<InputWrapper
+	<InputWrapper>
+		<span className='p-float-label' style={{ width: '100%' }}>
+			<StyledInput
+				id={name}
+				name={name}
+				type={type}
+				value={value}
+				onChange={handleChange}
+				autoComplete='off'
+				disabled={disabled}
+			/>
+			<label htmlFor={name}>{placeholder}</label>
+		</span>
+		{error && <p>{error}</p>}
+	</InputWrapper>
+);
+
+{
+	/* <InputWrapper
 			name={name}
 			type={type}
 			value={value}
@@ -47,7 +104,5 @@ export const Input = ({ name, type, handleChange, value, placeholder, disabled, 
 			placeholder={placeholder}
 			autoComplete='off'
 			disabled={disabled}
-		/>
-		{error && <p>{error}</p>}
-	</div>
-);
+		/> */
+}

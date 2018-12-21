@@ -37,3 +37,7 @@ export const login = user => dispatch => {
 			dispatch({ type: actions.LOG_IN_FAILURE, payload: response.data.message }),
 		);
 };
+
+export const logout = () => ({
+	type: actions.LOG_OUT_REQUEST,
+});

@@ -5,6 +5,7 @@ import {
 	LOG_IN_FAILURE,
 	LOG_IN_REQUEST,
 	LOG_IN_SUCCESS,
+	LOG_OUT_REQUEST,
 } from '../actions';
 
 const initialState = {
@@ -50,6 +51,11 @@ const authReducer = (state = initialState, { payload, type }) => {
 				...state,
 				loading: false,
 				error: payload,
+			};
+		case LOG_OUT_REQUEST:
+			return {
+				...state,
+				user: undefined,
 			};
 		default:
 			return state;
