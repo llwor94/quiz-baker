@@ -25,7 +25,7 @@ const GlobalStyle = createGlobalStyle`
 	}
 `;
 
-const Wrapper = styled.div`padding-top: 90px;`;
+const Wrapper = styled.div`padding-top: 140px;`;
 
 const App = ({ user, history }) => {
 	useEffect(

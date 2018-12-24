@@ -6,6 +6,8 @@
     "axios": "^0.18.0",
     "classnames": "^2.2.6",
     "lodash": "^4.17.11",
+    "moment": "^2.23.0",
+    "primeflex": "^1.0.0-rc.1",
     "primeicons": "^1.0.0",
     "primereact": "^2.0.1",
     "react": "16.7.0-alpha.0",

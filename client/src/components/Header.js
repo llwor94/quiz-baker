@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { Menubar } from 'primereact/menubar';
 
+import { fetchPosts } from '../store/actions/forumActions';
 import { logout } from '../store/actions/authActions';
 
 const HeaderWrapper = styled.div`
@@ -53,7 +54,7 @@ const Header = ({ user, ...props }) => {
 		{
 			label: 'Forum',
 			command: () => {
-				props.history.push('/forum');
+				props.fetchPosts().then(() => props.history.push('/forum'));
 			},
 		},
 		{
@@ -88,6 +89,7 @@ const Header = ({ user, ...props }) => {
 		{
 			label: 'Forum',
 			command: () => {
+				props.fetchPosts();
 				props.history.push('/forum');
 			},
 		},
@@ -119,4 +121,4 @@ const Header = ({ user, ...props }) => {
 	);
 };
 
-export default withRouter(connect(null, { logout })(Header));
+export default withRouter(connect(null, { logout, fetchPosts })(Header));

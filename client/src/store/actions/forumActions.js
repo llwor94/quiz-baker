@@ -9,8 +9,7 @@ export const fetchPosts = () => dispatch => {
 	dispatch({ type: actions.FETCH_ALL_POSTS_REQUEST });
 	axios({ method: 'get', url: URL })
 		.then(({ data }) => {
-			console.log(data);
-			dispatch({ type: actions.FETCH_ALL_POSTS_SUCCESS });
+			dispatch({ type: actions.FETCH_ALL_POSTS_SUCCESS, payload: data });
 		})
 		.catch(({ response }) => console.log(response.data));
 };
