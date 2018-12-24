@@ -15,7 +15,7 @@ const FormWrapper = styled.div`
 		margin: 40px 0 10px;
 		text-transform: uppercase;
 		letter-spacing: 5px;
-		color: black;
+		color: ${props => props.theme.text};
 		font-weight: normal;
 		text-align: center;
 	}
@@ -34,6 +34,7 @@ const Redirect = styled.div`
 
 	span {
 		padding-right: 4px;
+		color: ${props => props.theme.text};
 	}
 `;
 
@@ -76,6 +77,9 @@ const InputWrapper = styled.div`
 const StyledInput = styled(InputText)`
 	width: 100%;
 	padding: 15px;
+	background-color: ${props => props.theme.secondary} !important;
+	border-color: ${props => props.theme.accent} !important;
+	color: ${props => props.theme.text}
 `;
 
 export const Input = ({ name, type, handleChange, value, placeholder, disabled, error }) => (
