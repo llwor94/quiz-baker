@@ -1,12 +1,21 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import { fetchPosts } from '../store/actions/forumActions';
-import { Post, ForumWrapper } from '../components/Forum/Post';
+import { fetchPosts, fetchPost } from '../store/actions/forumActions';
+import { LilPost, ForumWrapper } from '../components/Forum/Post';
 
-const Forum = ({ fetchPosts, posts, loading, ...props }) => {
+const Forum = ({ fetchPosts, fetchPost, posts, loading, ...props }) => {
+	const getPost = id => {
+		fetchPost(id);
+		props.history.push(`forum/${id}`);
+	};
 	if (loading) return <div>Loading...</div>;
-	else if (posts) return <ForumWrapper>{posts.map(post => <Post post={post} />)}</ForumWrapper>;
+	else if (posts)
+		return (
+			<ForumWrapper>
+				{posts.map(post => <LilPost post={post} handleClick={() => getPost(post.id)} />)}
+			</ForumWrapper>
+		);
 	else
 		return (
 			<div>
@@ -20,4 +29,4 @@ const mapStateToProps = ({ forumReducer }) => ({
 	loading: forumReducer.loading,
 });
 
-export default connect(mapStateToProps, { fetchPosts })(Forum);
+export default connect(mapStateToProps, { fetchPosts, fetchPost })(Forum);

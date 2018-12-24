@@ -10,6 +10,7 @@ import LoginContainer from './containers/Login';
 import RegisterContainer from './containers/Register';
 import DashboardContainer from './containers/Dashboard';
 import ForumContainer from './containers/Forum';
+import PostContainer from './containers/Post';
 import Header from './components/Header';
 
 const GlobalStyle = createGlobalStyle`
@@ -51,6 +52,11 @@ const App = ({ user, history }) => {
 						exact
 						path='/forum'
 						render={props => <ForumContainer {...props} user={user} />}
+					/>
+					<Route
+						exact
+						path='/forum/:id'
+						render={props => <PostContainer {...props} user={user} />}
 					/>
 				</Switch>
 			</Wrapper>

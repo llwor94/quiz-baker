@@ -13,3 +13,13 @@ export const fetchPosts = () => dispatch => {
 		})
 		.catch(({ response }) => console.log(response.data));
 };
+
+export const fetchPost = id => dispatch => {
+	dispatch({ type: actions.FETCH_POST_REQUEST });
+	axios({ method: 'get', url: `${URL}/${id}` })
+		.then(({ data }) => {
+			console.log(data);
+			dispatch({ type: actions.FETCH_POST_SUCCESS, payload: data });
+		})
+		.catch(({ response }) => console.log(response));
+};

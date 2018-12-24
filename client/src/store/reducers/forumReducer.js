@@ -2,10 +2,14 @@ import {
 	FETCH_ALL_POSTS_REQUEST,
 	FETCH_ALL_POSTS_SUCCESS,
 	FETCH_ALL_POSTS_FAILURE,
+	FETCH_POST_REQUEST,
+	FETCH_POST_SUCCESS,
+	FETCH_POST_FAILURE,
 } from '../actions';
 
 const initialState = {
 	posts: undefined,
+	post: undefined,
 	loading: false,
 	error: undefined,
 };
@@ -28,6 +32,18 @@ const forumReducer = (state = initialState, { payload, type }) => {
 			return {
 				...state,
 				loading: false,
+			};
+		case FETCH_POST_REQUEST:
+			return {
+				...state,
+				loading: true,
+				error: undefined,
+			};
+		case FETCH_POST_SUCCESS:
+			return {
+				...state,
+				loading: false,
+				post: { ...payload, comments: payload.comments.sort((a, b) => b.id - a.id) },
 			};
 		default:
 			return state;
