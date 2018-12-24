@@ -45,6 +45,11 @@ const forumReducer = (state = initialState, { payload, type }) => {
 				loading: false,
 				post: { ...payload, comments: payload.comments.sort((a, b) => b.id - a.id) },
 			};
+		case FETCH_POST_FAILURE:
+			return {
+				...state,
+				loading: false,
+			};
 		default:
 			return state;
 	}

@@ -6,9 +6,12 @@ import { Editor } from 'primereact/editor';
 const PostWrapper = styled.div`
 	padding-left: 8px;
 	border-radius: 4px;
-	border: 1px solid black;
+	border: 1px solid;
+	border-color: ${props => props.theme.accent};
 	position: relative;
 	margin-bottom: 10px;
+	background-color: ${props => props.theme.secondary};
+	font-family: 'IBM Plex Sans', sans-serif;
 `;
 const InnerWrapper = styled.div`
 	padding-top: 8px;
@@ -20,6 +23,7 @@ const PostTitle = styled.div`
 	font-weight: 500;
 	line-height: 22px;
 	cursor: pointer;
+	color: ${props => props.theme.text};
 `;
 
 const BodyWrapper = styled.div`
@@ -30,6 +34,7 @@ const BodyWrapper = styled.div`
 		font-weight: 400;
 		line-height: 21px;
 		mask-image: linear-gradient(180deg, #000 60%, transparent);
+		color: ${props => props.theme.text};
 	}
 `;
 const Header = styled.div`
@@ -38,6 +43,7 @@ const Header = styled.div`
 	line-height: 16px;
 	display: flex;
 	margin-bottom: 8px;
+	color: ${props => props.theme.link};
 `;
 
 const FooterWrapper = styled.div`
@@ -58,15 +64,19 @@ const FooterWrapper = styled.div`
 		transition: background-color 0.1s ease 0s;
 		background: transparent;
 		border: none;
-		color: inherit;
+		color: ${props => props.theme.accentText};
 		cursor: pointer;
 		padding: initial;
 	}
 `;
 
-export const LilPost = ({ post: { id, title, author, body, created_at }, handleClick }) => {
+export const LilPost = ({
+	post: { id, title, author, body, created_at },
+	handleClick,
+	darkMode,
+}) => {
 	return (
-		<PostWrapper key={id}>
+		<PostWrapper>
 			<InnerWrapper>
 				<Header>
 					Posted by {author} {moment(created_at).fromNow()}
@@ -194,11 +204,12 @@ const Wrapper = styled.div`
 	padding: 20px 24px;
 	display: flex;
 	justify-content: center;
+	background-color: ${props => props.theme.main};
 `;
 
 const InnerForumWrapper = styled.div`width: 648px;`;
 
-export const ForumWrapper = ({ children }) => (
+export const ForumWrapper = ({ children, darkMode }) => (
 	<Wrapper>
 		<InnerForumWrapper>{children}</InnerForumWrapper>
 	</Wrapper>

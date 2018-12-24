@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import styled, { createGlobalStyle } from 'styled-components';
+import React, { useEffect, useState } from 'react';
+import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { connect } from 'react-redux';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import 'primereact/resources/themes/nova-light/theme.css';
@@ -12,6 +12,9 @@ import DashboardContainer from './containers/Dashboard';
 import ForumContainer from './containers/Forum';
 import PostContainer from './containers/Post';
 import Header from './components/Header';
+
+import { DarkMode } from './Themes/dark';
+import { LightMode } from './Themes/light';
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -26,9 +29,10 @@ const GlobalStyle = createGlobalStyle`
 	}
 `;
 
-const Wrapper = styled.div`padding-top: 140px;`;
+const Wrapper = styled.div`padding-top: 105px;`;
 
 const App = ({ user, history }) => {
+	const [ darkMode, setValue ] = useState(false);
 	useEffect(
 		() => {
 			history.push('/');
@@ -36,31 +40,33 @@ const App = ({ user, history }) => {
 		[ user ],
 	);
 	return (
-		<div>
-			<GlobalStyle />
-			<Header user={user} />
-			<Wrapper>
-				<Switch>
-					<Route
-						exact
-						path='/'
-						render={props => <DashboardContainer {...props} user={user} />}
-					/>
-					<Route exact path='/login' component={LoginContainer} />
-					<Route exact path='/register' component={RegisterContainer} />
-					<Route
-						exact
-						path='/forum'
-						render={props => <ForumContainer {...props} user={user} />}
-					/>
-					<Route
-						exact
-						path='/forum/:id'
-						render={props => <PostContainer {...props} user={user} />}
-					/>
-				</Switch>
-			</Wrapper>
-		</div>
+		<ThemeProvider theme={darkMode ? DarkMode : LightMode}>
+			<div>
+				<GlobalStyle />
+				<Header user={user} setValue={setValue} darkMode={darkMode} />
+				<Wrapper>
+					<Switch>
+						<Route
+							exact
+							path='/'
+							render={props => <DashboardContainer {...props} user={user} />}
+						/>
+						<Route exact path='/login' component={LoginContainer} />
+						<Route exact path='/register' component={RegisterContainer} />
+						<Route
+							exact
+							path='/forum'
+							render={props => <ForumContainer {...props} user={user} />}
+						/>
+						<Route
+							exact
+							path='/forum/:id'
+							render={props => <PostContainer {...props} user={user} />}
+						/>
+					</Switch>
+				</Wrapper>
+			</div>
+		</ThemeProvider>
 	);
 };
 

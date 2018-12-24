@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { Menubar } from 'primereact/menubar';
+import { InputSwitch } from 'primereact/inputswitch';
 
 import { fetchPosts } from '../store/actions/forumActions';
 import { logout } from '../store/actions/authActions';
@@ -13,7 +14,7 @@ const HeaderWrapper = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background-color: #20272a;
+	background-color: ${props => props.theme.secondary};
 	padding: 0 10px;
 	top: 0;
 	left: 0;
@@ -22,15 +23,24 @@ const HeaderWrapper = styled.div`
 `;
 
 const StyledLink = styled(Link)`
-  color: white;
+  color: ${props => props.theme.text};
 `;
 
 const StyledMenu = styled(Menubar)`
 	position: fixed;
+	background-color: ${props => props.theme.secondary} !important;
+	border-color: ${props => props.theme.accent} !important;
   top: 70px;
   width: 100%;
+	a, span {
+		background-color: ${props => props.theme.secondary} !important;
+		color: ${props => props.theme.text} !important;
+	}
+	ul {
+		border-color: ${props => props.theme.accent} !important;
+	}
 `;
-const Header = ({ user, ...props }) => {
+const Header = ({ user, setValue, darkMode, ...props }) => {
 	console.log(user);
 	const AuthItems = [
 		{
@@ -54,7 +64,8 @@ const Header = ({ user, ...props }) => {
 		{
 			label: 'Forum',
 			command: () => {
-				props.fetchPosts().then(() => props.history.push('/forum'));
+				props.fetchPosts();
+				props.history.push('/forum');
 			},
 		},
 		{
@@ -115,6 +126,12 @@ const Header = ({ user, ...props }) => {
 		<Fragment>
 			<HeaderWrapper>
 				<StyledLink to='/'>Quiz Thang</StyledLink>
+				<InputSwitch
+					onLabel='Dark Mode'
+					offLabel='Light Mode'
+					checked={darkMode}
+					onChange={e => setValue(e.value)}
+				/>
 			</HeaderWrapper>
 			<StyledMenu model={user ? AuthItems : NoAuthItems} />
 		</Fragment>
