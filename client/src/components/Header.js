@@ -52,6 +52,9 @@ const Header = ({ user, ...props }) => {
 		},
 		{
 			label: 'Forum',
+			command: () => {
+				props.history.push('/forum');
+			},
 		},
 		{
 			label: user && user.username,
@@ -84,6 +87,9 @@ const Header = ({ user, ...props }) => {
 		},
 		{
 			label: 'Forum',
+			command: () => {
+				props.history.push('/forum');
+			},
 		},
 		{
 			label: 'Join us',

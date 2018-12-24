@@ -9,6 +9,7 @@ import 'primeicons/primeicons.css';
 import LoginContainer from './containers/Login';
 import RegisterContainer from './containers/Register';
 import DashboardContainer from './containers/Dashboard';
+import ForumContainer from './containers/Forum';
 import Header from './components/Header';
 
 const GlobalStyle = createGlobalStyle`
@@ -46,6 +47,11 @@ const App = ({ user, history }) => {
 					/>
 					<Route exact path='/login' component={LoginContainer} />
 					<Route exact path='/register' component={RegisterContainer} />
+					<Route
+						exact
+						path='/forum'
+						render={props => <ForumContainer {...props} user={user} />}
+					/>
 				</Switch>
 			</Wrapper>
 		</div>

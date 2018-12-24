@@ -68,6 +68,7 @@ export const Wrapper = ({ type, handleSubmit, submitDisabled, error, children, l
 const InputWrapper = styled.div`
 	display: flex;
 	padding: 15px 0;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 `;
@@ -94,15 +95,3 @@ export const Input = ({ name, type, handleChange, value, placeholder, disabled, 
 		{error && <p>{error}</p>}
 	</InputWrapper>
 );
-
-{
-	/* <InputWrapper
-			name={name}
-			type={type}
-			value={value}
-			onChange={handleChange}
-			placeholder={placeholder}
-			autoComplete='off'
-			disabled={disabled}
-		/> */
-}
