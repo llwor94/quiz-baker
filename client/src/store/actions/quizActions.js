@@ -10,7 +10,10 @@ export const fetchAllQuizzes = () => dispatch => {
 	axios({
 		method: 'get',
 		url: URL,
-	}).then(({ data }) => {
-		console.log(data);
-	});
+	})
+		.then(({ data }) => {
+			console.log(data);
+			dispatch({ type: actions.FETCH_ALL_QUIZZES_SUCCESS, payload: data });
+		})
+		.catch(({ response }) => console.log(response));
 };

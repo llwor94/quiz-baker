@@ -12,6 +12,10 @@ const PostWrapper = styled.div`
 	margin-bottom: 10px;
 	background-color: ${props => props.theme.secondary};
 	font-family: 'IBM Plex Sans', sans-serif;
+
+	&:hover {
+		border-color: rgb(129, 131, 132);
+	}
 `;
 const InnerWrapper = styled.div`
 	padding-top: 8px;
@@ -120,7 +124,7 @@ export const Post = ({ post, user }) => {
 	console.log(post);
 	return (
 		<PostWrapper>
-			<InnerWrapper style={{ borderBottom: '1px solid black' }}>
+			<InnerWrapper>
 				<Header>
 					Posted by {post.author.username} {moment(post.created_at).fromNow()}
 				</Header>

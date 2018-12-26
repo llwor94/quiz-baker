@@ -11,6 +11,7 @@ import RegisterContainer from './containers/Register';
 import DashboardContainer from './containers/Dashboard';
 import ForumContainer from './containers/Forum';
 import PostContainer from './containers/Post';
+import QuizContainer from './containers/Quizzes';
 import Header from './components/Header';
 
 import { DarkMode } from './Themes/dark';
@@ -59,6 +60,11 @@ const App = ({ user, history }) => {
 							exact
 							path='/forum'
 							render={props => <ForumContainer {...props} user={user} />}
+						/>
+						<Route
+							exact
+							path='/quizzes'
+							render={props => <QuizContainer {...props} user={user} />}
 						/>
 						<Route
 							exact

@@ -6,6 +6,7 @@ import { Menubar } from 'primereact/menubar';
 import { InputSwitch } from 'primereact/inputswitch';
 
 import { fetchPosts } from '../store/actions/forumActions';
+import { fetchAllQuizzes } from '../store/actions/quizActions';
 import { logout } from '../store/actions/authActions';
 
 const HeaderWrapper = styled.div`
@@ -17,6 +18,7 @@ const HeaderWrapper = styled.div`
 	background-color: ${props => props.theme.secondary};
 	padding: 0 10px;
 	top: 0;
+	z-index: 100;
 	left: 0;
 	width: 100%;
 	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .3);
@@ -31,7 +33,9 @@ const StyledMenu = styled(Menubar)`
 	background-color: ${props => props.theme.secondary} !important;
 	border-color: ${props => props.theme.accent} !important;
   top: 70px;
+	z-index: 100;
   width: 100%;
+
 	a, span {
 		background-color: ${props => props.theme.secondary} !important;
 		color: ${props => props.theme.text} !important;
@@ -53,6 +57,13 @@ const Header = ({ user, setValue, darkMode, ...props }) => {
 		{
 			label: 'Quizzes',
 			items: [
+				{
+					label: 'All quizzes',
+					command: () => {
+						props.fetchAllQuizzes();
+						props.history.push('/quizzes');
+					},
+				},
 				{
 					label: 'Your quizzes',
 				},
@@ -96,6 +107,10 @@ const Header = ({ user, setValue, darkMode, ...props }) => {
 		},
 		{
 			label: 'Quizzes',
+			command: () => {
+				props.fetchAllQuizzes();
+				props.history.push('/quizzes');
+			},
 		},
 		{
 			label: 'Forum',
@@ -138,4 +153,4 @@ const Header = ({ user, setValue, darkMode, ...props }) => {
 	);
 };
 
-export default withRouter(connect(null, { logout, fetchPosts })(Header));
+export default withRouter(connect(null, { logout, fetchPosts, fetchAllQuizzes })(Header));
