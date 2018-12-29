@@ -6,7 +6,7 @@ import { Menubar } from 'primereact/menubar';
 import { InputSwitch } from 'primereact/inputswitch';
 
 import { fetchPosts } from '../store/actions/forumActions';
-import { fetchAllQuizzes } from '../store/actions/quizActions';
+import { fetchQuizzes } from '../store/actions/quizActions';
 import { logout } from '../store/actions/authActions';
 
 const HeaderWrapper = styled.div`
@@ -60,7 +60,7 @@ const Header = ({ user, setValue, darkMode, ...props }) => {
 				{
 					label: 'All quizzes',
 					command: () => {
-						props.fetchAllQuizzes();
+						props.fetchQuizzes();
 						props.history.push('/quizzes');
 					},
 				},
@@ -108,7 +108,7 @@ const Header = ({ user, setValue, darkMode, ...props }) => {
 		{
 			label: 'Quizzes',
 			command: () => {
-				props.fetchAllQuizzes();
+				props.fetchQuizzes();
 				props.history.push('/quizzes');
 			},
 		},
@@ -153,4 +153,4 @@ const Header = ({ user, setValue, darkMode, ...props }) => {
 	);
 };
 
-export default withRouter(connect(null, { logout, fetchPosts, fetchAllQuizzes })(Header));
+export default withRouter(connect(null, { logout, fetchPosts, fetchQuizzes })(Header));

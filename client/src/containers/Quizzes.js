@@ -1,9 +1,18 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
-const Quizzes = ({ quizzes, loading, ...props }) => {
-	if (loading) return <div>Loading...</div>;
-	else if (quizzes)
+import { fetchQuizzes } from '../store/actions/quizActions';
+
+const Quizzes = ({ quizzes, loading, fetchQuizzes, ...props }) => {
+	useEffect(
+		() => {
+			if (!quizzes) {
+				fetchQuizzes();
+			}
+		},
+		[ quizzes ],
+	);
+	if (quizzes)
 		return (
 			<div>
 				{quizzes.map(quiz => (
@@ -13,12 +22,7 @@ const Quizzes = ({ quizzes, loading, ...props }) => {
 				))}
 			</div>
 		);
-	else
-		return (
-			<div>
-				<button>Click me</button>
-			</div>
-		);
+	else return <div>Loading...</div>;
 };
 
 const mapStateToProps = ({ quizReducer }) => ({
@@ -26,4 +30,4 @@ const mapStateToProps = ({ quizReducer }) => ({
 	loading: quizReducer.loading,
 });
 
-export default connect(mapStateToProps)(Quizzes);
+export default connect(mapStateToProps, { fetchQuizzes })(Quizzes);

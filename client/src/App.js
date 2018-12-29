@@ -32,7 +32,12 @@ const GlobalStyle = createGlobalStyle`
 	}
 `;
 
-const Wrapper = styled.div`padding-top: 105px;`;
+const Wrapper = styled.div`
+	width: 100%;
+	padding: 125px 24px 20px;
+	display: flex;
+	justify-content: center;
+`;
 
 const App = ({ user, history }) => {
 	const [ darkMode, setValue ] = useState(false);
@@ -48,30 +53,32 @@ const App = ({ user, history }) => {
 				<GlobalStyle />
 				<Header user={user} setValue={setValue} darkMode={darkMode} />
 				<Wrapper>
-					<Switch>
-						<Route
-							exact
-							path='/'
-							render={props => <DashboardContainer {...props} user={user} />}
-						/>
-						<Route exact path='/login' component={LoginContainer} />
-						<Route exact path='/register' component={RegisterContainer} />
-						<Route
-							exact
-							path='/forum'
-							render={props => <ForumContainer {...props} user={user} />}
-						/>
-						<Route
-							exact
-							path='/quizzes'
-							render={props => <QuizContainer {...props} user={user} />}
-						/>
-						<Route
-							exact
-							path='/forum/:id'
-							render={props => <PostContainer {...props} user={user} />}
-						/>
-					</Switch>
+					<div style={{ width: '648px' }}>
+						<Switch>
+							<Route
+								exact
+								path='/'
+								render={props => <DashboardContainer {...props} user={user} />}
+							/>
+							<Route exact path='/login' component={LoginContainer} />
+							<Route exact path='/register' component={RegisterContainer} />
+							<Route
+								exact
+								path='/forum'
+								render={props => <ForumContainer {...props} user={user} />}
+							/>
+							<Route
+								exact
+								path='/quizzes'
+								render={props => <QuizContainer {...props} user={user} />}
+							/>
+							<Route
+								exact
+								path='/forum/:id'
+								render={props => <PostContainer {...props} user={user} />}
+							/>
+						</Switch>
+					</div>
 				</Wrapper>
 			</div>
 		</ThemeProvider>

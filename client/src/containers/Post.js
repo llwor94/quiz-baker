@@ -1,39 +1,34 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import { fetchPost } from '../store/actions/forumActions';
-import {
-	ForumWrapper,
-	Post as PostWrapper,
-	NewComment,
-	CommentArea,
-	Comment,
-} from '../components/Forum/Post';
+import { Post as PostWrapper } from '../components/Forum/Post';
+import { NewComment, CommentArea, Comment } from '../components/Forum/Comment';
 
 const Post = ({ user, post, loading, fetchPost, ...props }) => {
-	console.log(props.match);
-	if (loading) return <div>Loading...</div>;
-	else if (post)
+	useEffect(
+		() => {
+			if (!post) {
+				fetchPost(props.match.params.id);
+			}
+		},
+		[ post ],
+	);
+
+	if (post)
 		return (
-			<ForumWrapper>
-				<PostWrapper post={post} user={user}>
-					{user && <NewComment user={user} />}
-					{post.comments.length && (
-						<CommentArea>
-							{post.comments.map(comment => (
-								<Comment key={comment.id} comment={comment} />
-							))}
-						</CommentArea>
-					)}
-				</PostWrapper>
-			</ForumWrapper>
+			<PostWrapper post={post} user={user}>
+				{user && <NewComment user={user} />}
+				{post.comments.length && (
+					<CommentArea>
+						{post.comments.map(comment => (
+							<Comment key={comment.id} comment={comment} />
+						))}
+					</CommentArea>
+				)}
+			</PostWrapper>
 		);
-	else
-		return (
-			<div>
-				<button onClick={() => fetchPost(props.match.params.id)}>Click me</button>
-			</div>
-		);
+	else return <div>Loading...</div>;
 };
 
 const mapStateToProps = ({ forumReducer }) => ({
