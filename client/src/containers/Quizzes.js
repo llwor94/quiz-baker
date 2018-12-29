@@ -5,15 +5,19 @@ import { fetchQuizzes } from '../store/actions/quizActions';
 import { Quiz } from '../components/Quizzes/Quiz';
 
 const Quizzes = ({ quizzes, loading, fetchQuizzes, ...props }) => {
-	useEffect(
-		() => {
-			if (!quizzes) {
-				fetchQuizzes();
-			}
-		},
-		[ quizzes ],
-	);
-	if (quizzes) return <div>{quizzes.map(quiz => <Quiz quiz={quiz} />)}</div>;
+	useEffect(() => {
+		fetchQuizzes();
+	}, []);
+
+	const pushQuiz = id => {
+		props.history.push(`quizzes/${id}`);
+	};
+	if (quizzes)
+		return (
+			<div>
+				{quizzes.map(quiz => <Quiz quiz={quiz} handleClick={() => pushQuiz(quiz.id)} />)}
+			</div>
+		);
 	else return <div>Loading...</div>;
 };
 

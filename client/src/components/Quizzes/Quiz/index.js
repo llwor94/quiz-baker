@@ -16,13 +16,16 @@ const QuizWrapper = styled.div`
 
 const SideBar = styled.div`
 	width: 40px;
-
 	justify-content: center;
 	align-items: center;
 	display: flex;
+	flex-direction: column;
 	background-color: transparent;
-	opacity: 80%;
 	color: ${props => props.theme.text};
+
+	i {
+		cursor: pointer;
+	}
 `;
 const InnerWrapper = styled.div`
 	padding: 8px;
@@ -88,19 +91,27 @@ const FooterWrapper = styled.div`
 		padding: initial;
 	}
 `;
-export const Quiz = ({ quiz }) => {
-	console.log(quiz);
+export const Quiz = ({ quiz, handleClick }) => {
+	console.log(quiz, handleClick);
 	return (
 		<QuizWrapper>
 			<SideBar>
-				<p>{quiz.votes}</p>
+				<i
+					className='pi pi-chevron-up'
+					style={{ color: quiz.user_vote === 1 ? 'red' : 'black' }}
+				/>
+				<p style={{ color: quiz.user_vote ? 'red' : 'black' }}>{quiz.votes}</p>
+				<i
+					className='pi pi-chevron-down'
+					style={{ color: quiz.user_vote === -1 ? 'red' : 'black' }}
+				/>
 			</SideBar>
 			<InnerWrapper>
 				<Header>
 					<Topic>{quiz.topic}</Topic>
 					Created by {quiz.author}
 				</Header>
-				<Title>{quiz.title}</Title>
+				<Title onClick={handleClick}>{quiz.title}</Title>
 				{quiz.description && (
 					<DescriptionWrapper>
 						<p>{quiz.description}</p>

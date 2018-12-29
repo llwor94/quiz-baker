@@ -13,6 +13,7 @@ const initialState = {
 	user: undefined,
 	loading: false,
 	error: undefined,
+	token: undefined,
 };
 
 const authReducer = (state = initialState, { payload, type }) => {
@@ -61,7 +62,8 @@ const authReducer = (state = initialState, { payload, type }) => {
 		case CHECK_USER_SUCCESS:
 			return {
 				...state,
-				user: payload,
+				user: payload.user,
+				token: payload.token,
 			};
 		default:
 			return state;

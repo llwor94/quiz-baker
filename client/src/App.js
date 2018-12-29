@@ -46,12 +46,7 @@ const App = ({ user, history, checkUser }) => {
 	useEffect(() => {
 		checkUser();
 	}, []);
-	useEffect(
-		() => {
-			history.push('/');
-		},
-		[ user ],
-	);
+
 	return (
 		<ThemeProvider theme={darkMode ? DarkMode : LightMode}>
 			<div>

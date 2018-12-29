@@ -40,7 +40,7 @@ export const login = user => dispatch => {
 
 export const checkUser = () => dispatch => {
 	let data = JSON.parse(localStorage.getItem('user'));
-	dispatch({ type: actions.CHECK_USER_SUCCESS, payload: data.user });
+	dispatch({ type: actions.CHECK_USER_SUCCESS, payload: data });
 };
 
 export const logout = () => ({

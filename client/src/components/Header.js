@@ -60,7 +60,6 @@ const Header = ({ user, setValue, darkMode, ...props }) => {
 				{
 					label: 'All quizzes',
 					command: () => {
-						props.fetchQuizzes();
 						props.history.push('/quizzes');
 					},
 				},
@@ -108,7 +107,6 @@ const Header = ({ user, setValue, darkMode, ...props }) => {
 		{
 			label: 'Quizzes',
 			command: () => {
-				props.fetchQuizzes();
 				props.history.push('/quizzes');
 			},
 		},
