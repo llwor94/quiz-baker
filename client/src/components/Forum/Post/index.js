@@ -189,10 +189,8 @@ const Wrapper = styled.div`
 	background-color: ${props => props.theme.main};
 `;
 
-const InnerForumWrapper = styled.div`width: 648px;`;
-
-export const ForumWrapper = ({ children, darkMode }) => (
+export const ForumWrapper = ({ children }) => (
 	<Wrapper>
-		<InnerForumWrapper>{children}</InnerForumWrapper>
+		<div style={{ width: '648px' }}>{children}</div>
 	</Wrapper>
 );

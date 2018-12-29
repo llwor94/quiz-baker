@@ -22,7 +22,7 @@ const quizReducer = (state = initialState, { payload, type }) => {
 			return {
 				...state,
 				loading: false,
-				quizzes: payload.sort((a, b) => b.id - a.id),
+				quizzes: payload.filter(quiz => quiz.question_count).sort((a, b) => b.id - a.id),
 			};
 		case FETCH_ALL_QUIZZES_FAILURE:
 			return {
