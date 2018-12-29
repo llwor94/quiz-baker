@@ -12,6 +12,7 @@ import DashboardContainer from './containers/Dashboard';
 import ForumContainer from './containers/Forum';
 import PostContainer from './containers/Post';
 import QuizContainer from './containers/Quizzes';
+import TakeQuizContainer from './containers/TakeQuiz';
 import Header from './components/Header';
 
 import { checkUser } from './store/actions/authActions';
@@ -71,6 +72,11 @@ const App = ({ user, history, checkUser }) => {
 								exact
 								path='/quizzes'
 								render={props => <QuizContainer {...props} user={user} />}
+							/>
+							<Route
+								exact
+								path='/quizzes/:id'
+								render={props => <TakeQuizContainer {...props} user={user} />}
 							/>
 							<Route
 								exact

@@ -2,10 +2,14 @@ import {
 	FETCH_ALL_QUIZZES_REQUEST,
 	FETCH_ALL_QUIZZES_FAILURE,
 	FETCH_ALL_QUIZZES_SUCCESS,
+	FETCH_QUIZ_REQUEST,
+	FETCH_QUIZ_SUCCESS,
+	FETCH_QUIZ_FAILURE,
 } from '../actions';
 
 const initialState = {
 	quizzes: undefined,
+	quiz: undefined,
 	loading: false,
 	error: undefined,
 };
@@ -28,6 +32,17 @@ const quizReducer = (state = initialState, { payload, type }) => {
 			return {
 				...state,
 				loading: false,
+			};
+		case FETCH_QUIZ_REQUEST:
+			return {
+				...state,
+				loading: true,
+			};
+		case FETCH_QUIZ_SUCCESS:
+			return {
+				...state,
+				loading: false,
+				quiz: payload,
 			};
 		default:
 			return state;

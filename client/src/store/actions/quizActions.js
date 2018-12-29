@@ -18,8 +18,25 @@ export const fetchQuizzes = () => async (dispatch, getState) => {
 		},
 	})
 		.then(({ data }) => {
-			console.log(data);
 			dispatch({ type: actions.FETCH_ALL_QUIZZES_SUCCESS, payload: data });
+		})
+		.catch(({ response }) => console.log(response));
+};
+
+export const fetchQuiz = id => async (dispatch, getState) => {
+	dispatch({ type: actions.FETCH_QUIZ_REQUEST });
+	await checkUser();
+
+	axios({
+		method: 'get',
+		url: `${URL}/${id}`,
+		headers: {
+			authorization: getState().authReducer.token,
+		},
+	})
+		.then(({ data }) => {
+			console.log(data);
+			dispatch({ type: actions.FETCH_QUIZ_SUCCESS, payload: data });
 		})
 		.catch(({ response }) => console.log(response));
 };
