@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import moment from 'moment';
 import { Editor } from 'primereact/editor';
 
-const PostWrapper = styled.div`
+export const PostWrapper = styled.div`
 	padding-left: 8px;
 	border-radius: 4px;
 	border: 1px solid;
@@ -74,26 +74,29 @@ const FooterWrapper = styled.div`
 	}
 `;
 
-export const LilPost = ({
-	post: { id, title, author, body, created_at },
+export const Post = ({
+	post: { title, author, body, created_at, comment_count },
 	handleClick,
-	darkMode,
+	children,
 }) => {
 	return (
 		<PostWrapper>
 			<InnerWrapper>
 				<Header>
-					Posted by {author} {moment(created_at).fromNow()}
+					Posted by {author.username ? author.username : author}
+					{moment(created_at).fromNow()}
 				</Header>
 				<PostTitle onClick={handleClick}>{title}</PostTitle>
 				<BodyWrapper>
 					<p>{body}</p>
 				</BodyWrapper>
 				<FooterWrapper>
+					<button>{comment_count} comments</button>
 					<button>Share</button>
 					<button>Save</button>
 				</FooterWrapper>
 			</InnerWrapper>
+			{children}
 		</PostWrapper>
 	);
 };
@@ -114,45 +117,20 @@ const NewCommentArea = styled.div`
 	}
 `;
 
-const CommentArea = styled.div`
+export const CommentArea = styled.div`
 	padding-right: 16px;
 	padding-bottom: 16ox;
 	margin: 16px 16px 0px 10px;
 `;
 
-export const Post = ({ post, user }) => {
-	console.log(post);
-	return (
-		<PostWrapper>
-			<InnerWrapper>
-				<Header>
-					Posted by {post.author.username} {moment(post.created_at).fromNow()}
-				</Header>
-				<PostTitle>{post.title}</PostTitle>
-				<BodyWrapper>
-					<p>{post.body}</p>
-				</BodyWrapper>
-				<FooterWrapper>
-					<button>Share</button>
-					<button>Save</button>
-				</FooterWrapper>
-				{user && (
-					<NewCommentArea>
-						<div style={{ margin: '4px' }}>
-							<span>Comment as</span>
-							<a>{user.username}</a>
-						</div>
-					</NewCommentArea>
-				)}
-			</InnerWrapper>
-			{post.comments && (
-				<CommentArea>
-					{post.comments.map(comment => <Comment key={comment.id} comment={comment} />)}
-				</CommentArea>
-			)}
-		</PostWrapper>
-	);
-};
+export const NewComment = ({ user }) => (
+	<NewCommentArea>
+		<div>
+			<span>Comment as</span>
+			<a>{user.username}</a>
+		</div>
+	</NewCommentArea>
+);
 
 const CommentWrapper = styled.div`
 	position: relative;

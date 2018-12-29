@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
 import { fetchPosts, fetchPost } from '../store/actions/forumActions';
-import { LilPost, ForumWrapper } from '../components/Forum/Post';
+import { Post, ForumWrapper } from '../components/Forum/Post';
 
 const Forum = ({ fetchPosts, fetchPost, posts, loading, ...props }) => {
 	const getPost = id => {
@@ -13,7 +13,7 @@ const Forum = ({ fetchPosts, fetchPost, posts, loading, ...props }) => {
 	else if (posts)
 		return (
 			<ForumWrapper>
-				{posts.map(post => <LilPost post={post} handleClick={() => getPost(post.id)} />)}
+				{posts.map(post => <Post post={post} handleClick={() => getPost(post.id)} />)}
 			</ForumWrapper>
 		);
 	else
