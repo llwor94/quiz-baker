@@ -14,6 +14,8 @@ import PostContainer from './containers/Post';
 import QuizContainer from './containers/Quizzes';
 import Header from './components/Header';
 
+import { checkUser } from './store/actions/authActions';
+
 import { DarkMode } from './Themes/dark';
 import { LightMode } from './Themes/light';
 
@@ -39,8 +41,11 @@ const Wrapper = styled.div`
 	justify-content: center;
 `;
 
-const App = ({ user, history }) => {
+const App = ({ user, history, checkUser }) => {
 	const [ darkMode, setValue ] = useState(false);
+	useEffect(() => {
+		checkUser();
+	}, []);
 	useEffect(
 		() => {
 			history.push('/');
@@ -89,4 +94,4 @@ const mapStateToProps = ({ authReducer }) => ({
 	user: authReducer.user,
 });
 
-export default withRouter(connect(mapStateToProps)(App));
+export default withRouter(connect(mapStateToProps, { checkUser })(App));

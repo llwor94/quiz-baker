@@ -14,7 +14,7 @@ export const register = user => dispatch => {
 		data: user,
 	})
 		.then(({ data }) => {
-			localStorage.setItem('token', data.token);
+			localStorage.setItem('user', JSON.stringify(data));
 			dispatch({ type: actions.SIGN_UP_SUCCESS, payload: data.user });
 		})
 		.catch(({ response }) =>
@@ -30,12 +30,17 @@ export const login = user => dispatch => {
 		data: user,
 	})
 		.then(({ data }) => {
-			localStorage.setItem('token', data.token);
+			localStorage.setItem('user', JSON.stringify(data));
 			dispatch({ type: actions.LOG_IN_SUCCESS, payload: data.user });
 		})
 		.catch(({ response }) =>
 			dispatch({ type: actions.LOG_IN_FAILURE, payload: response.data.message }),
 		);
+};
+
+export const checkUser = () => dispatch => {
+	let data = JSON.parse(localStorage.getItem('user'));
+	dispatch({ type: actions.CHECK_USER_SUCCESS, payload: data.user });
 };
 
 export const logout = () => ({

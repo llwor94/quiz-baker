@@ -6,6 +6,7 @@ import {
 	LOG_IN_REQUEST,
 	LOG_IN_SUCCESS,
 	LOG_OUT_REQUEST,
+	CHECK_USER_SUCCESS,
 } from '../actions';
 
 const initialState = {
@@ -56,6 +57,11 @@ const authReducer = (state = initialState, { payload, type }) => {
 			return {
 				...state,
 				user: undefined,
+			};
+		case CHECK_USER_SUCCESS:
+			return {
+				...state,
+				user: payload,
 			};
 		default:
 			return state;

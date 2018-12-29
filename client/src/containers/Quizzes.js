@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import { fetchQuizzes } from '../store/actions/quizActions';
+import { Quiz } from '../components/Quizzes/Quiz';
 
 const Quizzes = ({ quizzes, loading, fetchQuizzes, ...props }) => {
 	useEffect(
@@ -12,16 +13,7 @@ const Quizzes = ({ quizzes, loading, fetchQuizzes, ...props }) => {
 		},
 		[ quizzes ],
 	);
-	if (quizzes)
-		return (
-			<div>
-				{quizzes.map(quiz => (
-					<div>
-						<h1>{quiz.title}</h1>
-					</div>
-				))}
-			</div>
-		);
+	if (quizzes) return <div>{quizzes.map(quiz => <Quiz quiz={quiz} />)}</div>;
 	else return <div>Loading...</div>;
 };
 
