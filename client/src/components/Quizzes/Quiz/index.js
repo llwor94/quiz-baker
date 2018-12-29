@@ -109,7 +109,7 @@ export const Quiz = ({ quiz, handleClick }) => {
 			<InnerWrapper>
 				<Header>
 					<Topic>{quiz.topic}</Topic>
-					Created by {quiz.author}
+					Created by {quiz.author.username ? quiz.author.username : quiz.author}
 				</Header>
 				<Title onClick={handleClick}>{quiz.title}</Title>
 				{quiz.description && (
