@@ -1,11 +1,14 @@
 import React, { useEffect, useState, Fragment } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import _ from 'lodash';
 
 import { fetchQuiz } from '../store/actions/quizActions';
 import { fetchQuizQuestions } from '../store/actions/questionActions';
 import { Quiz as QuizWrapper } from '../components/Quizzes/Quiz';
+import { QuestionTracker } from '../components/Quizzes/Questions/QuestionTracker';
 import { Button } from '../components/Quizzes/Quiz/button';
+import { Results } from '../components/Quizzes/Quiz/results';
 import Question from './Question';
 
 const Quiz = ({ quiz, loading, questions, fetchQuiz, fetchQuizQuestions, ...props }) => {
@@ -14,11 +17,20 @@ const Quiz = ({ quiz, loading, questions, fetchQuiz, fetchQuizQuestions, ...prop
 		fetchQuizQuestions(props.match.params.id);
 	}, []);
 
+	useEffect(
+		() => {
+			if (questions) {
+				setQuestionResponse(_.fill(Array(questions.length), null));
+			}
+		},
+		[ questions ],
+	);
+
+	const [ questionResponse, setQuestionResponse ] = useState(null);
+
 	const [ currentQuestion, setQuestion ] = useState(null);
 
 	const checkAnswer = option => {
-		console.log(option, questions[currentQuestion].id, quiz.id);
-
 		axios({
 			method: 'get',
 			url: `https://lambda-study-app.herokuapp.com/api/quizzes/${quiz.id}/questions/${questions[
@@ -28,19 +40,22 @@ const Quiz = ({ quiz, loading, questions, fetchQuiz, fetchQuizQuestions, ...prop
 				option,
 			},
 		})
-			.then(({ data }) => console.log(data))
+			.then(({ data }) => {
+				let newQuestions = [ ...questionResponse ];
+				newQuestions[currentQuestion] = data.correct;
+				setQuestionResponse(newQuestions);
+				setQuestion(currentQuestion + 1);
+			})
 			.catch(err => console.log(err));
 	};
 
-	const manageQuestion = () => {
-		if (currentQuestion === null) setQuestion(0);
-		else setQuestion(currentQuestion + 1);
-	};
 	if (quiz)
 		return (
 			<Fragment>
 				{currentQuestion === null ? (
 					<QuizWrapper quiz={quiz} />
+				) : currentQuestion === questions.length ? (
+					<Results />
 				) : (
 					<Question
 						quiz={quiz}
@@ -48,8 +63,10 @@ const Quiz = ({ quiz, loading, questions, fetchQuiz, fetchQuizQuestions, ...prop
 						checkAnswer={checkAnswer}
 					/>
 				)}
-
-				<Button currentQuestion={currentQuestion} handleClick={manageQuestion} />
+				{currentQuestion === null && (
+					<Button currentQuestion={currentQuestion} handleClick={() => setQuestion(0)} />
+				)}
+				<QuestionTracker questions={questionResponse} currentQuestion={currentQuestion} />
 			</Fragment>
 		);
 	else return <div>Loading...</div>;

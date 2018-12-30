@@ -34,7 +34,6 @@ const Label = styled.label`
 `;
 
 export const Question = ({ question, handleChange, inputSelection }) => {
-	console.log(question);
 	return (
 		<Wrapper>
 			<Title>{question.question}</Title>

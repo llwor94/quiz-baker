@@ -92,7 +92,6 @@ const FooterWrapper = styled.div`
 	}
 `;
 export const Quiz = ({ quiz, handleClick }) => {
-	console.log(quiz, handleClick);
 	return (
 		<QuizWrapper>
 			<SideBar>

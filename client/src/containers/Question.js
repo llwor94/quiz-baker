@@ -5,10 +5,10 @@ import { Question as QuestionWrapper } from '../components/Quizzes/Questions';
 import { Button } from '../components/Quizzes/Questions/button';
 
 const Question = ({ question, checkAnswer, ...props }) => {
-	console.log(question);
 	const [ selected, setSelected ] = useState(null);
 	const checkQuestion = () => {
 		checkAnswer(selected + 1);
+		setSelected(null);
 	};
 	return (
 		<Fragment>
