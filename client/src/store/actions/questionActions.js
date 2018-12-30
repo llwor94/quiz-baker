@@ -18,3 +18,10 @@ export const fetchQuizQuestions = id => dispatch => {
 		})
 		.catch(({ response }) => console.log(response));
 };
+
+export const fetchQuestionResult = ({ id, option }) => (dispatch, getState) => {
+	dispatch({ type: actions.FETCH_QUESTION_RESULT_REQUEST });
+	let quiz = getState.quizReducer().quiz;
+	console.log(quiz, id, option);
+	axios({});
+};

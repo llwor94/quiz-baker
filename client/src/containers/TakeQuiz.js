@@ -1,5 +1,6 @@
 import React, { useEffect, useState, Fragment } from 'react';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 import { fetchQuiz } from '../store/actions/quizActions';
 import { fetchQuizQuestions } from '../store/actions/questionActions';
@@ -15,6 +16,22 @@ const Quiz = ({ quiz, loading, questions, fetchQuiz, fetchQuizQuestions, ...prop
 
 	const [ currentQuestion, setQuestion ] = useState(null);
 
+	const checkAnswer = option => {
+		console.log(option, questions[currentQuestion].id, quiz.id);
+
+		axios({
+			method: 'get',
+			url: `https://lambda-study-app.herokuapp.com/api/quizzes/${quiz.id}/questions/${questions[
+				currentQuestion
+			].id}/response`,
+			params: {
+				option,
+			},
+		})
+			.then(({ data }) => console.log(data))
+			.catch(err => console.log(err));
+	};
+
 	const manageQuestion = () => {
 		if (currentQuestion === null) setQuestion(0);
 		else setQuestion(currentQuestion + 1);
@@ -25,7 +42,11 @@ const Quiz = ({ quiz, loading, questions, fetchQuiz, fetchQuizQuestions, ...prop
 				{currentQuestion === null ? (
 					<QuizWrapper quiz={quiz} />
 				) : (
-					<Question question={questions[currentQuestion]} />
+					<Question
+						quiz={quiz}
+						question={questions[currentQuestion]}
+						checkAnswer={checkAnswer}
+					/>
 				)}
 
 				<Button currentQuestion={currentQuestion} handleClick={manageQuestion} />
