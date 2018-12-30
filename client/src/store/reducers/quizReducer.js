@@ -21,6 +21,7 @@ const quizReducer = (state = initialState, { payload, type }) => {
 				...state,
 				loading: true,
 				error: undefined,
+				quiz: undefined,
 			};
 		case FETCH_ALL_QUIZZES_SUCCESS:
 			return {

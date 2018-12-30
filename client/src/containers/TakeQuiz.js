@@ -45,7 +45,7 @@ const Quiz = ({ quiz, loading, questions, fetchQuiz, fetchQuizQuestions, ...prop
 				newQuestions[currentQuestion] = {
 					correct: data.correct,
 					question: questions[currentQuestion],
-					option: questions[currentQuestion].options[option],
+					option: questions[currentQuestion].options[option - 1],
 				};
 				setQuestionResponse(newQuestions);
 				setQuestion(currentQuestion + 1);
@@ -59,7 +59,7 @@ const Quiz = ({ quiz, loading, questions, fetchQuiz, fetchQuizQuestions, ...prop
 				{currentQuestion === null ? (
 					<QuizWrapper quiz={quiz} />
 				) : currentQuestion === questions.length ? (
-					<Results />
+					<Results results={questionResponse} />
 				) : (
 					<Question
 						quiz={quiz}
@@ -70,7 +70,7 @@ const Quiz = ({ quiz, loading, questions, fetchQuiz, fetchQuizQuestions, ...prop
 				{currentQuestion === null && (
 					<Button
 						currentQuestion={currentQuestion}
-						text='Next Question'
+						text='Take Quiz'
 						handleClick={() => setQuestion(0)}
 					/>
 				)}
