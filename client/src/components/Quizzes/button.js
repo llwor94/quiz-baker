@@ -10,7 +10,6 @@ const StyledButton = styled.div`
 	padding: 8px;
 	background-color: ${props => props.theme.secondary};
 `;
-
-export const Button = ({ handleClick }) => {
-	return <StyledButton onClick={handleClick}>Check Answer</StyledButton>;
+export const Button = ({ handleClick, text }) => {
+	return <StyledButton onClick={handleClick}>{text}</StyledButton>;
 };

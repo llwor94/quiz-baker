@@ -7,7 +7,7 @@ import { fetchQuiz } from '../store/actions/quizActions';
 import { fetchQuizQuestions } from '../store/actions/questionActions';
 import { Quiz as QuizWrapper } from '../components/Quizzes/Quiz';
 import { QuestionTracker } from '../components/Quizzes/Questions/QuestionTracker';
-import { Button } from '../components/Quizzes/Quiz/button';
+import { Button } from '../components/Quizzes/button';
 import { Results } from '../components/Quizzes/Quiz/results';
 import Question from './Question';
 
@@ -20,7 +20,7 @@ const Quiz = ({ quiz, loading, questions, fetchQuiz, fetchQuizQuestions, ...prop
 	useEffect(
 		() => {
 			if (questions) {
-				setQuestionResponse(_.fill(Array(questions.length), null));
+				setQuestionResponse(_.fill(Array(questions.length), { correct: null }));
 			}
 		},
 		[ questions ],
@@ -42,7 +42,11 @@ const Quiz = ({ quiz, loading, questions, fetchQuiz, fetchQuizQuestions, ...prop
 		})
 			.then(({ data }) => {
 				let newQuestions = [ ...questionResponse ];
-				newQuestions[currentQuestion] = data.correct;
+				newQuestions[currentQuestion] = {
+					correct: data.correct,
+					question: questions[currentQuestion],
+					option: questions[currentQuestion].options[option],
+				};
 				setQuestionResponse(newQuestions);
 				setQuestion(currentQuestion + 1);
 			})
@@ -64,7 +68,11 @@ const Quiz = ({ quiz, loading, questions, fetchQuiz, fetchQuizQuestions, ...prop
 					/>
 				)}
 				{currentQuestion === null && (
-					<Button currentQuestion={currentQuestion} handleClick={() => setQuestion(0)} />
+					<Button
+						currentQuestion={currentQuestion}
+						text='Next Question'
+						handleClick={() => setQuestion(0)}
+					/>
 				)}
 				<QuestionTracker questions={questionResponse} currentQuestion={currentQuestion} />
 			</Fragment>

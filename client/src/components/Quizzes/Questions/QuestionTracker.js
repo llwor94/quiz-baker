@@ -13,15 +13,22 @@ const Box = styled.div`
 		props.correct === null ? props.theme.secondary : props.correct ? 'green' : 'red'};
 	margin: 4px;
 	border-radius: 4px;
-	border: 1px solid;
-	border-color: ${props => props.theme.accent};
+	border: ${props => (props.currentQuestion ? '3px solid' : '1px solid')};
+	border-color: ${props => (props.currentQuestion ? 'gold' : props.theme.accent)};
 `;
 
 export const QuestionTracker = ({ questions, currentQuestion }) => {
+	console.log(questions);
 	return (
 		<Wrapper>
 			{questions ? (
-				questions.map((question, id) => <Box key={id} correct={question} />)
+				questions.map((question, id) => (
+					<Box
+						key={id}
+						correct={question.correct}
+						currentQuestion={currentQuestion === id}
+					/>
+				))
 			) : (
 				<div>hi</div>
 			)}

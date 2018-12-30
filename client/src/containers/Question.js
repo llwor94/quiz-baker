@@ -1,8 +1,8 @@
-import React, { useEffect, useState, Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 import { connect } from 'react-redux';
 
 import { Question as QuestionWrapper } from '../components/Quizzes/Questions';
-import { Button } from '../components/Quizzes/Questions/button';
+import { Button } from '../components/Quizzes/button';
 
 const Question = ({ question, checkAnswer, ...props }) => {
 	const [ selected, setSelected ] = useState(null);
@@ -17,7 +17,7 @@ const Question = ({ question, checkAnswer, ...props }) => {
 				handleChange={e => setSelected(e.value)}
 				inputSelection={selected}
 			/>
-			<Button handleClick={checkQuestion} />
+			<Button handleClick={checkQuestion} text='Take Quiz' />
 		</Fragment>
 	);
 };

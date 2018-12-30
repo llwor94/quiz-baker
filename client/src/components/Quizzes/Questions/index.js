@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { RadioButton } from 'primereact/radiobutton';
 
@@ -39,9 +39,9 @@ export const Question = ({ question, handleChange, inputSelection }) => {
 			<Title>{question.question}</Title>
 
 			{question.options.map((option, i) => (
-				<Option>
+				<Option key={i}>
 					<RadioButton
-						inputId={i}
+						inputId={i.toString()}
 						value={i}
 						onChange={handleChange}
 						checked={inputSelection === i}
