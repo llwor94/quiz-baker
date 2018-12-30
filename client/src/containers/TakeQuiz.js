@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { fetchQuiz } from '../store/actions/quizActions';
 import { fetchQuizQuestions } from '../store/actions/questionActions';
 import { Quiz as QuizWrapper } from '../components/Quizzes/Quiz';
+import { Button } from '../components/Quizzes/Quiz/button';
+import Question from './Question';
 
 const Quiz = ({ quiz, loading, questions, fetchQuiz, fetchQuizQuestions, ...props }) => {
 	useEffect(() => {
@@ -13,11 +15,20 @@ const Quiz = ({ quiz, loading, questions, fetchQuiz, fetchQuizQuestions, ...prop
 
 	const [ currentQuestion, setQuestion ] = useState(null);
 
+	const manageQuestion = () => {
+		if (currentQuestion === null) setQuestion(0);
+		else setQuestion(currentQuestion + 1);
+	};
 	if (quiz)
 		return (
 			<Fragment>
-				<QuizWrapper quiz={quiz} />
-				<button>Start quiz?</button>
+				{currentQuestion === null ? (
+					<QuizWrapper quiz={quiz} />
+				) : (
+					<Question question={questions[currentQuestion]} />
+				)}
+
+				<Button currentQuestion={currentQuestion} handleClick={manageQuestion} />
 			</Fragment>
 		);
 	else return <div>Loading...</div>;
