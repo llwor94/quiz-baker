@@ -8,7 +8,7 @@ const QuizWrapper = styled.div`
 	display: flex;
 	background-color: ${props => props.theme.secondary};
 	margin-bottom: 10px;
-	font-family: 'IBM Plex Sans', sans-serif;
+
 	&:hover {
 		border-color: rgb(129, 131, 132);
 	}

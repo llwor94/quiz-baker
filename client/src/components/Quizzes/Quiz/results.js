@@ -7,7 +7,7 @@ const Wrapper = styled.div`
 	border-color: ${props => props.theme.accent};
 	background-color: ${props => props.theme.secondary};
 	margin-bottom: 10px;
-	font-family: 'IBM Plex Sans', sans-serif;
+
 	&:hover {
 		border-color: rgb(129, 131, 132);
 	}
@@ -35,7 +35,6 @@ const InnerWrapper = styled.div`
 `;
 
 const NumberWrapper = styled.div`
-	font-family: 'IBM Plex Sans', sans-serif;
 	color: ${props => props.theme.link};
 	display: flex;
 	justify-content: flex-end;

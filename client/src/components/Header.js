@@ -26,6 +26,7 @@ const HeaderWrapper = styled.div`
 
 const StyledLink = styled(Link)`
   color: ${props => props.theme.text};
+	padding-right: 5px;
 `;
 
 const StyledMenu = styled(Menubar)`
@@ -138,7 +139,7 @@ const Header = ({ user, setValue, darkMode, ...props }) => {
 	return (
 		<Fragment>
 			<HeaderWrapper>
-				<StyledLink to='/'>Quiz Thang</StyledLink>
+				<StyledLink to='/'>Quiz Baker</StyledLink>
 				<InputSwitch
 					onLabel='Dark Mode'
 					offLabel='Light Mode'

@@ -11,7 +11,6 @@ export const PostWrapper = styled.div`
 	position: relative;
 	margin-bottom: 10px;
 	background-color: ${props => props.theme.secondary};
-	font-family: 'IBM Plex Sans', sans-serif;
 
 	&:hover {
 		border-color: rgb(129, 131, 132);
