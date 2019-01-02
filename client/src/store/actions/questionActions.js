@@ -14,5 +14,10 @@ export const fetchQuizQuestions = id => dispatch => {
 		.then(({ data }) => {
 			dispatch({ type: actions.FETCH_QUIZ_QUESTIONS_SUCCESS, payload: data });
 		})
-		.catch(({ response }) => console.log(response));
+		.catch(({ response }) =>
+			dispatch({
+				type: actions.FETCH_QUIZ_QUESTIONS_FAILURE,
+				payload: response.data.message,
+			}),
+		);
 };

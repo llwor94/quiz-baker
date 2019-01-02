@@ -11,7 +11,9 @@ export const fetchPosts = () => dispatch => {
 		.then(({ data }) => {
 			dispatch({ type: actions.FETCH_ALL_POSTS_SUCCESS, payload: data });
 		})
-		.catch(({ response }) => console.log(response.data));
+		.catch(({ response }) =>
+			dispatch({ type: actions.FETCH_ALL_POSTS_FAILURE, payload: response.data.message }),
+		);
 };
 
 export const fetchPost = id => dispatch => {
@@ -21,5 +23,7 @@ export const fetchPost = id => dispatch => {
 			console.log(data);
 			dispatch({ type: actions.FETCH_POST_SUCCESS, payload: data });
 		})
-		.catch(({ response }) => console.log(response));
+		.catch(({ response }) =>
+			dispatch({ type: actions.FETCH_POST_FAILURE, payload: response.data.message }),
+		);
 };

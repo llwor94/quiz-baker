@@ -7,7 +7,6 @@ let devURL = 'http://localhost:3400/api/auth';
 
 export const register = user => dispatch => {
 	dispatch({ type: actions.SIGN_UP_REQUEST });
-	console.log(user);
 	axios({
 		method: 'post',
 		url: `${URL}/register`,
@@ -40,7 +39,14 @@ export const login = user => dispatch => {
 
 export const checkUser = () => dispatch => {
 	let data = JSON.parse(localStorage.getItem('user'));
-	dispatch({ type: actions.CHECK_USER_SUCCESS, payload: data });
+	if (data) {
+		dispatch({ type: actions.CHECK_USER_SUCCESS, payload: data });
+	} else {
+		dispatch({
+			type: actions.CHECK_USER_SUCCESS,
+			payload: { user: undefined, token: undefined },
+		});
+	}
 };
 
 export const logout = () => ({

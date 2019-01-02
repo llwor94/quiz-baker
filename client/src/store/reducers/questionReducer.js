@@ -24,6 +24,12 @@ const questionReducer = (state = initialState, { payload, type }) => {
 				loading: false,
 				questions: payload,
 			};
+		case FETCH_QUIZ_QUESTIONS_FAILURE:
+			return {
+				...state,
+				loading: false,
+				error: payload,
+			};
 		default:
 			return state;
 	}

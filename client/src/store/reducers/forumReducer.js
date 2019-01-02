@@ -32,6 +32,7 @@ const forumReducer = (state = initialState, { payload, type }) => {
 			return {
 				...state,
 				loading: false,
+				error: payload,
 			};
 		case FETCH_POST_REQUEST:
 			return {
@@ -49,6 +50,7 @@ const forumReducer = (state = initialState, { payload, type }) => {
 			return {
 				...state,
 				loading: false,
+				error: payload,
 			};
 		default:
 			return state;

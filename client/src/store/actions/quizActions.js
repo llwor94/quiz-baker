@@ -20,7 +20,9 @@ export const fetchQuizzes = () => async (dispatch, getState) => {
 		.then(({ data }) => {
 			dispatch({ type: actions.FETCH_ALL_QUIZZES_SUCCESS, payload: data });
 		})
-		.catch(({ response }) => console.log(response));
+		.catch(({ response }) =>
+			dispatch({ type: actions.FETCH_ALL_QUIZZES_FAILURE, payload: response.data.message }),
+		);
 };
 
 export const fetchQuiz = id => async (dispatch, getState) => {
@@ -35,8 +37,9 @@ export const fetchQuiz = id => async (dispatch, getState) => {
 		},
 	})
 		.then(({ data }) => {
-			console.log(data);
 			dispatch({ type: actions.FETCH_QUIZ_SUCCESS, payload: data });
 		})
-		.catch(({ response }) => console.log(response));
+		.catch(({ response }) =>
+			dispatch({ type: actions.FETCH_QUIZ_FAILURE, payload: response.data.message }),
+		);
 };

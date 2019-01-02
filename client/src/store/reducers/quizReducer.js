@@ -33,6 +33,7 @@ const quizReducer = (state = initialState, { payload, type }) => {
 			return {
 				...state,
 				loading: false,
+				error: payload,
 			};
 		case FETCH_QUIZ_REQUEST:
 			return {
@@ -44,6 +45,12 @@ const quizReducer = (state = initialState, { payload, type }) => {
 				...state,
 				loading: false,
 				quiz: payload,
+			};
+		case FETCH_QUIZ_FAILURE:
+			return {
+				...state,
+				loading: false,
+				error: payload,
 			};
 		default:
 			return state;
