@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Dropdown } from 'primereact/dropdown';
 
-import { fetchQuizzes } from '../store/actions/quizActions';
+import { fetchQuizzes, updateUserFavorite } from '../store/actions/quizActions';
 import { Quiz } from '../components/Quizzes/Quiz';
 
-const Quizzes = ({ quizzes, loading, fetchQuizzes, user, ...props }) => {
+const Quizzes = ({ quizzes, loading, fetchQuizzes, user, updateUserFavorite, ...props }) => {
 	const [ sortOption, setSortOption ] = useState('MR');
 	const [ filterOption, setFilterOption ] = useState('ALL');
 	const [ displayingQuizzes, changeQuizzes ] = useState(null);
@@ -73,6 +73,10 @@ const Quizzes = ({ quizzes, loading, fetchQuizzes, user, ...props }) => {
 		[ filterOption ],
 	);
 
+	const handleFavoriteToggle = quiz => {
+		updateUserFavorite(!quiz.favorite, quiz.id);
+	};
+
 	const pushQuiz = id => {
 		props.history.push(`quizzes/${id}`);
 	};
@@ -101,6 +105,7 @@ const Quizzes = ({ quizzes, loading, fetchQuizzes, user, ...props }) => {
 						user={user}
 						handleClick={() => pushQuiz(quiz.id)}
 						mainPage={true}
+						handleFavoriteToggle={() => handleFavoriteToggle(quiz)}
 					/>
 				))}
 			</div>
@@ -113,4 +118,4 @@ const mapStateToProps = ({ quizReducer }) => ({
 	loading: quizReducer.loading,
 });
 
-export default connect(mapStateToProps, { fetchQuizzes })(Quizzes);
+export default connect(mapStateToProps, { fetchQuizzes, updateUserFavorite })(Quizzes);

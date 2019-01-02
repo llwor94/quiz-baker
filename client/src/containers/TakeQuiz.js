@@ -22,7 +22,6 @@ const Quiz = ({
 	...props
 }) => {
 	const [ questionResponse, setQuestionResponse ] = useState(null);
-
 	const [ currentQuestion, setQuestion ] = useState(null);
 
 	useEffect(() => {

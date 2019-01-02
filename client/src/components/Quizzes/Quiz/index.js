@@ -104,7 +104,7 @@ const TakeQuizButton = styled.div`
 	margin-top: 5px;
 	cursor: pointer;
 `;
-export const Quiz = ({ quiz, user, handleClick, handleVotes, mainPage }) => {
+export const Quiz = ({ quiz, user, handleClick, handleFavoriteToggle, mainPage }) => {
 	return (
 		<QuizWrapper>
 			<SideBar>
@@ -129,6 +129,8 @@ export const Quiz = ({ quiz, user, handleClick, handleVotes, mainPage }) => {
 							<FontAwesomeIcon
 								icon={faHeart}
 								color={quiz.favorite ? 'red' : 'gray'}
+								style={{ cursor: 'pointer' }}
+								onClick={handleFavoriteToggle}
 							/>
 							<Topic>
 								{quiz.score === null ? '--' : quiz.score}/{quiz.question_count}

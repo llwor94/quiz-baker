@@ -46,7 +46,7 @@ export const fetchQuiz = id => async (dispatch, getState) => {
 
 export const updateUserScore = (score, quizId) => async (dispatch, getState) => {
 	dispatch({ type: actions.UPDATE_USER_SCORE_REQUEST });
-	console.log(score, quizId, getState().authReducer.token);
+
 	axios({
 		method: 'patch',
 		url: `${URL}/${quizId}`,
@@ -59,6 +59,29 @@ export const updateUserScore = (score, quizId) => async (dispatch, getState) => 
 			dispatch({ type: actions.UPDATE_USER_SCORE_SUCCESS });
 		})
 		.catch(({ response }) =>
-			dispatch({ type: actions.FETCH_QUIZ_FAILURE, payload: response.data.message }),
+			dispatch({ type: actions.UPDATE_USER_SCORE_FAILURE, payload: response.data.message }),
+		);
+};
+
+export const updateUserFavorite = (favorite, quizId) => async (dispatch, getState) => {
+	dispatch({ type: actions.UPDATE_USER_FAVORITE_REQUEST });
+	console.log(favorite);
+	axios({
+		method: 'patch',
+		url: `${URL}/${quizId}`,
+		headers: {
+			authorization: getState().authReducer.token,
+		},
+		data: { favorite: favorite },
+	})
+		.then(({ data }) => {
+			dispatch({ type: actions.UPDATE_USER_FAVORITE_SUCCESS });
+			dispatch(fetchQuizzes());
+		})
+		.catch(({ response }) =>
+			dispatch({
+				type: actions.UPDATE_USER_FAVORITE_FAILURE,
+				payload: response.data.message,
+			}),
 		);
 };
