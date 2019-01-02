@@ -43,3 +43,22 @@ export const fetchQuiz = id => async (dispatch, getState) => {
 			dispatch({ type: actions.FETCH_QUIZ_FAILURE, payload: response.data.message }),
 		);
 };
+
+export const updateUserScore = (score, quizId) => async (dispatch, getState) => {
+	dispatch({ type: actions.UPDATE_USER_SCORE_REQUEST });
+	console.log(score, quizId, getState().authReducer.token);
+	axios({
+		method: 'patch',
+		url: `${URL}/${quizId}`,
+		headers: {
+			authorization: getState().authReducer.token,
+		},
+		data: { score: score },
+	})
+		.then(({ data }) => {
+			dispatch({ type: actions.UPDATE_USER_SCORE_SUCCESS });
+		})
+		.catch(({ response }) =>
+			dispatch({ type: actions.FETCH_QUIZ_FAILURE, payload: response.data.message }),
+		);
+};

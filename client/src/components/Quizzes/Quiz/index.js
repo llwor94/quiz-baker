@@ -38,6 +38,7 @@ const Header = styled.div`
 	font-weight: 400;
 	line-height: 16px;
 	display: flex;
+	justify-content: space-between;
 	margin-bottom: 8px;
 	color: ${props => props.theme.link};
 `;
@@ -91,7 +92,7 @@ const FooterWrapper = styled.div`
 		padding: initial;
 	}
 `;
-export const Quiz = ({ quiz, handleClick }) => {
+export const Quiz = ({ quiz, user, handleClick }) => {
 	return (
 		<QuizWrapper>
 			<SideBar>
@@ -107,8 +108,15 @@ export const Quiz = ({ quiz, handleClick }) => {
 			</SideBar>
 			<InnerWrapper>
 				<Header>
-					<Topic>{quiz.topic}</Topic>
-					Created by {quiz.author.username ? quiz.author.username : quiz.author}
+					<div>
+						<Topic>{quiz.topic}</Topic>
+						Created by {quiz.author.username ? quiz.author.username : quiz.author}
+					</div>
+					{user.id && (
+						<Topic>
+							{quiz.score === null ? '--' : quiz.score}/{quiz.question_count}
+						</Topic>
+					)}
 				</Header>
 				<Title onClick={handleClick}>{quiz.title}</Title>
 				{quiz.description && (

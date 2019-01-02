@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import _ from 'lodash';
 
-import { fetchQuiz } from '../store/actions/quizActions';
+import { fetchQuiz, updateUserScore } from '../store/actions/quizActions';
 import { fetchQuizQuestions } from '../store/actions/questionActions';
 import { Quiz as QuizWrapper } from '../components/Quizzes/Quiz';
 import { QuestionTracker } from '../components/Quizzes/Questions/QuestionTracker';
@@ -11,7 +11,20 @@ import { Button } from '../components/Quizzes/button';
 import { Results } from '../components/Quizzes/Quiz/results';
 import Question from './Question';
 
-const Quiz = ({ quiz, loading, questions, fetchQuiz, fetchQuizQuestions, ...props }) => {
+const Quiz = ({
+	quiz,
+	loading,
+	questions,
+	fetchQuiz,
+	user,
+	fetchQuizQuestions,
+	updateUserScore,
+	...props
+}) => {
+	const [ questionResponse, setQuestionResponse ] = useState(null);
+
+	const [ currentQuestion, setQuestion ] = useState(null);
+
 	useEffect(() => {
 		fetchQuiz(props.match.params.id);
 		fetchQuizQuestions(props.match.params.id);
@@ -26,9 +39,17 @@ const Quiz = ({ quiz, loading, questions, fetchQuiz, fetchQuizQuestions, ...prop
 		[ questions ],
 	);
 
-	const [ questionResponse, setQuestionResponse ] = useState(null);
-
-	const [ currentQuestion, setQuestion ] = useState(null);
+	useEffect(
+		() => {
+			if (questionResponse) {
+				let score = questionResponse.filter(result => result.correct).length;
+				if (questions && currentQuestion === questions.length && score > quiz.score) {
+					updateUserScore(score, quiz.id);
+				}
+			}
+		},
+		[ currentQuestion ],
+	);
 
 	const checkAnswer = option => {
 		axios({
@@ -57,7 +78,7 @@ const Quiz = ({ quiz, loading, questions, fetchQuiz, fetchQuizQuestions, ...prop
 		return (
 			<Fragment>
 				{currentQuestion === null ? (
-					<QuizWrapper quiz={quiz} />
+					<QuizWrapper quiz={quiz} user={user} />
 				) : currentQuestion === questions.length ? (
 					<Results results={questionResponse} />
 				) : (
@@ -86,4 +107,4 @@ const mapStateToProps = ({ quizReducer, questionReducer }) => ({
 	questions: questionReducer.questions,
 });
 
-export default connect(mapStateToProps, { fetchQuiz, fetchQuizQuestions })(Quiz);
+export default connect(mapStateToProps, { fetchQuiz, fetchQuizQuestions, updateUserScore })(Quiz);

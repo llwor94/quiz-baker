@@ -5,6 +5,9 @@ import {
 	FETCH_QUIZ_REQUEST,
 	FETCH_QUIZ_SUCCESS,
 	FETCH_QUIZ_FAILURE,
+	UPDATE_USER_SCORE_REQUEST,
+	UPDATE_USER_SCORE_FAILURE,
+	UPDATE_USER_SCORE_SUCCESS,
 } from '../actions';
 
 const initialState = {
@@ -47,6 +50,22 @@ const quizReducer = (state = initialState, { payload, type }) => {
 				quiz: payload,
 			};
 		case FETCH_QUIZ_FAILURE:
+			return {
+				...state,
+				loading: false,
+				error: payload,
+			};
+		case UPDATE_USER_SCORE_REQUEST:
+			return {
+				...state,
+				loading: true,
+			};
+		case UPDATE_USER_SCORE_SUCCESS:
+			return {
+				...state,
+				loading: false,
+			};
+		case UPDATE_USER_SCORE_FAILURE:
 			return {
 				...state,
 				loading: false,
