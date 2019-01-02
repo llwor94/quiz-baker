@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
 const QuizWrapper = styled.div`
 	border-radius: 4px;
 	border: 1px solid;
@@ -45,7 +47,7 @@ const Header = styled.div`
 const Topic = styled.a`
 	font-weight: 700;
 	color: ${props => props.theme.text};
-	padding-right: 5px;
+	padding: 0 5px;
 `;
 
 const Title = styled.div`
@@ -92,7 +94,17 @@ const FooterWrapper = styled.div`
 		padding: initial;
 	}
 `;
-export const Quiz = ({ quiz, user, handleClick }) => {
+
+const TakeQuizButton = styled.div`
+	border-radius: 4px;
+	border: 1px solid;
+	border-color: ${props => props.theme.accent};
+	display: inline-block;
+	padding: 2px;
+	margin-top: 5px;
+	cursor: pointer;
+`;
+export const Quiz = ({ quiz, user, handleClick, handleVotes, mainPage }) => {
 	return (
 		<QuizWrapper>
 			<SideBar>
@@ -113,12 +125,19 @@ export const Quiz = ({ quiz, user, handleClick }) => {
 						Created by {quiz.author.username ? quiz.author.username : quiz.author}
 					</div>
 					{user.id && (
-						<Topic>
-							{quiz.score === null ? '--' : quiz.score}/{quiz.question_count}
-						</Topic>
+						<div>
+							<FontAwesomeIcon
+								icon={faHeart}
+								color={quiz.favorite ? 'red' : 'gray'}
+							/>
+							<Topic>
+								{quiz.score === null ? '--' : quiz.score}/{quiz.question_count}
+							</Topic>
+						</div>
 					)}
 				</Header>
 				<Title onClick={handleClick}>{quiz.title}</Title>
+				{mainPage && <TakeQuizButton>Take Quiz</TakeQuizButton>}
 				{quiz.description && (
 					<DescriptionWrapper>
 						<p>{quiz.description}</p>

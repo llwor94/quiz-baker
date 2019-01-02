@@ -96,6 +96,7 @@ const Quizzes = ({ quizzes, loading, fetchQuizzes, user, ...props }) => {
 
 				{displayingQuizzes.map(quiz => (
 					<Quiz
+						key={quiz.id}
 						quiz={quiz}
 						user={user}
 						handleClick={() => pushQuiz(quiz.id)}
