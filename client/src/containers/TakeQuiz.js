@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import _ from 'lodash';
 
+import { ProgressSpinner } from 'primereact/progressspinner';
 import { fetchQuiz, updateUserScore } from '../store/actions/quizActions';
 import { fetchQuizQuestions } from '../store/actions/questionActions';
 import { Quiz as QuizWrapper } from '../components/Quizzes/Quiz';
@@ -97,7 +98,7 @@ const Quiz = ({
 				<QuestionTracker questions={questionResponse} currentQuestion={currentQuestion} />
 			</Fragment>
 		);
-	else return <div>Loading...</div>;
+	else return <ProgressSpinner />;
 };
 
 const mapStateToProps = ({ quizReducer, questionReducer }) => ({

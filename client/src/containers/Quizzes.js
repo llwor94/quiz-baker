@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Dropdown } from 'primereact/dropdown';
+import { ProgressSpinner } from 'primereact/progressspinner';
 
 import { fetchQuizzes, updateUserFavorite } from '../store/actions/quizActions';
 import { Quiz } from '../components/Quizzes/Quiz';
@@ -54,19 +55,25 @@ const Quizzes = ({ quizzes, loading, fetchQuizzes, user, updateUserFavorite, ...
 	useEffect(
 		() => {
 			if (displayingQuizzes) {
-				if (filterOption === 'ALL') {
-					changeQuizzes(quizzes);
-				} else if (filterOption === 'ALLUP') {
-					let newQuizzes = quizzes.filter(quiz => quiz.votes > 0);
-					changeQuizzes(newQuizzes);
-				} else if (filterOption === 'MUP') {
-					changeQuizzes(quizzes.filter(quiz => quiz.vote));
-				} else if (filterOption === 'MFV') {
-					changeQuizzes(quizzes.filter(quiz => quiz.favorite));
-				} else if (filterOption === 'T') {
-					changeQuizzes(quizzes.filter(quiz => quiz.score !== null));
-				} else if (filterOption === 'NT') {
-					changeQuizzes(quizzes.filter(quiz => quiz.score === null));
+				switch (filterOption) {
+					case 'ALLUP':
+						changeQuizzes(quizzes.filter(quiz => quiz.votes > 0));
+						break;
+					case 'MUP':
+						changeQuizzes(quizzes.filter(quiz => quiz.vote));
+						break;
+					case 'MFV':
+						changeQuizzes(quizzes.filter(quiz => quiz.favorite));
+						break;
+					case 'T':
+						changeQuizzes(quizzes.filter(quiz => quiz.score !== null));
+						break;
+					case 'NT':
+						changeQuizzes(quizzes.filter(quiz => quiz.score === null));
+						break;
+					case 'ALL':
+					default:
+						changeQuizzes(quizzes);
 				}
 			}
 		},
@@ -110,7 +117,7 @@ const Quizzes = ({ quizzes, loading, fetchQuizzes, user, updateUserFavorite, ...
 				))}
 			</div>
 		);
-	else return <div>Loading...</div>;
+	else return <ProgressSpinner />;
 };
 
 const mapStateToProps = ({ quizReducer }) => ({
