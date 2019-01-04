@@ -21,3 +21,10 @@ export const fetchQuizQuestions = id => dispatch => {
 			}),
 		);
 };
+
+export const fetchQuestion = id => (dispatch, getState) => {
+	dispatch({ type: actions.FETCH_QUESTION_REQUEST });
+	dispatch(fetchQuizQuestions(id)).then(() => {
+		console.log(getState().quizReducer.quiz, getState().questionReducer.questions[0]);
+	});
+};

@@ -104,7 +104,14 @@ const TakeQuizButton = styled.div`
 	margin-top: 5px;
 	cursor: pointer;
 `;
-export const Quiz = ({ quiz, user, handleClick, handleFavoriteToggle, mainPage }) => {
+export const Quiz = ({
+	quiz,
+	user,
+	handleClick,
+	handleFavoriteToggle,
+	handleStartQuiz,
+	mainPage,
+}) => {
 	return (
 		<QuizWrapper>
 			<SideBar>
@@ -139,7 +146,7 @@ export const Quiz = ({ quiz, user, handleClick, handleFavoriteToggle, mainPage }
 					)}
 				</Header>
 				<Title onClick={handleClick}>{quiz.title}</Title>
-				{mainPage && <TakeQuizButton>Take Quiz</TakeQuizButton>}
+				{mainPage && <TakeQuizButton onClick={handleStartQuiz}>Take Quiz</TakeQuizButton>}
 				{quiz.description && (
 					<DescriptionWrapper>
 						<p>{quiz.description}</p>

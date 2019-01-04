@@ -6,6 +6,20 @@ import { checkUser } from './authActions';
 let URL = 'https://lambda-study-app.herokuapp.com/api/quizzes';
 let devURL = 'http://localhost:3400/api/quizzes';
 
+export const fetchTopics = () => dispatch => {
+	dispatch({ type: actions.FETCH_TOPICS_REQUEST });
+	axios({
+		method: 'get',
+		url: `${URL}/topics`,
+	})
+		.then(({ data }) => {
+			dispatch({ type: actions.FETCH_TOPICS_SUCCESS, payload: data });
+		})
+		.catch(({ response }) =>
+			dispatch({ type: actions.FETCH_TOPICS_FAILURE, payload: response.data.message }),
+		);
+};
+
 export const fetchQuizzes = () => async (dispatch, getState) => {
 	dispatch({ type: actions.FETCH_ALL_QUIZZES_REQUEST });
 	await checkUser();

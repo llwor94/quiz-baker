@@ -4,6 +4,7 @@ import { Dropdown } from 'primereact/dropdown';
 import { ProgressSpinner } from 'primereact/progressspinner';
 
 import { fetchQuizzes, updateUserFavorite } from '../store/actions/quizActions';
+import { fetchQuestion } from '../store/actions/questionActions';
 import { Quiz } from '../components/Quizzes/Quiz';
 
 const Quizzes = ({ quizzes, loading, fetchQuizzes, user, updateUserFavorite, ...props }) => {
@@ -84,6 +85,10 @@ const Quizzes = ({ quizzes, loading, fetchQuizzes, user, updateUserFavorite, ...
 		updateUserFavorite(!quiz.favorite, quiz.id);
 	};
 
+	const handleStartQuiz = quiz => {
+		fetchQuestion(quiz.id);
+	};
+
 	const pushQuiz = id => {
 		props.history.push(`quizzes/${id}`);
 	};
@@ -113,6 +118,7 @@ const Quizzes = ({ quizzes, loading, fetchQuizzes, user, updateUserFavorite, ...
 						handleClick={() => pushQuiz(quiz.id)}
 						mainPage={true}
 						handleFavoriteToggle={() => handleFavoriteToggle(quiz)}
+						handleStartQuiz={() => handleStartQuiz(quiz)}
 					/>
 				))}
 			</div>
@@ -125,4 +131,6 @@ const mapStateToProps = ({ quizReducer }) => ({
 	loading: quizReducer.loading,
 });
 
-export default connect(mapStateToProps, { fetchQuizzes, updateUserFavorite })(Quizzes);
+export default connect(mapStateToProps, { fetchQuizzes, updateUserFavorite, fetchQuestion })(
+	Quizzes,
+);
