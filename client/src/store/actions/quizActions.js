@@ -39,6 +39,29 @@ export const fetchQuizzes = () => async (dispatch, getState) => {
 		);
 };
 
+export const fetchUserQuizzes = () => async (dispatch, getState) => {
+	dispatch({ type: actions.FETCH_ALL_USER_QUIZZES_REQUEST });
+	await checkUser();
+
+	axios({
+		method: 'get',
+		url: URL,
+		headers: {
+			authorization: getState().authReducer.token,
+		},
+	})
+		.then(({ data }) => {
+			let quizzes = data.filter(quiz => quiz.author === getState().authReducer.user.username);
+			dispatch({ type: actions.FETCH_ALL_USER_QUIZZES_SUCCESS, payload: quizzes });
+		})
+		.catch(({ response }) =>
+			dispatch({
+				type: actions.FETCH_ALL_USER_QUIZZES_FAILURE,
+				payload: response.data.message,
+			}),
+		);
+};
+
 export const fetchQuiz = id => async (dispatch, getState) => {
 	dispatch({ type: actions.FETCH_QUIZ_REQUEST });
 	await checkUser();
@@ -78,6 +101,24 @@ export const createQuiz = quiz => (dispatch, getState) => {
 		.catch(({ response }) => {
 			dispatch({ type: actions.CREATE_QUIZ_FAILURE, payload: response.data.message });
 		});
+};
+
+export const fetchQuizForEdit = id => async (dispatch, getState) => {
+	dispatch({ type: actions.FETCH_USER_QUIZ_SUCCESS });
+	await checkUser();
+	axios({
+		method: 'get',
+		url: `${URL}/${id}`,
+		headers: {
+			authorization: getState().authReducer.token,
+		},
+	})
+		.then(({ data }) => {
+			dispatch({ type: actions.FETCH_USER_QUIZ_SUCCESS, payload: data });
+		})
+		.catch(({ response }) =>
+			dispatch({ type: actions.FETCH_USER_QUIZ_FAILURE, payload: response.data.message }),
+		);
 };
 
 export const updateUserScore = (score, quizId) => async (dispatch, getState) => {

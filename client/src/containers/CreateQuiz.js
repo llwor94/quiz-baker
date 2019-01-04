@@ -44,6 +44,7 @@ const CreateQuiz = ({ fetchTopics, topics, createQuiz, ...props }) => {
 	const handleCreateQuiz = () => {
 		createQuiz({ title: quizName, topic: topic.name });
 	};
+
 	if (topics)
 		return (
 			<div>
@@ -85,11 +86,10 @@ const CreateQuiz = ({ fetchTopics, topics, createQuiz, ...props }) => {
 					<div>
 						New Quiz {quizName} Created!{' '}
 						<Button
-							label='Create Questions'
+							label='View Quiz'
 							icon='pi pi-arrow-right'
 							iconPos='right'
-							onClick={() =>
-								props.history.push(`/quizzes/create/${props.newQuiz.id}`)}
+							onClick={() => props.history.push(`/quizzes/edit/${props.newQuiz.id}`)}
 						/>
 					</div>
 				)}

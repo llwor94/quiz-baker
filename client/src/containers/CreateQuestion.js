@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { RadioButton } from 'primereact/radiobutton';
-import { InputText } from 'primereact/inputtext';
-import { ToggleButton } from 'primereact/togglebutton';
+
 import { Button } from 'primereact/button';
 import _ from 'lodash';
 
 import { createQuestion } from '../store/actions/questionActions';
+import { NewQuestion } from '../components/CreateQuestion';
 import { MultipleChoice } from '../components/CreateQuestion/multipleChoice';
 import { TrueFalse } from '../components/CreateQuestion/trueFalse';
 
-const CreateQuestions = ({ ...props }) => {
+const CreateQuestion = ({ ...props }) => {
 	const [ multipleChoice, setMultipleChoice ] = useState(true);
 	const [ questionTitle, setQuestionTitle ] = useState(undefined);
 	const [ options, setOptions ] = useState({
@@ -53,20 +52,13 @@ const CreateQuestions = ({ ...props }) => {
 		props.createQuestion(props.newQuiz.id, options);
 	};
 	return (
-		<div>
-			<div>New Question for {props.newQuiz.title}</div>
-			<InputText
-				placeholder='Question Title'
-				value={questionTitle}
-				onChange={e => setQuestionTitle(e.target.value)}
-			/>
-			<ToggleButton
-				style={{ width: '150px' }}
-				onLabel='Multiple Choice'
-				offLabel='True/False'
-				checked={multipleChoice}
-				onChange={e => setMultipleChoice(e.value)}
-			/>
+		<NewQuestion
+			quiz={props.newQuiz}
+			multipleChoice={multipleChoice}
+			question={questionTitle}
+			setQuestionTitle={setQuestionTitle}
+			setMultipleChoice={setMultipleChoice}
+		>
 			{multipleChoice ? (
 				<MultipleChoice
 					correctOption={correctOption}
@@ -91,7 +83,7 @@ const CreateQuestions = ({ ...props }) => {
 				className='p-button-raised p-button-secondary'
 				onClick={handleCreateQuestion}
 			/>
-		</div>
+		</NewQuestion>
 	);
 };
 
@@ -101,4 +93,4 @@ const mapStateToProps = ({ quizReducer, questionReducer }) => ({
 	error: questionReducer.error,
 });
 
-export default connect(mapStateToProps, { createQuestion })(CreateQuestions);
+export default connect(mapStateToProps, { createQuestion })(CreateQuestion);

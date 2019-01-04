@@ -14,6 +14,12 @@ import {
 	CREATE_QUIZ_REQUEST,
 	CREATE_QUIZ_SUCCESS,
 	CREATE_QUIZ_FAILURE,
+	FETCH_USER_QUIZ_SUCCESS,
+	FETCH_USER_QUIZ_REQUEST,
+	FETCH_USER_QUIZ_FAILURE,
+	FETCH_ALL_USER_QUIZZES_REQUEST,
+	FETCH_ALL_USER_QUIZZES_SUCCESS,
+	FETCH_ALL_USER_QUIZZES_FAILURE,
 } from '../actions';
 
 const initialState = {
@@ -24,6 +30,8 @@ const initialState = {
 	topics: undefined,
 	newQuizLoading: false,
 	newQuiz: undefined,
+	edittingQuiz: undefined,
+	userQuizzes: undefined,
 };
 
 const quizReducer = (state = initialState, { payload, type }) => {
@@ -113,6 +121,34 @@ const quizReducer = (state = initialState, { payload, type }) => {
 				...state,
 				newQuizloading: false,
 				error: payload,
+			};
+		case FETCH_USER_QUIZ_REQUEST:
+			return {
+				...state,
+				loading: true,
+			};
+		case FETCH_USER_QUIZ_SUCCESS:
+			return {
+				...state,
+				loading: false,
+				edittingQuiz: payload,
+			};
+		case FETCH_USER_QUIZ_FAILURE:
+			return {
+				...state,
+				loading: false,
+				error: payload,
+			};
+		case FETCH_ALL_USER_QUIZZES_REQUEST:
+			return {
+				...state,
+				loading: true,
+			};
+		case FETCH_ALL_USER_QUIZZES_SUCCESS:
+			return {
+				...state,
+				loading: false,
+				userQuizzes: payload,
 			};
 		default:
 			return state;
