@@ -105,7 +105,7 @@ export const createQuiz = quiz => (dispatch, getState) => {
 };
 
 export const fetchQuizForEdit = id => async (dispatch, getState) => {
-	dispatch({ type: actions.FETCH_USER_QUIZ_SUCCESS });
+	dispatch({ type: actions.FETCH_USER_QUIZ_REQUEST });
 	await checkUser();
 	axios({
 		method: 'get',
@@ -122,6 +122,24 @@ export const fetchQuizForEdit = id => async (dispatch, getState) => {
 		);
 };
 
+export const deleteQuiz = id => (dispatch, getState) => {
+	dispatch({ type: actions.DELETE_QUIZ_REQUEST });
+	axios({
+		method: 'delete',
+		url: `${URL}/${id}`,
+		headers: {
+			authorization: getState().authReducer.token,
+		},
+	})
+		.then(({ data }) => {
+			dispatch({ type: actions.DELETE_QUIZ_SUCCESS });
+			dispatch(fetchUserQuizzes());
+		})
+		.catch(({ response }) => {
+			dispatch({ type: actions.DELETE_QUIZ_FAILURE, payload: response.data.message });
+		});
+};
+
 export const updateUserScore = (score, quizId) => async (dispatch, getState) => {
 	dispatch({ type: actions.UPDATE_USER_SCORE_REQUEST });
 
@@ -136,9 +154,9 @@ export const updateUserScore = (score, quizId) => async (dispatch, getState) => 
 		.then(({ data }) => {
 			dispatch({ type: actions.UPDATE_USER_SCORE_SUCCESS });
 		})
-		.catch(({ response }) =>
-			dispatch({ type: actions.UPDATE_USER_SCORE_FAILURE, payload: response.data.message }),
-		);
+		.catch(({ response }) => {
+			dispatch({ type: actions.UPDATE_USER_SCORE_FAILURE, payload: response.data.message });
+		});
 };
 
 export const updateUserFavorite = (favorite, quizId) => async (dispatch, getState) => {

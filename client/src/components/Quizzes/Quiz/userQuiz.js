@@ -90,7 +90,10 @@ export const Quiz = ({ quiz, handleClick, handleDelete }) => {
 			<Button
 				label='Yes'
 				icon='pi pi-check'
-				onClick={handleDelete}
+				onClick={() => {
+					handleDelete();
+					setModalVisable(false);
+				}}
 				className='p-button-danger'
 			/>
 			<Button

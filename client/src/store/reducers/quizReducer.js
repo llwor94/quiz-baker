@@ -20,6 +20,9 @@ import {
 	FETCH_ALL_USER_QUIZZES_REQUEST,
 	FETCH_ALL_USER_QUIZZES_SUCCESS,
 	FETCH_ALL_USER_QUIZZES_FAILURE,
+	DELETE_QUIZ_REQUEST,
+	DELETE_QUIZ_SUCCESS,
+	DELETE_QUIZ_FAILURE,
 } from '../actions';
 
 const initialState = {
@@ -149,6 +152,16 @@ const quizReducer = (state = initialState, { payload, type }) => {
 				...state,
 				loading: false,
 				userQuizzes: payload,
+			};
+		case DELETE_QUIZ_REQUEST:
+			return {
+				...state,
+				loading: true,
+			};
+		case DELETE_QUIZ_SUCCESS:
+			return {
+				...state,
+				loading: false,
 			};
 		default:
 			return state;
