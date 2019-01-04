@@ -4,11 +4,13 @@ import { Button } from 'primereact/button';
 
 import { fetchQuizForEdit } from '../store/actions/quizActions';
 import { fetchQuizQuestions } from '../store/actions/questionActions';
-import { EditUserQuiz } from '../components/Quizzes/Quiz/edit';
+import { EditUserQuiz, Questions } from '../components/Quizzes/Quiz/edit';
 import CreateQuestion from './CreateQuestion';
 
 const EditQuiz = ({ ...props }) => {
 	const [ isNewQuestion, setIsNewQuestion ] = useState(false);
+
+	const [ edit, setEdit ] = useState(false);
 	useEffect(
 		() => {
 			if (!isNewQuestion) {
@@ -22,19 +24,11 @@ const EditQuiz = ({ ...props }) => {
 	else
 		return (
 			<Fragment>
-				<EditUserQuiz quiz={props.edittingQuiz} />
+				<EditUserQuiz quiz={props.edittingQuiz} edit={edit} setEdit={setEdit} />
 				{isNewQuestion ? (
 					<CreateQuestion setIsNewQuestion={setIsNewQuestion} />
 				) : props.edittingQuiz ? (
-					<div>
-						<div>Questions:</div>
-						{props.questions.length ? (
-							props.questions.map(question => <div>{question.question}</div>)
-						) : (
-							<div>This quiz has no questions.</div>
-						)}
-						<Button label='New Question' onClick={() => setIsNewQuestion(true)} />
-					</div>
+					<Questions questions={props.questions} setIsNewQuestion={setIsNewQuestion} />
 				) : (
 					props.error && <div>{props.error}</div>
 				)}
