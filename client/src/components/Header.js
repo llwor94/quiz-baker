@@ -66,6 +66,9 @@ const Header = ({ user, setValue, darkMode, ...props }) => {
 				},
 				{
 					label: 'Your quizzes',
+					command: () => {
+						props.history.push(`/quizzes/user/${user.id}`);
+					},
 				},
 				{
 					label: 'Favorites',

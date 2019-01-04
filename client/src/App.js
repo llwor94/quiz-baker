@@ -15,6 +15,7 @@ import QuizContainer from './containers/Quizzes';
 import TakeQuizContainer from './containers/TakeQuiz';
 import CreateQuizContainer from './containers/CreateQuiz';
 import CreateQuestionsContainer from './containers/CreateQuestions';
+import UserQuizContainer from './containers/UserQuizzes';
 import Header from './components/Header';
 
 import { checkUser } from './store/actions/authActions';
@@ -75,6 +76,11 @@ const App = ({ user, history, checkUser }) => {
 								exact
 								path='/quizzes'
 								render={props => <QuizContainer {...props} user={user} />}
+							/>
+							<Route
+								exact
+								path='/quizzes/user/:id'
+								render={props => <UserQuizContainer {...props} user={user} />}
 							/>
 							<Route
 								exact
