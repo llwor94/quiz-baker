@@ -11,6 +11,9 @@ import {
 	FETCH_TOPICS_REQUEST,
 	FETCH_TOPICS_SUCCESS,
 	FETCH_TOPICS_FAILURE,
+	CREATE_QUIZ_REQUEST,
+	CREATE_QUIZ_SUCCESS,
+	CREATE_QUIZ_FAILURE,
 } from '../actions';
 
 const initialState = {
@@ -19,6 +22,8 @@ const initialState = {
 	loading: false,
 	error: undefined,
 	topics: undefined,
+	newQuizLoading: false,
+	newQuiz: undefined,
 };
 
 const quizReducer = (state = initialState, { payload, type }) => {
@@ -90,6 +95,23 @@ const quizReducer = (state = initialState, { payload, type }) => {
 			return {
 				...state,
 				loading: false,
+				error: payload,
+			};
+		case CREATE_QUIZ_REQUEST:
+			return {
+				...state,
+				newQuizloading: true,
+			};
+		case CREATE_QUIZ_SUCCESS:
+			return {
+				...state,
+				newQuizloading: false,
+				newQuiz: payload,
+			};
+		case CREATE_QUIZ_FAILURE:
+			return {
+				...state,
+				newQuizloading: false,
 				error: payload,
 			};
 		default:

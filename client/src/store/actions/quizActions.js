@@ -58,6 +58,27 @@ export const fetchQuiz = id => async (dispatch, getState) => {
 		);
 };
 
+export const createQuiz = quiz => (dispatch, getState) => {
+	dispatch({ type: actions.CREATE_QUIZ_REQUEST });
+	console.log(quiz, getState().authReducer.token);
+
+	axios({
+		method: 'post',
+		url: URL,
+		headers: {
+			authorization: getState().authReducer.token,
+		},
+		data: quiz,
+	})
+		.then(({ data }) => {
+			console.log(data);
+			dispatch({ type: actions.CREATE_QUIZ_SUCCESS, payload: data });
+		})
+		.catch(({ response }) => {
+			dispatch({ type: actions.CREATE_QUIZ_FAILURE, payload: response.data.message });
+		});
+};
+
 export const updateUserScore = (score, quizId) => async (dispatch, getState) => {
 	dispatch({ type: actions.UPDATE_USER_SCORE_REQUEST });
 
