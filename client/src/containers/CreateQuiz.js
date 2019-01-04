@@ -5,6 +5,7 @@ import { ProgressSpinner } from 'primereact/progressspinner';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 
+import { CreateNewQuiz } from '../components/Quizzes/Quiz/create';
 import { fetchTopics, createQuiz } from '../store/actions/quizActions';
 
 const CreateQuiz = ({ fetchTopics, topics, createQuiz, ...props }) => {
@@ -41,13 +42,25 @@ const CreateQuiz = ({ fetchTopics, topics, createQuiz, ...props }) => {
 		}, 250);
 	};
 
+	const handleGoToEdit = () => {
+		props.history.push(`/quizzes/edit/${props.newQuiz.id}`);
+	};
+
 	const handleCreateQuiz = () => {
 		createQuiz({ title: quizName, topic: topic.name });
 	};
 
 	if (topics)
 		return (
-			<div>
+			<CreateNewQuiz
+				buttonDisabled={props.newQuiz || props.newQuizLoading || !topic.name || !quizName}
+				handleCreateQuiz={handleCreateQuiz}
+				handleGoToEdit={handleGoToEdit}
+				topic={topic}
+				quizName={quizName}
+				newQuiz={props.newQuiz}
+			>
+				<p>Please choose a topic or create your own.</p>
 				<AutoComplete
 					value={topic.name}
 					suggestions={searchTopics}
@@ -60,40 +73,16 @@ const CreateQuiz = ({ fetchTopics, topics, createQuiz, ...props }) => {
 					onChange={e => setTopic({ name: e.value })}
 					dropdown={true}
 				/>
-				<div> {topic.name ? `Topic is ${topic.name}` : 'Please choose a topic'}</div>
 
-				<div>
-					Please name your quiz.
-					<InputText
-						disabled={props.newQuiz || props.newQuizLoading}
-						value={quizName}
-						onChange={e => setQuizName(e.target.value)}
-					/>
-					<div>quiz name is {quizName}</div>
-				</div>
+				<p>Please name your quiz</p>
+				<InputText
+					disabled={props.newQuiz || props.newQuizLoading}
+					value={quizName}
+					onChange={e => setQuizName(e.target.value)}
+				/>
 
-				{topic.name &&
-				quizName && (
-					<Button
-						label='Create Quiz?'
-						disabled={props.newQuiz || props.newQuizLoading}
-						className='p-button-raised p-button-secondary'
-						onClick={handleCreateQuiz}
-					/>
-				)}
 				{props.newQuizLoading && <div>Creating Your Quiz...</div>}
-				{props.newQuiz && (
-					<div>
-						New Quiz {quizName} Created!{' '}
-						<Button
-							label='View Quiz'
-							icon='pi pi-arrow-right'
-							iconPos='right'
-							onClick={() => props.history.push(`/quizzes/edit/${props.newQuiz.id}`)}
-						/>
-					</div>
-				)}
-			</div>
+			</CreateNewQuiz>
 		);
 	else return <ProgressSpinner />;
 };

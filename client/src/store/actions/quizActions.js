@@ -13,10 +13,11 @@ export const fetchTopics = () => dispatch => {
 		url: `${URL}/topics`,
 	})
 		.then(({ data }) => {
+			console.log(data);
 			dispatch({ type: actions.FETCH_TOPICS_SUCCESS, payload: data });
 		})
 		.catch(({ response }) =>
-			dispatch({ type: actions.FETCH_TOPICS_FAILURE, payload: response.data.message }),
+			dispatch({ type: actions.FETCH_TOPICS_FAILURE, payload: response }),
 		);
 };
 
