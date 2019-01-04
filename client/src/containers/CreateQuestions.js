@@ -6,6 +6,8 @@ import { ToggleButton } from 'primereact/togglebutton';
 import { Button } from 'primereact/button';
 import _ from 'lodash';
 
+import { createQuestion } from '../store/actions/questionActions';
+
 const CreateQuestions = ({ ...props }) => {
 	const [ multipleChoice, setMultipleChoice ] = useState(true);
 	const [ questionTitle, setQuestionTitle ] = useState(undefined);
@@ -46,7 +48,7 @@ const CreateQuestions = ({ ...props }) => {
 	const handleCreateQuestion = () => {
 		options.question = questionTitle;
 		options.answer = correctOption;
-		console.log(options);
+		props.createQuestion(props.newQuiz.id, options);
 	};
 	return (
 		<div>
@@ -154,7 +156,12 @@ const CreateQuestions = ({ ...props }) => {
 			)}
 			<Button
 				label='Create Question'
-				disabled={_.some(options, _.isEmpty || !correctOption || !questionTitle)}
+				disabled={
+					_.some(options, _.isEmpty) ||
+					correctOption === null ||
+					!questionTitle ||
+					props.loading
+				}
 				className='p-button-raised p-button-secondary'
 				onClick={handleCreateQuestion}
 			/>
@@ -164,6 +171,8 @@ const CreateQuestions = ({ ...props }) => {
 
 const mapStateToProps = ({ quizReducer, questionReducer }) => ({
 	newQuiz: quizReducer.newQuiz,
+	loading: questionReducer.loading,
+	error: questionReducer.error,
 });
 
-export default connect(mapStateToProps)(CreateQuestions);
+export default connect(mapStateToProps, { createQuestion })(CreateQuestions);

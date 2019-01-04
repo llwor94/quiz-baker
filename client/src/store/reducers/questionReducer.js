@@ -2,6 +2,9 @@ import {
 	FETCH_QUIZ_QUESTIONS_REQUEST,
 	FETCH_QUIZ_QUESTIONS_SUCCESS,
 	FETCH_QUIZ_QUESTIONS_FAILURE,
+	CREATE_QUESTION_REQUEST,
+	CREATE_QUESTION_SUCCESS,
+	CREATE_QUESTION_FAILURE,
 } from '../actions';
 
 const initialState = {
@@ -25,6 +28,22 @@ const questionReducer = (state = initialState, { payload, type }) => {
 				questions: payload,
 			};
 		case FETCH_QUIZ_QUESTIONS_FAILURE:
+			return {
+				...state,
+				loading: false,
+				error: payload,
+			};
+		case CREATE_QUESTION_REQUEST:
+			return {
+				...state,
+				loading: true,
+			};
+		case CREATE_QUESTION_SUCCESS:
+			return {
+				...state,
+				loading: false,
+			};
+		case CREATE_QUESTION_FAILURE:
 			return {
 				...state,
 				loading: false,

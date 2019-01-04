@@ -22,6 +22,24 @@ export const fetchQuizQuestions = id => dispatch => {
 		);
 };
 
+export const createQuestion = (quizId, question) => (dispatch, getState) => {
+	dispatch({ type: actions.CREATE_QUESTION_REQUEST });
+	axios({
+		method: 'post',
+		url: `${URL}/${quizId}/questions`,
+		headers: {
+			authorization: getState().authReducer.token,
+		},
+		data: question,
+	})
+		.then(({ data }) => {
+			dispatch({ type: actions.CREATE_QUESTION_SUCCESS });
+		})
+		.catch(({ response }) => {
+			dispatch({ type: actions.CREATE_QUESTION_FAILURE, payload: response.data.message });
+		});
+};
+
 export const fetchQuestion = id => (dispatch, getState) => {
 	dispatch({ type: actions.FETCH_QUESTION_REQUEST });
 	dispatch(fetchQuizQuestions(id)).then(() => {
