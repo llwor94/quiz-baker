@@ -49,11 +49,11 @@ const CreateQuestion = ({ ...props }) => {
 	const handleCreateQuestion = () => {
 		options.question = questionTitle;
 		options.answer = correctOption;
-		props.createQuestion(props.newQuiz.id, options);
+		props.createQuestion(options);
+		props.setIsNewQuestion(false);
 	};
 	return (
 		<NewQuestion
-			quiz={props.newQuiz}
 			multipleChoice={multipleChoice}
 			question={questionTitle}
 			setQuestionTitle={setQuestionTitle}
@@ -88,7 +88,6 @@ const CreateQuestion = ({ ...props }) => {
 };
 
 const mapStateToProps = ({ quizReducer, questionReducer }) => ({
-	newQuiz: quizReducer.newQuiz,
 	loading: questionReducer.loading,
 	error: questionReducer.error,
 });

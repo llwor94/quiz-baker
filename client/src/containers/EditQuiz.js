@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'primereact/button';
 
@@ -8,26 +8,38 @@ import { EditUserQuiz } from '../components/Quizzes/Quiz/edit';
 import CreateQuestion from './CreateQuestion';
 
 const EditQuiz = ({ ...props }) => {
-	useEffect(() => {
-		props.fetchQuizForEdit(props.match.params.id);
-		props.fetchQuizQuestions(props.match.params.id);
-	}, []);
-
-	if (props.edittingQuiz)
+	const [ isNewQuestion, setIsNewQuestion ] = useState(false);
+	useEffect(
+		() => {
+			if (!isNewQuestion) {
+				props.fetchQuizForEdit(props.match.params.id);
+				props.fetchQuizQuestions(props.match.params.id);
+			}
+		},
+		[ isNewQuestion ],
+	);
+	if (!props.edittingQuiz) return <div>Loading..</div>;
+	else
 		return (
-			<div>
+			<Fragment>
 				<EditUserQuiz quiz={props.edittingQuiz} />
-				<div>Questions:</div>
-				{props.questions ? (
-					props.questions.map(question => <div>{question.question}</div>)
+				{isNewQuestion ? (
+					<CreateQuestion setIsNewQuestion={setIsNewQuestion} />
+				) : props.edittingQuiz ? (
+					<div>
+						<div>Questions:</div>
+						{props.questions.length ? (
+							props.questions.map(question => <div>{question.question}</div>)
+						) : (
+							<div>This quiz has no questions.</div>
+						)}
+						<Button label='New Question' onClick={() => setIsNewQuestion(true)} />
+					</div>
 				) : (
-					'This quiz has no questions.'
+					props.error && <div>{props.error}</div>
 				)}
-				<Button label='New Question' />
-			</div>
+			</Fragment>
 		);
-	else if (props.error) return <div>{props.error}</div>;
-	else return <div>Loading</div>;
 };
 
 const mapStateToProps = ({ quizReducer, questionReducer }) => ({

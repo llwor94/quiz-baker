@@ -3,6 +3,16 @@ import styled from 'styled-components';
 import { RadioButton } from 'primereact/radiobutton';
 import { InputText } from 'primereact/inputtext';
 
+const Wrapper = styled.div`
+	width: 50%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	padding-bottom: 10px;
+`;
+
+const InputWrapper = styled.div`padding: 5px 0;`;
+
 export const MultipleChoice = ({
 	correctOption,
 	handleCorrectChange,
@@ -11,8 +21,8 @@ export const MultipleChoice = ({
 	...props
 }) => {
 	return (
-		<div>
-			<div className='p-inputgroup'>
+		<Wrapper className='p-grid p-fluid'>
+			<InputWrapper className='p-inputgroup'>
 				<span className='p-inputgroup-addon'>
 					<RadioButton
 						checked={correctOption === 1}
@@ -26,8 +36,8 @@ export const MultipleChoice = ({
 					value={options.option1}
 					onChange={handleOptionChange}
 				/>
-			</div>
-			<div className='p-inputgroup'>
+			</InputWrapper>
+			<InputWrapper className='p-inputgroup'>
 				<span className='p-inputgroup-addon'>
 					<RadioButton
 						checked={correctOption === 2}
@@ -41,8 +51,8 @@ export const MultipleChoice = ({
 					value={options.option2}
 					onChange={handleOptionChange}
 				/>
-			</div>
-			<div className='p-inputgroup'>
+			</InputWrapper>
+			<InputWrapper className='p-inputgroup'>
 				<span className='p-inputgroup-addon'>
 					<RadioButton
 						checked={correctOption === 3}
@@ -56,8 +66,8 @@ export const MultipleChoice = ({
 					value={options.option3}
 					onChange={handleOptionChange}
 				/>
-			</div>
-			<div className='p-inputgroup'>
+			</InputWrapper>
+			<InputWrapper className='p-inputgroup'>
 				<span className='p-inputgroup-addon'>
 					<RadioButton
 						checked={correctOption === 4}
@@ -71,7 +81,7 @@ export const MultipleChoice = ({
 					value={options.option4}
 					onChange={handleOptionChange}
 				/>
-			</div>
-		</div>
+			</InputWrapper>
+		</Wrapper>
 	);
 };

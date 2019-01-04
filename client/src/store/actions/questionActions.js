@@ -22,11 +22,12 @@ export const fetchQuizQuestions = id => dispatch => {
 		);
 };
 
-export const createQuestion = (quizId, question) => (dispatch, getState) => {
+export const createQuestion = question => (dispatch, getState) => {
 	dispatch({ type: actions.CREATE_QUESTION_REQUEST });
+	let id = getState().quizReducer.edittingQuiz.id;
 	axios({
 		method: 'post',
-		url: `${URL}/${quizId}/questions`,
+		url: `${URL}/${id}/questions`,
 		headers: {
 			authorization: getState().authReducer.token,
 		},
@@ -34,6 +35,7 @@ export const createQuestion = (quizId, question) => (dispatch, getState) => {
 	})
 		.then(({ data }) => {
 			dispatch({ type: actions.CREATE_QUESTION_SUCCESS });
+			dispatch(fetchQuizQuestions(id));
 		})
 		.catch(({ response }) => {
 			dispatch({ type: actions.CREATE_QUESTION_FAILURE, payload: response.data.message });
