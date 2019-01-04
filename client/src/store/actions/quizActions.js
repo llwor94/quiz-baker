@@ -72,7 +72,8 @@ export const createQuiz = quiz => (dispatch, getState) => {
 	})
 		.then(({ data }) => {
 			console.log(data);
-			dispatch({ type: actions.CREATE_QUIZ_SUCCESS, payload: data });
+			quiz.id = data[0];
+			dispatch({ type: actions.CREATE_QUIZ_SUCCESS, payload: quiz });
 		})
 		.catch(({ response }) => {
 			dispatch({ type: actions.CREATE_QUIZ_FAILURE, payload: response.data.message });

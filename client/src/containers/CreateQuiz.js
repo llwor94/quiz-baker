@@ -54,6 +54,7 @@ const CreateQuiz = ({ fetchTopics, topics, createQuiz, ...props }) => {
 					placeholder='Topics'
 					minLength={1}
 					field='name'
+					disabled={props.newQuiz || props.newQuizLoading}
 					onSelect={e => setTopic({ name: e.value.name })}
 					onChange={e => setTopic({ name: e.value })}
 					dropdown={true}
@@ -62,7 +63,11 @@ const CreateQuiz = ({ fetchTopics, topics, createQuiz, ...props }) => {
 
 				<div>
 					Please name your quiz.
-					<InputText value={quizName} onChange={e => setQuizName(e.target.value)} />
+					<InputText
+						disabled={props.newQuiz || props.newQuizLoading}
+						value={quizName}
+						onChange={e => setQuizName(e.target.value)}
+					/>
 					<div>quiz name is {quizName}</div>
 				</div>
 
@@ -70,9 +75,23 @@ const CreateQuiz = ({ fetchTopics, topics, createQuiz, ...props }) => {
 				quizName && (
 					<Button
 						label='Create Quiz?'
+						disabled={props.newQuiz || props.newQuizLoading}
 						className='p-button-raised p-button-secondary'
 						onClick={handleCreateQuiz}
 					/>
+				)}
+				{props.newQuizLoading && <div>Creating Your Quiz...</div>}
+				{props.newQuiz && (
+					<div>
+						New Quiz {quizName} Created!{' '}
+						<Button
+							label='Create Questions'
+							icon='pi pi-arrow-right'
+							iconPos='right'
+							onClick={() =>
+								props.history.push(`/quizzes/create/${props.newQuiz.id}`)}
+						/>
+					</div>
 				)}
 			</div>
 		);
