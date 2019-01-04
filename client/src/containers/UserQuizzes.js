@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
-import { Quiz } from '../components/Quizzes/Quiz';
+import { Quiz } from '../components/Quizzes/Quiz/userQuiz';
 import { fetchUserQuizzes } from '../store/actions/quizActions';
 
 const UserQuizzes = ({ ...props }) => {
 	useEffect(() => {
 		props.fetchUserQuizzes();
 	}, []);
+
+	const handleDelete = id => {};
 	if (props.userQuizzes)
 		return props.userQuizzes.map(quiz => (
 			<Quiz
 				key={quiz.id}
 				quiz={quiz}
-				user={props.user}
+				handleDelete={() => handleDelete(quiz.id)}
 				handleClick={() => props.history.push(`/quizzes/edit/${quiz.id}`)}
 			/>
 		));

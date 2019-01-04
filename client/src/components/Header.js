@@ -73,6 +73,15 @@ const Header = ({ user, setValue, darkMode, ...props }) => {
 				{
 					label: 'Favorites',
 				},
+				{
+					separator: true,
+				},
+				{
+					label: 'Create Quiz',
+					command: () => {
+						props.history.push('/quizzes/create');
+					},
+				},
 			],
 		},
 		{
@@ -88,12 +97,7 @@ const Header = ({ user, setValue, darkMode, ...props }) => {
 				{
 					label: 'Settings',
 				},
-				{
-					label: 'Create Quiz',
-					command: () => {
-						props.history.push('/quizzes/create');
-					},
-				},
+
 				{
 					separator: true,
 				},
