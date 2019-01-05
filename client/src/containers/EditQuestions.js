@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Button } from 'primereact/button';
 import _ from 'lodash';
 
+import { editQuestion } from '../store/actions/questionActions';
 import { QuestionWrapper, EditQuestionWrapper } from '../components/Quizzes/Questions/edit';
 import { MultipleChoice } from '../components/CreateQuestion/multipleChoice';
 import { TrueFalse } from '../components/CreateQuestion/trueFalse';
@@ -37,16 +38,23 @@ const EditQuestion = ({ question, ...props }) => {
 		setQuestionTitle(question.question);
 	}, []);
 
+	useEffect(
+		() => {
+			setEdit(false);
+		},
+		[ question ],
+	);
+
 	const handleOptionChange = e => {
 		setOptions({ ...options, [e.target.name]: e.target.value });
 	};
 
 	const handleEditQuestion = () => {
-		let question;
-		multipleChoice ? (question = options) : (question = TFOptions);
-		question.question = questionTitle;
-		question.answer = correctOption;
-		console.log(question);
+		let newQuestion;
+		multipleChoice ? (newQuestion = options) : (newQuestion = TFOptions);
+		newQuestion.question = questionTitle;
+		newQuestion.answer = correctOption;
+		props.editQuestion(newQuestion, question.id);
 	};
 
 	if (!edit) return <QuestionWrapper question={question} setEdit={setEdit} />;
@@ -73,7 +81,7 @@ const EditQuestion = ({ question, ...props }) => {
 					/>
 				)}
 				<Button
-					label='Create Question'
+					label='Edit Question'
 					disabled={
 						(multipleChoice && _.some(options, _.isEmpty)) ||
 						correctOption === null ||
@@ -92,4 +100,4 @@ const mapStateToProps = ({ quizReducer, questionReducer }) => ({
 	error: questionReducer.error,
 });
 
-export default connect(mapStateToProps)(EditQuestion);
+export default connect(mapStateToProps, { editQuestion })(EditQuestion);

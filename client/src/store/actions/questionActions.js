@@ -47,6 +47,27 @@ export const createQuestion = question => (dispatch, getState) => {
 		});
 };
 
+export const editQuestion = (question, id) => (dispatch, getState) => {
+	dispatch({ type: actions.EDIT_QUESTION_REQUEST });
+	let quizId = getState().quizReducer.edittingQuiz.id;
+	console.log(question, id);
+	axios({
+		method: 'patch',
+		url: `${URL}/${quizId}/questions/${id}`,
+		headers: {
+			authorization: getState().authReducer.token,
+		},
+		data: question,
+	})
+		.then(({ data }) => {
+			dispatch({ type: actions.EDIT_QUESTION_SUCCESS });
+			dispatch(fetchQuizQuestions(quizId));
+		})
+		.catch(({ response }) => {
+			dispatch({ type: actions.EDIT_QUESTION_FAILURE, payload: response.data.message });
+		});
+};
+
 export const fetchQuestion = id => (dispatch, getState) => {
 	dispatch({ type: actions.FETCH_QUESTION_REQUEST });
 	dispatch(fetchQuizQuestions(id)).then(() => {

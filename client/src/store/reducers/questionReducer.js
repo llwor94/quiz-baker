@@ -5,6 +5,9 @@ import {
 	CREATE_QUESTION_REQUEST,
 	CREATE_QUESTION_SUCCESS,
 	CREATE_QUESTION_FAILURE,
+	EDIT_QUESTION_REQUEST,
+	EDIT_QUESTION_SUCCESS,
+	EDIT_QUESTION_FAILURE,
 } from '../actions';
 
 const initialState = {
@@ -25,7 +28,7 @@ const questionReducer = (state = initialState, { payload, type }) => {
 			return {
 				...state,
 				loading: false,
-				questions: payload,
+				questions: payload.sort((a, b) => b.id - a.id),
 			};
 		case FETCH_QUIZ_QUESTIONS_FAILURE:
 			return {
@@ -44,6 +47,22 @@ const questionReducer = (state = initialState, { payload, type }) => {
 				loading: false,
 			};
 		case CREATE_QUESTION_FAILURE:
+			return {
+				...state,
+				loading: false,
+				error: payload,
+			};
+		case EDIT_QUESTION_REQUEST:
+			return {
+				...state,
+				loading: true,
+			};
+		case EDIT_QUESTION_SUCCESS:
+			return {
+				...state,
+				loading: false,
+			};
+		case EDIT_QUESTION_FAILURE:
 			return {
 				...state,
 				loading: false,

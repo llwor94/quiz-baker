@@ -151,7 +151,8 @@ const quizReducer = (state = initialState, { payload, type }) => {
 			return {
 				...state,
 				loading: false,
-				userQuizzes: payload,
+				edittingQuiz: undefined,
+				userQuizzes: payload.sort((a, b) => b.id - a.id),
 			};
 		case DELETE_QUIZ_REQUEST:
 			return {
