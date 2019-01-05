@@ -8,6 +8,7 @@ import 'primeicons/primeicons.css';
 
 import UserQuizPage from './pages/UserQuiz';
 import UserQuizzesPage from './pages/UserQuizzes';
+import QuizzesPage from './pages/Quizzes';
 import LoginContainer from './containers/Login';
 import RegisterContainer from './containers/Register';
 import DashboardContainer from './containers/Dashboard';
@@ -75,7 +76,7 @@ const App = ({ user, history, checkUser }) => {
 							<Route
 								exact
 								path='/quizzes'
-								render={props => <QuizContainer {...props} user={user} />}
+								render={props => <QuizzesPage {...props} user={user} />}
 							/>
 							<Route
 								exact
