@@ -58,6 +58,7 @@ const CreateQuestion = ({ ...props }) => {
 			question={questionTitle}
 			setQuestionTitle={setQuestionTitle}
 			setMultipleChoice={setMultipleChoice}
+			handleClick={() => props.setIsNewQuestion(false)}
 		>
 			{multipleChoice ? (
 				<MultipleChoice

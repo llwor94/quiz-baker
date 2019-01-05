@@ -140,6 +140,27 @@ export const deleteQuiz = id => (dispatch, getState) => {
 		});
 };
 
+export const editQuiz = quiz => (dispatch, getState) => {
+	dispatch({ type: actions.EDIT_QUIZ_REQUEST });
+	let id = getState().quizReducer.edittingQuiz.id;
+	console.log(id, quiz);
+	axios({
+		method: 'patch',
+		url: `${URL}/${id}/edit`,
+		headers: {
+			authorization: getState().authReducer.token,
+		},
+		data: quiz,
+	})
+		.then(({ data }) => {
+			dispatch({ type: actions.EDIT_QUIZ_SUCCESS });
+			dispatch(fetchQuizForEdit(id));
+		})
+		.catch(({ response }) => {
+			dispatch({ type: actions.EDIT_QUIZ_FAILURE, payload: response.data.message });
+		});
+};
+
 export const updateUserScore = (score, quizId) => async (dispatch, getState) => {
 	dispatch({ type: actions.UPDATE_USER_SCORE_REQUEST });
 

@@ -2,12 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import { InputText } from 'primereact/inputtext';
 import { ToggleButton } from 'primereact/togglebutton';
-
-import { MultipleChoice } from './multipleChoice';
-import { TrueFalse } from './trueFalse';
+import { Button } from 'primereact/button';
 
 const Wrapper = styled.div`
 	border-radius: 4px;
+
 	border: 1px solid;
 	border-color: ${props => props.theme.accent};
 	padding: 5px;
@@ -15,6 +14,7 @@ const Wrapper = styled.div`
 	background-color: ${props => props.theme.secondary};
 	margin-bottom: 10px;
 	display: flex;
+	position: relative;
 	flex-direction: column;
 	align-items: center;
 `;
@@ -34,6 +34,12 @@ export const NewQuestion = ({ children, ...props }) => {
 	return (
 		<Wrapper>
 			<Title>New Question</Title>
+			<Button
+				style={{ position: 'absolute', top: '3px', right: '3px' }}
+				icon='pi pi-times'
+				className='p-button-secondary'
+				onClick={props.handleClick}
+			/>
 			<ToggleButton
 				style={{ width: '150px' }}
 				onLabel='Multiple Choice'

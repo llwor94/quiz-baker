@@ -2,10 +2,19 @@ import React from 'react';
 import styled from 'styled-components';
 import { RadioButton } from 'primereact/radiobutton';
 
+const Wrapper = styled.div`
+	width: 50%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	padding-bottom: 10px;
+`;
+
+const InputWrapper = styled.div`padding: 5px 0;`;
 export const TrueFalse = ({ handleCorrectChange, correctOption, ...props }) => {
 	return (
-		<div>
-			<div className='p-col-12'>
+		<Wrapper>
+			<InputWrapper className='p-col-12'>
 				<RadioButton
 					inputId='rb1'
 					value={1}
@@ -15,8 +24,8 @@ export const TrueFalse = ({ handleCorrectChange, correctOption, ...props }) => {
 				<label htmlFor='rb1' className='p-radiobutton-label'>
 					True
 				</label>
-			</div>
-			<div className='p-col-12'>
+			</InputWrapper>
+			<InputWrapper className='p-col-12'>
 				<RadioButton
 					inputId='rb2'
 					value={2}
@@ -26,7 +35,7 @@ export const TrueFalse = ({ handleCorrectChange, correctOption, ...props }) => {
 				<label htmlFor='rb2' className='p-radiobutton-label'>
 					False
 				</label>
-			</div>
-		</div>
+			</InputWrapper>
+		</Wrapper>
 	);
 };
