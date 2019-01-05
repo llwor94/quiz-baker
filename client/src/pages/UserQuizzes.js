@@ -4,17 +4,17 @@ import { connect } from 'react-redux';
 import { Quiz } from '../components/Quizzes/Quiz/userQuiz';
 import { fetchUserQuizzes, deleteQuiz } from '../store/actions/quizActions';
 
-const UserQuizzes = ({ ...props }) => {
+const UserQuizzesPage = ({ userQuizzes, fetchUserQuizzes, deleteQuiz, ...props }) => {
 	useEffect(() => {
-		props.fetchUserQuizzes();
+		fetchUserQuizzes();
 	}, []);
 
-	if (props.userQuizzes)
-		return props.userQuizzes.map(quiz => (
+	if (userQuizzes)
+		return userQuizzes.map(quiz => (
 			<Quiz
 				key={quiz.id}
 				quiz={quiz}
-				handleDelete={() => props.deleteQuiz(quiz.id)}
+				handleDelete={() => deleteQuiz(quiz.id)}
 				handleClick={() => props.history.push(`/quizzes/edit/${quiz.id}`)}
 			/>
 		));
@@ -26,4 +26,4 @@ const mapStateToProps = ({ quizReducer }) => ({
 	loading: quizReducer.loading,
 });
 
-export default connect(mapStateToProps, { fetchUserQuizzes, deleteQuiz })(UserQuizzes);
+export default connect(mapStateToProps, { fetchUserQuizzes, deleteQuiz })(UserQuizzesPage);

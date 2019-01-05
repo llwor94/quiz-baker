@@ -79,7 +79,7 @@ const Quiz = ({ quiz, topics, ...props }) => {
 };
 
 const mapStateToProps = ({ quizReducer, questionReducer }) => ({
-	edittingQuiz: quizReducer.edittingQuiz,
+	quiz: quizReducer.edittingQuiz,
 	loading: quizReducer.loading,
 	error: quizReducer.error,
 	questions: questionReducer.questions,

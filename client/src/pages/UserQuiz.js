@@ -6,19 +6,28 @@ import { fetchQuizQuestions } from '../store/actions/questionActions';
 import QuizContainer from '../containers/UserQuiz/Quiz';
 import QuestionsContainer from '../containers/UserQuiz/Questions/';
 
-const UserQuizPage = ({ user, ...props }) => {
+const UserQuizPage = ({
+	user,
+	fetchQuizForEdit,
+	fetchQuizQuestions,
+	fetchTopics,
+	edittingQuiz,
+	topics,
+	questions,
+	...props
+}) => {
 	useEffect(() => {
-		props.fetchQuizForEdit(props.match.params.id);
-		props.fetchQuizQuestions(props.match.params.id);
-		props.fetchTopics();
+		fetchQuizForEdit(props.match.params.id);
+		fetchQuizQuestions(props.match.params.id);
+		fetchTopics();
 	}, []);
 
-	if (!props.edittingQuiz || !props.topics || !props.questions) return <div>Loading..</div>;
+	if (!edittingQuiz || !topics || !questions) return <div>Loading..</div>;
 	else {
 		return (
 			<Fragment>
-				<QuizContainer quiz={props.edittingQuiz} topics={props.topics} />
-				<QuestionsContainer questions={props.questions} />
+				<QuizContainer />
+				<QuestionsContainer />
 				<div id='new' />
 			</Fragment>
 		);

@@ -1,13 +1,12 @@
 import React, { useEffect, useState, Fragment } from 'react';
 import { connect } from 'react-redux';
 
-import { fetchQuizzes, updateUserFavorite } from '../store/actions/quizActions';
-import { fetchQuestion } from '../store/actions/questionActions';
+import { fetchQuizzes } from '../store/actions/quizActions';
 
 import FiltersContainer from '../containers/Quizzes/Filters/';
 import QuizzesContainer from '../containers/Quizzes/Quizzes';
 
-const Quizzes = ({ quizzes, loading, fetchQuizzes, user, updateUserFavorite, ...props }) => {
+const QuizzesPage = ({ quizzes, loading, fetchQuizzes, user, ...props }) => {
 	const [ showingQuizzes, changeQuizzes ] = useState(null);
 
 	useEffect(() => {
@@ -32,7 +31,7 @@ const Quizzes = ({ quizzes, loading, fetchQuizzes, user, updateUserFavorite, ...
 					quizzes={showingQuizzes}
 					changeQuizzes={changeQuizzes}
 				/>
-				<QuizzesContainer quizzes={quizzes} user={user} {...props} />
+				<QuizzesContainer quizzes={showingQuizzes} user={user} {...props} />
 			</Fragment>
 		);
 };
@@ -42,6 +41,4 @@ const mapStateToProps = ({ quizReducer }) => ({
 	loading: quizReducer.loading,
 });
 
-export default connect(mapStateToProps, { fetchQuizzes, updateUserFavorite, fetchQuestion })(
-	Quizzes,
-);
+export default connect(mapStateToProps, { fetchQuizzes })(QuizzesPage);

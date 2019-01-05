@@ -1,26 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
-import { fetchQuizForEdit, fetchTopics, editQuiz } from '../../../store/actions/quizActions';
-import { fetchQuizQuestions } from '../../../store/actions/questionActions';
-
 import { Button } from 'primereact/button';
 import EditQuestionContainer from './EditQuestions';
 import { QuestionsWrapper } from '../../../components/Quizzes/Questions/edit';
-import CreateQuestion from './CreateQuestion';
+import CreateQuestionContainer from './CreateQuestion';
 
-const Questions = ({ ...props }) => {
+const Questions = ({ questions, ...props }) => {
 	const [ isNewQuestion, setIsNewQuestion ] = useState(false);
 
 	return (
 		<QuestionsWrapper>
-			{props.questions.length ? (
-				props.questions.map(question => <EditQuestionContainer question={question} />)
+			{questions.length ? (
+				questions.map(question => <EditQuestionContainer question={question} />)
 			) : (
 				<div>This quiz has no questions.</div>
 			)}
 			{isNewQuestion ? (
-				<CreateQuestion setIsNewQuestion={setIsNewQuestion} />
+				<CreateQuestionContainer setIsNewQuestion={setIsNewQuestion} />
 			) : (
 				<a href='#new'>
 					<Button
@@ -44,8 +41,4 @@ const mapStateToProps = ({ quizReducer, questionReducer }) => ({
 	topics: quizReducer.topics,
 });
 
-export default connect(mapStateToProps, {
-	fetchQuizForEdit,
-	fetchQuizQuestions,
-	fetchTopics,
-})(Questions);
+export default connect(mapStateToProps)(Questions);

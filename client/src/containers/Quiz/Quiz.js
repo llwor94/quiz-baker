@@ -9,7 +9,7 @@ import { Quiz as QuizWrapper } from '../../components/Quizzes/Quiz';
 import { QuestionTracker } from '../../components/Quizzes/Questions/QuestionTracker';
 import { Button } from '../../components/Quizzes/button';
 
-const Quiz = ({ quiz, questions, user }) => {
+const Quiz = ({ quiz, questions, user, ...props }) => {
 	const [ questionResponse, setQuestionResponse ] = useState(null);
 	const [ currentQuestion, setQuestion ] = useState(null);
 
@@ -17,8 +17,10 @@ const Quiz = ({ quiz, questions, user }) => {
 		setQuestionResponse(_.fill(Array(questions.length), { correct: null }));
 	}, []);
 
-	const handleAnswer = questions => {
-		setQuestionResponse(questions);
+	const handleAnswer = newQuestion => {
+		let newQuestions = [ ...questionResponse ];
+		newQuestions[currentQuestion] = newQuestion;
+		setQuestionResponse(newQuestions);
 		setQuestion(currentQuestion + 1);
 	};
 

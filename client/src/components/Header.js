@@ -87,7 +87,6 @@ const Header = ({ user, setValue, darkMode, ...props }) => {
 		{
 			label: 'Forum',
 			command: () => {
-				props.fetchPosts();
 				props.history.push('/forum');
 			},
 		},
@@ -127,7 +126,6 @@ const Header = ({ user, setValue, darkMode, ...props }) => {
 		{
 			label: 'Forum',
 			command: () => {
-				props.fetchPosts();
 				props.history.push('/forum');
 			},
 		},

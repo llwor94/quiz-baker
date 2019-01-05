@@ -5,8 +5,7 @@ import axios from 'axios';
 import { Question as QuestionWrapper } from '../../components/Quizzes/Questions';
 import { Button } from '../../components/Quizzes/button';
 
-const Question = ({ question, handleAnswer, questionResponse, ...props }) => {
-	console.log(question);
+const Question = ({ question, ...props }) => {
 	const [ selected, setSelected ] = useState(null);
 
 	const checkAnswer = () => {
@@ -21,14 +20,13 @@ const Question = ({ question, handleAnswer, questionResponse, ...props }) => {
 		})
 			.then(({ data }) => {
 				console.log(data);
-				let newQuestions = [ ...questionResponse ];
-				newQuestions[props.currentQuestion] = {
+				let newQuestion = {
 					correct: data.correct,
-					question: question,
-					option: question.options[selected],
+					question: props.question,
+					option: props.question.options[selected],
 				};
 
-				handleAnswer(newQuestions);
+				props.handleAnswer(newQuestion);
 				setSelected(null);
 			})
 			.catch(err => console.log(err));
@@ -37,7 +35,7 @@ const Question = ({ question, handleAnswer, questionResponse, ...props }) => {
 	return (
 		<Fragment>
 			<QuestionWrapper
-				question={question}
+				question={props.question}
 				handleChange={e => setSelected(e.value)}
 				inputSelection={selected}
 			/>
@@ -46,6 +44,4 @@ const Question = ({ question, handleAnswer, questionResponse, ...props }) => {
 	);
 };
 
-const mapStateToProps = ({ questionReducer }) => ({});
-
-export default connect(mapStateToProps)(Question);
+export default Question;

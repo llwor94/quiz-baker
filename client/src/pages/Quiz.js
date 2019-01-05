@@ -1,9 +1,9 @@
 import React, { useEffect, useState, Fragment } from 'react';
 import { connect } from 'react-redux';
 
-import { fetchQuiz, updateUserScore } from '../store/actions/quizActions';
+import { fetchQuiz } from '../store/actions/quizActions';
 import { fetchQuizQuestions } from '../store/actions/questionActions';
-import Quiz from '../containers/Quiz/Quiz';
+import QuizContainer from '../containers/Quiz/Quiz';
 
 const QuizPage = ({ fetchQuiz, fetchQuizQuestions, quiz, questions, ...props }) => {
 	useEffect(() => {
@@ -15,7 +15,7 @@ const QuizPage = ({ fetchQuiz, fetchQuizQuestions, quiz, questions, ...props }) 
 	else
 		return (
 			<Fragment>
-				<Quiz user={props.user} />
+				<QuizContainer user={props.user} />
 			</Fragment>
 		);
 };
