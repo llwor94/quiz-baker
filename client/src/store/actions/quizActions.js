@@ -84,7 +84,6 @@ export const fetchQuiz = id => async (dispatch, getState) => {
 
 export const createQuiz = quiz => (dispatch, getState) => {
 	dispatch({ type: actions.CREATE_QUIZ_REQUEST });
-	console.log(quiz, getState().authReducer.token);
 
 	axios({
 		method: 'post',
@@ -95,7 +94,6 @@ export const createQuiz = quiz => (dispatch, getState) => {
 		data: quiz,
 	})
 		.then(({ data }) => {
-			console.log(data);
 			quiz.id = data[0];
 			dispatch({ type: actions.CREATE_QUIZ_SUCCESS, payload: quiz });
 		})
@@ -143,7 +141,7 @@ export const deleteQuiz = id => (dispatch, getState) => {
 export const editQuiz = quiz => (dispatch, getState) => {
 	dispatch({ type: actions.EDIT_QUIZ_REQUEST });
 	let id = getState().quizReducer.edittingQuiz.id;
-	console.log(id, quiz);
+
 	axios({
 		method: 'patch',
 		url: `${URL}/${id}/edit`,
@@ -182,7 +180,7 @@ export const updateUserScore = (score, quizId) => async (dispatch, getState) => 
 
 export const updateUserFavorite = (favorite, quizId) => async (dispatch, getState) => {
 	dispatch({ type: actions.UPDATE_USER_FAVORITE_REQUEST });
-	console.log(favorite);
+
 	axios({
 		method: 'patch',
 		url: `${URL}/${quizId}`,
