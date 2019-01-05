@@ -6,6 +6,7 @@ import { fetchQuizForEdit, fetchTopics, editQuiz } from '../store/actions/quizAc
 import { fetchQuizQuestions } from '../store/actions/questionActions';
 import EditUserQuiz, { Questions } from '../components/Quizzes/Quiz/edit';
 import CreateQuestion from './CreateQuestion';
+import EditQuestions from './EditQuestions';
 
 const EditQuiz = ({ ...props }) => {
 	const [ isNewQuestion, setIsNewQuestion ] = useState(false);
@@ -40,7 +41,7 @@ const EditQuiz = ({ ...props }) => {
 					loading={props.loading}
 				/>
 				{props.edittingQuiz ? (
-					<Questions questions={props.questions} setIsNewQuestion={setIsNewQuestion}>
+					<EditQuestions questions={props.questions} setIsNewQuestion={setIsNewQuestion}>
 						{isNewQuestion ? (
 							<CreateQuestion setIsNewQuestion={setIsNewQuestion} />
 						) : (
@@ -54,7 +55,7 @@ const EditQuiz = ({ ...props }) => {
 								/>
 							</a>
 						)}
-					</Questions>
+					</EditQuestions>
 				) : (
 					props.error && <div>{props.error}</div>
 				)}
