@@ -55,7 +55,7 @@ const Quiz = ({ quiz, topics, ...props }) => {
 
 	return (
 		<EditUserQuiz
-			quiz={props.edittingQuiz}
+			quiz={quiz}
 			edit={edit}
 			setEdit={setEdit}
 			topics={props.topics}

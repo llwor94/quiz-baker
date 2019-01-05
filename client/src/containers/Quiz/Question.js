@@ -22,8 +22,8 @@ const Question = ({ question, ...props }) => {
 				console.log(data);
 				let newQuestion = {
 					correct: data.correct,
-					question: props.question,
-					option: props.question.options[selected],
+					question: question,
+					option: question.options[selected],
 				};
 
 				props.handleAnswer(newQuestion);
@@ -35,7 +35,7 @@ const Question = ({ question, ...props }) => {
 	return (
 		<Fragment>
 			<QuestionWrapper
-				question={props.question}
+				question={question}
 				handleChange={e => setSelected(e.value)}
 				inputSelection={selected}
 			/>

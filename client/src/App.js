@@ -58,7 +58,7 @@ const App = ({ user, history, checkUser }) => {
 				<GlobalStyle />
 				<Header user={user} setValue={setValue} darkMode={darkMode} />
 				<Wrapper>
-					<div style={{ width: '648px' }}>
+					<div style={{ width: '648px', position: 'relative' }}>
 						<Switch>
 							<Route
 								exact
