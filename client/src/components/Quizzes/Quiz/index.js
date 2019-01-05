@@ -104,25 +104,20 @@ const TakeQuizButton = styled.div`
 	margin-top: 5px;
 	cursor: pointer;
 `;
-export const Quiz = ({
-	quiz,
-	user,
-	handleClick,
-	handleFavoriteToggle,
-	handleStartQuiz,
-	mainPage,
-}) => {
+export const Quiz = ({ quiz, user, handleClick, handleFavoriteToggle, handleVote, mainPage }) => {
 	return (
 		<QuizWrapper>
 			<SideBar>
 				<i
 					className='pi pi-chevron-up'
 					style={{ color: quiz.user_vote === 1 ? 'red' : 'black' }}
+					onClick={() => handleVote(1)}
 				/>
 				<p style={{ color: quiz.user_vote ? 'red' : 'black' }}>{quiz.votes}</p>
 				<i
 					className='pi pi-chevron-down'
 					style={{ color: quiz.user_vote === -1 ? 'red' : 'black' }}
+					onClick={() => handleVote(-1)}
 				/>
 			</SideBar>
 			<InnerWrapper>
@@ -146,7 +141,7 @@ export const Quiz = ({
 					)}
 				</Header>
 				<Title onClick={handleClick}>{quiz.title}</Title>
-				{mainPage && <TakeQuizButton onClick={handleStartQuiz}>Take Quiz</TakeQuizButton>}
+
 				{quiz.description && (
 					<DescriptionWrapper>
 						<p>{quiz.description}</p>
