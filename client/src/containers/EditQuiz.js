@@ -1,67 +1,81 @@
 import React, { useEffect, useState, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { Button } from 'primereact/button';
 
+import { InputText } from 'primereact/inputtext';
+import { AutoComplete } from 'primereact/autocomplete';
 import { fetchQuizForEdit, fetchTopics, editQuiz } from '../store/actions/quizActions';
 import { fetchQuizQuestions } from '../store/actions/questionActions';
-import EditUserQuiz, { Questions } from '../components/Quizzes/Quiz/edit';
-import CreateQuestion from './CreateQuestion';
-import EditQuestions from './EditQuestions';
+import { EditUserQuiz } from '../components/Quizzes/Quiz/edit';
 
-const EditQuiz = ({ ...props }) => {
-	const [ isNewQuestion, setIsNewQuestion ] = useState(false);
+const EditQuiz = ({ quiz, topics, ...props }) => {
+	const [ searchTopics, setSearchOptions ] = useState(null);
+	const [ quizName, setQuizName ] = useState('');
+	const [ topic, setTopic ] = useState({});
 
 	const [ edit, setEdit ] = useState(false);
 
-	const handleQuizEdit = quiz => {
-		console.log('editted quiz: ', quiz);
-		props.editQuiz(quiz);
-	};
+	useEffect(() => {
+		setQuizName(quiz.title);
+		setTopic({ name: quiz.topic });
+		setSearchOptions(topics);
+	}, []);
 
 	useEffect(
 		() => {
-			if (!isNewQuestion) {
-				props.fetchQuizForEdit(props.match.params.id);
-				props.fetchQuizQuestions(props.match.params.id);
-				props.fetchTopics();
-			}
+			setQuizName(quiz.title);
+			setTopic({ name: quiz.topic });
+			setEdit(false);
 		},
-		[ isNewQuestion ],
+		[ quiz ],
 	);
-	if (!props.edittingQuiz || !props.topics || !props.questions) return <div>Loading..</div>;
-	else
-		return (
-			<div>
-				<EditUserQuiz
-					quiz={props.edittingQuiz}
-					edit={edit}
-					setEdit={setEdit}
-					topics={props.topics}
-					editQuiz={handleQuizEdit}
-					loading={props.loading}
-				/>
-				{props.edittingQuiz ? (
-					<EditQuestions questions={props.questions} setIsNewQuestion={setIsNewQuestion}>
-						{isNewQuestion ? (
-							<CreateQuestion setIsNewQuestion={setIsNewQuestion} />
-						) : (
-							<a href='#new'>
-								<Button
-									style={{ width: '100%' }}
-									label='New Question'
-									onClick={() => {
-										setIsNewQuestion(true);
-									}}
-								/>
-							</a>
-						)}
-					</EditQuestions>
-				) : (
-					props.error && <div>{props.error}</div>
-				)}
-				<div id='new' />
-			</div>
-		);
+
+	const filterTopics = e => {
+		setTimeout(() => {
+			let results;
+
+			if (e.query.length === 0) {
+				results = [ ...topics ];
+			} else {
+				results = topics.filter(topic => {
+					return topic.name.toLowerCase().startsWith(e.query.toLowerCase());
+				});
+			}
+			setSearchOptions(results);
+		}, 250);
+	};
+
+	const handleQuizEdit = () => {
+		if (!edit) setEdit(true);
+		else {
+			if (quizName !== quiz.title || topic.name.toLowerCase() !== quiz.topic.toLowerCase()) {
+				props.editQuiz({ title: quizName, topic: topic.name });
+			}
+		}
+	};
+
+	return (
+		<EditUserQuiz
+			quiz={props.edittingQuiz}
+			edit={edit}
+			setEdit={setEdit}
+			topics={props.topics}
+			handleClick={handleQuizEdit}
+			loading={props.loading}
+		>
+			<InputText value={quizName} onChange={e => setQuizName(e.target.value)} />
+			<AutoComplete
+				value={topic.name}
+				suggestions={searchTopics}
+				completeMethod={filterTopics}
+				placeholder='Topics'
+				minLength={1}
+				field='name'
+				onSelect={e => setTopic({ name: e.value.name })}
+				onChange={e => setTopic({ name: e.value })}
+				dropdown={true}
+			/>
+		</EditUserQuiz>
+	);
 };
 
 const mapStateToProps = ({ quizReducer, questionReducer }) => ({

@@ -41,50 +41,16 @@ const InnerWrapper = styled.div`
 	flex-direction: column;
 `;
 
-const EditUserQuiz = ({ quiz, edit, setEdit, topics, editQuiz, loading, ...props }) => {
-	const [ searchTopics, setSearchOptions ] = useState(null);
-	const [ quizName, setQuizName ] = useState('');
-	const [ topic, setTopic ] = useState({});
-
-	useEffect(() => {
-		setQuizName(quiz.title);
-		setTopic({ name: quiz.topic });
-		setSearchOptions(topics);
-	}, []);
-
-	useEffect(
-		() => {
-			setQuizName(quiz.title);
-			setTopic({ name: quiz.topic });
-			setEdit(false);
-		},
-		[ quiz ],
-	);
-
-	const filterTopics = e => {
-		setTimeout(() => {
-			let results;
-
-			if (e.query.length === 0) {
-				results = [ ...topics ];
-			} else {
-				results = topics.filter(topic => {
-					return topic.name.toLowerCase().startsWith(e.query.toLowerCase());
-				});
-			}
-			setSearchOptions(results);
-		}, 250);
-	};
-
-	const handleClick = () => {
-		if (!edit) setEdit(true);
-		else {
-			if (quizName !== quiz.title || topic.name.toLowerCase() !== quiz.topic.toLowerCase()) {
-				editQuiz({ title: quizName, topic: topic.name });
-			}
-		}
-	};
-
+export const EditUserQuiz = ({
+	quiz,
+	edit,
+	setEdit,
+	topics,
+	children,
+	handleClick,
+	loading,
+	...props
+}) => {
 	if (loading)
 		return (
 			<Wrapper main>
@@ -96,38 +62,15 @@ const EditUserQuiz = ({ quiz, edit, setEdit, topics, editQuiz, loading, ...props
 			<Wrapper main>
 				<InnerWrapper>
 					{edit ? (
-						<InputText value={quizName} onChange={e => setQuizName(e.target.value)} />
+						children
 					) : (
-						<Title>{quiz.title}</Title>
-					)}
-
-					{edit ? (
-						<AutoComplete
-							value={topic.name}
-							suggestions={searchTopics}
-							completeMethod={filterTopics}
-							placeholder='Topics'
-							minLength={1}
-							field='name'
-							onSelect={e => setTopic({ name: e.value.name })}
-							onChange={e => setTopic({ name: e.value })}
-							dropdown={true}
-						/>
-					) : (
-						<Topic>{quiz.topic}</Topic>
+						<Fragment>
+							<Title>{quiz.title}</Title>
+							<Topic>{quiz.topic}</Topic>
+						</Fragment>
 					)}
 				</InnerWrapper>
 				<Button label={edit ? 'Save' : 'Edit'} onClick={handleClick} />
 			</Wrapper>
 		);
 };
-
-const mapStateToProps = ({ quizReducer, questionReducer }) => ({
-	edittingQuiz: quizReducer.edittingQuiz,
-	loading: quizReducer.loading,
-	error: quizReducer.error,
-	questions: questionReducer.questions,
-	topics: quizReducer.topics,
-});
-
-export default connect(mapStateToProps)(EditUserQuiz);
