@@ -10,7 +10,7 @@ import { Quiz as QuizWrapper } from '../components/Quizzes/Quiz';
 import { QuestionTracker } from '../components/Quizzes/Questions/QuestionTracker';
 import { Button } from '../components/Quizzes/button';
 import { Results } from '../components/Quizzes/Quiz/results';
-import Question from './Question';
+import Question from './Quiz/Question';
 
 const Quiz = ({
 	quiz,
@@ -24,7 +24,7 @@ const Quiz = ({
 }) => {
 	const [ questionResponse, setQuestionResponse ] = useState(null);
 	const [ currentQuestion, setQuestion ] = useState(null);
-
+	console.log(currentQuestion);
 	useEffect(() => {
 		fetchQuiz(props.match.params.id);
 		fetchQuizQuestions(props.match.params.id);
@@ -86,6 +86,7 @@ const Quiz = ({
 						quiz={quiz}
 						question={questions[currentQuestion]}
 						checkAnswer={checkAnswer}
+						currentQuestion={currentQuestion}
 					/>
 				)}
 				{currentQuestion === null && (

@@ -32,7 +32,7 @@ const Quizzes = ({ quizzes, loading, fetchQuizzes, user, updateUserFavorite, ...
 					quizzes={showingQuizzes}
 					changeQuizzes={changeQuizzes}
 				/>
-				<QuizzesContainer quizzes={quizzes} user={user} />
+				<QuizzesContainer quizzes={quizzes} user={user} {...props} />
 			</Fragment>
 		);
 };

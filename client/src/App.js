@@ -9,12 +9,12 @@ import 'primeicons/primeicons.css';
 import UserQuizPage from './pages/UserQuiz';
 import UserQuizzesPage from './pages/UserQuizzes';
 import QuizzesPage from './pages/Quizzes';
+import QuizPage from './pages/Quiz';
 import LoginContainer from './containers/Login';
 import RegisterContainer from './containers/Register';
 import DashboardContainer from './containers/Dashboard';
 import ForumContainer from './containers/Forum';
 import PostContainer from './containers/Post';
-import QuizContainer from './containers/Quizzes';
 import TakeQuizContainer from './containers/TakeQuiz';
 import CreateQuizContainer from './containers/CreateQuiz';
 import Header from './components/Header';
@@ -96,7 +96,7 @@ const App = ({ user, history, checkUser }) => {
 							<Route
 								exact
 								path='/quizzes/:id'
-								render={props => <TakeQuizContainer {...props} user={user} />}
+								render={props => <QuizPage {...props} user={user} />}
 							/>
 
 							<Route
