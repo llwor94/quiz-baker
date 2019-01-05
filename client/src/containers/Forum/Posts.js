@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import { fetchPosts, fetchPost } from '../../store/actions/forumActions';
+import { fetchPosts } from '../../store/actions/forumActions';
 import { Post } from '../../components/Forum/Post';
 
 const Posts = ({ fetchPosts, fetchPost, posts, ...props }) => {
 	const getPost = id => {
-		fetchPost(id);
 		props.history.push(`forum/${id}`);
 	};
 
@@ -18,4 +17,4 @@ const mapStateToProps = ({ forumReducer }) => ({
 	loading: forumReducer.loading,
 });
 
-export default connect(mapStateToProps, { fetchPosts, fetchPost })(Posts);
+export default connect(mapStateToProps, { fetchPosts })(Posts);

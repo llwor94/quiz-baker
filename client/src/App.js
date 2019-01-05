@@ -11,11 +11,10 @@ import UserQuizzesPage from './pages/UserQuizzes';
 import QuizzesPage from './pages/Quizzes';
 import QuizPage from './pages/Quiz';
 import ForumPage from './pages/Forum';
-
+import PostPage from './pages/Post';
 import LoginContainer from './containers/Login';
 import RegisterContainer from './containers/Register';
 import DashboardContainer from './containers/Dashboard';
-import PostContainer from './containers/Post';
 import CreateQuizContainer from './containers/CreateQuiz';
 import Header from './components/Header';
 
@@ -102,7 +101,7 @@ const App = ({ user, history, checkUser }) => {
 							<Route
 								exact
 								path='/forum/:id'
-								render={props => <PostContainer {...props} user={user} />}
+								render={props => <PostPage {...props} user={user} />}
 							/>
 						</Switch>
 					</div>
