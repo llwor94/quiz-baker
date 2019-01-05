@@ -27,7 +27,7 @@ const Title = styled.div`
 	padding: 8px;
 	padding-right: 10px;
 	display: inline-block;
-	color: ${props => props.theme.text};
+	color: ${props => (props.correct ? 'green' : props.theme.text)};
 `;
 
 const QuestionWrapper = styled.div`
@@ -149,12 +149,23 @@ export const Questions = ({ questions, setIsNewQuestion, children }) => {
 			<Title>Questions:</Title>
 			{questions.length ? (
 				questions.map(question => (
-					<QuestionWrapper>
+					<QuestionWrapper key={question.id}>
 						<div style={{ display: 'flex', justifyContent: 'space-between' }}>
 							<Title>{question.question}</Title>
 							<Button label='Edit' />
 						</div>
-						<ul>{question.options.map(option => <li>{option}</li>)}</ul>
+						<ul>
+							{question.options.map((option, i) => (
+								<li
+									key={i}
+									style={{
+										color: question.answer === i + 1 ? 'green' : 'black',
+									}}
+								>
+									{option}
+								</li>
+							))}
+						</ul>
 					</QuestionWrapper>
 				))
 			) : (

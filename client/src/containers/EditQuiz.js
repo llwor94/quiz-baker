@@ -27,7 +27,7 @@ const EditQuiz = ({ ...props }) => {
 		},
 		[ isNewQuestion ],
 	);
-	if (!props.edittingQuiz || !props.topics) return <div>Loading..</div>;
+	if (!props.edittingQuiz || !props.topics || !props.questions) return <div>Loading..</div>;
 	else
 		return (
 			<div>

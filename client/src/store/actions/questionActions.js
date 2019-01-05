@@ -1,25 +1,30 @@
 import axios from 'axios';
 
 import * as actions from './index';
+import { checkUser } from './authActions';
 
 let URL = 'https://lambda-study-app.herokuapp.com/api/quizzes';
 
-export const fetchQuizQuestions = id => dispatch => {
+export const fetchQuizQuestions = id => async (dispatch, getState) => {
 	dispatch({ type: actions.FETCH_QUIZ_QUESTIONS_REQUEST });
-
+	await checkUser();
 	axios({
 		method: 'get',
 		url: `${URL}/${id}/questions`,
+		headers: {
+			authorization: getState().authReducer.token,
+		},
 	})
 		.then(({ data }) => {
 			dispatch({ type: actions.FETCH_QUIZ_QUESTIONS_SUCCESS, payload: data });
 		})
-		.catch(({ response }) =>
+		.catch(({ response }) => {
+			console.log(response);
 			dispatch({
 				type: actions.FETCH_QUIZ_QUESTIONS_FAILURE,
-				payload: response.data.message,
-			}),
-		);
+				payload: response,
+			});
+		});
 };
 
 export const createQuestion = question => (dispatch, getState) => {
