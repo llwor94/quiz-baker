@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import { Button } from 'primereact/button';
 import _ from 'lodash';
 
-import { createQuestion } from '../store/actions/questionActions';
-import { NewQuestion } from '../components/CreateQuestion';
-import { MultipleChoice } from '../components/CreateQuestion/multipleChoice';
-import { TrueFalse } from '../components/CreateQuestion/trueFalse';
+import { createQuestion } from '../../../store/actions/questionActions';
+import { NewQuestion } from '../../../components/CreateQuestion';
+import { MultipleChoice } from '../../../components/CreateQuestion/multipleChoice';
+import { TrueFalse } from '../../../components/CreateQuestion/trueFalse';
 
 const CreateQuestion = ({ ...props }) => {
 	const [ multipleChoice, setMultipleChoice ] = useState(true);

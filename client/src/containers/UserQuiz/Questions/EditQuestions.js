@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import { Button } from 'primereact/button';
 import _ from 'lodash';
 
-import { editQuestion } from '../store/actions/questionActions';
-import { QuestionWrapper, EditQuestionWrapper } from '../components/Quizzes/Questions/edit';
-import { MultipleChoice } from '../components/CreateQuestion/multipleChoice';
-import { TrueFalse } from '../components/CreateQuestion/trueFalse';
+import { editQuestion } from '../../../store/actions/questionActions';
+import { QuestionWrapper, EditQuestionWrapper } from '../../../components/Quizzes/Questions/edit';
+import { MultipleChoice } from '../../../components/CreateQuestion/multipleChoice';
+import { TrueFalse } from '../../../components/CreateQuestion/trueFalse';
 
 const EditQuestion = ({ question, ...props }) => {
 	const TFOptions = { option1: 'True', option2: 'False' };

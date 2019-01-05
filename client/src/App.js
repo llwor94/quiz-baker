@@ -6,6 +6,8 @@ import 'primereact/resources/themes/nova-light/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 
+import UserQuizPage from './pages/UserQuiz';
+import UserQuizzesPage from './pages/UserQuizzes';
 import LoginContainer from './containers/Login';
 import RegisterContainer from './containers/Register';
 import DashboardContainer from './containers/Dashboard';
@@ -14,8 +16,6 @@ import PostContainer from './containers/Post';
 import QuizContainer from './containers/Quizzes';
 import TakeQuizContainer from './containers/TakeQuiz';
 import CreateQuizContainer from './containers/CreateQuiz';
-import EditQuizPageContainer from './containers/EditPage';
-import UserQuizContainer from './containers/UserQuizzes';
 import Header from './components/Header';
 
 import { checkUser } from './store/actions/authActions';
@@ -80,7 +80,7 @@ const App = ({ user, history, checkUser }) => {
 							<Route
 								exact
 								path='/quizzes/user/:id'
-								render={props => <UserQuizContainer {...props} user={user} />}
+								render={props => <UserQuizzesPage {...props} user={user} />}
 							/>
 							<Route
 								exact
@@ -90,7 +90,7 @@ const App = ({ user, history, checkUser }) => {
 							<Route
 								exact
 								path='/quizzes/edit/:id'
-								render={props => <EditQuizPageContainer {...props} user={user} />}
+								render={props => <UserQuizPage {...props} user={user} />}
 							/>
 							<Route
 								exact

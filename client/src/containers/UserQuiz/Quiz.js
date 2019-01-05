@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 
 import { InputText } from 'primereact/inputtext';
 import { AutoComplete } from 'primereact/autocomplete';
-import { fetchQuizForEdit, fetchTopics, editQuiz } from '../store/actions/quizActions';
-import { fetchQuizQuestions } from '../store/actions/questionActions';
-import { EditUserQuiz } from '../components/Quizzes/Quiz/edit';
+import { fetchQuizForEdit, fetchTopics, editQuiz } from '../../store/actions/quizActions';
+import { fetchQuizQuestions } from '../../store/actions/questionActions';
+import { EditUserQuiz } from '../../components/Quizzes/Quiz/edit';
 
-const EditQuiz = ({ quiz, topics, ...props }) => {
+const Quiz = ({ quiz, topics, ...props }) => {
 	const [ searchTopics, setSearchOptions ] = useState(null);
 	const [ quizName, setQuizName ] = useState('');
 	const [ topic, setTopic ] = useState({});
@@ -91,4 +91,4 @@ export default connect(mapStateToProps, {
 	fetchQuizQuestions,
 	fetchTopics,
 	editQuiz,
-})(EditQuiz);
+})(Quiz);
