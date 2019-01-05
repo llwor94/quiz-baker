@@ -1,9 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
+import { InputTextarea } from 'primereact/inputtextarea';
+import { Button } from 'primereact/button';
 
 const NewCommentArea = styled.div`
-	margin: 24px 40px;
+	margin: 10px 40px 0;
 	span {
 		font-size: 12px;
 		font-weight: 400;
@@ -19,26 +21,57 @@ const NewCommentArea = styled.div`
 `;
 
 export const CommentArea = styled.div`
-	padding-right: 16px;
-	padding-bottom: 16ox;
-	margin: 16px 16px 0px 10px;
+	padding: 0 16px;
+	border-radius: 4px;
+	border: 1px solid;
+	border-color: ${props => props.theme.accent};
+	position: relative;
+	margin-bottom: 10px;
+	background-color: ${props => props.theme.secondary};
 `;
 
-export const NewComment = ({ user }) => (
+export const NewComment = ({ user, commentInput, setCommentInput, handleClick }) => (
 	<NewCommentArea>
 		<div>
 			<span>Comment as</span>
 			<a>{user.username}</a>
 		</div>
+		<InputTextarea
+			rows={5}
+			cols={70}
+			autoResize={true}
+			value={commentInput}
+			onChange={e => setCommentInput(e.target.value)}
+		/>
+		<Button label='Comment' className='p-button-secondary' onClick={handleClick} />
 	</NewCommentArea>
 );
 
-const CommentWrapper = styled.div`
+const BigWrapper = styled.div`
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-top: 1px solid;
+	border-color: ${props => props.theme.accent};
 	position: relative;
 	width: 100%;
 	overflow: visible;
 	transition: background 1s ease 0s;
-	margin-top: 16px;
+	margin-top: 11px;
+	padding-top: 5px;
+	margin-bottom: 5px;
+`;
+
+const CommentWrapper = styled.div`
+	border-top: 1px solid;
+	border-color: ${props => props.theme.accent};
+	position: relative;
+	width: 100%;
+	overflow: visible;
+	transition: background 1s ease 0s;
+	margin-top: 11px;
+	padding-top: 5px;
+	margin-bottom: 5px;
 `;
 
 const CommentHeader = styled.div`
@@ -70,14 +103,17 @@ const CommentBody = styled.div`
 	overflow: auto;
 `;
 
-export const Comment = ({ comment }) => (
-	<CommentWrapper>
-		<CommentHeader>
-			<a>{comment.author}</a>
-			<span>{moment(comment.created_at).fromNow()}</span>
-		</CommentHeader>
-		<CommentBody>
-			<p>{comment.text}</p>
-		</CommentBody>
-	</CommentWrapper>
+export const Comment = ({ comment, user, handleClick }) => (
+	<BigWrapper>
+		<div>
+			<CommentHeader>
+				<a>{comment.author}</a>
+				<span>{moment(comment.created_at).fromNow()}</span>
+			</CommentHeader>
+			<CommentBody>
+				<p>{comment.text}</p>
+			</CommentBody>
+		</div>
+		{user.username === comment.author && <Button label='delete' onClick={handleClick} />}
+	</BigWrapper>
 );

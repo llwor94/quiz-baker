@@ -1,13 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useState, Fragment } from 'react';
 import { connect } from 'react-redux';
 
-import { NewComment } from '../../components/Forum/Comment';
 import { Post as PostWrapper } from '../../components/Forum/Post';
 const Post = ({ post, user, ...props }) => {
+	console.log(user);
 	return (
-		<PostWrapper post={post} user={user}>
-			{user && <NewComment user={user} />}
-		</PostWrapper>
+		<Fragment>
+			<PostWrapper post={post} user={user} />
+		</Fragment>
 	);
 };
 

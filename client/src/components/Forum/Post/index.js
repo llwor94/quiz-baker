@@ -1,15 +1,20 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
-import { Editor } from 'primereact/editor';
+import { Button } from 'primereact/button';
+import { InputTextarea } from 'primereact/inputtextarea';
+import { InputText } from 'primereact/inputtext';
 
 export const PostWrapper = styled.div`
-	padding-left: 8px;
+	padding: 0 8px;
 	border-radius: 4px;
 	border: 1px solid;
 	border-color: ${props => props.theme.accent};
 	position: relative;
 	margin-bottom: 10px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 	background-color: ${props => props.theme.secondary};
 
 	&:hover {
@@ -76,13 +81,16 @@ const FooterWrapper = styled.div`
 export const Post = ({
 	post: { title, author, body, created_at, comment_count },
 	handleClick,
-	children,
+	user,
 }) => {
+	console.log(user.username, author);
 	return (
 		<PostWrapper>
 			<InnerWrapper>
 				<Header>
-					Posted by {author.username ? author.username : author}
+					<span style={{ paddingRight: '3px' }}>
+						Posted by {author.username ? author.username : author}
+					</span>
 					{moment(created_at).fromNow()}
 				</Header>
 				<PostTitle onClick={handleClick}>{title}</PostTitle>
@@ -95,7 +103,73 @@ export const Post = ({
 					<button>Save</button>
 				</FooterWrapper>
 			</InnerWrapper>
-			{children}
+			{user && (user.username === author && <Button label='delete' onClick={handleClick} />)}
 		</PostWrapper>
+	);
+};
+
+const NewPostWrapper = styled.div`
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+	padding-bottom: 10px;
+`;
+
+const NewInner = styled.div`
+	display: flex;
+	border-radius: 4px;
+	border: 1px solid;
+	border-color: ${props => props.theme.accent};
+	flex-direction: column;
+	padding: 10px;
+	position: relative;
+	background-color: ${props => props.theme.secondary};
+`;
+
+export const NewPost = ({
+	newPost,
+	setNewPost,
+	postInput,
+	setPostInput,
+	postTitle,
+	setPostTitle,
+	handleSubmit,
+}) => {
+	return (
+		<NewPostWrapper>
+			{newPost ? (
+				<NewInner>
+					<Button
+						style={{ position: 'absolute', top: '5px', right: '5px' }}
+						icon='pi pi-times'
+						className='p-button-secondary'
+						onClick={() => setNewPost(false)}
+					/>
+					<span className='p-float-label' style={{ margin: '10px 0 ' }}>
+						<InputText
+							id='in'
+							value={postTitle}
+							onChange={e => setPostTitle(e.target.value)}
+						/>
+						<label htmlFor='in'>Title</label>
+					</span>
+					<InputTextarea
+						style={{ marginBottom: '10px' }}
+						rows={5}
+						value={postInput}
+						onChange={e => setPostInput(e.target.value)}
+						autoResize={true}
+					/>
+					<Button
+						label='Submit'
+						disabled={!postInput || !postTitle}
+						className='p-button-secondary'
+						onClick={handleSubmit}
+					/>
+				</NewInner>
+			) : (
+				<Button label='Create a New Post' onClick={() => setNewPost(true)} />
+			)}
+		</NewPostWrapper>
 	);
 };
