@@ -43,9 +43,9 @@ const InnerWrapper = styled.div`
 
 export const EditUserQuiz = ({
 	quiz,
+
 	edit,
-	setEdit,
-	topics,
+
 	children,
 	handleClick,
 	loading,
@@ -67,6 +67,7 @@ export const EditUserQuiz = ({
 						<Fragment>
 							<Title>{quiz.title}</Title>
 							<Topic>{quiz.topic}</Topic>
+							{quiz.description && <Topic>{quiz.description}</Topic>}
 						</Fragment>
 					)}
 				</InnerWrapper>
