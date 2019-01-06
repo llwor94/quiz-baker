@@ -1,5 +1,4 @@
 import React, { useState, Fragment } from 'react';
-import { connect } from 'react-redux';
 import axios from 'axios';
 
 import { Question as QuestionWrapper } from '../../components/Quizzes/Questions';

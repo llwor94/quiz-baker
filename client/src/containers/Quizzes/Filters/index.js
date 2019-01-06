@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import Sort from './Sort';
 import Filter from './Filter';
 import TopicSort from './Topics';

@@ -1,7 +1,7 @@
-import React, { useEffect, useState, Fragment } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import { fetchQuiz, updateUserScore } from '../../store/actions/quizActions';
+import { updateUserScore } from '../../store/actions/quizActions';
 import { Results as ResultsWrapper } from '../../components/Quizzes/Quiz/results';
 
 const Results = ({ quiz, results, updateUserScore }) => {

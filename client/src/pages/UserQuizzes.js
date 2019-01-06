@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Fragment } from 'react';
+import React, { useEffect, Fragment } from 'react';
 import { connect } from 'react-redux';
 
 import { fetchUserQuizzes, fetchTopics } from '../store/actions/quizActions';

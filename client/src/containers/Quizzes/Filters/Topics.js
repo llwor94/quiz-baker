@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'primereact/button';
 import styled from 'styled-components';
@@ -44,7 +44,9 @@ const TopicSort = ({ topics, quizzes, changeQuizzes, allQuizzes }) => {
 	};
 	return (
 		<Wrapper>
-			{displayTopics.map(topic => <Topic topic={topic} handleFilter={filterQuizzes} />)}
+			{displayTopics.map(topic => (
+				<Topic key={topic.id} topic={topic} handleFilter={filterQuizzes} />
+			))}
 		</Wrapper>
 	);
 };
