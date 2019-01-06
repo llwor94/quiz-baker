@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
 	border-color: ${props => props.theme.accent};
 	padding: 8px;
 	background-color: ${props => props.theme.secondary};
-	margin: 10px;
+	margin-bottom: 10px;
 `;
 
 export const QuestWrapper = styled(Wrapper)`

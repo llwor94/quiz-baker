@@ -7,6 +7,11 @@ import { faCookieBite, faCookie } from '@fortawesome/free-solid-svg-icons';
 import { Wrapper } from '../../Styles/Wrappers/index';
 import { FooterWrapper } from '../../Styles/Wrappers/footer';
 
+const QuizWrapper = styled(Wrapper)`
+	display: flex;
+	height: ${props => (props.hasDescription ? '200px' : '140px')}
+`;
+
 const SideBar = styled.div`
 	font-size: 20px;
 	width: 40px;
@@ -91,7 +96,7 @@ const DescriptionWrapper = styled.div`
 `;
 export const Quiz = ({ quiz, user, handleClick, handleFavoriteToggle, handleVote, mainPage }) => {
 	return (
-		<Wrapper hasDescription={quiz.description}>
+		<QuizWrapper hasDescription={quiz.description}>
 			<SideBar>
 				<i
 					className='pi pi-chevron-up'
@@ -145,6 +150,6 @@ export const Quiz = ({ quiz, user, handleClick, handleFavoriteToggle, handleVote
 					</FooterAccent>
 				</RightSide>
 			)}
-		</Wrapper>
+		</QuizWrapper>
 	);
 };
