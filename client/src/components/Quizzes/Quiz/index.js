@@ -2,7 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faCookieBite, faCookie } from '@fortawesome/free-solid-svg-icons';
+
+import {Button} from 'primereact/button'
+import {Tooltip} from 'primereact/tooltip';
+
 const QuizWrapper = styled.div`
 	border-radius: 4px;
 	border: 1px solid;
@@ -10,6 +14,7 @@ const QuizWrapper = styled.div`
 	display: flex;
 	background-color: ${props => props.theme.secondary};
 	margin-bottom: 10px;
+	height: ${props => props.hasDescription ? '200px' : '140px'};
 
 	&:hover {
 		border-color: rgb(129, 131, 132);
@@ -17,6 +22,7 @@ const QuizWrapper = styled.div`
 `;
 
 const SideBar = styled.div`
+	font-size: 20px;
 	width: 40px;
 	justify-content: center;
 	align-items: center;
@@ -24,38 +30,65 @@ const SideBar = styled.div`
 	flex-direction: column;
 	background-color: transparent;
 	color: ${props => props.theme.text};
+	margin: 0 10px;
 
 	i {
 		cursor: pointer;
 	}
 `;
+
+const RightSide = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: flex-end;
+	padding: 20px;
+	height: 100%;
+	font-size: 20px;
+	svg {
+		font-size: 30px;
+	}
+`;
+
 const InnerWrapper = styled.div`
 	padding: 8px;
 	flex-grow: 1;
 	max-width: 606px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 `;
 
 const Header = styled.div`
-	font-size: 12px;
+	font-size: 30px;
 	font-weight: 400;
 	line-height: 16px;
 	display: flex;
 	justify-content: space-between;
 	margin-bottom: 8px;
+	padding-top: 20px;
 	color: ${props => props.theme.link};
+	p{
+		font-size: 12px;
+		margin-top: 6px;
+	}
 `;
-const Topic = styled.a`
+const Title = styled.a`
 	font-weight: 700;
-	color: ${props => props.theme.text};
-	padding: 0 5px;
+	color: ${props => props.noScore ? '#b2b2b2' : props.theme.text};
+	padding: 0 5px 0 0;
+	
 `;
 
-const Title = styled.div`
+const FooterAccent = styled.div`
 	font-size: 18px;
 	font-weight: 500;
-	line-height: 22px;
 	cursor: pointer;
-	color: ${props => props.theme.text};
+	color: ${props => props.isQuizTopic ? 'white' : props.theme.text};
+	background-color: ${props => props.isQuizTopic ? 'green' : 'white'};
+	margin-right: 10px;
+	padding: 5px;
+	border-radius: 5px;
 `;
 
 const DescriptionWrapper = styled.div`
@@ -73,7 +106,6 @@ const DescriptionWrapper = styled.div`
 `;
 const FooterWrapper = styled.div`
 	display: flex;
-	align-items: center;
 	font-size: 12px;
 	font-weight: 700;
 	button {
@@ -106,7 +138,7 @@ const TakeQuizButton = styled.div`
 `;
 export const Quiz = ({ quiz, user, handleClick, handleFavoriteToggle, handleVote, mainPage }) => {
 	return (
-		<QuizWrapper>
+		<QuizWrapper hasDescription={quiz.description}>
 			<SideBar>
 				<i
 					className='pi pi-chevron-up'
@@ -121,38 +153,45 @@ export const Quiz = ({ quiz, user, handleClick, handleFavoriteToggle, handleVote
 				/>
 			</SideBar>
 			<InnerWrapper>
+				<div>
 				<Header>
 					<div>
-						<Topic>{quiz.topic}</Topic>
-						Created by {quiz.author.username ? quiz.author.username : quiz.author}
+						<Title>{quiz.title}</Title>
+						<p>Created by {quiz.author.username ? quiz.author.username : quiz.author}</p>
 					</div>
-					{user.id && (
-						<div>
-							<FontAwesomeIcon
-								icon={faHeart}
-								color={quiz.favorite ? 'red' : 'gray'}
-								style={{ cursor: 'pointer' }}
-								onClick={handleFavoriteToggle}
-							/>
-							<Topic>
-								{quiz.score === null ? '--' : quiz.score}/{quiz.question_count}
-							</Topic>
-						</div>
-					)}
 				</Header>
-				<Title onClick={handleClick}>{quiz.title}</Title>
+				
 
 				{quiz.description && (
 					<DescriptionWrapper>
 						<p>{quiz.description}</p>
 					</DescriptionWrapper>
 				)}
+				</div>
+				
 				<FooterWrapper>
+					<FooterAccent isQuizTopic onClick={handleClick}>{quiz.topic}</FooterAccent>
 					<button>{quiz.question_count} questions</button>
 					<button>Share</button>
 					<button>Save</button>
 				</FooterWrapper>
 			</InnerWrapper>
+			{user.id && (
+						<RightSide>
+							<FontAwesomeIcon
+								title='Take a bite out of that, Boogin'
+								icon={quiz.favorite ? faCookieBite : faCookie}
+								color={quiz.favorite ? '#875818' : '#b2b2b2'}
+								style={{ cursor: 'pointer' }}
+								onClick={handleFavoriteToggle}
+							
+							/>
+							<FooterAccent noScore={quiz.score === null}>
+								{quiz.score === null ? '--' : quiz.score}/{quiz.question_count}
+							</FooterAccent>
+
+						</RightSide>
+					)}
 		</QuizWrapper>
 	);
 };
