@@ -114,7 +114,6 @@ export const Quiz = ({ quiz, handleClick, handleDelete }) => {
 				</Header>
 				<div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
 					<Title onClick={handleClick}>{quiz.title}</Title>
-					<Button label='delete' onClick={() => setModalVisable(true)} />
 				</div>
 				<Dialog
 					visible={modalVisable}
@@ -132,6 +131,7 @@ export const Quiz = ({ quiz, handleClick, handleDelete }) => {
 				)}
 				<FooterWrapper>
 					<button>{quiz.question_count} questions</button>
+					<button onClick={() => setModalVisable(true)}>Delete</button>
 				</FooterWrapper>
 			</InnerWrapper>
 		</QuizWrapper>
