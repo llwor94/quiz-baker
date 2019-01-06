@@ -3,11 +3,12 @@ import { connect } from 'react-redux';
 import server from '../../../utils/server';
 
 import { CommentArea, Comment, NewComment } from '../../../components/Forum/Comment';
+import { Button } from '../../../components/Quizzes/button';
 import { fetchPost } from '../../../store/actions/forumActions';
 
 const Comments = ({ user, post, fetchPost, ...props }) => {
 	const [ commentInput, setCommentInput ] = useState('');
-
+	const [ newComment, setNewComment ] = useState(false);
 	const deleteComment = id => {
 		server
 			.delete(`posts/${post.id}/comments/${id}`)
@@ -30,18 +31,21 @@ const Comments = ({ user, post, fetchPost, ...props }) => {
 	};
 	return (
 		<Fragment>
-			<CommentArea>
-				{user && (
+			{user &&
+				(!newComment ? (
+					<Button text='Post a Comment' handleClick={() => setNewComment(true)} />
+				) : (
 					<NewComment
 						user={user}
 						commentInput={commentInput}
 						setCommentInput={setCommentInput}
 						handleClick={addComment}
 					/>
-				)}
+				))}
 
-				{post.comments.length &&
-					post.comments.map(comment => (
+			{post.comments.length > 0 && (
+				<CommentArea>
+					{post.comments.map(comment => (
 						<Comment
 							key={comment.id}
 							comment={comment}
@@ -49,7 +53,8 @@ const Comments = ({ user, post, fetchPost, ...props }) => {
 							handleClick={() => deleteComment(comment.id)}
 						/>
 					))}
-			</CommentArea>
+				</CommentArea>
+			)}
 		</Fragment>
 	);
 };

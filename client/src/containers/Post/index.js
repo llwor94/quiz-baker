@@ -7,7 +7,7 @@ import { Post as PostWrapper } from '../../components/Forum/Post';
 
 const Post = ({ user, fetchPosts, singlePost, ...props }) => {
 	const [ modalVisable, setModalVisable ] = useState(false);
-	const [ post, setPost ] = useState(undefined);
+	const [ post, setPost ] = useState(props.post);
 	useEffect(
 		() => {
 			if (singlePost) {

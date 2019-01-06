@@ -1,5 +1,6 @@
 import React, { useEffect, useState, Fragment } from 'react';
 import { connect } from 'react-redux';
+import server from '../../utils/server';
 import _ from 'lodash';
 
 import { fetchQuiz } from '../../store/actions/quizActions';
@@ -24,10 +25,42 @@ const Quiz = ({ quiz, questions, user, ...props }) => {
 		setQuestion(currentQuestion + 1);
 	};
 
+	const handleFavoriteToggle = () => {
+		server
+			.patch(`quizzes/${quiz.id}`, { favorite: !quiz.favorite })
+			.then(({ data }) => {
+				console.log(data);
+				fetchQuiz(quiz.id);
+			})
+			.catch(err => console.log(err));
+	};
+
+	const handleUserVote = val => {
+		console.log(quiz, val);
+		let user_vote;
+		if (val === quiz.user_vote) {
+			user_vote = 0;
+		} else {
+			user_vote = val;
+		}
+		server
+			.patch(`quizzes/${quiz.id}`, { vote: user_vote })
+			.then(({ data }) => {
+				console.log(data);
+				fetchQuiz(quiz.id);
+			})
+			.catch(err => console.log(err));
+	};
+
 	return (
 		<Fragment>
 			{currentQuestion === null ? (
-				<QuizWrapper quiz={quiz} user={user} />
+				<QuizWrapper
+					quiz={quiz}
+					user={user}
+					handleFavoriteToggle={() => handleFavoriteToggle(quiz)}
+					handleVote={val => handleUserVote(val)}
+				/>
 			) : currentQuestion === questions.length ? (
 				<Results quiz={quiz} results={questionResponse} />
 			) : (

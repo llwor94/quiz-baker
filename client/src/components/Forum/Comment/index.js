@@ -6,19 +6,8 @@ import { InputTextarea } from 'primereact/inputtextarea';
 import { Button } from 'primereact/button';
 
 const NewCommentArea = styled.div`
-	margin: 10px 40px 0;
-	span {
-		font-size: 12px;
-		font-weight: 400;
-		line-height: 18px;
-		margin-right: 4px;
-	}
-	a {
-		font-size: 12px;
-		font-weight: 400;
-		line-height: 16px;
-		color: rgb(79, 188, 255);
-	}
+	display: flex;
+	flex-direction: column;
 `;
 
 export const CommentArea = styled.div`
@@ -33,13 +22,7 @@ export const CommentArea = styled.div`
 
 export const NewComment = ({ user, commentInput, setCommentInput, handleClick }) => (
 	<NewCommentArea>
-		<div>
-			<span>Comment as</span>
-			<a>{user.username}</a>
-		</div>
 		<InputTextarea
-			rows={5}
-			cols={70}
 			autoResize={true}
 			value={commentInput}
 			onChange={e => setCommentInput(e.target.value)}
