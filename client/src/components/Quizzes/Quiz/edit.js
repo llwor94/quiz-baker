@@ -1,34 +1,10 @@
-import React, { useEffect, useState, Fragment } from 'react';
-import { connect } from 'react-redux';
+import React, { Fragment } from 'react';
 import styled from 'styled-components';
-import { InputText } from 'primereact/inputtext';
-import { AutoComplete } from 'primereact/autocomplete';
 
 import { Button } from 'primereact/button';
 
-const Wrapper = styled.div`
-	border-radius: 4px;
-	border: 1px solid;
-	border-color: ${props => props.theme.accent};
-	padding: 5px;
-	background-color: ${props => props.theme.secondary};
-	margin-bottom: 10px;
-	display: flex;
-	flex-direction: ${props => (props.main ? 'row' : 'column')};
-	justify-content: ${props => props.main && 'space-between'};
-	align-items: ${props => props.main && 'center'};
-`;
-
-const Title = styled.div`
-	font-size: 18px;
-	font-weight: 500;
-	line-height: 22px;
-	cursor: pointer;
-	padding: 8px;
-	padding-right: 10px;
-	display: inline-block;
-	color: ${props => (props.correct ? 'green' : props.theme.text)};
-`;
+import { PaddedTitle } from '../../Styles/Text/title';
+import { QuestWrapper } from '../../Styles/Wrappers/index';
 
 const Topic = styled.a`
 	font-weight: 700;
@@ -53,25 +29,25 @@ export const EditUserQuiz = ({
 }) => {
 	if (loading)
 		return (
-			<Wrapper main>
+			<QuestWrapper secondary>
 				<div style={{ padding: '12px' }}>Loading...</div>
-			</Wrapper>
+			</QuestWrapper>
 		);
 	else
 		return (
-			<Wrapper main>
+			<QuestWrapper secondary>
 				<InnerWrapper>
 					{edit ? (
 						children
 					) : (
 						<Fragment>
-							<Title>{quiz.title}</Title>
+							<PaddedTitle>{quiz.title}</PaddedTitle>
 							<Topic>{quiz.topic}</Topic>
 							{quiz.description && <Topic>{quiz.description}</Topic>}
 						</Fragment>
 					)}
 				</InnerWrapper>
 				<Button label={edit ? 'Save' : 'Edit'} onClick={handleClick} />
-			</Wrapper>
+			</QuestWrapper>
 		);
 };

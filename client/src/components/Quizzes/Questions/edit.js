@@ -1,39 +1,31 @@
 import React from 'react';
 import styled from 'styled-components';
+
 import { Button } from 'primereact/button';
 import { ToggleButton } from 'primereact/togglebutton';
 import { InputText } from 'primereact/inputtext';
-import { Wrapper } from '../../Styles/Wrappers/question';
+
+import { QuestWrapper, Wrapper } from '../../Styles/Wrappers/index';
 import { Title } from '../../Styles/Text/title';
 
-const StyledQuestionWrapper = styled.div`
-	padding: 8px;
-	border-radius: 4px;
-	border: 1px solid;
-	border-color: ${props => props.theme.accent};
-	margin: 10px;
-	ul {
-		padding-left: 40px;
-	}
-`;
 export const QuestionsWrapper = ({ children }) => {
 	return (
-		<Wrapper main>
+		<QuestWrapper main>
 			<Title main>Questions:</Title>
 
 			{children}
-		</Wrapper>
+		</QuestWrapper>
 	);
 };
 
 export const QuestionWrapper = ({ question, setEdit }) => {
 	return (
-		<StyledQuestionWrapper key={question.id}>
+		<Wrapper key={question.id}>
 			<div style={{ display: 'flex', justifyContent: 'space-between' }}>
 				<Title main>{question.question}</Title>
 				<Button label='Edit' onClick={() => setEdit(true)} />
 			</div>
-			<ul>
+			<ul style={{ paddingLeft: '40px' }}>
 				{question.options.map((option, i) => (
 					<li
 						key={i}
@@ -45,7 +37,7 @@ export const QuestionWrapper = ({ question, setEdit }) => {
 					</li>
 				))}
 			</ul>
-		</StyledQuestionWrapper>
+		</Wrapper>
 	);
 };
 

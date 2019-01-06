@@ -1,21 +1,12 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+
 import { Button } from 'primereact/button';
 import { Dialog } from 'primereact/dialog';
 
-const QuizWrapper = styled.div`
-	padding: 8px;
-	border-radius: 4px;
-	border: 1px solid;
-	border-color: ${props => props.theme.accent};
-	display: flex;
-	background-color: ${props => props.theme.secondary};
-	margin-bottom: 10px;
-
-	&:hover {
-		border-color: rgb(129, 131, 132);
-	}
-`;
+import { Wrapper } from '../../Styles/Wrappers/index';
+import { Title } from '../../Styles/Text/title';
+import { FooterWrapper } from '../../Styles/Wrappers/footer';
 
 const InnerWrapper = styled.div`
 	flex-grow: 1;
@@ -38,14 +29,6 @@ const Topic = styled.a`
 	padding: 0 5px;
 `;
 
-const Title = styled.div`
-	font-size: 18px;
-	font-weight: 500;
-	line-height: 22px;
-	cursor: pointer;
-	color: ${props => props.theme.text};
-`;
-
 const DescriptionWrapper = styled.div`
 	overflow: hidden;
 	word-wrap: break-word;
@@ -57,29 +40,6 @@ const DescriptionWrapper = styled.div`
 		word-wrap: break-word;
 		word-break: break-word;
 		color: ${props => props.theme.text};
-	}
-`;
-const FooterWrapper = styled.div`
-	display: flex;
-	align-items: center;
-	font-size: 12px;
-	font-weight: 700;
-	button {
-		width: auto;
-		height: 25px;
-		white-space: nowrap;
-		padding-right: 4px;
-		margin-right: 4px;
-		text-transform: capitalize;
-		overflow-wrap: initial;
-		word-break: initial;
-		border-radius: 2px;
-		transition: background-color 0.1s ease 0s;
-		background: transparent;
-		border: none;
-		color: ${props => props.theme.accentText};
-		cursor: pointer;
-		padding: initial;
 	}
 `;
 
@@ -105,7 +65,7 @@ export const Quiz = ({ quiz, handleClick, handleDelete }) => {
 		</div>
 	);
 	return (
-		<QuizWrapper>
+		<Wrapper>
 			<InnerWrapper>
 				<Header>
 					<div>
@@ -134,6 +94,6 @@ export const Quiz = ({ quiz, handleClick, handleDelete }) => {
 					<button onClick={() => setModalVisable(true)}>Delete</button>
 				</FooterWrapper>
 			</InnerWrapper>
-		</QuizWrapper>
+		</Wrapper>
 	);
 };

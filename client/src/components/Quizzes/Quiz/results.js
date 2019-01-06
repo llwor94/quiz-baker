@@ -1,21 +1,10 @@
 import React, { Fragment } from 'react';
 import styled from 'styled-components';
 
-const Wrapper = styled.div`
-	border-radius: 5px;
-	border: 1px solid;
-	border-color: ${props => props.theme.accent};
-	background-color: ${props => props.theme.secondary};
-	margin-bottom: 10px;
-
-	&:hover {
-		border-color: rgb(129, 131, 132);
-	}
-`;
+import { Wrapper } from '../../Styles/Wrappers/index';
 
 const SideColor = styled.div`
 	width: 40px;
-
 	background-color: ${props => (props.correct ? 'green' : 'red')};
 
 	i {
@@ -47,7 +36,6 @@ const NumberWrapper = styled.div`
 	}
 `;
 export const Results = ({ results }) => {
-	console.log(results.filter(result => result.correct).length / results.length);
 	return (
 		<Fragment>
 			<Wrapper>

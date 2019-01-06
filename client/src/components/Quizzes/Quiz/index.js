@@ -4,19 +4,8 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCookieBite, faCookie } from '@fortawesome/free-solid-svg-icons';
 
-const QuizWrapper = styled.div`
-	border-radius: 4px;
-	border: 1px solid;
-	border-color: ${props => props.theme.accent};
-	display: flex;
-	background-color: ${props => props.theme.secondary};
-	margin-bottom: 10px;
-	height: ${props => (props.hasDescription ? '200px' : '140px')};
-
-	&:hover {
-		border-color: rgb(129, 131, 132);
-	}
-`;
+import { Wrapper } from '../../Styles/Wrappers/index';
+import { FooterWrapper } from '../../Styles/Wrappers/footer';
 
 const SideBar = styled.div`
 	font-size: 20px;
@@ -100,41 +89,9 @@ const DescriptionWrapper = styled.div`
 		color: ${props => props.theme.text};
 	}
 `;
-const FooterWrapper = styled.div`
-	display: flex;
-	font-size: 12px;
-	font-weight: 700;
-	button {
-		width: auto;
-		height: 25px;
-		white-space: nowrap;
-		padding-right: 4px;
-		margin-right: 4px;
-		text-transform: capitalize;
-		overflow-wrap: initial;
-		word-break: initial;
-		border-radius: 2px;
-		transition: background-color 0.1s ease 0s;
-		background: transparent;
-		border: none;
-		color: ${props => props.theme.accentText};
-		cursor: pointer;
-		padding: initial;
-	}
-`;
-
-const TakeQuizButton = styled.div`
-	border-radius: 4px;
-	border: 1px solid;
-	border-color: ${props => props.theme.accent};
-	display: inline-block;
-	padding: 2px;
-	margin-top: 5px;
-	cursor: pointer;
-`;
 export const Quiz = ({ quiz, user, handleClick, handleFavoriteToggle, handleVote, mainPage }) => {
 	return (
-		<QuizWrapper hasDescription={quiz.description}>
+		<Wrapper hasDescription={quiz.description}>
 			<SideBar>
 				<i
 					className='pi pi-chevron-up'
@@ -188,6 +145,6 @@ export const Quiz = ({ quiz, user, handleClick, handleFavoriteToggle, handleVote
 					</FooterAccent>
 				</RightSide>
 			)}
-		</QuizWrapper>
+		</Wrapper>
 	);
 };

@@ -5,6 +5,14 @@ export const Title = styled.div`
 	font-weight: 500;
 	line-height: 22px;
 	cursor: pointer;
+	color: ${props => props.theme.text};
+`;
+
+export const PaddedTitle = styled.div`
+	font-size: 18px;
+	font-weight: 500;
+	line-height: 22px;
+	cursor: pointer;
 	padding: 8px;
 	padding-right: ${props => props.main && '10px'};
 	display: inline-block;

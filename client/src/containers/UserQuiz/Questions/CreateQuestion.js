@@ -6,8 +6,8 @@ import _ from 'lodash';
 
 import { createQuestion } from '../../../store/actions/questionActions';
 import { EditQuestionWrapper } from '../../../components/Quizzes/Questions/edit';
-import { MultipleChoice } from '../../../components/CreateQuestion/multipleChoice';
-import { TrueFalse } from '../../../components/CreateQuestion/trueFalse';
+import { MultipleChoice } from '../../../components/Quizzes/Questions/multipleChoice';
+import { TrueFalse } from '../../../components/Quizzes/Questions/trueFalse';
 
 const CreateQuestion = ({ ...props }) => {
 	const [ multipleChoice, setMultipleChoice ] = useState(true);

@@ -1,27 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
+
 import { RadioButton } from 'primereact/radiobutton';
 
-const Wrapper = styled.div`
-	border-radius: 4px;
-	border: 1px solid;
-	border-color: ${props => props.theme.accent};
-	padding: 8px;
-	background-color: ${props => props.theme.secondary};
-	margin-bottom: 10px;
-
-	&:hover {
-		border-color: rgb(129, 131, 132);
-	}
-`;
-
-const Title = styled.div`
-	font-size: 18px;
-	font-weight: 500;
-	line-height: 22px;
-	cursor: pointer;
-	color: ${props => props.theme.text};
-`;
+import { Wrapper } from '../../Styles/Wrappers/index';
+import { Title } from '../../Styles/Text/title';
 
 const Option = styled.div`padding-top: 4px;`;
 

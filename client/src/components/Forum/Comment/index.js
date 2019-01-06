@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
+
 import { InputTextarea } from 'primereact/inputtextarea';
 import { Button } from 'primereact/button';
 
@@ -51,18 +52,6 @@ const BigWrapper = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	border-top: 1px solid;
-	border-color: ${props => props.theme.accent};
-	position: relative;
-	width: 100%;
-	overflow: visible;
-	transition: background 1s ease 0s;
-	margin-top: 11px;
-	padding-top: 5px;
-	margin-bottom: 5px;
-`;
-
-const CommentWrapper = styled.div`
 	border-top: 1px solid;
 	border-color: ${props => props.theme.accent};
 	position: relative;

@@ -1,25 +1,9 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import styled from 'styled-components';
+
 import { Button } from 'primereact/button';
 
-const Wrapper = styled.div`
-	border-radius: 4px;
-	border: 1px solid;
-	border-color: ${props => props.theme.accent};
-	padding: 5px;
-	background-color: ${props => props.theme.secondary};
-	margin-bottom: 10px;
-	display: flex;
-	position: relative;
-	flex-direction: column;
-	align-items: center;
-
-	p {
-		font-size: 14px;
-		font-weight: 500;
-		padding: 10px 0;
-	}
-`;
+import { QuestWrapper } from '../../Styles/Wrappers';
 
 const InnerWrapper = styled.div`
 	display: flex;
@@ -27,16 +11,9 @@ const InnerWrapper = styled.div`
 	padding: 10px;
 `;
 
-const Title = styled.div`
-	font-weight: 500;
-	line-height: 22px;
-	cursor: pointer;
-	color: ${props => props.theme.text};
-`;
-
 export const CreateNewQuiz = ({ children, handleClose, handleSubmit, quiz, ...props }) => {
 	return (
-		<Wrapper>
+		<QuestWrapper>
 			{children}
 			<Button
 				style={{ position: 'absolute', top: '5px', right: '5px' }}
@@ -67,7 +44,7 @@ export const CreateNewQuiz = ({ children, handleClose, handleSubmit, quiz, ...pr
 					onClick={handleSubmit}
 				/>
 			</InnerWrapper>
-		</Wrapper>
+		</QuestWrapper>
 	);
 };
 

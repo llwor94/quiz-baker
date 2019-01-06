@@ -2,7 +2,6 @@ import React, { useEffect, useState, Fragment } from 'react';
 
 import { InputText } from 'primereact/inputtext';
 import { AutoComplete } from 'primereact/autocomplete';
-import _ from 'lodash';
 
 const QuizForm = ({ topics, quiz, setQuiz, ...props }) => {
 	const [ searchTopics, setSearchOptions ] = useState(null);

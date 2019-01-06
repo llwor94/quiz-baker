@@ -1,38 +1,19 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
+
 import { Button } from 'primereact/button';
 import { InputTextarea } from 'primereact/inputtextarea';
 import { InputText } from 'primereact/inputtext';
 import { Dialog } from 'primereact/dialog';
 
-export const PostWrapper = styled.div`
-	padding: 0 8px;
-	border-radius: 4px;
-	border: 1px solid;
-	border-color: ${props => props.theme.accent};
-	position: relative;
-	margin-bottom: 10px;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	background-color: ${props => props.theme.secondary};
+import { PostWrapper } from '../../Styles/Wrappers/index';
+import { FooterWrapper } from '../../Styles/Wrappers/footer';
+import { Title } from '../../Styles/Text/title';
 
-	&:hover {
-		border-color: rgb(129, 131, 132);
-	}
-`;
 const InnerWrapper = styled.div`
 	padding-top: 8px;
 	margin: 0 8px;
-`;
-
-const PostTitle = styled.div`
-	font-size: 18px;
-	font-weight: 500;
-	line-height: 22px;
-	cursor: pointer;
-	color: ${props => props.theme.text};
 `;
 
 const BodyWrapper = styled.div`
@@ -53,30 +34,6 @@ const Header = styled.div`
 	display: flex;
 	margin-bottom: 8px;
 	color: ${props => props.theme.link};
-`;
-
-const FooterWrapper = styled.div`
-	display: flex;
-	align-items: center;
-	font-size: 12px;
-	font-weight: 700;
-	button {
-		width: auto;
-		height: 25px;
-		white-space: nowrap;
-		padding-right: 4px;
-		margin-right: 4px;
-		text-transform: capitalize;
-		overflow-wrap: initial;
-		word-break: initial;
-		border-radius: 2px;
-		transition: background-color 0.1s ease 0s;
-		background: transparent;
-		border: none;
-		color: ${props => props.theme.accentText};
-		cursor: pointer;
-		padding: initial;
-	}
 `;
 
 export const Post = ({
@@ -112,7 +69,7 @@ export const Post = ({
 					</span>
 					{moment(created_at).fromNow()}
 				</Header>
-				<PostTitle onClick={handleClick}>{title}</PostTitle>
+				<Title onClick={handleClick}>{title}</Title>
 				<BodyWrapper>
 					<p>{body}</p>
 				</BodyWrapper>

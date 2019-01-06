@@ -5,8 +5,8 @@ import _ from 'lodash';
 
 import { editQuestion } from '../../../store/actions/questionActions';
 import { QuestionWrapper, EditQuestionWrapper } from '../../../components/Quizzes/Questions/edit';
-import { MultipleChoice } from '../../../components/CreateQuestion/multipleChoice';
-import { TrueFalse } from '../../../components/CreateQuestion/trueFalse';
+import { MultipleChoice } from '../../../components/Quizzes/Questions/multipleChoice';
+import { TrueFalse } from '../../../components/Quizzes/Questions/trueFalse';
 
 const EditQuestion = ({ question, ...props }) => {
 	const TFOptions = { option1: 'True', option2: 'False' };
