@@ -5,7 +5,7 @@ import { Button } from 'primereact/button';
 import _ from 'lodash';
 
 import { createQuestion } from '../../../store/actions/questionActions';
-import { NewQuestion } from '../../../components/CreateQuestion';
+import { EditQuestionWrapper } from '../../../components/Quizzes/Questions/edit';
 import { MultipleChoice } from '../../../components/CreateQuestion/multipleChoice';
 import { TrueFalse } from '../../../components/CreateQuestion/trueFalse';
 
@@ -53,7 +53,8 @@ const CreateQuestion = ({ ...props }) => {
 		props.setIsNewQuestion(false);
 	};
 	return (
-		<NewQuestion
+		<EditQuestionWrapper
+			new
 			multipleChoice={multipleChoice}
 			question={questionTitle}
 			setQuestionTitle={setQuestionTitle}
@@ -84,11 +85,11 @@ const CreateQuestion = ({ ...props }) => {
 				className='p-button-raised p-button-secondary'
 				onClick={handleCreateQuestion}
 			/>
-		</NewQuestion>
+		</EditQuestionWrapper>
 	);
 };
 
-const mapStateToProps = ({ quizReducer, questionReducer }) => ({
+const mapStateToProps = ({ questionReducer }) => ({
 	loading: questionReducer.loading,
 	error: questionReducer.error,
 });
