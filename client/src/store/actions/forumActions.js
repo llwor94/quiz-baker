@@ -3,7 +3,6 @@ import axios from 'axios';
 import * as actions from './index';
 
 let URL = 'https://lambda-study-app.herokuapp.com/api/posts';
-let devURL = 'http://localhost:3400/api/posts';
 
 export const fetchPosts = () => dispatch => {
 	dispatch({ type: actions.FETCH_ALL_POSTS_REQUEST });
@@ -20,7 +19,6 @@ export const fetchPost = id => dispatch => {
 	dispatch({ type: actions.FETCH_POST_REQUEST });
 	axios({ method: 'get', url: `${URL}/${id}` })
 		.then(({ data }) => {
-			console.log(data);
 			dispatch({ type: actions.FETCH_POST_SUCCESS, payload: data });
 		})
 		.catch(({ response }) =>
@@ -31,7 +29,6 @@ export const fetchPost = id => dispatch => {
 export const addComment = comment => (dispatch, getState) => {
 	dispatch({ type: actions.CREATE_COMMENT_REQUEST });
 	let id = getState().forumReducer.post.id;
-	console.log(comment, id);
 	axios({
 		method: 'post',
 		url: `${URL}/${id}/comments`,

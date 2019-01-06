@@ -116,15 +116,7 @@ const NewInner = styled.div`
 	background-color: ${props => props.theme.secondary};
 `;
 
-export const NewPost = ({
-	newPost,
-	setNewPost,
-	postInput,
-	setPostInput,
-	postTitle,
-	setPostTitle,
-	handleSubmit,
-}) => {
+export const NewPost = ({ newPost, setNewPost, post, setPost, handleSubmit }) => {
 	return (
 		<NewPostWrapper>
 			{newPost ? (
@@ -138,21 +130,20 @@ export const NewPost = ({
 					<span className='p-float-label' style={{ margin: '10px 0 ' }}>
 						<InputText
 							id='in'
-							value={postTitle}
-							onChange={e => setPostTitle(e.target.value)}
+							value={post.title}
+							onChange={e => setPost({ ...post, title: e.target.value })}
 						/>
 						<label htmlFor='in'>Title</label>
 					</span>
-					<InputTextarea
+					<textarea
 						style={{ marginBottom: '10px' }}
 						rows={5}
-						value={postInput}
-						onChange={e => setPostInput(e.target.value)}
-						autoResize={true}
+						value={post.body}
+						onChange={e => setPost({ ...post, body: e.target.value })}
 					/>
 					<Button
 						label='Submit'
-						disabled={!postInput || !postTitle}
+						disabled={!post.title || !post.body}
 						className='p-button-secondary'
 						onClick={handleSubmit}
 					/>

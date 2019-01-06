@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-
 import { Button } from 'primereact/button';
 import _ from 'lodash';
+import server from '../../../utils/server';
 
-import { createQuestion } from '../../../store/actions/questionActions';
+import { fetchQuizQuestions } from '../../../store/actions/questionActions';
 import { EditQuestionWrapper } from '../../../components/Quizzes/Questions/edit';
 import { MultipleChoice } from '../../../components/Quizzes/Questions/multipleChoice';
 import { TrueFalse } from '../../../components/Quizzes/Questions/trueFalse';
 
-const CreateQuestion = ({ ...props }) => {
+const CreateQuestion = ({ fetchQuizQuestions, quiz, token, ...props }) => {
 	const [ multipleChoice, setMultipleChoice ] = useState(true);
 	const [ questionTitle, setQuestionTitle ] = useState(undefined);
+
 	const [ options, setOptions ] = useState({
 		option1: '',
 		option2: '',
@@ -38,10 +39,6 @@ const CreateQuestion = ({ ...props }) => {
 		[ multipleChoice ],
 	);
 
-	const handleCorrectChange = e => {
-		setCorrect(e.value);
-	};
-
 	const handleOptionChange = e => {
 		setOptions({ ...options, [e.target.name]: e.target.value });
 	};
@@ -49,8 +46,13 @@ const CreateQuestion = ({ ...props }) => {
 	const handleCreateQuestion = () => {
 		options.question = questionTitle;
 		options.answer = correctOption;
-		props.createQuestion(options);
-		props.setIsNewQuestion(false);
+		server
+			.post(`quizzes/${quiz.id}/questions`, options)
+			.then(({ data }) => {
+				fetchQuizQuestions(quiz.id);
+				props.setIsNewQuestion(false);
+			})
+			.catch(err => console.log(err));
 	};
 	return (
 		<EditQuestionWrapper
@@ -64,13 +66,13 @@ const CreateQuestion = ({ ...props }) => {
 			{multipleChoice ? (
 				<MultipleChoice
 					correctOption={correctOption}
-					handleCorrectChange={handleCorrectChange}
+					handleCorrectChange={e => setCorrect(e.value)}
 					options={options}
 					handleOptionChange={handleOptionChange}
 				/>
 			) : (
 				<TrueFalse
-					handleCorrectChange={handleCorrectChange}
+					handleCorrectChange={e => setCorrect(e.value)}
 					correctOption={correctOption}
 				/>
 			)}
@@ -89,9 +91,11 @@ const CreateQuestion = ({ ...props }) => {
 	);
 };
 
-const mapStateToProps = ({ questionReducer }) => ({
+const mapStateToProps = ({ questionReducer, quizReducer, authReducer }) => ({
 	loading: questionReducer.loading,
 	error: questionReducer.error,
+	quiz: quizReducer.edittingQuiz,
+	token: authReducer.token,
 });
 
-export default connect(mapStateToProps, { createQuestion })(CreateQuestion);
+export default connect(mapStateToProps, { fetchQuizQuestions })(CreateQuestion);

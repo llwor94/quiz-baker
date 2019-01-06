@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
-import axios from 'axios';
+import server from '../../utils/server';
 import _ from 'lodash';
 
 import { CreateNewQuiz, CreateQuizButton } from '../../components/Quizzes/Quiz/create';
@@ -13,14 +13,8 @@ const CreateQuiz = ({ fetchTopics, topics, fetchUserQuizzes, token, ...props }) 
 	const [ quiz, setQuiz ] = useState({ title: '', description: '', topic: '' });
 
 	const handleCreateQuiz = () => {
-		axios({
-			method: 'post',
-			url: 'https://lambda-study-app.herokuapp.com/api/quizzes',
-			headers: {
-				authorization: token,
-			},
-			data: quiz,
-		})
+		server
+			.post('/quizzes', quiz)
 			.then(response => {
 				fetchUserQuizzes();
 				setQuiz(_.mapValues(quiz, ''));

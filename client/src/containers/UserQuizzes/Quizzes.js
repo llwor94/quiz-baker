@@ -1,19 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
+
+import server from '../../utils/server';
 
 import { fetchUserQuizzes } from '../../store/actions/quizActions';
 import { Quiz } from '../../components/Quizzes/Quiz/userQuiz';
 
 const Quizzes = ({ quizzes, fetchUserQuizzes, token, ...props }) => {
 	const deleteQuiz = id => {
-		axios({
-			method: 'delete',
-			url: `https://lambda-study-app.herokuapp.com/api/quizzes/${id}`,
-			headers: {
-				authorization: token,
-			},
-		})
+		server
+			.delete(`quizzes/${id}`)
 			.then(response => {
 				fetchUserQuizzes();
 			})

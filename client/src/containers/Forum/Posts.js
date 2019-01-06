@@ -1,33 +1,25 @@
 import React, { useState, Fragment } from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
+import server from '../../utils/server';
 
 import { fetchPosts } from '../../store/actions/forumActions';
 import { NewPost } from '../../components/Forum/Post';
 import Post from '../Post';
 
-const Posts = ({ fetchPosts, fetchPost, posts, user, token, ...props }) => {
+const Posts = ({ fetchPosts, posts, user, ...props }) => {
 	const [ newPost, setNewPost ] = useState(false);
-	const [ postInput, setPostInput ] = useState('');
-	const [ postTitle, setPostTitle ] = useState('');
+	const [ post, setPost ] = useState({ title: '', body: '' });
+
 	const getPost = id => {
 		console.log(id);
 		props.history.push(`forum/${id}`);
 	};
 
 	const addPost = () => {
-		console.log(postInput, postTitle, token);
-		axios({
-			method: 'post',
-			url: 'https://lambda-study-app.herokuapp.com/api/posts',
-			data: { title: postTitle, body: postInput },
-			headers: {
-				authorization: token,
-			},
-		})
+		server
+			.post('/posts', post)
 			.then(({ data }) => {
-				setPostInput('');
-				setPostTitle('');
+				setPost({ title: '', body: '' });
 				setNewPost(false);
 				fetchPosts();
 			})
@@ -40,10 +32,8 @@ const Posts = ({ fetchPosts, fetchPost, posts, user, token, ...props }) => {
 				<NewPost
 					newPost={newPost}
 					setNewPost={setNewPost}
-					postInput={postInput}
-					setPostInput={setPostInput}
-					postTitle={postTitle}
-					setPostTitle={setPostTitle}
+					post={post}
+					setPost={setPost}
 					handleSubmit={addPost}
 				/>
 			)}

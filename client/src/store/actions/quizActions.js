@@ -4,7 +4,6 @@ import * as actions from './index';
 import { checkUser } from './authActions';
 
 let URL = 'https://lambda-study-app.herokuapp.com/api/quizzes';
-let devURL = 'http://localhost:3400/api/quizzes';
 
 export const fetchTopics = () => dispatch => {
 	dispatch({ type: actions.FETCH_TOPICS_REQUEST });

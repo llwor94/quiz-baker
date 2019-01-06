@@ -8,7 +8,7 @@ import { QuestionWrapper, EditQuestionWrapper } from '../../../components/Quizze
 import { MultipleChoice } from '../../../components/Quizzes/Questions/multipleChoice';
 import { TrueFalse } from '../../../components/Quizzes/Questions/trueFalse';
 
-const EditQuestion = ({ question, ...props }) => {
+const EditQuestion = ({ question, quiz, ...props }) => {
 	const TFOptions = { option1: 'True', option2: 'False' };
 	const [ edit, setEdit ] = useState(false);
 	const [ multipleChoice, setMultipleChoice ] = useState(false);
@@ -98,6 +98,7 @@ const EditQuestion = ({ question, ...props }) => {
 const mapStateToProps = ({ quizReducer, questionReducer }) => ({
 	loading: questionReducer.loading,
 	error: questionReducer.error,
+	quiz: quizReducer.edittingQuiz,
 });
 
 export default connect(mapStateToProps, { editQuestion })(EditQuestion);
