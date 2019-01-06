@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 
 import { fetchPosts } from '../../store/actions/forumActions';
-import { Post, NewPost } from '../../components/Forum/Post';
+import { NewPost } from '../../components/Forum/Post';
+import Post from '../Post';
 
 const Posts = ({ fetchPosts, fetchPost, posts, user, token, ...props }) => {
 	const [ newPost, setNewPost ] = useState(false);
@@ -46,7 +47,7 @@ const Posts = ({ fetchPosts, fetchPost, posts, user, token, ...props }) => {
 				/>
 			)}
 			{posts.map(post => (
-				<Post user={user} post={post} handleClick={() => getPost(post.id)} />
+				<Post user={user} post={post} getPost={() => getPost(post.id)} />
 			))}{' '}
 		</Fragment>
 	);

@@ -4,6 +4,7 @@ import moment from 'moment';
 import { Button } from 'primereact/button';
 import { InputTextarea } from 'primereact/inputtextarea';
 import { InputText } from 'primereact/inputtext';
+import { Dialog } from 'primereact/dialog';
 
 export const PostWrapper = styled.div`
 	padding: 0 8px;
@@ -81,9 +82,27 @@ const FooterWrapper = styled.div`
 export const Post = ({
 	post: { title, author, body, created_at, comment_count },
 	handleClick,
+	handleDelete,
+	setModalVisable,
+	modalVisable,
 	user,
 }) => {
-	console.log(user.username, author);
+	const footer = (
+		<div>
+			<Button
+				label='Yes'
+				icon='pi pi-check'
+				onClick={handleDelete}
+				className='p-button-danger'
+			/>
+			<Button
+				label='No'
+				icon='pi pi-times'
+				onClick={() => setModalVisable(false)}
+				className='p-button-secondary'
+			/>
+		</div>
+	);
 	return (
 		<PostWrapper>
 			<InnerWrapper>
@@ -98,12 +117,26 @@ export const Post = ({
 					<p>{body}</p>
 				</BodyWrapper>
 				<FooterWrapper>
-					<button>{comment_count} comments</button>
+					<button style={{ cursor: 'default', fontWeight: 'bold' }}>
+						{comment_count} comments
+					</button>
 					<button>Share</button>
-					<button>Save</button>
+					{user &&
+						(user.username === author && (
+							<button label='delete' onClick={() => setModalVisable(true)}>
+								Delete
+							</button>
+						))}
+					<Dialog
+						visible={modalVisable}
+						style={{ width: '25vw' }}
+						footer={footer}
+						onHide={() => setModalVisable(false)}
+					>
+						Are you sure you'd like to delete this post? This action cannot be undone.
+					</Dialog>
 				</FooterWrapper>
 			</InnerWrapper>
-			{user && (user.username === author && <Button label='delete' onClick={handleClick} />)}
 		</PostWrapper>
 	);
 };
