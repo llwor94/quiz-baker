@@ -10,6 +10,7 @@ const Wrapper = styled.div`
 	background-color: ${props => props.theme.secondary};
 	margin-bottom: 10px;
 	display: flex;
+	position: relative;
 	flex-direction: column;
 	align-items: center;
 
@@ -33,10 +34,16 @@ const Title = styled.div`
 	color: ${props => props.theme.text};
 `;
 
-export const CreateNewQuiz = ({ children, ...props }) => {
+export const CreateNewQuiz = ({ children, handleClose, ...props }) => {
 	return (
 		<Wrapper>
 			{children}
+			<Button
+				style={{ position: 'absolute', top: '5px', right: '5px' }}
+				icon='pi pi-times'
+				className='p-button-secondary'
+				onClick={handleClose}
+			/>
 			<InnerWrapper>
 				{!props.topic.name &&
 				props.quizName && (
@@ -52,30 +59,29 @@ export const CreateNewQuiz = ({ children, ...props }) => {
 						<span style={{ fontWeight: 'bold' }}>{props.topic.name}</span>
 					</div>
 				)}
-				{!props.newQuiz ? (
-					<Button
-						label='Create Quiz?'
-						disabled={props.buttonDisabled}
-						className='p-button-raised p-button-secondary'
-						onClick={props.handleCreateQuiz}
-					/>
-				) : (
-					<InnerWrapper>
-						<div style={{ paddingBottom: '5px' }}>
-							New Quiz<span style={{ fontWeight: 'bold', padding: '0 2px' }}>
-								{props.quizName}
-							</span>
-							created!
-						</div>
-						<Button
-							label='View Quiz'
-							icon='pi pi-arrow-right'
-							iconPos='right'
-							onClick={props.handleGoToEdit}
-						/>
-					</InnerWrapper>
-				)}
+
+				<Button
+					label='Create Quiz?'
+					disabled={props.buttonDisabled}
+					className='p-button-raised p-button-secondary'
+					onClick={props.handleCreateQuiz}
+				/>
 			</InnerWrapper>
 		</Wrapper>
+	);
+};
+
+const ButtonWrapper = styled.div`
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+	padding-bottom: 10px;
+`;
+
+export const CreateQuizButton = ({ handleClick }) => {
+	return (
+		<ButtonWrapper>
+			<Button label='Create a New Quiz' onClick={handleClick} />
+		</ButtonWrapper>
 	);
 };

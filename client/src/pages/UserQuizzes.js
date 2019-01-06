@@ -1,29 +1,32 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Fragment } from 'react';
 import { connect } from 'react-redux';
 
-import { Quiz } from '../components/Quizzes/Quiz/userQuiz';
-import { fetchUserQuizzes, deleteQuiz } from '../store/actions/quizActions';
+import { fetchUserQuizzes, deleteQuiz, fetchTopics } from '../store/actions/quizActions';
+import QuizzesContainer from '../containers/UserQuizzes/Quizzes';
+import CreateQuizContainer from '../containers/UserQuizzes/CreateQuiz';
 
-const UserQuizzesPage = ({ userQuizzes, fetchUserQuizzes, deleteQuiz, ...props }) => {
+const UserQuizzesPage = ({ userQuizzes, fetchUserQuizzes, topics, fetchTopics, ...props }) => {
 	useEffect(() => {
 		fetchUserQuizzes();
+		fetchTopics();
 	}, []);
 
-	if (userQuizzes)
-		return userQuizzes.map(quiz => (
-			<Quiz
-				key={quiz.id}
-				quiz={quiz}
-				handleDelete={() => deleteQuiz(quiz.id)}
-				handleClick={() => props.history.push(`/quizzes/edit/${quiz.id}`)}
-			/>
-		));
-	else return <div>Loading..</div>;
+	if (!userQuizzes || !topics) return <div>Loading...</div>;
+	else
+		return (
+			<Fragment>
+				<CreateQuizContainer />
+				<QuizzesContainer {...props} />
+			</Fragment>
+		);
 };
 
 const mapStateToProps = ({ quizReducer }) => ({
 	userQuizzes: quizReducer.userQuizzes,
 	loading: quizReducer.loading,
+	topics: quizReducer.topics,
 });
 
-export default connect(mapStateToProps, { fetchUserQuizzes, deleteQuiz })(UserQuizzesPage);
+export default connect(mapStateToProps, { fetchUserQuizzes, deleteQuiz, fetchTopics })(
+	UserQuizzesPage,
+);

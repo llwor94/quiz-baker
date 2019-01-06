@@ -4,28 +4,22 @@ import { AutoComplete } from 'primereact/autocomplete';
 import { ProgressSpinner } from 'primereact/progressspinner';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
+import { InputTextarea } from 'primereact/inputtextarea';
 
-import { CreateNewQuiz } from '../components/Quizzes/Quiz/create';
-import { fetchTopics, createQuiz } from '../store/actions/quizActions';
+import { CreateNewQuiz, CreateQuizButton } from '../../components/Quizzes/Quiz/create';
+import { fetchTopics, createQuiz } from '../../store/actions/quizActions';
 
 const CreateQuiz = ({ fetchTopics, topics, createQuiz, ...props }) => {
+	const [ newQuiz, setNewQuiz ] = useState(false);
 	const [ topic, setTopic ] = useState({});
 	const [ searchTopics, setSearchOptions ] = useState(null);
+	const [ description, setDescription ] = useState('');
 
 	const [ quizName, setQuizName ] = useState(undefined);
 
 	useEffect(() => {
-		fetchTopics();
+		setSearchOptions(topics);
 	}, []);
-
-	useEffect(
-		() => {
-			if (topics) {
-				setSearchOptions(topics);
-			}
-		},
-		[ topics ],
-	);
 
 	const filterTopics = e => {
 		setTimeout(() => {
@@ -47,10 +41,11 @@ const CreateQuiz = ({ fetchTopics, topics, createQuiz, ...props }) => {
 	};
 
 	const handleCreateQuiz = () => {
-		createQuiz({ title: quizName, topic: topic.name });
+		createQuiz({ title: quizName, topic: topic.name, description: description });
 	};
 
-	if (topics)
+	if (!newQuiz) return <CreateQuizButton handleClick={() => setNewQuiz(true)} />;
+	else
 		return (
 			<CreateNewQuiz
 				buttonDisabled={props.newQuiz || props.newQuizLoading || !topic.name || !quizName}
@@ -59,6 +54,7 @@ const CreateQuiz = ({ fetchTopics, topics, createQuiz, ...props }) => {
 				topic={topic}
 				quizName={quizName}
 				newQuiz={props.newQuiz}
+				handleClose={() => setNewQuiz(false)}
 			>
 				<p>Please choose a topic or create your own.</p>
 				<AutoComplete
@@ -80,11 +76,18 @@ const CreateQuiz = ({ fetchTopics, topics, createQuiz, ...props }) => {
 					value={quizName}
 					onChange={e => setQuizName(e.target.value)}
 				/>
+				<p>Set a description for your quiz.</p>
+				<InputTextarea
+					rows={5}
+					cols={30}
+					value={description}
+					onChange={e => setDescription(e.target.value)}
+					autoResize={true}
+				/>
 
 				{props.newQuizLoading && <div>Creating Your Quiz...</div>}
 			</CreateNewQuiz>
 		);
-	else return <ProgressSpinner />;
 };
 
 const mapStateToProps = ({ quizReducer }) => ({
