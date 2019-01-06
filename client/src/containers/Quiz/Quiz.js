@@ -2,7 +2,7 @@ import React, { useEffect, useState, Fragment } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 
-import { fetchQuiz, updateUserScore } from '../../store/actions/quizActions';
+import { fetchQuiz } from '../../store/actions/quizActions';
 import Question from './Question';
 import Results from './Results';
 import { Quiz as QuizWrapper } from '../../components/Quizzes/Quiz';
@@ -57,4 +57,4 @@ const mapStateToProps = ({ quizReducer, questionReducer }) => ({
 	questions: questionReducer.questions,
 });
 
-export default connect(mapStateToProps, { fetchQuiz, updateUserScore })(Quiz);
+export default connect(mapStateToProps, { fetchQuiz })(Quiz);

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
+import server from '../../utils/server';
 
 import { fetchQuizForEdit, fetchTopics } from '../../store/actions/quizActions';
 import { EditUserQuiz } from '../../components/Quizzes/Quiz/edit';
 import QuizForm from '../../components/Quizzes/QuizForm';
 import _ from 'lodash';
 
-const Quiz = ({ topics, token, ...props }) => {
+const Quiz = ({ topics, ...props }) => {
 	const [ quiz, setQuiz ] = useState({ title: '', description: '', topic: '' });
 
 	const [ edit, setEdit ] = useState(false);
@@ -28,14 +28,8 @@ const Quiz = ({ topics, token, ...props }) => {
 		if (!edit) setEdit(true);
 		else {
 			if (!_.isEqual(quiz, _.pick(props.quiz, [ 'title', 'description', 'topic' ]))) {
-				axios({
-					method: 'patch',
-					url: `https://lambda-study-app.herokuapp.com/api/quizzes/${props.quiz.id}/edit`,
-					headers: {
-						authorization: token,
-					},
-					data: quiz,
-				})
+				server
+					.patch(`quizzes/${props.quiz.id}/edit`, quiz)
 					.then(response => {
 						console.log(response);
 						fetchQuizForEdit(props.quiz.id);
@@ -53,12 +47,11 @@ const Quiz = ({ topics, token, ...props }) => {
 	);
 };
 
-const mapStateToProps = ({ quizReducer, authReducer }) => ({
+const mapStateToProps = ({ quizReducer }) => ({
 	quiz: quizReducer.edittingQuiz,
 	loading: quizReducer.loading,
 	error: quizReducer.error,
 	topics: quizReducer.topics,
-	token: authReducer.token,
 });
 
 export default connect(mapStateToProps, {

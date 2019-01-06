@@ -1,23 +1,29 @@
 import React, { useState, Fragment } from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
+import server from '../../../utils/server';
 
 import { CommentArea, Comment, NewComment } from '../../../components/Forum/Comment';
-import { addComment, fetchPost } from '../../../store/actions/forumActions';
+import { fetchPost } from '../../../store/actions/forumActions';
 
-const Comments = ({ user, post, addComment, token, fetchPost, ...props }) => {
+const Comments = ({ user, post, fetchPost, ...props }) => {
 	const [ commentInput, setCommentInput ] = useState('');
 
 	const deleteComment = id => {
-		axios({
-			method: 'delete',
-			url: `https://lambda-study-app.herokuapp.com/api/posts/${post.id}/comments/${id}`,
-			headers: {
-				authorization: token,
-			},
-		})
+		server
+			.delete(`posts/${post.id}/comments/${id}`)
 			.then(({ data }) => {
 				console.log(data);
+				fetchPost(post.id);
+			})
+			.catch(error => console.log(error));
+	};
+
+	const addComment = () => {
+		server
+			.post(`posts/${post.id}/comments`, { text: commentInput })
+			.then(({ data }) => {
+				console.log(data);
+				setCommentInput('');
 				fetchPost(post.id);
 			})
 			.catch(error => console.log(error));
@@ -30,10 +36,7 @@ const Comments = ({ user, post, addComment, token, fetchPost, ...props }) => {
 						user={user}
 						commentInput={commentInput}
 						setCommentInput={setCommentInput}
-						handleClick={() => {
-							addComment({ text: commentInput });
-							setCommentInput('');
-						}}
+						handleClick={addComment}
 					/>
 				)}
 
@@ -50,10 +53,9 @@ const Comments = ({ user, post, addComment, token, fetchPost, ...props }) => {
 		</Fragment>
 	);
 };
-const mapStateToProps = ({ forumReducer, authReducer }) => ({
+const mapStateToProps = ({ forumReducer }) => ({
 	post: forumReducer.post,
 	loading: forumReducer.loading,
-	token: authReducer.token,
 });
 
-export default connect(mapStateToProps, { addComment, fetchPost })(Comments);
+export default connect(mapStateToProps, { fetchPost })(Comments);

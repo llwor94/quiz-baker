@@ -9,7 +9,7 @@ import { EditQuestionWrapper } from '../../../components/Quizzes/Questions/edit'
 import { MultipleChoice } from '../../../components/Quizzes/Questions/multipleChoice';
 import { TrueFalse } from '../../../components/Quizzes/Questions/trueFalse';
 
-const CreateQuestion = ({ fetchQuizQuestions, quiz, token, ...props }) => {
+const CreateQuestion = ({ fetchQuizQuestions, quiz, ...props }) => {
 	const [ multipleChoice, setMultipleChoice ] = useState(true);
 	const [ questionTitle, setQuestionTitle ] = useState(undefined);
 
@@ -91,11 +91,10 @@ const CreateQuestion = ({ fetchQuizQuestions, quiz, token, ...props }) => {
 	);
 };
 
-const mapStateToProps = ({ questionReducer, quizReducer, authReducer }) => ({
+const mapStateToProps = ({ questionReducer, quizReducer }) => ({
 	loading: questionReducer.loading,
 	error: questionReducer.error,
 	quiz: quizReducer.edittingQuiz,
-	token: authReducer.token,
 });
 
 export default connect(mapStateToProps, { fetchQuizQuestions })(CreateQuestion);

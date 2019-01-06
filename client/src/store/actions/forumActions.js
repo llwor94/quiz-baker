@@ -25,23 +25,3 @@ export const fetchPost = id => dispatch => {
 			dispatch({ type: actions.FETCH_POST_FAILURE, payload: response.data.message }),
 		);
 };
-
-export const addComment = comment => (dispatch, getState) => {
-	dispatch({ type: actions.CREATE_COMMENT_REQUEST });
-	let id = getState().forumReducer.post.id;
-	axios({
-		method: 'post',
-		url: `${URL}/${id}/comments`,
-		data: comment,
-		headers: {
-			authorization: getState().authReducer.token,
-		},
-	})
-		.then(({ data }) => {
-			dispatch({ type: actions.CREATE_COMMENT_SUCCESS });
-			dispatch(fetchPost(id));
-		})
-		.catch(({ response }) =>
-			dispatch({ type: actions.CREATE_COMMENT_FAILURE, payload: response.data.message }),
-		);
-};

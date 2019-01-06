@@ -8,7 +8,7 @@ import { CreateNewQuiz, CreateQuizButton } from '../../components/Quizzes/Quiz/c
 import { fetchTopics, fetchUserQuizzes } from '../../store/actions/quizActions';
 import QuizForm from '../../components/Quizzes/QuizForm';
 
-const CreateQuiz = ({ fetchTopics, topics, fetchUserQuizzes, token, ...props }) => {
+const CreateQuiz = ({ fetchTopics, topics, fetchUserQuizzes, ...props }) => {
 	const [ newQuiz, setNewQuiz ] = useState(false);
 	const [ quiz, setQuiz ] = useState({ title: '', description: '', topic: '' });
 
@@ -37,11 +37,10 @@ const CreateQuiz = ({ fetchTopics, topics, fetchUserQuizzes, token, ...props }) 
 		);
 };
 
-const mapStateToProps = ({ quizReducer, authReducer }) => ({
+const mapStateToProps = ({ quizReducer }) => ({
 	loading: quizReducer.loading,
 	topics: quizReducer.topics,
 	error: quizReducer.error,
-	token: authReducer.token,
 });
 
 export default connect(mapStateToProps, { fetchTopics, fetchUserQuizzes })(CreateQuiz);

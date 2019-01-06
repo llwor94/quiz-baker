@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 import { Button } from 'primereact/button';
 import _ from 'lodash';
 
-import { editQuestion } from '../../../store/actions/questionActions';
+import server from '../../../utils/server';
+
+import { fetchQuizQuestions } from '../../../store/actions/questionActions';
 import { QuestionWrapper, EditQuestionWrapper } from '../../../components/Quizzes/Questions/edit';
 import { MultipleChoice } from '../../../components/Quizzes/Questions/multipleChoice';
 import { TrueFalse } from '../../../components/Quizzes/Questions/trueFalse';
@@ -54,7 +56,13 @@ const EditQuestion = ({ question, quiz, ...props }) => {
 		multipleChoice ? (newQuestion = options) : (newQuestion = TFOptions);
 		newQuestion.question = questionTitle;
 		newQuestion.answer = correctOption;
-		props.editQuestion(newQuestion, question.id);
+		server
+			.patch(`quizzes/${quiz.id}/questions/${question.id}`, newQuestion)
+			.then(({ data }) => {
+				console.log(data);
+				fetchQuizQuestions(quiz.id);
+			})
+			.catch(err => console.log(err));
 	};
 
 	if (!edit) return <QuestionWrapper question={question} setEdit={setEdit} />;
@@ -101,4 +109,4 @@ const mapStateToProps = ({ quizReducer, questionReducer }) => ({
 	quiz: quizReducer.edittingQuiz,
 });
 
-export default connect(mapStateToProps, { editQuestion })(EditQuestion);
+export default connect(mapStateToProps, { fetchQuizQuestions })(EditQuestion);

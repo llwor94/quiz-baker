@@ -6,7 +6,7 @@ import server from '../../utils/server';
 import { fetchUserQuizzes } from '../../store/actions/quizActions';
 import { Quiz } from '../../components/Quizzes/Quiz/userQuiz';
 
-const Quizzes = ({ quizzes, fetchUserQuizzes, token, ...props }) => {
+const Quizzes = ({ quizzes, fetchUserQuizzes, ...props }) => {
 	const deleteQuiz = id => {
 		server
 			.delete(`quizzes/${id}`)
@@ -25,10 +25,9 @@ const Quizzes = ({ quizzes, fetchUserQuizzes, token, ...props }) => {
 	));
 };
 
-const mapStateToProps = ({ quizReducer, authReducer }) => ({
+const mapStateToProps = ({ quizReducer }) => ({
 	quizzes: quizReducer.userQuizzes,
 	loading: quizReducer.loading,
-	token: authReducer.token,
 });
 
 export default connect(mapStateToProps, { fetchUserQuizzes })(Quizzes);

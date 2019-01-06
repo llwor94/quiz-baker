@@ -1,5 +1,5 @@
 import React, { useState, Fragment } from 'react';
-import axios from 'axios';
+import server from '../../utils/server';
 
 import { Question as QuestionWrapper } from '../../components/Quizzes/Questions';
 import { Button } from '../../components/Quizzes/button';
@@ -9,16 +9,11 @@ const Question = ({ question, ...props }) => {
 
 	const checkAnswer = () => {
 		let option = selected + 1;
-		axios({
-			method: 'get',
-			url: `https://lambda-study-app.herokuapp.com/api/quizzes/${props.quiz
-				.id}/questions/${question.id}/response`,
-			params: {
-				option,
-			},
-		})
+		server
+			.get(`quizzes/${props.quiz.id}/questions/${question.id}/response`, {
+				params: { option },
+			})
 			.then(({ data }) => {
-				console.log(data);
 				let newQuestion = {
 					correct: data.correct,
 					question: question,

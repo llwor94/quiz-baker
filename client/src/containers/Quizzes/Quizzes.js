@@ -1,14 +1,20 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
+import server from '../../utils/server';
 
-import { fetchQuizzes, updateUserFavorite } from '../../store/actions/quizActions';
+import { fetchQuizzes } from '../../store/actions/quizActions';
 import { fetchQuestion } from '../../store/actions/questionActions';
 import { Quiz } from '../../components/Quizzes/Quiz';
 
-const Quizzes = ({ quizzes, user, token, fetchQuizzes, updateUserFavorite, ...props }) => {
+const Quizzes = ({ quizzes, user, fetchQuizzes, ...props }) => {
 	const handleFavoriteToggle = quiz => {
-		updateUserFavorite(!quiz.favorite, quiz.id);
+		server
+			.patch(`quizzes/${quiz.id}`, { favorite: !quiz.favorite })
+			.then(({ data }) => {
+				console.log(data);
+				fetchQuizzes();
+			})
+			.catch(err => console.log(err));
 	};
 
 	const handleUserVote = (quiz, val) => {
@@ -19,14 +25,8 @@ const Quizzes = ({ quizzes, user, token, fetchQuizzes, updateUserFavorite, ...pr
 		} else {
 			user_vote = val;
 		}
-		axios({
-			method: 'patch',
-			url: `https://lambda-study-app.herokuapp.com/api/quizzes/${quiz.id}`,
-			headers: {
-				authorization: token,
-			},
-			data: { vote: user_vote },
-		})
+		server
+			.patch(`quizzes/${quiz.id}`, { vote: user_vote })
 			.then(({ data }) => {
 				console.log(data);
 				fetchQuizzes();
@@ -55,10 +55,4 @@ const Quizzes = ({ quizzes, user, token, fetchQuizzes, updateUserFavorite, ...pr
 	);
 };
 
-const mapStateToProps = ({ authReducer }) => ({
-	token: authReducer.token,
-});
-
-export default connect(mapStateToProps, { updateUserFavorite, fetchQuestion, fetchQuizzes })(
-	Quizzes,
-);
+export default connect(null, { fetchQuestion, fetchQuizzes })(Quizzes);
