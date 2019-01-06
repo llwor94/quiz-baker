@@ -34,7 +34,7 @@ const Title = styled.div`
 	color: ${props => props.theme.text};
 `;
 
-export const CreateNewQuiz = ({ children, handleClose, ...props }) => {
+export const CreateNewQuiz = ({ children, handleClose, handleSubmit, quiz, ...props }) => {
 	return (
 		<Wrapper>
 			{children}
@@ -45,18 +45,18 @@ export const CreateNewQuiz = ({ children, handleClose, ...props }) => {
 				onClick={handleClose}
 			/>
 			<InnerWrapper>
-				{!props.topic.name &&
-				props.quizName && (
+				{!quiz.topic &&
+				quiz.title && (
 					<div>
 						Please select a topic for your quiz{' '}
-						<span style={{ fontWeight: 'bold' }}>{props.quizName}</span>
+						<span style={{ fontWeight: 'bold' }}>{quiz.title}</span>
 					</div>
 				)}
-				{props.topic.name &&
-				!props.quizName && (
+				{quiz.topic &&
+				!quiz.title && (
 					<div>
 						Please name your quiz for topic{' '}
-						<span style={{ fontWeight: 'bold' }}>{props.topic.name}</span>
+						<span style={{ fontWeight: 'bold' }}>{quiz.topic}</span>
 					</div>
 				)}
 
@@ -64,7 +64,7 @@ export const CreateNewQuiz = ({ children, handleClose, ...props }) => {
 					label='Create Quiz?'
 					disabled={props.buttonDisabled}
 					className='p-button-raised p-button-secondary'
-					onClick={props.handleCreateQuiz}
+					onClick={handleSubmit}
 				/>
 			</InnerWrapper>
 		</Wrapper>

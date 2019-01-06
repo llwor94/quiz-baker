@@ -2,19 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { AutoComplete } from 'primereact/autocomplete';
 import { InputText } from 'primereact/inputtext';
-import { InputTextarea } from 'primereact/inputtextarea';
+
 import axios from 'axios';
+import _ from 'lodash';
 
 import { CreateNewQuiz, CreateQuizButton } from '../../components/Quizzes/Quiz/create';
 import { fetchTopics, fetchUserQuizzes } from '../../store/actions/quizActions';
 
 const CreateQuiz = ({ fetchTopics, topics, fetchUserQuizzes, token, ...props }) => {
 	const [ newQuiz, setNewQuiz ] = useState(false);
-	const [ topic, setTopic ] = useState({});
-	const [ searchTopics, setSearchOptions ] = useState(null);
-	const [ description, setDescription ] = useState('');
+	const [ quiz, setQuiz ] = useState({ title: '', description: '', topic: '' });
 
-	const [ quizName, setQuizName ] = useState(undefined);
+	const [ searchTopics, setSearchOptions ] = useState(null);
 
 	useEffect(() => {
 		setSearchOptions(topics);
@@ -35,8 +34,14 @@ const CreateQuiz = ({ fetchTopics, topics, fetchUserQuizzes, token, ...props }) 
 		}, 250);
 	};
 
-	const handleGoToEdit = () => {
-		props.history.push(`/quizzes/edit/${props.newQuiz.id}`);
+	const handleChange = e => {
+		let value;
+		if (e.target.value.name) {
+			value = e.target.value.name;
+		} else {
+			value = e.target.value;
+		}
+		setQuiz({ ...quiz, [e.target.name]: value });
 	};
 
 	const handleCreateQuiz = () => {
@@ -46,14 +51,11 @@ const CreateQuiz = ({ fetchTopics, topics, fetchUserQuizzes, token, ...props }) 
 			headers: {
 				authorization: token,
 			},
-			data: { title: quizName, topic: topic.name, description: description },
+			data: quiz,
 		})
 			.then(response => {
-				console.log(response);
 				fetchUserQuizzes();
-				setTopic({});
-				setDescription('');
-				setQuizName('');
+				setQuiz(_.mapValues(quiz, ''));
 				setNewQuiz(false);
 			})
 			.catch(error => console.log(error));
@@ -63,44 +65,35 @@ const CreateQuiz = ({ fetchTopics, topics, fetchUserQuizzes, token, ...props }) 
 	else
 		return (
 			<CreateNewQuiz
-				buttonDisabled={props.newQuiz || props.newQuizLoading || !topic.name || !quizName}
-				handleCreateQuiz={handleCreateQuiz}
-				handleGoToEdit={handleGoToEdit}
-				topic={topic}
-				quizName={quizName}
-				newQuiz={props.newQuiz}
+				buttonDisabled={!quiz.title || !quiz.topic}
+				handleSubmit={handleCreateQuiz}
+				quiz={quiz}
 				handleClose={() => setNewQuiz(false)}
 			>
 				<p>Please choose a topic or create your own.</p>
 				<AutoComplete
-					value={topic.name}
+					value={quiz.topic}
 					suggestions={searchTopics}
 					completeMethod={filterTopics}
 					placeholder='Topics'
 					minLength={1}
+					name='topic'
 					field='name'
-					disabled={props.newQuiz || props.newQuizLoading}
-					onSelect={e => setTopic({ name: e.value.name })}
-					onChange={e => setTopic({ name: e.value })}
+					onChange={handleChange}
 					dropdown={true}
 				/>
 
 				<p>Please name your quiz</p>
-				<InputText
-					disabled={props.newQuiz || props.newQuizLoading}
-					value={quizName}
-					onChange={e => setQuizName(e.target.value)}
-				/>
+				<InputText name='title' value={quiz.title} onChange={handleChange} />
 				<p>Set a description for your quiz.</p>
-				<InputTextarea
+				<textarea
+					name='description'
 					rows={5}
 					cols={30}
-					value={description}
-					onChange={e => setDescription(e.target.value)}
+					value={quiz.description}
+					onChange={handleChange}
 					autoResize={true}
 				/>
-
-				{props.newQuizLoading && <div>Creating Your Quiz...</div>}
 			</CreateNewQuiz>
 		);
 };
