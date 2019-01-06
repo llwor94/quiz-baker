@@ -11,6 +11,7 @@ const Posts = ({ fetchPosts, fetchPost, posts, user, token, ...props }) => {
 	const [ postInput, setPostInput ] = useState('');
 	const [ postTitle, setPostTitle ] = useState('');
 	const getPost = id => {
+		console.log(id);
 		props.history.push(`forum/${id}`);
 	};
 

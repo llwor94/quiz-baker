@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { AutoComplete } from 'primereact/autocomplete';
-import { ProgressSpinner } from 'primereact/progressspinner';
 import { InputText } from 'primereact/inputtext';
-import { Button } from 'primereact/button';
 import { InputTextarea } from 'primereact/inputtextarea';
+import axios from 'axios';
 
 import { CreateNewQuiz, CreateQuizButton } from '../../components/Quizzes/Quiz/create';
-import { fetchTopics, createQuiz } from '../../store/actions/quizActions';
+import { fetchTopics, fetchUserQuizzes } from '../../store/actions/quizActions';
 
-const CreateQuiz = ({ fetchTopics, topics, createQuiz, ...props }) => {
+const CreateQuiz = ({ fetchTopics, topics, fetchUserQuizzes, token, ...props }) => {
 	const [ newQuiz, setNewQuiz ] = useState(false);
 	const [ topic, setTopic ] = useState({});
 	const [ searchTopics, setSearchOptions ] = useState(null);
@@ -41,7 +40,23 @@ const CreateQuiz = ({ fetchTopics, topics, createQuiz, ...props }) => {
 	};
 
 	const handleCreateQuiz = () => {
-		createQuiz({ title: quizName, topic: topic.name, description: description });
+		axios({
+			method: 'post',
+			url: 'https://lambda-study-app.herokuapp.com/api/quizzes',
+			headers: {
+				authorization: token,
+			},
+			data: { title: quizName, topic: topic.name, description: description },
+		})
+			.then(response => {
+				console.log(response);
+				fetchUserQuizzes();
+				setTopic({});
+				setDescription('');
+				setQuizName('');
+				setNewQuiz(false);
+			})
+			.catch(error => console.log(error));
 	};
 
 	if (!newQuiz) return <CreateQuizButton handleClick={() => setNewQuiz(true)} />;
@@ -90,12 +105,11 @@ const CreateQuiz = ({ fetchTopics, topics, createQuiz, ...props }) => {
 		);
 };
 
-const mapStateToProps = ({ quizReducer }) => ({
+const mapStateToProps = ({ quizReducer, authReducer }) => ({
 	loading: quizReducer.loading,
 	topics: quizReducer.topics,
-	newQuizLoading: quizReducer.newQuizLoading,
-	newQuiz: quizReducer.newQuiz,
 	error: quizReducer.error,
+	token: authReducer.token,
 });
 
-export default connect(mapStateToProps, { fetchTopics, createQuiz })(CreateQuiz);
+export default connect(mapStateToProps, { fetchTopics, fetchUserQuizzes })(CreateQuiz);

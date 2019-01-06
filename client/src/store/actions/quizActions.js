@@ -82,26 +82,6 @@ export const fetchQuiz = id => async (dispatch, getState) => {
 		);
 };
 
-export const createQuiz = quiz => (dispatch, getState) => {
-	dispatch({ type: actions.CREATE_QUIZ_REQUEST });
-
-	axios({
-		method: 'post',
-		url: URL,
-		headers: {
-			authorization: getState().authReducer.token,
-		},
-		data: quiz,
-	})
-		.then(({ data }) => {
-			quiz.id = data[0];
-			dispatch({ type: actions.CREATE_QUIZ_SUCCESS, payload: quiz });
-		})
-		.catch(({ response }) => {
-			dispatch({ type: actions.CREATE_QUIZ_FAILURE, payload: response.data.message });
-		});
-};
-
 export const fetchQuizForEdit = id => async (dispatch, getState) => {
 	dispatch({ type: actions.FETCH_USER_QUIZ_REQUEST });
 	await checkUser();
@@ -118,45 +98,6 @@ export const fetchQuizForEdit = id => async (dispatch, getState) => {
 		.catch(({ response }) =>
 			dispatch({ type: actions.FETCH_USER_QUIZ_FAILURE, payload: response.data.message }),
 		);
-};
-
-export const deleteQuiz = id => (dispatch, getState) => {
-	dispatch({ type: actions.DELETE_QUIZ_REQUEST });
-	axios({
-		method: 'delete',
-		url: `${URL}/${id}`,
-		headers: {
-			authorization: getState().authReducer.token,
-		},
-	})
-		.then(({ data }) => {
-			dispatch({ type: actions.DELETE_QUIZ_SUCCESS });
-			dispatch(fetchUserQuizzes());
-		})
-		.catch(({ response }) => {
-			dispatch({ type: actions.DELETE_QUIZ_FAILURE, payload: response.data.message });
-		});
-};
-
-export const editQuiz = quiz => (dispatch, getState) => {
-	dispatch({ type: actions.EDIT_QUIZ_REQUEST });
-	let id = getState().quizReducer.edittingQuiz.id;
-
-	axios({
-		method: 'patch',
-		url: `${URL}/${id}/edit`,
-		headers: {
-			authorization: getState().authReducer.token,
-		},
-		data: quiz,
-	})
-		.then(({ data }) => {
-			dispatch({ type: actions.EDIT_QUIZ_SUCCESS });
-			dispatch(fetchQuizForEdit(id));
-		})
-		.catch(({ response }) => {
-			dispatch({ type: actions.EDIT_QUIZ_FAILURE, payload: response.data.message });
-		});
 };
 
 export const updateUserScore = (score, quizId) => async (dispatch, getState) => {

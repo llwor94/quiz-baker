@@ -1,13 +1,14 @@
 import React, { useEffect, useState, Fragment } from 'react';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 import { InputText } from 'primereact/inputtext';
 import { AutoComplete } from 'primereact/autocomplete';
-import { fetchQuizForEdit, fetchTopics, editQuiz } from '../../store/actions/quizActions';
+import { fetchQuizForEdit, fetchTopics } from '../../store/actions/quizActions';
 import { fetchQuizQuestions } from '../../store/actions/questionActions';
 import { EditUserQuiz } from '../../components/Quizzes/Quiz/edit';
 
-const Quiz = ({ quiz, topics, ...props }) => {
+const Quiz = ({ quiz, topics, token, ...props }) => {
 	const [ searchTopics, setSearchOptions ] = useState(null);
 	const [ quizName, setQuizName ] = useState('');
 	const [ topic, setTopic ] = useState({});
@@ -48,7 +49,20 @@ const Quiz = ({ quiz, topics, ...props }) => {
 		if (!edit) setEdit(true);
 		else {
 			if (quizName !== quiz.title || topic.name.toLowerCase() !== quiz.topic.toLowerCase()) {
-				props.editQuiz({ title: quizName, topic: topic.name });
+				axios({
+					method: 'patch',
+					url: `https://lambda-study-app.herokuapp.com/api/quizzes/${quiz.id}/edit`,
+					headers: {
+						authorization: token,
+					},
+					data: { title: quizName, topic: topic.name },
+				})
+					.then(response => {
+						console.log(response);
+						fetchQuizForEdit(quiz.id);
+						setEdit(false);
+					})
+					.catch(err => console.log(err));
 			}
 		}
 	};
@@ -78,17 +92,17 @@ const Quiz = ({ quiz, topics, ...props }) => {
 	);
 };
 
-const mapStateToProps = ({ quizReducer, questionReducer }) => ({
+const mapStateToProps = ({ quizReducer, questionReducer, authReducer }) => ({
 	quiz: quizReducer.edittingQuiz,
 	loading: quizReducer.loading,
 	error: quizReducer.error,
 	questions: questionReducer.questions,
 	topics: quizReducer.topics,
+	token: authReducer.token,
 });
 
 export default connect(mapStateToProps, {
 	fetchQuizForEdit,
 	fetchQuizQuestions,
 	fetchTopics,
-	editQuiz,
 })(Quiz);

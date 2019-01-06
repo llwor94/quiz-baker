@@ -1,7 +1,7 @@
 import React, { useEffect, useState, Fragment } from 'react';
 import { connect } from 'react-redux';
 
-import { fetchUserQuizzes, deleteQuiz, fetchTopics } from '../store/actions/quizActions';
+import { fetchUserQuizzes, fetchTopics } from '../store/actions/quizActions';
 import QuizzesContainer from '../containers/UserQuizzes/Quizzes';
 import CreateQuizContainer from '../containers/UserQuizzes/CreateQuiz';
 
@@ -27,6 +27,4 @@ const mapStateToProps = ({ quizReducer }) => ({
 	topics: quizReducer.topics,
 });
 
-export default connect(mapStateToProps, { fetchUserQuizzes, deleteQuiz, fetchTopics })(
-	UserQuizzesPage,
-);
+export default connect(mapStateToProps, { fetchUserQuizzes, fetchTopics })(UserQuizzesPage);

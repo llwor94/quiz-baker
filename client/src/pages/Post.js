@@ -7,6 +7,7 @@ import CommentsContainer from '../containers/Post/Comments';
 
 const PostPage = ({ fetchPost, post, ...props }) => {
 	useEffect(() => {
+		console.log(props.match.params.id);
 		fetchPost(props.match.params.id);
 	}, []);
 
@@ -14,7 +15,7 @@ const PostPage = ({ fetchPost, post, ...props }) => {
 	else
 		return (
 			<Fragment>
-				<PostContainer user={props.user} />
+				<PostContainer user={props.user} {...props} />
 				<CommentsContainer user={props.user} />
 			</Fragment>
 		);

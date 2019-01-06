@@ -27,6 +27,7 @@ const forumReducer = (state = initialState, { payload, type }) => {
 				...state,
 				loading: false,
 				posts: payload.sort((a, b) => b.id - a.id),
+				post: undefined,
 			};
 		case FETCH_ALL_POSTS_FAILURE:
 			return {
