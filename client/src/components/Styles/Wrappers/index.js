@@ -4,7 +4,7 @@ export const Wrapper = styled.div`
 	border-radius: 4px;
 	border: 1px solid;
 	border-color: ${props => props.theme.accent};
-	padding: 8px;
+	padding: 12px;
 	background-color: ${props => props.theme.secondary};
 	margin-bottom: 10px;
 `;

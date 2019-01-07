@@ -5,14 +5,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCookieBite, faCookie } from '@fortawesome/free-solid-svg-icons';
 
 import { Wrapper } from '../../Styles/Wrappers/index';
-import { FooterWrapper } from '../../Styles/Wrappers/footer';
+import { FooterWrapper, FooterLink } from '../../Styles/Wrappers/footer';
 
 const QuizWrapper = styled(Wrapper)`
 	display: flex;
 	height: ${props => (props.hasDescription ? '200px' : '140px')}
 `;
 
-const SideBar = styled.div`
+const LeftSide = styled.div`
 	font-size: 20px;
 	width: 40px;
 	justify-content: center;
@@ -21,7 +21,7 @@ const SideBar = styled.div`
 	flex-direction: column;
 	background-color: transparent;
 	color: ${props => props.theme.text};
-	margin: 0 10px;
+	margin: 0 10px 0 0;
 
 	i {
 		cursor: pointer;
@@ -33,7 +33,6 @@ const RightSide = styled.div`
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: flex-end;
-	padding: 20px;
 	height: 100%;
 	font-size: 20px;
 	svg {
@@ -42,22 +41,16 @@ const RightSide = styled.div`
 `;
 
 const InnerWrapper = styled.div`
-	padding: 8px;
-	flex-grow: 1;
-	max-width: 606px;
 	display: flex;
+	flex-grow: 1;
 	flex-direction: column;
 	justify-content: space-between;
 `;
 
 const Header = styled.div`
-	font-size: 30px;
+	font-size: 24px;
 	font-weight: 400;
-	line-height: 16px;
-	display: flex;
-	justify-content: space-between;
 	margin-bottom: 8px;
-	padding-top: 20px;
 	color: ${props => props.theme.link};
 	p {
 		font-size: 12px;
@@ -71,12 +64,12 @@ const Title = styled.a`
 `;
 
 const FooterAccent = styled.div`
-	font-size: 18px;
+	font-size: ${props => props.isQuizTopic? '14px' : '18px'};
 	font-weight: 500;
 	cursor: pointer;
 	color: ${props => (props.isQuizTopic ? 'white' : props.theme.text)};
 	background-color: ${props => (props.isQuizTopic ? 'green' : 'white')};
-	margin-right: 10px;
+	margin-right: ${props => props.isQuizTopic? '10px' : '0'};
 	padding: 5px;
 	border-radius: 5px;
 `;
@@ -97,7 +90,7 @@ const DescriptionWrapper = styled.div`
 export const Quiz = ({ quiz, user, handleClick, handleFavoriteToggle, handleVote, mainPage }) => {
 	return (
 		<QuizWrapper hasDescription={quiz.description}>
-			<SideBar>
+			<LeftSide>
 				<i
 					className='pi pi-chevron-up'
 					style={{ color: quiz.user_vote === 1 ? 'red' : 'black' }}
@@ -109,7 +102,7 @@ export const Quiz = ({ quiz, user, handleClick, handleFavoriteToggle, handleVote
 					style={{ color: quiz.user_vote === -1 ? 'red' : 'black' }}
 					onClick={() => handleVote(-1)}
 				/>
-			</SideBar>
+			</LeftSide>
 			<InnerWrapper>
 				<div>
 					<Header>
@@ -131,9 +124,9 @@ export const Quiz = ({ quiz, user, handleClick, handleFavoriteToggle, handleVote
 
 				<FooterWrapper>
 					<FooterAccent isQuizTopic>{quiz.topic}</FooterAccent>
-					<button>{quiz.question_count} questions</button>
-					<button>Share</button>
-					<button>Save</button>
+					<FooterLink>{quiz.question_count} questions</FooterLink>
+					<FooterLink>Share</FooterLink>
+					<FooterLink>Save</FooterLink>
 				</FooterWrapper>
 			</InnerWrapper>
 			{user.id && (
