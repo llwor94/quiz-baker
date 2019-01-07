@@ -7,7 +7,6 @@ import QuizContainer from '../containers/UserQuiz/Quiz';
 import QuestionsContainer from '../containers/UserQuiz/Questions/';
 
 const UserQuizPage = ({
-	user,
 	fetchQuizForEdit,
 	fetchQuizQuestions,
 	fetchTopics,

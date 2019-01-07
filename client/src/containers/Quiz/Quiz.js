@@ -84,10 +84,11 @@ const Quiz = ({ quiz, questions, user, ...props }) => {
 	);
 };
 
-const mapStateToProps = ({ quizReducer, questionReducer }) => ({
+const mapStateToProps = ({ quizReducer, questionReducer, authReducer }) => ({
 	quiz: quizReducer.quiz,
 	loading: quizReducer.loading,
 	questions: questionReducer.questions,
+	user: authReducer.user,
 });
 
 export default connect(mapStateToProps, { fetchQuiz })(Quiz);

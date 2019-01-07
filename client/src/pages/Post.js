@@ -15,8 +15,8 @@ const PostPage = ({ fetchPost, post, ...props }) => {
 	else
 		return (
 			<Fragment>
-				<PostContainer user={props.user} {...props} />
-				<CommentsContainer user={props.user} />
+				<PostContainer {...props} />
+				<CommentsContainer />
 			</Fragment>
 		);
 };

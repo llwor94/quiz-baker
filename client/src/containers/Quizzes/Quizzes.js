@@ -56,5 +56,8 @@ const Quizzes = ({ quizzes, user, fetchQuizzes, ...props }) => {
 		</Fragment>
 	);
 };
+const mapStateToProps = ({ authReducer }) => ({
+	user: authReducer.user,
+});
 
-export default connect(null, { fetchQuestion, fetchQuizzes })(Quizzes);
+export default connect(mapStateToProps, { fetchQuestion, fetchQuizzes })(Quizzes);

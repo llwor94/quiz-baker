@@ -15,7 +15,7 @@ const QuizPage = ({ fetchQuiz, fetchQuizQuestions, quiz, questions, ...props }) 
 	else
 		return (
 			<Fragment>
-				<QuizContainer user={props.user} />
+				<QuizContainer />
 			</Fragment>
 		);
 };

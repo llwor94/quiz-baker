@@ -5,8 +5,6 @@ import { Link, withRouter } from 'react-router-dom';
 import { Menubar } from 'primereact/menubar';
 import { InputSwitch } from 'primereact/inputswitch';
 
-import { fetchPosts } from '../store/actions/forumActions';
-import { fetchQuizzes } from '../store/actions/quizActions';
 import { logout } from '../store/actions/authActions';
 
 const HeaderWrapper = styled.div`
@@ -151,4 +149,8 @@ const Header = ({ user, setValue, darkMode, ...props }) => {
 	);
 };
 
-export default withRouter(connect(null, { logout, fetchPosts, fetchQuizzes })(Header));
+const mapStateToProps = ({ authReducer }) => ({
+	user: authReducer.user,
+});
+
+export default withRouter(connect(mapStateToProps, { logout })(Header));

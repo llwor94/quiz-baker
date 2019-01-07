@@ -58,9 +58,10 @@ const Comments = ({ user, post, fetchPost, ...props }) => {
 		</Fragment>
 	);
 };
-const mapStateToProps = ({ forumReducer }) => ({
+const mapStateToProps = ({ forumReducer, authReducer }) => ({
 	post: forumReducer.post,
 	loading: forumReducer.loading,
+	user: authReducer.user,
 });
 
 export default connect(mapStateToProps, { fetchPost })(Comments);

@@ -46,7 +46,7 @@ const Wrapper = styled.div`
 	justify-content: center;
 `;
 
-const App = ({ user, history, checkUser }) => {
+const App = ({ checkUser }) => {
 	const [ darkMode, setValue ] = useState(false);
 	useEffect(() => {
 		checkUser();
@@ -56,49 +56,19 @@ const App = ({ user, history, checkUser }) => {
 		<ThemeProvider theme={darkMode ? DarkMode : LightMode}>
 			<div>
 				<GlobalStyle />
-				<Header user={user} setValue={setValue} darkMode={darkMode} />
+				<Header setValue={setValue} darkMode={darkMode} />
 				<Wrapper>
 					<div style={{ width: '648px', position: 'relative' }}>
 						<Switch>
-							<Route
-								exact
-								path='/'
-								render={props => <DashboardContainer {...props} user={user} />}
-							/>
+							<Route exact path='/' component={DashboardContainer} />
 							<Route exact path='/login' component={LoginContainer} />
 							<Route exact path='/register' component={RegisterContainer} />
-							<Route
-								exact
-								path='/forum'
-								render={props => <ForumPage {...props} user={user} />}
-							/>
-							<Route
-								exact
-								path='/quizzes'
-								render={props => <QuizzesPage {...props} user={user} />}
-							/>
-							<Route
-								exact
-								path='/quizzes/user/:id'
-								render={props => <UserQuizzesPage {...props} user={user} />}
-							/>
-
-							<Route
-								exact
-								path='/quizzes/edit/:id'
-								render={props => <UserQuizPage {...props} user={user} />}
-							/>
-							<Route
-								exact
-								path='/quizzes/:id'
-								render={props => <QuizPage {...props} user={user} />}
-							/>
-
-							<Route
-								exact
-								path='/forum/:id'
-								render={props => <PostPage {...props} user={user} />}
-							/>
+							<Route exact path='/forum' component={ForumPage} />
+							<Route exact path='/quizzes' component={QuizzesPage} />
+							<Route exact path='/quizzes/user/:id' component={UserQuizzesPage} />
+							<Route exact path='/quizzes/edit/:id' component={UserQuizPage} />
+							<Route exact path='/quizzes/:id' component={QuizPage} />
+							<Route exact path='/forum/:id' component={PostPage} />
 						</Switch>
 					</div>
 				</Wrapper>
@@ -107,8 +77,4 @@ const App = ({ user, history, checkUser }) => {
 	);
 };
 
-const mapStateToProps = ({ authReducer }) => ({
-	user: authReducer.user,
-});
-
-export default withRouter(connect(mapStateToProps, { checkUser })(App));
+export default withRouter(connect(null, { checkUser })(App));

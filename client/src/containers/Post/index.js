@@ -44,8 +44,9 @@ const Post = ({ user, fetchPosts, singlePost, ...props }) => {
 		);
 };
 
-const mapStateToProps = ({ forumReducer }) => ({
+const mapStateToProps = ({ forumReducer, authReducer }) => ({
 	singlePost: forumReducer.post,
 	loading: forumReducer.loading,
+	user: authReducer.user,
 });
 export default connect(mapStateToProps, { fetchPosts })(Post);

@@ -6,7 +6,7 @@ import { fetchQuizzes, fetchTopics } from '../store/actions/quizActions';
 import FiltersContainer from '../containers/Quizzes/Filters/';
 import QuizzesContainer from '../containers/Quizzes/Quizzes';
 
-const QuizzesPage = ({ quizzes, loading, fetchQuizzes, fetchTopics, topics, user, ...props }) => {
+const QuizzesPage = ({ quizzes, loading, fetchQuizzes, fetchTopics, topics, ...props }) => {
 	const [ showingQuizzes, changeQuizzes ] = useState(null);
 
 	useEffect(() => {
@@ -23,24 +23,16 @@ const QuizzesPage = ({ quizzes, loading, fetchQuizzes, fetchTopics, topics, user
 		[ quizzes ],
 	);
 
-	useEffect(
-		() => {
-			console.log('changee');
-		},
-		[ showingQuizzes ],
-	);
-	console.log(showingQuizzes);
 	if (!showingQuizzes || !topics) return <div>Loading...</div>;
 	else
 		return (
 			<Fragment>
 				<FiltersContainer
-					user={user}
 					quizzes={showingQuizzes}
 					changeQuizzes={changeQuizzes}
 					topics={topics}
 				/>
-				<QuizzesContainer quizzes={showingQuizzes} user={user} {...props} />
+				<QuizzesContainer quizzes={showingQuizzes} {...props} />
 			</Fragment>
 		);
 };

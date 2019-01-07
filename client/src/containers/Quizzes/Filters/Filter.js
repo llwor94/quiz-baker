@@ -53,9 +53,10 @@ const Filter = ({ quizzes, user, changeQuizzes }) => {
 	);
 };
 
-const mapStateToProps = ({ quizReducer }) => ({
+const mapStateToProps = ({ quizReducer, authReducer }) => ({
 	quizzes: quizReducer.quizzes,
 	loading: quizReducer.loading,
+	user: authReducer.user,
 });
 
 export default connect(mapStateToProps)(Filter);
