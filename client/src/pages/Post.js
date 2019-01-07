@@ -7,7 +7,6 @@ import CommentsContainer from '../containers/Post/Comments';
 
 const PostPage = ({ fetchPost, post, ...props }) => {
 	useEffect(() => {
-		console.log(props.match.params.id);
 		fetchPost(props.match.params.id);
 	}, []);
 
