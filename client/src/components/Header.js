@@ -5,6 +5,7 @@ import { Link, withRouter } from "react-router-dom";
 import { Menubar } from "primereact/menubar";
 import { InputSwitch } from "primereact/inputswitch";
 import { faBirthdayCake } from "@fortawesome/free-solid-svg-icons";
+import  pieIcon from "../assets/noun_Pie_706498.svg";
 
 import { fetchPosts } from "../store/actions/forumActions";
 import { fetchQuizzes } from "../store/actions/quizActions";
@@ -148,12 +149,7 @@ const Header = ({ user, setValue, darkMode, ...props }) => {
     <Fragment>
       <HeaderWrapper>
         <LeftHeader>
-          <FontAwesomeIcon
-            title="Waaaooowwwwww"
-            icon={faBirthdayCake}
-            color={"pink"}
-            size={"3x"}
-          />
+		  <img src={pieIcon} style={{width: '40px'}}/>
           <StyledLink to="/">Quiz Baker</StyledLink>
         </LeftHeader>
         <InputSwitch
@@ -163,6 +159,7 @@ const Header = ({ user, setValue, darkMode, ...props }) => {
           checked={darkMode}
           onChange={e => setValue(e.value)}
         />
+		
       </HeaderWrapper>
       <StyledMenu model={user ? AuthItems : NoAuthItems} />
     </Fragment>
