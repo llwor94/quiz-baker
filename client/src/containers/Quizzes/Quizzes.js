@@ -38,6 +38,8 @@ const Quizzes = ({ quizzes, user, fetchQuizzes, ...props }) => {
 		props.history.push(`quizzes/${id}`);
 	};
 
+	console.log(quizzes);
+
 	return (
 		<Fragment>
 			{quizzes.map(quiz => (

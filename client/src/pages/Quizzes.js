@@ -23,6 +23,13 @@ const QuizzesPage = ({ quizzes, loading, fetchQuizzes, fetchTopics, topics, user
 		[ quizzes ],
 	);
 
+	useEffect(
+		() => {
+			console.log('changee');
+		},
+		[ showingQuizzes ],
+	);
+	console.log(showingQuizzes);
 	if (!showingQuizzes || !topics) return <div>Loading...</div>;
 	else
 		return (

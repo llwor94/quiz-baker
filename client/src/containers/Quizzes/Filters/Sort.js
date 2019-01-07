@@ -12,9 +12,9 @@ const Sort = ({ quizzes, changeQuizzes }) => {
 	useEffect(
 		() => {
 			if (sortOption === 'MU') {
-				changeQuizzes(quizzes.sort((a, b) => b.votes - a.votes));
+				changeQuizzes([ ...quizzes ].sort((a, b) => b.votes - a.votes));
 			} else if (sortOption === 'MR') {
-				changeQuizzes(quizzes.sort((a, b) => b.id - a.id));
+				changeQuizzes([ ...quizzes ].sort((a, b) => b.id - a.id));
 			}
 		},
 		[ sortOption ],
