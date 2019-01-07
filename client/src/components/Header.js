@@ -51,31 +51,12 @@ const StyledMenu = styled(Menubar)`
   }
 `;
 const Header = ({ user, setValue, darkMode, ...props }) => {
-	console.log(user);
 	const AuthItems = [
 		{
-			label: 'Home',
-			icon: 'pi pi-home',
-			command: () => {
-				props.history.push('/');
-			},
-		},
-		{
 			label: 'Quizzes',
-			items: [
-				{
-					label: 'All quizzes',
-					command: () => {
-						props.history.push('/quizzes');
-					},
-				},
-				{
-					label: 'Your quizzes',
-					command: () => {
-						props.history.push(`/quizzes/user/${user.id}`);
-					},
-				},
-			],
+			command: () => {
+				props.history.push('/quizzes');
+			},
 		},
 		{
 			label: 'Forum',
@@ -88,6 +69,12 @@ const Header = ({ user, setValue, darkMode, ...props }) => {
 			items: [
 				{
 					label: 'Settings',
+				},
+				{
+					label: 'Your quizzes',
+					command: () => {
+						props.history.push(`/quizzes/user/${user.id}`);
+					},
 				},
 
 				{
