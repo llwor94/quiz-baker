@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
 import { Dropdown } from 'primereact/dropdown';
 
 const Filter = ({ quizzes, user, changeQuizzes }) => {
@@ -22,7 +23,7 @@ const Filter = ({ quizzes, user, changeQuizzes }) => {
 					changeQuizzes(quizzes.filter(quiz => quiz.votes > 0));
 					break;
 				case 'MUP':
-					changeQuizzes(quizzes.filter(quiz => quiz.vote));
+					changeQuizzes(quizzes.filter(quiz => quiz.user_vote));
 					break;
 				case 'MFV':
 					changeQuizzes(quizzes.filter(quiz => quiz.favorite));
@@ -52,4 +53,9 @@ const Filter = ({ quizzes, user, changeQuizzes }) => {
 	);
 };
 
-export default Filter;
+const mapStateToProps = ({ quizReducer }) => ({
+	quizzes: quizReducer.quizzes,
+	loading: quizReducer.loading,
+});
+
+export default connect(mapStateToProps)(Filter);
