@@ -183,12 +183,12 @@ export const Quiz = ({
             style={{ color: quiz.user_vote === 1 ? "#DC758F" : "black" }}
             onClick={() => handleVote(1)}
           />
-          <p style={{ color: quiz.user_vote ? "#DC758F" : "black" }}>
+          <p style={{ color: quiz.user_vote ? (quiz.user_vote === 1 ? "#DC758F" : "#E3D3E4") : "black" }}>
             {quiz.votes}
           </p>
           <i
             className="pi pi-chevron-down"
-            style={{ color: quiz.user_vote === -1 ? "#DC758F" : "black" }}
+            style={{ color: quiz.user_vote === -1 ? "#E3D3E4" : "black" }}
             onClick={() => handleVote(-1)}
           />
         </LeftSide>
