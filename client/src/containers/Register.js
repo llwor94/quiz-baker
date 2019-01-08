@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
+import server from '../utils/server';
 import _ from 'lodash';
 import debounce from 'lodash/debounce';
 
@@ -9,13 +9,8 @@ import { Wrapper, Input } from '../components/Auth';
 
 const checkData = debounce(async ({ target }, setError, error) => {
 	if (target.value) {
-		let user = await axios({
-			method: 'get',
-			url: 'https://lambda-study-app.herokuapp.com/api/users',
-			params: {
-				[target.name]: target.value,
-			},
-		});
+		let user = await server.get('/users', { params: { [target.name]: target.value } });
+
 		if (user.data) {
 			target.name === 'username'
 				? setError({ ...error, username: 'This username is unavailable.' })
@@ -30,11 +25,13 @@ const checkData = debounce(async ({ target }, setError, error) => {
 }, 500);
 
 const Register = ({ register, serverError, ...props }) => {
+	const [ emailVerified, setEmailVerified ] = useState(false);
 	const [ userInput, setInputValue ] = useState({
 		username: undefined,
 		email: undefined,
 		password: undefined,
 		passwordCheck: undefined,
+		img_url: undefined,
 	});
 
 	const [ error, setError ] = useState({
@@ -57,7 +54,7 @@ const Register = ({ register, serverError, ...props }) => {
 		}
 	};
 
-	const handleSubmit = e => {
+	const registerUser = e => {
 		e.preventDefault();
 		register(userInput);
 	};
@@ -65,7 +62,7 @@ const Register = ({ register, serverError, ...props }) => {
 	return (
 		<Wrapper
 			type='register'
-			handleSubmit={handleSubmit}
+			handleSubmit={registerUser}
 			submitDisabled={_.some(userInput, _.isEmpty) || !_.every(error, _.isEmpty)}
 			error={serverError}
 			location={props.location}
