@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
-
+import blankProfile from '../../../assets/blank-profile.png';
 import { Button } from 'primereact/button';
 import { InputTextarea } from 'primereact/inputtextarea';
 import { InputText } from 'primereact/inputtext';
@@ -34,6 +34,11 @@ const Header = styled.div`
 	display: flex;
 	margin-bottom: 8px;
 	color: ${props => props.theme.link};
+	img {
+		height: 20px;
+		width: 20px;
+		border-radius: 50%;
+	}
 `;
 
 export const Post = ({
@@ -65,6 +70,7 @@ export const Post = ({
 			<InnerWrapper>
 				<Header>
 					<span style={{ paddingRight: '3px' }}>
+						<img src={user.img_url ? user.img_url : blankProfile} />
 						Posted by {author.username ? author.username : author}
 					</span>
 					{moment(created_at).fromNow()}

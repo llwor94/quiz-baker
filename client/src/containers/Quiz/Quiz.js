@@ -53,7 +53,7 @@ const Quiz = ({ quiz, questions, user, ...props }) => {
 	};
 
 	return (
-		<Fragment>
+		<div>
 			{currentQuestion === null ? (
 				<QuizWrapper
 					quiz={quiz}
@@ -80,7 +80,7 @@ const Quiz = ({ quiz, questions, user, ...props }) => {
 				/>
 			)}
 			<QuestionTracker questions={questionResponse} currentQuestion={currentQuestion} />
-		</Fragment>
+		</div>
 	);
 };
 

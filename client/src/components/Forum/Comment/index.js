@@ -4,6 +4,7 @@ import moment from 'moment';
 
 import { InputTextarea } from 'primereact/inputtextarea';
 import { Button } from 'primereact/button';
+import blankProfile from '../../../assets/blank-profile.png';
 
 const NewCommentArea = styled.div`
 	display: flex;
@@ -64,6 +65,11 @@ const CommentHeader = styled.div`
 		padding-left: 8px;
 		flex: 0 0 auto;
 	}
+	img {
+		height: 20px;
+		width: 20px;
+		border-radius: 50%;
+	}
 `;
 
 const CommentBody = styled.div`
@@ -79,6 +85,7 @@ export const Comment = ({ comment, user, handleClick }) => (
 	<BigWrapper>
 		<div>
 			<CommentHeader>
+				<img src={comment.author_img ? user.img_url : blankProfile} />
 				<a>{comment.author}</a>
 				<span>{moment(comment.created_at).fromNow()}</span>
 			</CommentHeader>

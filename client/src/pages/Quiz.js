@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { fetchQuiz } from '../store/actions/quizActions';
 import { fetchQuizQuestions } from '../store/actions/questionActions';
 import QuizContainer from '../containers/Quiz/Quiz';
+import LeaderBoardContainer from '../containers/Quiz/LeaderBoard';
 
 const QuizPage = ({ fetchQuiz, fetchQuizQuestions, quiz, questions, ...props }) => {
 	useEffect(() => {
@@ -14,9 +15,10 @@ const QuizPage = ({ fetchQuiz, fetchQuizQuestions, quiz, questions, ...props }) 
 	if (!quiz || !questions) return <div>Loading...</div>;
 	else
 		return (
-			<Fragment>
+			<div style={{ display: 'flex' }}>
+				<LeaderBoardContainer />
 				<QuizContainer />
-			</Fragment>
+			</div>
 		);
 };
 
