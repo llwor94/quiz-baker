@@ -137,7 +137,7 @@ export const Quiz = ({ quiz, user, handleClick, handleFavoriteToggle, handleVote
 					<FooterLink>Share</FooterLink>
 				</FooterWrapper>
 			</InnerWrapper>
-			{user.id && (
+			{user && (
 				<RightSide>
 					<FontAwesomeIcon
 						title='Take a bite out of that, Boogin'
@@ -197,7 +197,7 @@ export const Quizy = ({ quiz, user, handleClick, handleFavoriteToggle, handleVot
 					<FooterLink>Save</FooterLink>
 				</FooterWrapper>
 			</InnerWrapper>
-			{user.id && (
+			{user && (
 				<RightSide>
 					<FontAwesomeIcon
 						title='Take a bite out of that, Boogin'

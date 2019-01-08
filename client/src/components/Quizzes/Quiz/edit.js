@@ -17,16 +17,7 @@ const InnerWrapper = styled.div`
 	flex-direction: column;
 `;
 
-export const EditUserQuiz = ({
-	quiz,
-
-	edit,
-
-	children,
-	handleClick,
-	loading,
-	...props
-}) => {
+export const EditUserQuiz = ({ quiz, edit, children, handleClick, loading, ...props }) => {
 	if (loading)
 		return (
 			<QuestWrapper secondary>

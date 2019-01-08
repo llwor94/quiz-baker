@@ -45,7 +45,7 @@ const Filter = ({ quizzes, user, changeQuizzes }) => {
 	return (
 		<Dropdown
 			value={filterOption}
-			options={user.id ? userOptions : options}
+			options={user ? userOptions : options}
 			onChange={e => {
 				setFilterOption(e.value);
 			}}
