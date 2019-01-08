@@ -9,7 +9,12 @@ import { FooterWrapper, FooterLink } from '../../Styles/Wrappers/footer';
 
 const QuizWrapper = styled(Wrapper)`
   display: flex;
-  height: ${props => (props.hasDescription ? '180px' : '140px')};
+  justify-content: space-between;
+  /* height: ${props => (props.hasDescription ? '180px' : '140px')}; */
+  height: 140px;
+  width: 40%;
+  min-width: 40%;
+  margin: 8px;
 `;
 
 const LeftSide = styled.div`
@@ -42,7 +47,6 @@ const RightSide = styled.div`
 
 const InnerWrapper = styled.div`
 	display: flex;
-
 	flex-direction: column;
 	justify-content: space-between;
 `;
@@ -76,7 +80,7 @@ const FooterAccent = styled.div`
 const Topic = styled(FooterAccent)`
   font-size: 14px;
   color: white;
-  background-color: green;
+  background-color: #00BA96;
   margin-right: 10px;
   
   display: inline-block;
@@ -103,71 +107,76 @@ const DescriptionWrapper = styled.div`
 `;
 
 export const QuizzesContainer = styled.div`
+	width: 70%;
+	margin: 0 auto;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
+	align-items: center;
 `;
 
-const Wrappy = styled.div`
-	background-color: #ffffff;
-	border-radius: 4px;
-	padding: 14px;
-	width: 330px;
-	display: flex;
-	height: 140px;
-	justify-content: space-between;
-	margin: 15px;
-	color: #333333;
-	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
-		0 2px 1px -1px rgba(0, 0, 0, 0.12);
-`;
+// const Wrappy = styled.div`
+// 	background-color: #ffffff;
+// 	border-radius: 4px;
+// 	padding: 14px;
+// 	width: 330px;
+// 	display: flex;
+// 	height: 140px;
+// 	justify-content: space-between;
+// 	margin: 15px;
+// 	color: #333333;
+// 	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
+// 		0 2px 1px -1px rgba(0, 0, 0, 0.12);
+// `;
+
+// export const Quiz = ({ quiz, user, handleClick, handleFavoriteToggle, handleVote, mainPage }) => {
+// 	return (
+// 		<Wrappy>
+// 			<InnerWrapper>
+// 				<Header>
+// 					<Title onClick={handleClick}>{quiz.title}</Title>
+// 					<FooterLink>{quiz.votes} votes</FooterLink>
+// 				</Header>
+
+// 				<FooterWrapper>
+// 					<Topic isQuizTopic>{quiz.topic}</Topic>
+
+// 					<FooterLink>Share</FooterLink>
+// 				</FooterWrapper>
+// 			</InnerWrapper>
+// 			{user && (
+// 				<RightSide>
+// 					<FontAwesomeIcon
+// 						title='Take a bite out of that, Boogin'
+// 						icon={quiz.favorite ? faCookieBite : faCookie}
+// 						color={quiz.favorite ? '#875818' : '#b2b2b2'}
+// 						style={{ cursor: 'pointer' }}
+// 						onClick={handleFavoriteToggle}
+// 					/>
+// 					<Score noScore={quiz.score === null}>
+// 						{quiz.score === null ? '--' : quiz.score}/{quiz.question_count}
+// 					</Score>
+// 				</RightSide>
+// 			)}
+// 		</Wrappy>
+// 	);
+// };
 
 export const Quiz = ({ quiz, user, handleClick, handleFavoriteToggle, handleVote, mainPage }) => {
 	return (
-		<Wrappy>
-			<InnerWrapper>
-				<Header>
-					<Title onClick={handleClick}>{quiz.title}</Title>
-					<FooterLink>{quiz.votes} votes</FooterLink>
-				</Header>
-
-				<FooterWrapper>
-					<Topic isQuizTopic>{quiz.topic}</Topic>
-
-					<FooterLink>Share</FooterLink>
-				</FooterWrapper>
-			</InnerWrapper>
-			{user && (
-				<RightSide>
-					<FontAwesomeIcon
-						title='Take a bite out of that, Boogin'
-						icon={quiz.favorite ? faCookieBite : faCookie}
-						color={quiz.favorite ? '#875818' : '#b2b2b2'}
-						style={{ cursor: 'pointer' }}
-						onClick={handleFavoriteToggle}
-					/>
-					<Score noScore={quiz.score === null}>
-						{quiz.score === null ? '--' : quiz.score}/{quiz.question_count}
-					</Score>
-				</RightSide>
-			)}
-		</Wrappy>
-	);
-};
-
-export const Quizy = ({ quiz, user, handleClick, handleFavoriteToggle, handleVote, mainPage }) => {
-	return (
 		<QuizWrapper hasDescription={quiz.description}>
+		<div style={{display: 'flex'}}>
+			
 			<LeftSide>
 				<i
 					className='pi pi-chevron-up'
-					style={{ color: quiz.user_vote === 1 ? 'red' : 'black' }}
+					style={{ color: quiz.user_vote === 1 ? '#DC758F' : 'black' }}
 					onClick={() => handleVote(1)}
 				/>
-				<p style={{ color: quiz.user_vote ? 'red' : 'black' }}>{quiz.votes}</p>
+				<p style={{ color: quiz.user_vote ? '#DC758F' : 'black' }}>{quiz.votes}</p>
 				<i
 					className='pi pi-chevron-down'
-					style={{ color: quiz.user_vote === -1 ? 'red' : 'black' }}
+					style={{ color: quiz.user_vote === -1 ? '#DC758F' : 'black' }}
 					onClick={() => handleVote(-1)}
 				/>
 			</LeftSide>
@@ -189,7 +198,6 @@ export const Quizy = ({ quiz, user, handleClick, handleFavoriteToggle, handleVot
 						</DescriptionWrapper>
 					)}
 				</div>
-
 				<FooterWrapper>
 					<Topic isQuizTopic>{quiz.topic}</Topic>
 					<FooterLink>{quiz.question_count} questions</FooterLink>
@@ -197,6 +205,7 @@ export const Quizy = ({ quiz, user, handleClick, handleFavoriteToggle, handleVot
 					<FooterLink>Save</FooterLink>
 				</FooterWrapper>
 			</InnerWrapper>
+		</div>
 			{user && (
 				<RightSide>
 					<FontAwesomeIcon

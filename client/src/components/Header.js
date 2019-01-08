@@ -29,7 +29,7 @@ const LeftHeader = styled.div`margin-left: 20px;`;
 const StyledLink = styled(Link)`
   margin-left: 20px;
   font-size: 30px;
-  color: ${props => props.theme.text};
+  color: #873D48;
   padding-right: 5px;
 `;
 
