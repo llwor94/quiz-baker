@@ -6,8 +6,7 @@ import TopicSort from './Topics';
 const Filters = ({ quizzes, changeQuizzes, topics }) => {
 	return (
 		<Fragment>
-			<TopicSort topics={topics} quizzes={quizzes} changeQuizzes={changeQuizzes} />
-			<div style={{ margin: '10px 0' }}>
+			<div style={{ margin: '10px 0', display: 'flex', justifyContent: 'center' }}>
 				<Sort quizzes={quizzes} changeQuizzes={changeQuizzes} />
 				<Filter quizzes={quizzes} changeQuizzes={changeQuizzes} />
 			</div>

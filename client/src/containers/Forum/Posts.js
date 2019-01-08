@@ -27,7 +27,7 @@ const Posts = ({ fetchPosts, posts, user, ...props }) => {
 	};
 
 	return (
-		<Fragment>
+		<div style={{ width: '650px' }}>
 			{user && (
 				<NewPost
 					newPost={newPost}
@@ -40,13 +40,14 @@ const Posts = ({ fetchPosts, posts, user, ...props }) => {
 			{posts.map(post => (
 				<Post user={user} post={post} getPost={() => getPost(post.id)} />
 			))}{' '}
-		</Fragment>
+		</div>
 	);
 };
 
-const mapStateToProps = ({ forumReducer }) => ({
+const mapStateToProps = ({ forumReducer, authReducer }) => ({
 	posts: forumReducer.posts,
 	loading: forumReducer.loading,
+	user: authReducer.user,
 });
 
 export default connect(mapStateToProps, { fetchPosts })(Posts);

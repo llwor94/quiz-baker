@@ -58,7 +58,7 @@ const App = ({ checkUser }) => {
 				<GlobalStyle />
 				<Header setValue={setValue} darkMode={darkMode} />
 				<Wrapper>
-					<div style={{ width: '648px', position: 'relative' }}>
+					<div style={{ position: 'relative' }}>
 						<Switch>
 							<Route exact path='/' component={DashboardContainer} />
 							<Route exact path='/login' component={LoginContainer} />

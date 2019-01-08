@@ -4,7 +4,7 @@ import server from '../../utils/server';
 
 import { fetchQuizzes } from '../../store/actions/quizActions';
 import { fetchQuestion } from '../../store/actions/questionActions';
-import { Quiz } from '../../components/Quizzes/Quiz';
+import { Quiz, QuizzesContainer } from '../../components/Quizzes/Quiz';
 
 const Quizzes = ({ quizzes, user, fetchQuizzes, ...props }) => {
 	const handleFavoriteToggle = quiz => {
@@ -41,7 +41,7 @@ const Quizzes = ({ quizzes, user, fetchQuizzes, ...props }) => {
 	console.log(quizzes);
 
 	return (
-		<Fragment>
+		<QuizzesContainer>
 			{quizzes.map(quiz => (
 				<Quiz
 					key={quiz.id}
@@ -53,7 +53,7 @@ const Quizzes = ({ quizzes, user, fetchQuizzes, ...props }) => {
 					handleVote={val => handleUserVote(quiz, val)}
 				/>
 			))}
-		</Fragment>
+		</QuizzesContainer>
 	);
 };
 const mapStateToProps = ({ authReducer }) => ({

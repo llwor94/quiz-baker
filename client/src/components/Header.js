@@ -91,13 +91,6 @@ const Header = ({ user, setValue, darkMode, ...props }) => {
 	];
 	const NoAuthItems = [
 		{
-			label: 'Home',
-			icon: 'pi pi-home',
-			command: () => {
-				props.history.push('/');
-			},
-		},
-		{
 			label: 'Quizzes',
 			command: () => {
 				props.history.push('/quizzes');
@@ -142,7 +135,7 @@ const Header = ({ user, setValue, darkMode, ...props }) => {
 					onChange={e => setValue(e.value)}
 				/>
 			</HeaderWrapper>
-			<StyledMenu model={user ? AuthItems : NoAuthItems} />
+			<StyledMenu style={{ paddingLeft: '10px' }} model={user ? AuthItems : NoAuthItems} />
 		</Fragment>
 	);
 };
