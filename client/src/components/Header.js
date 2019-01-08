@@ -29,6 +29,7 @@ const LeftHeader = styled.div`margin-left: 20px;`;
 const StyledLink = styled(Link)`
   margin-left: 20px;
   font-size: 30px;
+  font-family: 'Merienda One', cursive;
   color: #873D48;
   padding-right: 5px;
 `;
