@@ -10,9 +10,9 @@ import { FooterWrapper, FooterLink } from '../../Styles/Wrappers/footer';
 const QuizWrapper = styled(Wrapper)`
   display: flex;
   justify-content: space-between;
-  height: 140px;
-  width: ${props => props.main && '40%'};
-  min-width: 40%;
+  height: 180px;
+  width: ${props => props.main && "450px"};
+  min-width: 300px;
   margin: 8px;
   background-color: #fff;
   border-radius: 5px;
@@ -159,7 +159,7 @@ export const Quiz = ({ quiz, user, handleClick, handleFavoriteToggle, handleVote
 
 						{quiz.description && (
 							<DescriptionWrapper>
-								<p>{quiz.description}</p>
+								<p>{quiz.description.length > 70 ? quiz.description.slice(0, 150) + "..." : quiz.description}</p>
 							</DescriptionWrapper>
 						)}
 					</div>
