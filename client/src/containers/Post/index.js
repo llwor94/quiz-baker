@@ -37,6 +37,7 @@ const Post = ({ user, fetchPosts, singlePost, ...props }) => {
 					user={user}
 					handleClick={props.getPost}
 					handleDelete={deletePost}
+					handleCopy={props.handleCopy}
 					setModalVisable={setModalVisable}
 					modalVisable={modalVisable}
 				/>

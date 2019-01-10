@@ -1,7 +1,7 @@
 import React, { useState, Fragment } from 'react';
 import { connect } from 'react-redux';
 import server from '../../utils/server';
-
+import { Growl } from 'primereact/growl';
 import { fetchPosts } from '../../store/actions/forumActions';
 import { NewPost } from '../../components/Forum/Post';
 import Post from '../Post';
@@ -9,10 +9,19 @@ import Post from '../Post';
 const Posts = ({ fetchPosts, posts, user, ...props }) => {
 	const [ newPost, setNewPost ] = useState(false);
 	const [ post, setPost ] = useState({ title: '', body: '' });
-
+	const growl = React.createRef();
 	const getPost = id => {
 		console.log(id);
 		props.history.push(`forum/${id}`);
+	};
+
+	const handleCopy = id => {
+		console.log(growl);
+		let value = `http://localhost:3000/forum/${id}`;
+		navigator.clipboard.writeText(value).then(() => {
+			console.log('yay');
+			growl.current.show({ severity: 'info', summary: 'Link Copied!' });
+		});
 	};
 
 	const addPost = () => {
@@ -27,20 +36,30 @@ const Posts = ({ fetchPosts, posts, user, ...props }) => {
 	};
 
 	return (
-		<div style={{ width: '650px' }}>
-			{user && (
-				<NewPost
-					newPost={newPost}
-					setNewPost={setNewPost}
-					post={post}
-					setPost={setPost}
-					handleSubmit={addPost}
-				/>
-			)}
-			{posts.map(post => (
-				<Post user={user} post={post} getPost={() => getPost(post.id)} />
-			))}{' '}
-		</div>
+		<Fragment>
+			<Growl ref={growl} />
+			<div style={{ width: '500px' }}>
+				{user && (
+					<NewPost
+						newPost={newPost}
+						setNewPost={setNewPost}
+						post={post}
+						setPost={setPost}
+						handleSubmit={addPost}
+						{...props}
+					/>
+				)}
+				{posts.map(post => (
+					<Post
+						key={post.id}
+						user={user}
+						post={post}
+						getPost={() => getPost(post.id)}
+						handleCopy={() => handleCopy(post.id)}
+					/>
+				))}{' '}
+			</div>
+		</Fragment>
 	);
 };
 

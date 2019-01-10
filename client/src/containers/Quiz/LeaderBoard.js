@@ -18,10 +18,10 @@ const LeaderBoard = ({ quiz, ...props }) => {
 	}, []);
 
 	return (
-		<Wrapper style={{ alignSelf: 'flex-start' }}>
+		<Wrapper style={{ position: 'absolute', top: '0', left: '-175px' }}>
 			Leader Board
 			{userScores.map(userScore => (
-				<StyledLeaderBoard key={userScore.quiz_id} userScore={userScore} />
+				<StyledLeaderBoard key={userScore.username} userScore={userScore} />
 			))}
 		</Wrapper>
 	);

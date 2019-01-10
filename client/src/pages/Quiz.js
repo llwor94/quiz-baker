@@ -15,7 +15,7 @@ const QuizPage = ({ fetchQuiz, fetchQuizQuestions, quiz, questions, ...props }) 
 	if (!quiz || !questions) return <div>Loading...</div>;
 	else
 		return (
-			<div style={{ display: 'flex' }}>
+			<div style={{ position: 'relative' }}>
 				<LeaderBoardContainer />
 				<QuizContainer />
 			</div>

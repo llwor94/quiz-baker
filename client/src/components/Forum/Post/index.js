@@ -1,18 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
+
 import blankProfile from '../../../assets/blank-profile.png';
 import { Button } from 'primereact/button';
-import { InputTextarea } from 'primereact/inputtextarea';
+
 import { InputText } from 'primereact/inputtext';
 import { Dialog } from 'primereact/dialog';
 
 import { PostWrapper } from '../../Styles/Wrappers/index';
-import { FooterWrapper } from '../../Styles/Wrappers/footer';
+import { FooterWrapper, FooterLink } from '../../Styles/Wrappers/footer';
 import { Title } from '../../Styles/Text/title';
 
 const InnerWrapper = styled.div`
-	padding-top: 8px;
+	padding: 8px 0;
 	margin: 0 8px;
 `;
 
@@ -32,22 +33,31 @@ const Header = styled.div`
 	font-weight: 400;
 	line-height: 16px;
 	display: flex;
+	align-items: center;
 	margin-bottom: 8px;
 	color: ${props => props.theme.link};
+`;
+
+const UserNameWrapper = styled.div`
+	display: flex;
+	align-items: center;
 	img {
 		height: 20px;
 		width: 20px;
+		margin-right: 3px;
 		border-radius: 50%;
 	}
 `;
 
 export const Post = ({
-	post: { title, author, body, created_at, comment_count },
+	post: { title, author, body, created_at, comment_count, author_img, id },
 	handleClick,
 	handleDelete,
 	setModalVisable,
 	modalVisable,
+	handleCopy,
 	user,
+	...props
 }) => {
 	const footer = (
 		<div>
@@ -69,10 +79,11 @@ export const Post = ({
 		<PostWrapper>
 			<InnerWrapper>
 				<Header>
-					<span style={{ paddingRight: '3px' }}>
-						<img src={user.img_url ? user.img_url : blankProfile} />
+					<UserNameWrapper>
+						<img src={author_img ? author_img : blankProfile} />
 						Posted by {author.username ? author.username : author}
-					</span>
+					</UserNameWrapper>
+					<span style={{ padding: '0 3px' }}>&#8226;</span>
 					{moment(created_at).fromNow()}
 				</Header>
 				<Title onClick={handleClick}>{title}</Title>
@@ -80,15 +91,15 @@ export const Post = ({
 					<p>{body}</p>
 				</BodyWrapper>
 				<FooterWrapper>
-					<button style={{ cursor: 'default', fontWeight: 'bold' }}>
+					<FooterLink style={{ cursor: 'default', fontWeight: 'bold' }}>
 						{comment_count} comments
-					</button>
-					<button>Share</button>
+					</FooterLink>
+					<FooterLink onClick={handleCopy}>Share</FooterLink>
 					{user &&
 						(user.username === author && (
-							<button label='delete' onClick={() => setModalVisable(true)}>
+							<FooterLink label='delete' onClick={() => setModalVisable(true)}>
 								Delete
-							</button>
+							</FooterLink>
 						))}
 					<Dialog
 						visible={modalVisable}

@@ -60,11 +60,10 @@ const App = ({ checkUser }) => {
 				<Wrapper>
 					<div style={{ position: 'relative' }}>
 						<Switch>
-							<Route exact path='/' component={DashboardContainer} />
 							<Route exact path='/login' component={LoginContainer} />
 							<Route exact path='/register' component={RegisterContainer} />
 							<Route exact path='/forum' component={ForumPage} />
-							<Route exact path='/quizzes' component={QuizzesPage} />
+							<Route exact path={[ '/', '/quizzes' ]} component={QuizzesPage} />
 							<Route exact path='/quizzes/user/:id' component={UserQuizzesPage} />
 							<Route exact path='/quizzes/edit/:id' component={UserQuizPage} />
 							<Route exact path='/quizzes/:id' component={QuizPage} />
