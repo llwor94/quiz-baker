@@ -59,6 +59,7 @@ export const Post = ({
 	user,
 	...props
 }) => {
+	console.log(author);
 	const footer = (
 		<div>
 			<Button
@@ -80,7 +81,17 @@ export const Post = ({
 			<InnerWrapper>
 				<Header>
 					<UserNameWrapper>
-						<img src={author_img ? author_img : blankProfile} />
+						<img
+							src={
+								author.img_url ? (
+									author.img_url
+								) : author_img ? (
+									author_img
+								) : (
+									blankProfile
+								)
+							}
+						/>
 						Posted by {author.username ? author.username : author}
 					</UserNameWrapper>
 					<span style={{ padding: '0 3px' }}>&#8226;</span>

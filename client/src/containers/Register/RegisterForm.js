@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import server from '../utils/server';
+import server from '../../utils/server';
 import _ from 'lodash';
 import debounce from 'lodash/debounce';
-
-import { register } from '../store/actions/authActions';
-import { Wrapper, Input } from '../components/Auth';
+import { register } from '../../store/actions/authActions';
+import { Wrapper, Input } from '../../components/Auth';
 
 const checkData = debounce(async ({ target }, setError, error) => {
 	if (target.value) {
@@ -24,14 +23,12 @@ const checkData = debounce(async ({ target }, setError, error) => {
 	}
 }, 500);
 
-const Register = ({ register, serverError, ...props }) => {
-	const [ emailVerified, setEmailVerified ] = useState(false);
+const RegisterForm = ({ register, serverError, ...props }) => {
 	const [ userInput, setInputValue ] = useState({
 		username: undefined,
 		email: undefined,
 		password: undefined,
 		passwordCheck: undefined,
-		img_url: undefined,
 	});
 
 	const [ error, setError ] = useState({
@@ -54,7 +51,7 @@ const Register = ({ register, serverError, ...props }) => {
 		}
 	};
 
-	const registerUser = e => {
+	const handleSubmit = e => {
 		e.preventDefault();
 		register(userInput);
 	};
@@ -62,7 +59,7 @@ const Register = ({ register, serverError, ...props }) => {
 	return (
 		<Wrapper
 			type='register'
-			handleSubmit={registerUser}
+			handleSubmit={handleSubmit}
 			submitDisabled={_.some(userInput, _.isEmpty) || !_.every(error, _.isEmpty)}
 			error={serverError}
 			location={props.location}
@@ -102,9 +99,7 @@ const Register = ({ register, serverError, ...props }) => {
 		</Wrapper>
 	);
 };
-
 const mapStateToProps = ({ authReducer }) => ({
 	serverError: authReducer.error,
 });
-
-export default connect(mapStateToProps, { register })(Register);
+export default connect(mapStateToProps, { register })(RegisterForm);

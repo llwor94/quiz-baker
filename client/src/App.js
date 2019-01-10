@@ -12,9 +12,8 @@ import QuizzesPage from './pages/Quizzes';
 import QuizPage from './pages/Quiz';
 import ForumPage from './pages/Forum';
 import PostPage from './pages/Post';
+import RegisterPage from './pages/Register';
 import LoginContainer from './containers/Login';
-import RegisterContainer from './containers/Register';
-import DashboardContainer from './containers/Dashboard';
 
 import Header from './components/Header';
 
@@ -61,7 +60,7 @@ const App = ({ checkUser }) => {
 					<div style={{ position: 'relative' }}>
 						<Switch>
 							<Route exact path='/login' component={LoginContainer} />
-							<Route exact path='/register' component={RegisterContainer} />
+							<Route exact path='/register' component={RegisterPage} />
 							<Route exact path='/forum' component={ForumPage} />
 							<Route exact path={[ '/', '/quizzes' ]} component={QuizzesPage} />
 							<Route exact path='/quizzes/user/:id' component={UserQuizzesPage} />

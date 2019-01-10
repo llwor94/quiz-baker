@@ -121,6 +121,7 @@ export const QuizzesContainer = styled.div`
 `;
 
 export const Quiz = ({ quiz, user, handleClick, handleFavoriteToggle, handleVote, mainPage }) => {
+	console.log(quiz);
 	return (
 		<QuizWrapper hasDescription={quiz.description} main={mainPage}>
 			<div style={{ display: 'flex' }}>

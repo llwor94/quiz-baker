@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import server from '../../utils/server';
 import * as actions from './index';
 
 let URL = 'https://lambda-study-app.herokuapp.com/api/auth';
@@ -49,6 +49,16 @@ export const checkUser = () => dispatch => {
 	}
 };
 
+export const getUser = () => (dispatch, getState) => {
+	dispatch({ type: actions.GET_USER_REQUEST });
+	server
+		.get('/users', { params: { username: getState().authReducer.user.username } })
+		.then(({ data }) => {
+			console.log(data);
+			dispatch({ type: actions.GET_USER_SUCCESS, payload: data[0] });
+		})
+		.catch(({ response }) => console.log(response));
+};
 export const logout = () => ({
 	type: actions.LOG_OUT_REQUEST,
 });
