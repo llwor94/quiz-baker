@@ -11,15 +11,12 @@ const Posts = ({ fetchPosts, posts, user, ...props }) => {
 	const [ post, setPost ] = useState({ title: '', body: '' });
 	const growl = React.createRef();
 	const getPost = id => {
-		console.log(id);
 		props.history.push(`forum/${id}`);
 	};
 
 	const handleCopy = id => {
-		console.log(growl);
 		let value = `http://localhost:3000/forum/${id}`;
 		navigator.clipboard.writeText(value).then(() => {
-			console.log('yay');
 			growl.current.show({ severity: 'info', summary: 'Link Copied!' });
 		});
 	};
