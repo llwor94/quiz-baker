@@ -10,7 +10,7 @@ const Box = styled.div`
 	width: 20px;
 	height: 20px;
 	background-color: ${props =>
-		props.correct === null ? props.theme.secondary : props.correct ? 'green' : 'red'};
+		props.correct === null ? props.theme.secondary : props.correct ? '#00ba96' : '#873D48'};
 	margin: 4px;
 	border-radius: 4px;
 	border: ${props => (props.currentQuestion ? '3px solid' : '1px solid')};

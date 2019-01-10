@@ -66,6 +66,10 @@ const Header = styled.div`
 		font-size: 12px;
 		margin-top: 6px;
 	}
+	span{
+		color: #873D48;
+		font-weight: 700;
+	}
 `;
 const Title = styled.a`
 	font-size: 24px;
@@ -152,7 +156,10 @@ export const Quiz = ({ quiz, user, handleClick, handleFavoriteToggle, handleVote
 								<Title onClick={handleClick}>{quiz.title}</Title>
 								<p>
 									Created by{' '}
+									<span>
+
 									{quiz.author.username ? quiz.author.username : quiz.author}
+									</span>
 								</p>
 							</div>
 						</Header>
