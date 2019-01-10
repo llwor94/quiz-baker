@@ -85,7 +85,7 @@ export const Comment = ({ comment, user, handleClick }) => (
 	<BigWrapper>
 		<div>
 			<CommentHeader>
-				<img src={comment.author_img ? user.img_url : blankProfile} />
+				<img src={comment.author_img ? comment.author_img : blankProfile} />
 				<a>{comment.author}</a>
 				<span>{moment(comment.created_at).fromNow()}</span>
 			</CommentHeader>
