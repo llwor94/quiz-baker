@@ -54,7 +54,7 @@ export const Results = ({ results }) => {
 					{results.filter(result => result.correct).length} / {results.length}
 				</h3>{' '}
 				<span>|</span>
-				<h3>{results.filter(result => result.correct).length / results.length * 100}%</h3>
+				<h3>{Math.floor(results.filter(result => result.correct).length / results.length * 100)}%</h3>
 			</NumberWrapper>
 		</Fragment>
 	);
