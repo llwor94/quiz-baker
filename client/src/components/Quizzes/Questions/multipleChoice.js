@@ -12,7 +12,9 @@ const Wrapper = styled.div`
 	padding-bottom: 10px;
 `;
 
-const InputWrapper = styled.div`padding: 5px 0;`;
+const InputWrapper = styled.div`
+padding: 5px 0;
+`;
 
 export const MultipleChoice = ({
 	correctOption,

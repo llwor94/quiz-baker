@@ -5,7 +5,7 @@ import { Wrapper } from '../../Styles/Wrappers/index';
 
 const SideColor = styled.div`
 	width: 40px;
-	background-color: ${props => (props.correct ? 'green' : 'red')};
+	background-color: ${props => (props.correct ? '#00ba96' : '#873D48')};
 
 	i {
 		cursor: pointer;
@@ -54,7 +54,7 @@ export const Results = ({ results }) => {
 					{results.filter(result => result.correct).length} / {results.length}
 				</h3>{' '}
 				<span>|</span>
-				<h3>{results.filter(result => result.correct).length / results.length * 100}%</h3>
+				<h3>{Math.floor(results.filter(result => result.correct).length / results.length * 100)}%</h3>
 			</NumberWrapper>
 		</Fragment>
 	);

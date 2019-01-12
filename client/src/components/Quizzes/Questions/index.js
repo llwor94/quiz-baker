@@ -16,13 +16,38 @@ const Label = styled.label`
 	color: ${props => props.theme.text};
 `;
 
+const QuestionWrapper = styled(Wrapper)`
+	width: 500px;
+	height: 300px;
+
+`;
+
+const QuestionTitle = styled(Title)`
+	text-align: center;
+	margin-bottom: 10px;
+`;
+
+const AnswerWrapper = styled.div`
+	height: 80%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+`;
+
+const Answer = styled(Option)`
+	margin-left: 70px;
+	&:not(:last-child) {
+		padding-bottom: 10px;
+	}
+`;
+
 export const Question = ({ question, handleChange, inputSelection }) => {
 	return (
-		<Wrapper>
-			<Title>{question.question}</Title>
-
+		<QuestionWrapper>
+			<QuestionTitle>{question.question}</QuestionTitle>
+			<AnswerWrapper>
 			{question.options.map((option, i) => (
-				<Option key={i}>
+				<Answer key={i}>
 					<RadioButton
 						inputId={i.toString()}
 						value={i}
@@ -30,8 +55,9 @@ export const Question = ({ question, handleChange, inputSelection }) => {
 						checked={inputSelection === i}
 					/>
 					<Label htmlFor={i}>{option}</Label>
-				</Option>
+				</Answer>
 			))}
-		</Wrapper>
+			</AnswerWrapper>
+		</QuestionWrapper>
 	);
 };
