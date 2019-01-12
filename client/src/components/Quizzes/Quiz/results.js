@@ -5,7 +5,7 @@ import { Wrapper } from '../../Styles/Wrappers/index';
 
 const SideColor = styled.div`
 	width: 40px;
-	background-color: ${props => (props.correct ? 'green' : 'red')};
+	background-color: ${props => (props.correct ? '#00ba96' : '#873D48')};
 
 	i {
 		cursor: pointer;

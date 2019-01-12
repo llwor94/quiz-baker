@@ -15,9 +15,26 @@ const Div = styled.div`
   .p-button {
     background-color: #dc758f;
     border: #dc758f;
+
+    &:enabled:hover {
+      background-color: #ad546b;
+      border: #ad546b;
+    }
+	&:enabled:focus{
+		box-shadow:  0 0 0 0.2em #ad546b;
+	}
+  }
+
+  .p-radiobutton .p-radiobutton-box.p-highlight {
+    background-color: #dc758f;
+    border: #dc758f;
+
+    &:not(.p-disabled):hover {
+      background-color: #ad546b;
+      border: #ad546b;
+    }
   }
 `;
-
 
 const Quiz = ({ quiz, questions, user, ...props }) => {
   const [questionResponse, setQuestionResponse] = useState(null);
