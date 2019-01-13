@@ -6,8 +6,6 @@ import { RadioButton } from 'primereact/radiobutton';
 import { Wrapper } from '../../Styles/Wrappers/index';
 import { Title } from '../../Styles/Text/title';
 
-const Option = styled.div`padding-top: 4px;`;
-
 const Label = styled.label`
 	font-size: 14px;
 	font-weight: 400;
@@ -35,6 +33,7 @@ const AnswerWrapper = styled.div`
 `;
 
 const Answer = styled(Option)`
+padding-top: 4px;
 	margin-left: 70px;
 	&:not(:last-child) {
 		padding-bottom: 10px;
