@@ -104,6 +104,7 @@ const DescriptionWrapper = styled.div`
 	overflow: hidden;
 	word-wrap: break-word;
 	word-break: break-word;
+	max-width: 300px;
 	p {
 		font-size: 14px;
 		font-weight: 400;
@@ -196,7 +197,7 @@ export const Quiz = ({
 							<DescriptionWrapper>
 								<p>
 									{quiz.description.length > 70 ? (
-										quiz.description.slice(0, 150) + '...'
+										quiz.description.slice(0, 120) + '...'
 									) : (
 										quiz.description
 									)}
