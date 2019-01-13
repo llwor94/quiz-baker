@@ -132,6 +132,7 @@ export const Quiz = ({
 	mainPage,
 	handleCopy,
 }) => {
+	let username = quiz.author.username ? quiz.author.username : quiz.author;
 	return (
 		<QuizWrapper hasDescription={quiz.description} main={mainPage}>
 			<div style={{ display: 'flex' }}>
@@ -162,10 +163,7 @@ export const Quiz = ({
 							<div>
 								<Title onClick={handleClick}>{quiz.title}</Title>
 								<p>
-									Created by{' '}
-									<span>
-										{quiz.author.username ? quiz.author.username : quiz.author}
-									</span>
+									Created by <span>{username}</span>
 								</p>
 							</div>
 						</Header>
@@ -184,7 +182,7 @@ export const Quiz = ({
 					</div>
 					<FooterWrapper>
 						<Topic isQuizTopic>{quiz.topic}</Topic>
-						<FooterLink>{quiz.question_count} questions</FooterLink>
+
 						<FooterLink onClick={handleCopy}>Share</FooterLink>
 					</FooterWrapper>
 				</InnerWrapper>

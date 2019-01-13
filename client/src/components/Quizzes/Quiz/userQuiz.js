@@ -6,7 +6,7 @@ import { Dialog } from 'primereact/dialog';
 
 import { Wrapper } from '../../Styles/Wrappers/index';
 import { Title } from '../../Styles/Text/title';
-import { FooterWrapper } from '../../Styles/Wrappers/footer';
+import { FooterWrapper, FooterLink } from '../../Styles/Wrappers/footer';
 
 const InnerWrapper = styled.div`
 	flex-grow: 1;
@@ -90,8 +90,13 @@ export const Quiz = ({ quiz, handleClick, handleDelete }) => {
 					</DescriptionWrapper>
 				)}
 				<FooterWrapper>
-					<button>{quiz.question_count} questions</button>
-					<button onClick={() => setModalVisable(true)}>Delete</button>
+					<FooterLink style={{ cursor: 'default', fontWeight: 'bold' }}>
+						{quiz.question_count} questions
+					</FooterLink>
+					<FooterLink style={{ cursor: 'default', fontWeight: 'bold' }}>
+						{quiz.votes === 1 ? '1 vote' : `${quiz.votes} votes`}
+					</FooterLink>
+					<FooterLink onClick={() => setModalVisable(true)}>Delete</FooterLink>
 				</FooterWrapper>
 			</InnerWrapper>
 		</Wrapper>

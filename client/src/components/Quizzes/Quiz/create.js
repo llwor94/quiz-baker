@@ -9,6 +9,18 @@ const InnerWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	padding: 10px;
+	.p-button {
+		background-color: #dc758f;
+		border: #dc758f;
+
+		&:enabled:hover {
+			background-color: #ad546b;
+			border: #ad546b;
+		}
+		&:enabled:focus {
+			box-shadow: 0 0 0 0.2em #ad546b;
+		}
+	}
 `;
 
 export const CreateNewQuiz = ({ children, handleClose, handleSubmit, quiz, ...props }) => {
@@ -40,7 +52,6 @@ export const CreateNewQuiz = ({ children, handleClose, handleSubmit, quiz, ...pr
 				<Button
 					label='Create Quiz?'
 					disabled={props.buttonDisabled}
-					className='p-button-raised p-button-secondary'
 					onClick={handleSubmit}
 				/>
 			</InnerWrapper>
@@ -53,6 +64,18 @@ const ButtonWrapper = styled.div`
 	width: 100%;
 	flex-direction: column;
 	padding-bottom: 10px;
+	.p-button {
+		background-color: #dc758f;
+		border: #dc758f;
+
+		&:enabled:hover {
+			background-color: #ad546b;
+			border: #ad546b;
+		}
+		&:enabled:focus {
+			box-shadow: 0 0 0 0.2em #ad546b;
+		}
+	}
 `;
 
 export const CreateQuizButton = ({ handleClick }) => {

@@ -11,6 +11,7 @@ import { Dialog } from 'primereact/dialog';
 import { PostWrapper } from '../../Styles/Wrappers/index';
 import { FooterWrapper, FooterLink } from '../../Styles/Wrappers/footer';
 import { Title } from '../../Styles/Text/title';
+import { StyledTextArea } from '../../Styles/Text/textArea';
 
 const InnerWrapper = styled.div`
 	padding: 8px 0;
@@ -147,24 +148,6 @@ const NewPostWrapper = styled.div`
 			box-shadow: 0 0 0 0.2em #ad546b;
 		}
 	}
-
-	.p-inputtext:enabled:focus:not(.p-error) {
-		border-color: ${props => props.theme.accentPink};
-	}
-
-	textarea {
-		outline: none;
-		border-radius: 3px;
-		resize: none;
-		font-size: 14px;
-		color: #333333;
-		background: #ffffff;
-		padding: 0.429em;
-		border: 1px solid #a6a6a6;
-		&:focus {
-			border-color: ${props => props.theme.accentPink};
-		}
-	}
 `;
 
 const NewInner = styled.div`
@@ -196,7 +179,7 @@ export const NewPost = ({ newPost, setNewPost, post, setPost, handleSubmit }) =>
 						/>
 						<label htmlFor='in'>Title</label>
 					</span>
-					<textarea
+					<StyledTextArea
 						style={{ marginBottom: '10px' }}
 						rows={5}
 						value={post.body}

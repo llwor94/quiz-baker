@@ -1,7 +1,8 @@
 import React, { useEffect, useState, Fragment } from 'react';
 
-import { InputText } from 'primereact/inputtext';
-import { AutoComplete } from 'primereact/autocomplete';
+import { StyledTextArea } from '../../components/Styles/Text/textArea';
+import { StyledInput } from '../../components/Styles/Text/input';
+import { StyledAutoComplete } from '../../components/Styles/Text/autoComplete';
 
 const QuizForm = ({ topics, quiz, setQuiz, ...props }) => {
 	const [ searchTopics, setSearchOptions ] = useState(null);
@@ -38,7 +39,7 @@ const QuizForm = ({ topics, quiz, setQuiz, ...props }) => {
 	return (
 		<Fragment>
 			<p>Please choose a topic or create your own.</p>
-			<AutoComplete
+			<StyledAutoComplete
 				value={quiz.topic}
 				suggestions={searchTopics}
 				completeMethod={filterTopics}
@@ -51,15 +52,14 @@ const QuizForm = ({ topics, quiz, setQuiz, ...props }) => {
 			/>
 
 			<p>Please name your quiz</p>
-			<InputText name='title' value={quiz.title} onChange={handleChange} />
+			<StyledInput name='title' value={quiz.title} onChange={handleChange} />
 			<p>Set a description for your quiz.</p>
-			<textarea
+			<StyledTextArea
 				name='description'
 				rows={5}
 				cols={30}
 				value={quiz.description}
 				onChange={handleChange}
-				autoResize={true}
 			/>
 		</Fragment>
 	);
