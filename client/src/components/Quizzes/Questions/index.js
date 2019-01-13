@@ -32,8 +32,8 @@ const AnswerWrapper = styled.div`
 	justify-content: center;
 `;
 
-const Answer = styled(Option)`
-padding-top: 4px;
+const Answer = styled.div`
+	padding-top: 4px;
 	margin-left: 70px;
 	&:not(:last-child) {
 		padding-bottom: 10px;
