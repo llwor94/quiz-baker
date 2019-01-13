@@ -188,9 +188,7 @@ export const Quiz = ({
 							<Title onClick={handleClick}>{quiz.title}</Title>
 							<UserNameWrapper>
 								<img src={img} />
-								<p>
-									Created by <UserName>{username}</UserName>
-								</p>
+								Created by <UserName>{username}</UserName>
 							</UserNameWrapper>
 						</Header>
 
