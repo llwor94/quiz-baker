@@ -8,7 +8,7 @@ import { Wrapper } from "../../Styles/Wrappers/index";
 import { FooterWrapper, FooterLink } from "../../Styles/Wrappers/footer";
 import { ProfileIcon } from "../../Styles/Image";
 
-import hatIcon from "../../../assets/chef.svg"
+import hatIcon from "../../../assets/chef.svg";
 
 const QuizWrapper = styled(Wrapper)`
   display: flex;
@@ -25,13 +25,13 @@ const QuizWrapper = styled(Wrapper)`
 `;
 
 const HatWrapper = styled.img`
-	position: absolute;
-	top: -20px;
-	left: -20px;
-	height: 40px;
-	width: 40px;
-	transform: rotate(-45deg);
-	background-color: white;
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  height: 40px;
+  width: 40px;
+  transform: rotate(-45deg);
+  background-color: white;
 `;
 
 const LeftSide = styled.div`
@@ -91,8 +91,8 @@ const Title = styled.a`
   margin-bottom: 5px;
   color: ${props => props.theme.text};
   cursor: pointer;
-  &:hover{
-	  color: ${props=> props.theme.header};
+  &:hover {
+    color: ${props => props.theme.header};
   }
 `;
 
@@ -171,10 +171,10 @@ export const Quiz = ({
   let username = quiz.author.username ? quiz.author.username : quiz.author;
   let img = quiz.author.hasOwnProperty("img_url")
     ? quiz.author.img_url
-    : quiz.author_img;
+	: quiz.author_img;
   return (
     <QuizWrapper hasDescription={quiz.description} main={mainPage}>
-	<HatWrapper src={hatIcon}></HatWrapper>
+      {(user && user.username === username) && <HatWrapper src={hatIcon} />}
       <div style={{ display: "flex" }}>
         <LeftSide>
           <i
@@ -202,8 +202,8 @@ export const Quiz = ({
         <InnerWrapper>
           <div>
             <Header>
-                <Title onClick={handleClick}>{quiz.title}</Title>
-            	<Topic isQuizTopic>{quiz.topic}</Topic>
+              <Title onClick={handleClick}>{quiz.title}</Title>
+              <Topic isQuizTopic>{quiz.topic}</Topic>
             </Header>
 
             {quiz.description && (
@@ -217,10 +217,10 @@ export const Quiz = ({
             )}
           </div>
           <FooterWrapper>
-                <UserNameWrapper>
-                  <ProfileIcon src={img} />
-                  Created by <UserName>{username}</UserName>
-                </UserNameWrapper>
+            <UserNameWrapper>
+              <ProfileIcon src={img} />
+              Created by <UserName>{username}</UserName>
+            </UserNameWrapper>
 
             <FooterLink onClick={handleCopy}>Share</FooterLink>
           </FooterWrapper>
