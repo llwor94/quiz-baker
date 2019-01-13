@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCookieBite, faCookie } from '@fortawesome/free-solid-svg-icons';
-
+import blankProfile from '../../../assets/blank-profile.png';
 import { Wrapper } from '../../Styles/Wrappers/index';
 import { FooterWrapper, FooterLink } from '../../Styles/Wrappers/footer';
 
@@ -123,6 +123,28 @@ export const QuizzesContainer = styled.div`
 	align-items: center;
 `;
 
+const UserNameWrapper = styled.div`
+	display: flex;
+	align-items: center;
+	font-size: 12px;
+	font-weight: 400;
+	line-height: 16px;
+	img {
+		height: 20px;
+		width: 20px;
+		margin-right: 3px;
+		border-radius: 50%;
+	}
+`;
+
+const UserName = styled.a`
+	font-size: 12px;
+	font-weight: 400;
+	line-height: 16px;
+	color: ${props => props.theme.accentRed};
+	padding-left: 3px;
+`;
+
 export const Quiz = ({
 	quiz,
 	user,
@@ -133,6 +155,9 @@ export const Quiz = ({
 	handleCopy,
 }) => {
 	let username = quiz.author.username ? quiz.author.username : quiz.author;
+	let img = quiz.author.img_url
+		? quiz.author.img_url
+		: quiz.author_img ? quiz.author_img : blankProfile;
 	return (
 		<QuizWrapper hasDescription={quiz.description} main={mainPage}>
 			<div style={{ display: 'flex' }}>
@@ -160,12 +185,13 @@ export const Quiz = ({
 				<InnerWrapper>
 					<div>
 						<Header>
-							<div>
-								<Title onClick={handleClick}>{quiz.title}</Title>
+							<Title onClick={handleClick}>{quiz.title}</Title>
+							<UserNameWrapper>
+								<img src={img} />
 								<p>
-									Created by <span>{username}</span>
+									Created by <UserName>{username}</UserName>
 								</p>
-							</div>
+							</UserNameWrapper>
 						</Header>
 
 						{quiz.description && (
