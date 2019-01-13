@@ -49,6 +49,14 @@ const UserNameWrapper = styled.div`
 	}
 `;
 
+const UserName = styled.a`
+	font-size: 12px;
+	font-weight: 400;
+	line-height: 16px;
+	color: ${props => props.theme.accentRed};
+	padding-left: 3px;
+`;
+
 export const Post = ({
 	post: { title, author, body, created_at, comment_count, author_img, id },
 	handleClick,
@@ -91,7 +99,7 @@ export const Post = ({
 								)
 							}
 						/>
-						Posted by {author.username ? author.username : author}
+						Posted by <UserName>{author.username ? author.username : author}</UserName>
 					</UserNameWrapper>
 					<span style={{ padding: '0 3px' }}>&#8226;</span>
 					{moment(created_at).fromNow()}
@@ -102,7 +110,7 @@ export const Post = ({
 				</BodyWrapper>
 				<FooterWrapper>
 					<FooterLink style={{ cursor: 'default', fontWeight: 'bold' }}>
-						{comment_count} comments
+						{comment_count === 1 ? '1 comment' : `${comment_count} comments`}
 					</FooterLink>
 					<FooterLink onClick={handleCopy}>Share</FooterLink>
 					{user &&
@@ -173,46 +181,39 @@ const NewInner = styled.div`
 	background-color: ${props => props.theme.secondary};
 `;
 
-
-export const NewPost = ({
-  newPost,
-  setNewPost,
-  post,
-  setPost,
-  handleSubmit
-}) => {
-  return (
-    <NewPostWrapper>
-      {newPost ? (
-        <NewInner>
-          <Button
-            style={{ position: "absolute", top: "5px", right: "5px" }}
-            icon="pi pi-times"
-            onClick={() => setNewPost(false)}
-          />
-          <span className="p-float-label" style={{ margin: "10px 0 " }}>
-            <InputText
-              id="in"
-              value={post.title}
-              onChange={e => setPost({ ...post, title: e.target.value })}
-            />
-            <label htmlFor="in">Title</label>
-          </span>
-          <textarea
-            style={{ marginBottom: "10px" }}
-            rows={5}
-            value={post.body}
-            onChange={e => setPost({ ...post, body: e.target.value })}
-          />
-          <Button
-            label="Submit"
-            disabled={!post.title || !post.body}
-            onClick={handleSubmit}
-          />
-        </NewInner>
-      ) : (
-        <Button label="Create a New Post" onClick={() => setNewPost(true)} />
-      )}
-    </NewPostWrapper>
-  );
-}
+export const NewPost = ({ newPost, setNewPost, post, setPost, handleSubmit }) => {
+	return (
+		<NewPostWrapper>
+			{newPost ? (
+				<NewInner>
+					<Button
+						style={{ position: 'absolute', top: '5px', right: '5px' }}
+						icon='pi pi-times'
+						onClick={() => setNewPost(false)}
+					/>
+					<span className='p-float-label' style={{ margin: '10px 0 ' }}>
+						<InputText
+							id='in'
+							value={post.title}
+							onChange={e => setPost({ ...post, title: e.target.value })}
+						/>
+						<label htmlFor='in'>Title</label>
+					</span>
+					<textarea
+						style={{ marginBottom: '10px' }}
+						rows={5}
+						value={post.body}
+						onChange={e => setPost({ ...post, body: e.target.value })}
+					/>
+					<Button
+						label='Submit'
+						disabled={!post.title || !post.body}
+						onClick={handleSubmit}
+					/>
+				</NewInner>
+			) : (
+				<Button label='Create a New Post' onClick={() => setNewPost(true)} />
+			)}
+		</NewPostWrapper>
+	);
+};

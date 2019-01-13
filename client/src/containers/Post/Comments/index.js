@@ -33,13 +33,14 @@ const Comments = ({ user, post, fetchPost, ...props }) => {
 		<Fragment>
 			{user &&
 				(!newComment ? (
-					<Button text='Post a Comment' handleClick={() => setNewComment(true)} />
+					<Button text='Post a Comment' handleClick={() => setNewComment(true)} post />
 				) : (
 					<NewComment
 						user={user}
 						commentInput={commentInput}
 						setCommentInput={setCommentInput}
 						handleClick={addComment}
+						handleClose={() => setNewComment(false)}
 					/>
 				))}
 

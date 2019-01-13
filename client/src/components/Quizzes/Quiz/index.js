@@ -115,7 +115,7 @@ const DescriptionWrapper = styled.div`
 `;
 
 export const QuizzesContainer = styled.div`
-	width: 70%;
+	max-width: 1000px;
 	margin: 0 auto;
 	display: flex;
 	flex-wrap: wrap;

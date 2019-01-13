@@ -28,6 +28,7 @@ export const PostWrapper = styled(Wrapper)`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	width: 500px;
 
 	&:hover {
 		border-color: rgb(129, 131, 132);

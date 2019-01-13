@@ -20,9 +20,12 @@ const QuestionWrapper = styled(Wrapper)`
 
 `;
 
-const QuestionTitle = styled(Title)`
-	text-align: center;
-	margin-bottom: 10px;
+const QuestionTitle = styled.a`
+	font-size: 24px;
+	font-weight: 700;
+	padding: 0 5px 0 0;
+	color: ${props => props.theme.text};
+	cursor: pointer;
 `;
 
 const AnswerWrapper = styled.div`

@@ -4,7 +4,7 @@ import { Button as StyledButton } from 'primereact/button';
 
 const StyledButtonWrapper = styled.div`
 	display: flex;
-	width: 85%;
+	width: ${props => (props.post ? '500px' : '85%')};
 	flex-direction: column;
 	padding-bottom: 10px;
 
@@ -22,9 +22,9 @@ const StyledButtonWrapper = styled.div`
 	}
 `;
 
-export const Button = ({ handleClick, text, disabled }) => {
+export const Button = ({ handleClick, text, disabled, post }) => {
 	return (
-		<StyledButtonWrapper>
+		<StyledButtonWrapper post>
 			<StyledButton label={text} onClick={handleClick} disabled={disabled} />
 		</StyledButtonWrapper>
 	);
