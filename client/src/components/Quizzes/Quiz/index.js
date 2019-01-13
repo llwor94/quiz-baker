@@ -8,8 +8,11 @@ import { Wrapper } from "../../Styles/Wrappers/index";
 import { FooterWrapper, FooterLink } from "../../Styles/Wrappers/footer";
 import { ProfileIcon } from "../../Styles/Image";
 
+import hatIcon from "../../../assets/chef.svg"
+
 const QuizWrapper = styled(Wrapper)`
   display: flex;
+  position: relative;
   justify-content: space-between;
   height: 200px;
   width: 450px;
@@ -19,6 +22,16 @@ const QuizWrapper = styled(Wrapper)`
   color: #333;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
     0 2px 1px -1px rgba(0, 0, 0, 0.12);
+`;
+
+const HatWrapper = styled.img`
+	position: absolute;
+	top: -20px;
+	left: -20px;
+	height: 40px;
+	width: 40px;
+	transform: rotate(-45deg);
+	background-color: white;
 `;
 
 const LeftSide = styled.div`
@@ -161,6 +174,7 @@ export const Quiz = ({
     : quiz.author_img;
   return (
     <QuizWrapper hasDescription={quiz.description} main={mainPage}>
+	<HatWrapper src={hatIcon}></HatWrapper>
       <div style={{ display: "flex" }}>
         <LeftSide>
           <i
