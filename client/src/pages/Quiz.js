@@ -5,7 +5,15 @@ import { fetchQuiz } from '../store/actions/quizActions';
 import { fetchQuizQuestions } from '../store/actions/questionActions';
 import QuizContainer from '../containers/Quiz/Quiz';
 import LeaderBoardContainer from '../containers/Quiz/LeaderBoard';
+import styled from 'styled-components';
 
+const StyledWrapper = styled.div`
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+`;
 const QuizPage = ({ fetchQuiz, fetchQuizQuestions, quiz, questions, ...props }) => {
 	useEffect(() => {
 		fetchQuiz(props.match.params.id);
@@ -15,10 +23,10 @@ const QuizPage = ({ fetchQuiz, fetchQuizQuestions, quiz, questions, ...props }) 
 	if (!quiz || !questions) return <div>Loading...</div>;
 	else
 		return (
-			<div style={{ position: 'relative' }}>
+			<StyledWrapper>
 				<LeaderBoardContainer />
 				<QuizContainer />
-			</div>
+			</StyledWrapper>
 		);
 };
 
