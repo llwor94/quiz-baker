@@ -33,7 +33,7 @@ const GlobalStyle = createGlobalStyle`
 	html, body {
 		height: 100%;
 		width: 100%;
-		background-color: ${props => props.theme.main};
+		background-color: ${props => props.theme.secondary};
 		color: ${props => props.theme.text}
 	}
 `;
