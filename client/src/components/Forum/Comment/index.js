@@ -13,7 +13,6 @@ const NewCommentArea = styled.div`
 	border: 1px solid;
 	border-color: ${props => props.theme.accent};
 	padding: 10px;
-
 	position: relative;
 	background-color: ${props => props.theme.secondary};
 `;

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { InputText } from 'primereact/inputtext';
+import { Input } from '../Styles/Input';
 import Button from '../Styles/Button';
 import { Link } from 'react-router-dom';
 
@@ -75,28 +75,17 @@ const InputWrapper = styled.div`
 	align-items: center;
 `;
 
-const StyledInput = styled(InputText)`
-	width: 100%;
-	padding: 15px;
-	background-color: ${props => props.theme.secondary} !important;
-	border-color: ${props => props.theme.accent} !important;
-	color: ${props => props.theme.text}
-`;
-
-export const Input = ({ name, type, handleChange, value, placeholder, disabled, error }) => (
+export const InputWrap = ({ name, type, handleChange, value, placeholder, disabled, error }) => (
 	<InputWrapper>
-		<span className='p-float-label' style={{ width: '100%' }}>
-			<StyledInput
-				id={name}
-				name={name}
-				type={type}
-				value={value}
-				onChange={handleChange}
-				autoComplete='off'
-				disabled={disabled}
-			/>
-			<label htmlFor={name}>{placeholder}</label>
-		</span>
+		<Input
+			name={name}
+			type={type}
+			value={value}
+			label={placeholder}
+			onChange={handleChange}
+			disabled={disabled}
+		/>
+
 		{error && <p>{error}</p>}
 	</InputWrapper>
 );

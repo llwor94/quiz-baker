@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { RadioButton } from 'primereact/radiobutton';
 
 import { Wrapper } from '../../Styles/Wrappers/index';
-import { Title } from '../../Styles/Text/title';
 
 const Label = styled.label`
 	font-size: 14px;
@@ -66,7 +65,7 @@ export const Question = ({ question, handleChange, inputSelection }) => {
 							onChange={handleChange}
 							checked={inputSelection === i}
 						/>
-						<Label htmlFor={i}>{option}</Label>
+						<Label htmlFor={i.toString()}>{option}</Label>
 					</Answer>
 				))}
 			</AnswerWrapper>

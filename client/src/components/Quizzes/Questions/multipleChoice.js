@@ -1,14 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { RadioButton } from 'primereact/radiobutton';
-import { Input } from '../../Styles/Input';
+import RadioButton from '../../Styles/RadioButton';
+import { StyledInput, Input } from '../../Styles/Input';
 
 const Wrapper = styled.div`
-	width: 50%;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+	align-items: center;
 	padding-bottom: 10px;
 `;
 
@@ -22,7 +22,7 @@ export const MultipleChoice = ({
 	...props
 }) => {
 	return (
-		<Wrapper className='p-grid p-fluid'>
+		<Wrapper>
 			<InputWrapper className='p-inputgroup'>
 				<span className='p-inputgroup-addon'>
 					<RadioButton
@@ -31,9 +31,9 @@ export const MultipleChoice = ({
 						onChange={handleCorrectChange}
 					/>
 				</span>
-				<Input
+				<StyledInput
 					name='option1'
-					label='Option 1'
+					placeholder='Option 1'
 					value={options.option1}
 					onChange={handleOptionChange}
 				/>
@@ -46,9 +46,10 @@ export const MultipleChoice = ({
 						onChange={handleCorrectChange}
 					/>
 				</span>
-				<Input
+
+				<StyledInput
 					name='option2'
-					label='Option 2'
+					placeholder='Option 2'
 					value={options.option2}
 					onChange={handleOptionChange}
 				/>
@@ -61,9 +62,10 @@ export const MultipleChoice = ({
 						onChange={handleCorrectChange}
 					/>
 				</span>
-				<Input
+
+				<StyledInput
 					name='option3'
-					label='Option 3'
+					placeholder='Option 3'
 					value={options.option3}
 					onChange={handleOptionChange}
 				/>
@@ -76,9 +78,10 @@ export const MultipleChoice = ({
 						onChange={handleCorrectChange}
 					/>
 				</span>
-				<Input
+
+				<StyledInput
 					name='option4'
-					label='Option 4'
+					placeholder='Option 4'
 					value={options.option4}
 					onChange={handleOptionChange}
 				/>

@@ -4,7 +4,7 @@ import server from '../../utils/server';
 import _ from 'lodash';
 import debounce from 'lodash/debounce';
 import { register } from '../../store/actions/authActions';
-import { Wrapper, Input } from '../../components/Auth';
+import { Wrapper, InputWrap } from '../../components/Auth';
 
 const checkData = debounce(async ({ target }, setError, error) => {
 	if (target.value) {
@@ -64,7 +64,7 @@ const RegisterForm = ({ register, serverError, ...props }) => {
 			error={serverError}
 			location={props.location}
 		>
-			<Input
+			<InputWrap
 				name='email'
 				type='email'
 				value={userInput.email}
@@ -72,7 +72,7 @@ const RegisterForm = ({ register, serverError, ...props }) => {
 				placeholder='Email'
 				error={error.email}
 			/>
-			<Input
+			<InputWrap
 				name='username'
 				type='text'
 				value={userInput.username}
@@ -80,14 +80,14 @@ const RegisterForm = ({ register, serverError, ...props }) => {
 				placeholder='Username'
 				error={error.username}
 			/>
-			<Input
+			<InputWrap
 				name='password'
 				type='password'
 				value={userInput.password}
 				handleChange={handleChange}
 				placeholder='Password'
 			/>
-			<Input
+			<InputWrap
 				name='passwordCheck'
 				type='password'
 				value={userInput.passwordCheck}

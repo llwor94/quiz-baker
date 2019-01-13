@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import _ from 'lodash';
 
 import { login } from '../store/actions/authActions';
-import { Wrapper, Input } from '../components/Auth';
+import { Wrapper, InputWrap } from '../components/Auth';
 
 const Login = ({ login, serverError, user, ...props }) => {
 	const [ userInput, setValue ] = useState({
@@ -47,14 +47,14 @@ const Login = ({ login, serverError, user, ...props }) => {
 			error={error}
 			location={props.location}
 		>
-			<Input
+			<InputWrap
 				name='email'
 				type='email'
 				value={userInput.email}
 				handleChange={handleChange}
 				placeholder='Email'
 			/>
-			<Input
+			<InputWrap
 				name='password'
 				type='password'
 				value={userInput.password}
