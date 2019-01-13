@@ -2,16 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
 
-import blankProfile from '../../../assets/blank-profile.png';
 import Button from '../../Styles/Button';
 
-import { InputText } from 'primereact/inputtext';
 import { Dialog } from 'primereact/dialog';
 
 import { PostWrapper } from '../../Styles/Wrappers/index';
 import { FooterWrapper, FooterLink } from '../../Styles/Wrappers/footer';
 import { Title } from '../../Styles/Text/title';
-import { StyledTextArea } from '../../Styles/Text/textArea';
+import { Input, TextArea } from '../../Styles/Input';
+import { ProfileIcon } from '../../Styles/Image';
 
 const InnerWrapper = styled.div`
 	padding: 8px 0;
@@ -42,12 +41,6 @@ const Header = styled.div`
 const UserNameWrapper = styled.div`
 	display: flex;
 	align-items: center;
-	img {
-		height: 20px;
-		width: 20px;
-		margin-right: 3px;
-		border-radius: 50%;
-	}
 `;
 
 const UserName = styled.a`
@@ -71,9 +64,7 @@ export const Post = ({
 	let comment_count = post.hasOwnProperty('comment_count')
 		? post.comment_count
 		: post.comments.length;
-	let img = post.author.img_url
-		? post.author.img_url
-		: post.author_img ? post.author_img : blankProfile;
+	let img = post.author.hasOwnProperty('img_url') ? post.author.img_url : post.author_img;
 	let username = post.author.username ? post.author.username : post.author;
 	const footer = (
 		<div>
@@ -96,7 +87,7 @@ export const Post = ({
 			<InnerWrapper>
 				<Header>
 					<UserNameWrapper>
-						<img src={img} />
+						<ProfileIcon src={img} />
 						Posted by <UserName>{username}</UserName>
 					</UserNameWrapper>
 					<span style={{ padding: '0 3px' }}>&#8226;</span>
@@ -161,17 +152,12 @@ export const NewPost = ({ newPost, setNewPost, post, setPost, handleSubmit }) =>
 						icon='pi pi-times'
 						onClick={() => setNewPost(false)}
 					/>
-					<span className='p-float-label' style={{ margin: '10px 0 ' }}>
-						<InputText
-							id='in'
-							value={post.title}
-							onChange={e => setPost({ ...post, title: e.target.value })}
-						/>
-						<label htmlFor='in'>Title</label>
-					</span>
-					<StyledTextArea
-						style={{ marginBottom: '10px' }}
-						rows={5}
+					<Input
+						value={post.title}
+						onChange={e => setPost({ ...post, title: e.target.value })}
+						label='Title'
+					/>
+					<TextArea
 						value={post.body}
 						onChange={e => setPost({ ...post, body: e.target.value })}
 					/>

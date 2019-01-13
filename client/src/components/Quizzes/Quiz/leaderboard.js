@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import styled from 'styled-components';
-import blankProfile from '../../../assets/blank-profile.png';
+import { ProfileIcon } from '../../Styles/Image';
 
 const UserWrapper = styled.div`
 	display: flex;
@@ -25,7 +25,7 @@ export const StyledLeaderBoard = ({ userScore }) => {
 	return (
 		<UserWrapper>
 			<User>
-				<img src={userScore.img_url ? userScore.img_url : blankProfile} />
+				<ProfileIcon src={userScore.img_url} />
 				<span>{userScore.username}</span>
 			</User>
 			<div>{userScore.score}</div>

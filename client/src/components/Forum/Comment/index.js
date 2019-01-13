@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
 
-import { InputTextarea } from 'primereact/inputtextarea';
+import { TextArea } from '../../Styles/Input';
 import Button from '../../Styles/Button';
-import blankProfile from '../../../assets/blank-profile.png';
+import { ProfileIcon } from '../../Styles/Image';
 
 const NewCommentArea = styled.div`
 	display: flex;
@@ -16,12 +16,6 @@ const NewCommentArea = styled.div`
 
 	position: relative;
 	background-color: ${props => props.theme.secondary};
-	.p-inputtext {
-		margin-bottom: 10px;
-	}
-	.p-inputtext:enabled:focus:not(.p-error) {
-		border-color: ${props => props.theme.accentPink};
-	}
 `;
 
 export const CommentArea = styled.div`
@@ -42,11 +36,7 @@ export const NewComment = ({ user, commentInput, setCommentInput, handleClick, h
 			icon='pi pi-times'
 			onClick={handleClose}
 		/>
-		<InputTextarea
-			autoResize={true}
-			value={commentInput}
-			onChange={e => setCommentInput(e.target.value)}
-		/>
+		<TextArea value={commentInput} onChange={e => setCommentInput(e.target.value)} />
 		<Button label='Comment' onClick={handleClick} disabled={!commentInput} />
 	</NewCommentArea>
 );
@@ -82,12 +72,6 @@ const CommentHeader = styled.div`
 
 		flex: 0 0 auto;
 	}
-	img {
-		height: 20px;
-		width: 20px;
-		border-radius: 50%;
-		margin-right: 3px;
-	}
 `;
 
 const UserName = styled.a`
@@ -111,7 +95,7 @@ export const Comment = ({ comment, user, handleClick }) => (
 	<BigWrapper>
 		<div>
 			<CommentHeader>
-				<img src={comment.author_img ? comment.author_img : blankProfile} />
+				<ProfileIcon src={comment.author_img} />
 				Posted by <UserName>{comment.author}</UserName>
 				<span style={{ padding: '0 3px' }}>&#8226;</span>
 				<span>{moment(comment.created_at).fromNow()}</span>

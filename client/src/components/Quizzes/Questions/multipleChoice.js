@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { RadioButton } from 'primereact/radiobutton';
-import { InputText } from 'primereact/inputtext';
+import { Input } from '../../Styles/Input';
 
 const Wrapper = styled.div`
 	width: 50%;
@@ -12,9 +12,7 @@ const Wrapper = styled.div`
 	padding-bottom: 10px;
 `;
 
-const InputWrapper = styled.div`
-padding: 5px 0;
-`;
+const InputWrapper = styled.div`padding: 5px 0;`;
 
 export const MultipleChoice = ({
 	correctOption,
@@ -33,9 +31,9 @@ export const MultipleChoice = ({
 						onChange={handleCorrectChange}
 					/>
 				</span>
-				<InputText
+				<Input
 					name='option1'
-					placeholder='Option 1'
+					label='Option 1'
 					value={options.option1}
 					onChange={handleOptionChange}
 				/>
@@ -48,9 +46,9 @@ export const MultipleChoice = ({
 						onChange={handleCorrectChange}
 					/>
 				</span>
-				<InputText
+				<Input
 					name='option2'
-					placeholder='Option 2'
+					label='Option 2'
 					value={options.option2}
 					onChange={handleOptionChange}
 				/>
@@ -63,9 +61,9 @@ export const MultipleChoice = ({
 						onChange={handleCorrectChange}
 					/>
 				</span>
-				<InputText
+				<Input
 					name='option3'
-					placeholder='Option 3'
+					label='Option 3'
 					value={options.option3}
 					onChange={handleOptionChange}
 				/>
@@ -78,9 +76,9 @@ export const MultipleChoice = ({
 						onChange={handleCorrectChange}
 					/>
 				</span>
-				<InputText
+				<Input
 					name='option4'
-					placeholder='Option 4'
+					label='Option 4'
 					value={options.option4}
 					onChange={handleOptionChange}
 				/>

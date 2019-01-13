@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import Button from '../../Styles/Button';
 import { ToggleButton } from 'primereact/togglebutton';
-import { InputText } from 'primereact/inputtext';
+import { Input } from '../../Styles/Input';
 
 import { QuestWrapper, Wrapper } from '../../Styles/Wrappers/index';
 import { Title } from '../../Styles/Text/title';
@@ -68,16 +68,11 @@ export const EditQuestionWrapper = ({ children, ...props }) => {
 				onChange={e => props.setMultipleChoice(e.value)}
 			/>
 			<InputTitleWrapper>
-				<span className='p-float-label'>
-					<InputText
-						id='float-input'
-						type='text'
-						size='30'
-						value={props.question}
-						onChange={e => props.setQuestionTitle(e.target.value)}
-					/>
-					<label htmlFor='float-input'>Question Title</label>
-				</span>
+				<Input
+					value={props.question}
+					onChange={e => props.setQuestionTitle(e.target.value)}
+					label='Question Title'
+				/>
 			</InputTitleWrapper>
 			{children}
 		</EditWrapper>

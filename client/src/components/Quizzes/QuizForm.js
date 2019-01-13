@@ -1,7 +1,6 @@
 import React, { useEffect, useState, Fragment } from 'react';
 
-import { StyledTextArea } from '../../components/Styles/Text/textArea';
-import { StyledInput } from '../../components/Styles/Text/input';
+import { Input, TextArea } from '../../components/Styles/Input';
 import { StyledAutoComplete } from '../../components/Styles/Text/autoComplete';
 
 const QuizForm = ({ topics, quiz, setQuiz, ...props }) => {
@@ -52,9 +51,9 @@ const QuizForm = ({ topics, quiz, setQuiz, ...props }) => {
 			/>
 
 			<p>Please name your quiz</p>
-			<StyledInput name='title' value={quiz.title} onChange={handleChange} />
+			<Input name='title' value={quiz.title} onChange={handleChange} />
 			<p>Set a description for your quiz.</p>
-			<StyledTextArea
+			<TextArea
 				name='description'
 				rows={5}
 				cols={30}

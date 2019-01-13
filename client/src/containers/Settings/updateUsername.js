@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import server from '../../utils/server';
 import Button from '../../components/Styles/Button';
 import { getUser } from '../../store/actions/authActions';
-import { InputText } from 'primereact/inputtext';
+import { Input } from '../../components/Styles/Input';
 
 const UpdateUsername = ({ user }) => {
 	const [ usernameUpdate, setUsernameUpdate ] = useState(false);
@@ -12,7 +12,7 @@ const UpdateUsername = ({ user }) => {
 	if (usernameUpdate)
 		return (
 			<div>
-				<InputText value={username} onChange={e => setUsername(e.target.value)} />
+				<Input value={username} onChange={e => setUsername(e.target.value)} />
 				<Button label='Update' />
 			</div>
 		);
