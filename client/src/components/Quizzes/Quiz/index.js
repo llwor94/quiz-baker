@@ -106,9 +106,8 @@ const FooterAccent = styled.div`
 const Topic = styled(FooterAccent)`
   font-size: 14px;
   color: white;
-  background-color: #00ba96;
+  background-color: ${props => props.theme.topic};
   margin-right: 10px;
-
   display: inline-block;
 `;
 
