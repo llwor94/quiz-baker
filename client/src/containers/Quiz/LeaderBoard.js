@@ -22,7 +22,9 @@ const LeaderBoard = ({ quiz, ...props }) => {
 			.get(`quizzes/${quiz.id}/scores`)
 			.then(({ data }) => {
 				console.log(data);
-				setUserScores([ ...data ].sort((a, b) => b.score - a.score));
+				setUserScores(
+					[ ...data ].filter(quiz => quiz.score).sort((a, b) => b.score - a.score),
+				);
 			})
 			.catch(err => console.log(err));
 	}, []);
