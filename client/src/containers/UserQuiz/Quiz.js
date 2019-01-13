@@ -26,22 +26,26 @@ const Quiz = ({ topics, ...props }) => {
 
 	const handleQuizEdit = () => {
 		if (!edit) setEdit(true);
-		else {
-			if (!_.isEqual(quiz, _.pick(props.quiz, [ 'title', 'description', 'topic' ]))) {
-				server
-					.patch(`quizzes/${props.quiz.id}/edit`, quiz)
-					.then(response => {
-						console.log(response);
-						fetchQuizForEdit(props.quiz.id);
-						setEdit(false);
-					})
-					.catch(err => console.log(err));
-			}
-		}
+		else if (!_.isEqual(quiz, _.pick(props.quiz, [ 'title', 'description', 'topic' ]))) {
+			server
+				.patch(`quizzes/${props.quiz.id}/edit`, quiz)
+				.then(response => {
+					console.log(response);
+					fetchQuizForEdit(props.quiz.id);
+					setEdit(false);
+				})
+				.catch(err => console.log(err));
+		} else setEdit(false);
 	};
 
 	return (
-		<EditUserQuiz quiz={quiz} edit={edit} handleClick={handleQuizEdit} loading={props.loading}>
+		<EditUserQuiz
+			quiz={quiz}
+			edit={edit}
+			handleClick={handleQuizEdit}
+			loading={props.loading}
+			handleClose={() => setEdit(false)}
+		>
 			<QuizForm topics={topics} quiz={quiz} setQuiz={setQuiz} />
 		</EditUserQuiz>
 	);

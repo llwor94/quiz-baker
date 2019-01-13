@@ -18,9 +18,25 @@ export const QuestionsWrapper = ({ children }) => {
 	);
 };
 
+const StyledQuestionWrapper = styled(Wrapper)`
+.p-button {
+    
+    background-color: ${props => props.theme.accentPink} !important;
+    border-color: ${props => props.theme.accentPink} !important;
+		color: white !important;
+    &:enabled:hover {
+			background-color: #ad546b;
+			border: #ad546b;
+		}
+		&:enabled:focus {
+			box-shadow: 0 0 0 0.2em #ad546b;
+		}
+  }
+`;
+
 export const QuestionWrapper = ({ question, setEdit }) => {
 	return (
-		<Wrapper key={question.id}>
+		<StyledQuestionWrapper key={question.id}>
 			<div style={{ display: 'flex', justifyContent: 'space-between' }}>
 				<Title main>{question.question}</Title>
 				<Button label='Edit' onClick={() => setEdit(true)} />
@@ -37,20 +53,39 @@ export const QuestionWrapper = ({ question, setEdit }) => {
 					</li>
 				))}
 			</ul>
-		</Wrapper>
+		</StyledQuestionWrapper>
 	);
 };
 
 const InputTitleWrapper = styled.div`padding: 20px;`;
 
+const EditWrapper = styled(Wrapper)`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	position: relative;
+	.p-button {
+    
+    background-color: ${props => props.theme.accentPink} !important;
+    border-color: ${props => props.theme.accentPink} !important;
+		color: white !important;
+    &:enabled:hover {
+			background-color: #ad546b;
+			border: #ad546b;
+		}
+		&:enabled:focus {
+			box-shadow: 0 0 0 0.2em #ad546b;
+		}
+  }
+`;
+
 export const EditQuestionWrapper = ({ children, ...props }) => {
 	return (
-		<Wrapper edit>
+		<EditWrapper edit>
 			{props.new && <Title>New Question</Title>}
 			<Button
 				style={{ position: 'absolute', top: '3px', right: '3px' }}
 				icon='pi pi-times'
-				className='p-button-secondary'
 				onClick={props.handleClick}
 			/>
 			<ToggleButton
@@ -73,6 +108,6 @@ export const EditQuestionWrapper = ({ children, ...props }) => {
 				</span>
 			</InputTitleWrapper>
 			{children}
-		</Wrapper>
+		</EditWrapper>
 	);
 };

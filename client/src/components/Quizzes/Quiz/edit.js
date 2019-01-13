@@ -6,6 +6,22 @@ import { Button } from 'primereact/button';
 import { PaddedTitle } from '../../Styles/Text/title';
 import { QuestWrapper } from '../../Styles/Wrappers/index';
 
+const Wrapper = styled(QuestWrapper)`
+	flex-direction: ${props => (props.edit ? 'column' : 'row')};
+	.p-button {
+   
+    background-color: ${props => props.theme.accentPink};
+    border-color: ${props => props.theme.accentPink};
+    &:enabled:hover {
+			background-color: #ad546b;
+			border: #ad546b;
+		}
+		&:enabled:focus {
+			box-shadow: 0 0 0 0.2em #ad546b;
+		}
+  }
+`;
+
 const Topic = styled.a`
 	font-weight: 700;
 	color: ${props => props.theme.text};
@@ -17,7 +33,15 @@ const InnerWrapper = styled.div`
 	flex-direction: column;
 `;
 
-export const EditUserQuiz = ({ quiz, edit, children, handleClick, loading, ...props }) => {
+export const EditUserQuiz = ({
+	quiz,
+	edit,
+	children,
+	handleClick,
+	loading,
+	handleClose,
+	...props
+}) => {
 	if (loading)
 		return (
 			<QuestWrapper secondary>
@@ -26,10 +50,18 @@ export const EditUserQuiz = ({ quiz, edit, children, handleClick, loading, ...pr
 		);
 	else
 		return (
-			<QuestWrapper secondary>
+			<Wrapper secondary edit={edit}>
 				<InnerWrapper>
 					{edit ? (
-						children
+						<Fragment>
+							<Button
+								style={{ position: 'absolute', top: '5px', right: '5px' }}
+								icon='pi pi-times'
+								className='p-button-secondary'
+								onClick={handleClose}
+							/>
+							{children}
+						</Fragment>
 					) : (
 						<Fragment>
 							<PaddedTitle>{quiz.title}</PaddedTitle>
@@ -39,6 +71,6 @@ export const EditUserQuiz = ({ quiz, edit, children, handleClick, loading, ...pr
 					)}
 				</InnerWrapper>
 				<Button label={edit ? 'Save' : 'Edit'} onClick={handleClick} />
-			</QuestWrapper>
+			</Wrapper>
 		);
 };

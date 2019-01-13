@@ -20,6 +20,7 @@ export const QuestWrapper = styled(Wrapper)`
 	justify-content: ${props => props.secondary && 'space-between'};
 	margin-bottom: ${props => (props.main ? '200px' : '10px')};
 	align-items: ${props => props.edit || (props.secondary && 'center')};
+	width: ${props => props.secondary && '500px'}
 `;
 
 export const PostWrapper = styled(Wrapper)`
