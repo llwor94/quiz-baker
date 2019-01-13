@@ -39,6 +39,16 @@ const Answer = styled(Option)`
 	&:not(:last-child) {
 		padding-bottom: 10px;
 	}
+
+	.p-radiobutton .p-radiobutton-box.p-highlight {
+		background-color: #dc758f;
+		border: #dc758f;
+
+		&:not(.p-disabled):hover {
+			background-color: #ad546b;
+			border: #ad546b;
+		}
+	}
 `;
 
 export const Question = ({ question, handleChange, inputSelection }) => {
@@ -46,17 +56,17 @@ export const Question = ({ question, handleChange, inputSelection }) => {
 		<QuestionWrapper>
 			<QuestionTitle>{question.question}</QuestionTitle>
 			<AnswerWrapper>
-			{question.options.map((option, i) => (
-				<Answer key={i}>
-					<RadioButton
-						inputId={i.toString()}
-						value={i}
-						onChange={handleChange}
-						checked={inputSelection === i}
-					/>
-					<Label htmlFor={i}>{option}</Label>
-				</Answer>
-			))}
+				{question.options.map((option, i) => (
+					<Answer key={i}>
+						<RadioButton
+							inputId={i.toString()}
+							value={i}
+							onChange={handleChange}
+							checked={inputSelection === i}
+						/>
+						<Label htmlFor={i}>{option}</Label>
+					</Answer>
+				))}
 			</AnswerWrapper>
 		</QuestionWrapper>
 	);
