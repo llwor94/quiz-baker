@@ -22,7 +22,7 @@ const Sort = ({ quizzes, changeQuizzes }) => {
 
 	return (
 		<Dropdown
-			style={{ marginRight: '5px' }}
+			style={{ marginRight: '8px' }}
 			value={sortOption}
 			options={sortOptions}
 			onChange={e => {

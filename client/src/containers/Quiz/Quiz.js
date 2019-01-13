@@ -9,7 +9,7 @@ import Question from './Question';
 import Results from './Results';
 import { Quiz as QuizWrapper } from '../../components/Quizzes/Quiz';
 import { QuestionTracker } from '../../components/Quizzes/Questions/QuestionTracker';
-import { Button } from '../../components/Quizzes/button';
+import Button from '../../components/Styles/Button';
 
 const Quiz = ({ quiz, questions, user, ...props }) => {
 	const [ questionResponse, setQuestionResponse ] = useState(null);
@@ -72,11 +72,7 @@ const Quiz = ({ quiz, questions, user, ...props }) => {
 						handleVote={val => handleUserVote(val)}
 						handleCopy={() => handleCopy(quiz.id)}
 					/>
-					<Button
-						currentQuestion={currentQuestion}
-						text='Take Quiz'
-						handleClick={() => setQuestion(0)}
-					/>
+					<Button label='Take Quiz' onClick={() => setQuestion(0)} full />
 				</Fragment>
 			) : currentQuestion === questions.length ? (
 				<Results quiz={quiz} results={questionResponse} />

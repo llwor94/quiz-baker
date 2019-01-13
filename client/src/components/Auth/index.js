@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { InputText } from 'primereact/inputtext';
-import { Button } from 'primereact/button';
+import Button from '../Styles/Button';
 import { Link } from 'react-router-dom';
 
 const FormWrapper = styled.div`

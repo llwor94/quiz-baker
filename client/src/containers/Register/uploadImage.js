@@ -4,7 +4,7 @@ import blankProfile from '../../assets/blank-profile.png';
 import server from '../../utils/server';
 import { getUser } from '../../store/actions/authActions';
 import { QuestWrapper } from '../../components/Styles/Wrappers/index';
-import { Button } from 'primereact/button';
+import Button from '../../components/Styles/Button';
 import styled from 'styled-components';
 
 const Input = styled.input`

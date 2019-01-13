@@ -44,6 +44,7 @@ const Filter = ({ quizzes, user, changeQuizzes }) => {
 
 	return (
 		<Dropdown
+			style={{ marginLeft: '8px' }}
 			value={filterOption}
 			options={user ? userOptions : options}
 			onChange={e => {

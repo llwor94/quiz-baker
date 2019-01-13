@@ -1,25 +1,14 @@
 import React, { Fragment } from 'react';
 import styled from 'styled-components';
 
-import { Button } from 'primereact/button';
+import Button from '../../Styles/Button';
 
 import { PaddedTitle } from '../../Styles/Text/title';
 import { QuestWrapper } from '../../Styles/Wrappers/index';
 
 const Wrapper = styled(QuestWrapper)`
 	flex-direction: ${props => (props.edit ? 'column' : 'row')};
-	.p-button {
-   
-    background-color: ${props => props.theme.accentPink};
-    border-color: ${props => props.theme.accentPink};
-    &:enabled:hover {
-			background-color: #ad546b;
-			border: #ad546b;
-		}
-		&:enabled:focus {
-			box-shadow: 0 0 0 0.2em #ad546b;
-		}
-  }
+	
 `;
 
 const Topic = styled.a`

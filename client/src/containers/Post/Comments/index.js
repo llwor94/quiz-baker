@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import server from '../../../utils/server';
 
 import { CommentArea, Comment, NewComment } from '../../../components/Forum/Comment';
-import { Button } from '../../../components/Quizzes/button';
+import Button from '../../../components/Styles/Button';
 import { fetchPost } from '../../../store/actions/forumActions';
 
 const Comments = ({ user, post, fetchPost, ...props }) => {
@@ -33,7 +33,7 @@ const Comments = ({ user, post, fetchPost, ...props }) => {
 		<Fragment>
 			{user &&
 				(!newComment ? (
-					<Button text='Post a Comment' handleClick={() => setNewComment(true)} post />
+					<Button label='Post a Comment' onClick={() => setNewComment(true)} full />
 				) : (
 					<NewComment
 						user={user}

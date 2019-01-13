@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import moment from 'moment';
 
 import { InputTextarea } from 'primereact/inputtextarea';
-import { Button } from 'primereact/button';
+import Button from '../../Styles/Button';
 import blankProfile from '../../../assets/blank-profile.png';
 
 const NewCommentArea = styled.div`
@@ -21,18 +21,6 @@ const NewCommentArea = styled.div`
 	}
 	.p-inputtext:enabled:focus:not(.p-error) {
 		border-color: ${props => props.theme.accentPink};
-	}
-	.p-button {
-		background-color: #dc758f;
-		border: #dc758f;
-
-		&:enabled:hover {
-			background-color: #ad546b;
-			border: #ad546b;
-		}
-		&:enabled:focus {
-			box-shadow: 0 0 0 0.2em #ad546b;
-		}
 	}
 `;
 
@@ -76,19 +64,6 @@ const BigWrapper = styled.div`
 	margin-top: 11px;
 	padding-top: 5px;
 	margin-bottom: 5px;
-
-	.p-button {
-		background-color: #dc758f;
-		border: #dc758f;
-
-		&:enabled:hover {
-			background-color: #ad546b;
-			border: #ad546b;
-		}
-		&:enabled:focus {
-			box-shadow: 0 0 0 0.2em #ad546b;
-		}
-	}
 `;
 
 const CommentHeader = styled.div`

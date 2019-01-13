@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { Button } from 'primereact/button';
+import Button from '../../../components/Styles/Button';
 import _ from 'lodash';
 import server from '../../../utils/server';
 
@@ -84,7 +84,6 @@ const CreateQuestion = ({ fetchQuizQuestions, quiz, ...props }) => {
 					!questionTitle ||
 					props.loading
 				}
-				className='p-button-raised p-button-secondary'
 				onClick={handleCreateQuestion}
 			/>
 		</EditQuestionWrapper>

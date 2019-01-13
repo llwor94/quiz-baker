@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import moment from 'moment';
 
 import blankProfile from '../../../assets/blank-profile.png';
-import { Button } from 'primereact/button';
+import Button from '../../Styles/Button';
 
 import { InputText } from 'primereact/inputtext';
 import { Dialog } from 'primereact/dialog';
@@ -102,10 +102,12 @@ export const Post = ({
 					<span style={{ padding: '0 3px' }}>&#8226;</span>
 					{moment(post.created_at).fromNow()}
 				</Header>
-				<Title onClick={handleClick}>{post.title}</Title>
-				<BodyWrapper>
-					<p>{post.body}</p>
-				</BodyWrapper>
+				<div onClick={handleClick} style={{ cursor: 'pointer' }}>
+					<Title>{post.title}</Title>
+					<BodyWrapper>
+						<p>{post.body}</p>
+					</BodyWrapper>
+				</div>
 				<FooterWrapper>
 					<FooterLink style={{ cursor: 'default', fontWeight: 'bold' }}>
 						{comment_count === 1 ? '1 comment' : `${comment_count} comments`}
@@ -136,18 +138,6 @@ const NewPostWrapper = styled.div`
 	width: 100%;
 	flex-direction: column;
 	padding-bottom: 10px;
-	.p-button {
-		background-color: #dc758f;
-		border: #dc758f;
-
-		&:enabled:hover {
-			background-color: #ad546b;
-			border: #ad546b;
-		}
-		&:enabled:focus {
-			box-shadow: 0 0 0 0.2em #ad546b;
-		}
-	}
 `;
 
 const NewInner = styled.div`
@@ -192,7 +182,7 @@ export const NewPost = ({ newPost, setNewPost, post, setPost, handleSubmit }) =>
 					/>
 				</NewInner>
 			) : (
-				<Button label='Create a New Post' onClick={() => setNewPost(true)} />
+				<Button label='Create a New Post' onClick={() => setNewPost(true)} full />
 			)}
 		</NewPostWrapper>
 	);

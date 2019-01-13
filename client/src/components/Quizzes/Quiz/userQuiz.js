@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import { Button } from 'primereact/button';
+import Button from '../../Styles/Button';
 import { Dialog } from 'primereact/dialog';
 
 import { Wrapper } from '../../Styles/Wrappers/index';

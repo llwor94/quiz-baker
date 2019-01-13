@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Button } from 'primereact/button';
+import Button from '../../Styles/Button';
 import { ToggleButton } from 'primereact/togglebutton';
 import { InputText } from 'primereact/inputtext';
 
@@ -18,25 +18,9 @@ export const QuestionsWrapper = ({ children }) => {
 	);
 };
 
-const StyledQuestionWrapper = styled(Wrapper)`
-.p-button {
-    
-    background-color: ${props => props.theme.accentPink} !important;
-    border-color: ${props => props.theme.accentPink} !important;
-		color: white !important;
-    &:enabled:hover {
-			background-color: #ad546b;
-			border: #ad546b;
-		}
-		&:enabled:focus {
-			box-shadow: 0 0 0 0.2em #ad546b;
-		}
-  }
-`;
-
 export const QuestionWrapper = ({ question, setEdit }) => {
 	return (
-		<StyledQuestionWrapper key={question.id}>
+		<Wrapper key={question.id}>
 			<div style={{ display: 'flex', justifyContent: 'space-between' }}>
 				<Title main>{question.question}</Title>
 				<Button label='Edit' onClick={() => setEdit(true)} />
@@ -53,7 +37,7 @@ export const QuestionWrapper = ({ question, setEdit }) => {
 					</li>
 				))}
 			</ul>
-		</StyledQuestionWrapper>
+		</Wrapper>
 	);
 };
 
@@ -64,19 +48,7 @@ const EditWrapper = styled(Wrapper)`
 	flex-direction: column;
 	align-items: center;
 	position: relative;
-	.p-button {
-    
-    background-color: ${props => props.theme.accentPink} !important;
-    border-color: ${props => props.theme.accentPink} !important;
-		color: white !important;
-    &:enabled:hover {
-			background-color: #ad546b;
-			border: #ad546b;
-		}
-		&:enabled:focus {
-			box-shadow: 0 0 0 0.2em #ad546b;
-		}
-  }
+	
 `;
 
 export const EditQuestionWrapper = ({ children, ...props }) => {

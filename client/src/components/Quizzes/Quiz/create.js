@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Button } from 'primereact/button';
+import Button from '../../Styles/Button';
 
 import { QuestWrapper } from '../../Styles/Wrappers';
 
@@ -9,18 +9,6 @@ const InnerWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	padding: 10px;
-	.p-button {
-		background-color: #dc758f;
-		border: #dc758f;
-
-		&:enabled:hover {
-			background-color: #ad546b;
-			border: #ad546b;
-		}
-		&:enabled:focus {
-			box-shadow: 0 0 0 0.2em #ad546b;
-		}
-	}
 `;
 
 export const CreateNewQuiz = ({ children, handleClose, handleSubmit, quiz, ...props }) => {
@@ -59,29 +47,13 @@ export const CreateNewQuiz = ({ children, handleClose, handleSubmit, quiz, ...pr
 	);
 };
 
-const ButtonWrapper = styled.div`
-	display: flex;
-	width: 100%;
-	flex-direction: column;
-	padding-bottom: 10px;
-	.p-button {
-		background-color: #dc758f;
-		border: #dc758f;
-
-		&:enabled:hover {
-			background-color: #ad546b;
-			border: #ad546b;
-		}
-		&:enabled:focus {
-			box-shadow: 0 0 0 0.2em #ad546b;
-		}
-	}
-`;
-
 export const CreateQuizButton = ({ handleClick }) => {
 	return (
-		<ButtonWrapper>
-			<Button label='Create a New Quiz' onClick={handleClick} />
-		</ButtonWrapper>
+		<Button
+			label='Create a New Quiz'
+			onClick={handleClick}
+			full
+			style={{ paddingBottom: '10px' }}
+		/>
 	);
 };

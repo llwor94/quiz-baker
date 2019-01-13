@@ -2,7 +2,7 @@ import React, { useState, Fragment } from 'react';
 import server from '../../utils/server';
 
 import { Question as QuestionWrapper } from '../../components/Quizzes/Questions';
-import { Button } from '../../components/Quizzes/button';
+import Button from '../../components/Styles/Button';
 
 const Question = ({ question, ...props }) => {
 	const [ selected, setSelected ] = useState(null);
@@ -33,7 +33,7 @@ const Question = ({ question, ...props }) => {
 				handleChange={e => setSelected(e.value)}
 				inputSelection={selected}
 			/>
-			<Button handleClick={checkAnswer} text='Submit' disabled={selected === null} />
+			<Button onClick={checkAnswer} label='Submit' disabled={selected === null} full />
 		</Fragment>
 	);
 };
