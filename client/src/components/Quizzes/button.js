@@ -4,7 +4,7 @@ import { Button as StyledButton } from 'primereact/button';
 
 const StyledButtonWrapper = styled.div`
 	display: flex;
-	width: 100%;
+	width: 85%;
 	flex-direction: column;
 	padding-bottom: 10px;
 
