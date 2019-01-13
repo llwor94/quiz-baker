@@ -30,8 +30,11 @@ const StyledLink = styled(Link)`
   margin-left: 20px;
   font-size: 30px;
   font-family: 'Merienda One', cursive;
-  color: #873D48;
   padding-right: 5px;
+  color: ${props => props.theme.header};
+  &:hover{
+	  color:${props => props.theme.topic}
+  }
 `;
 
 const StyledMenu = styled(Menubar)`
