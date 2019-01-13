@@ -53,7 +53,7 @@ const UploadImage = ({ user, getUser }) => {
 			server
 				.patch('/auth/update', { newImg: img_url })
 				.then(response => {
-					getUser();
+					getUser(user.id);
 					setImgUpload(false);
 				})
 				.catch(err => console.log(err));

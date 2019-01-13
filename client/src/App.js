@@ -13,6 +13,7 @@ import QuizPage from './pages/Quiz';
 import ForumPage from './pages/Forum';
 import PostPage from './pages/Post';
 import RegisterPage from './pages/Register';
+import SettingsPage from './pages/Settings';
 import LoginContainer from './containers/Login';
 
 import Header from './components/Header';
@@ -67,6 +68,7 @@ const App = ({ checkUser }) => {
 							<Route exact path='/quizzes/edit/:id' component={UserQuizPage} />
 							<Route exact path='/quizzes/:id' component={QuizPage} />
 							<Route exact path='/forum/:id' component={PostPage} />
+							<Route exact path='/user/settings' component={SettingsPage} />
 						</Switch>
 					</div>
 				</Wrapper>

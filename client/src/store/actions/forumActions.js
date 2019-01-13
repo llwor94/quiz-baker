@@ -1,12 +1,10 @@
-import axios from 'axios';
-
+import server from '../../utils/server';
 import * as actions from './index';
-
-let URL = 'https://lambda-study-app.herokuapp.com/api/posts';
 
 export const fetchPosts = () => dispatch => {
 	dispatch({ type: actions.FETCH_ALL_POSTS_REQUEST });
-	axios({ method: 'get', url: URL })
+	server
+		.get('/posts')
 		.then(({ data }) => {
 			dispatch({ type: actions.FETCH_ALL_POSTS_SUCCESS, payload: data });
 		})
@@ -17,7 +15,8 @@ export const fetchPosts = () => dispatch => {
 
 export const fetchPost = id => dispatch => {
 	dispatch({ type: actions.FETCH_POST_REQUEST });
-	axios({ method: 'get', url: `${URL}/${id}` })
+	server
+		.get(`/posts/${id}`)
 		.then(({ data }) => {
 			dispatch({ type: actions.FETCH_POST_SUCCESS, payload: data });
 		})

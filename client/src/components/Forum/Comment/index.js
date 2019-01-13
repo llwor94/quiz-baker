@@ -145,6 +145,7 @@ export const Comment = ({ comment, user, handleClick }) => (
 				<p>{comment.text}</p>
 			</CommentBody>
 		</div>
-		{user.username === comment.author && <Button label='delete' onClick={handleClick} />}
+		{user &&
+		user.username === comment.author && <Button label='delete' onClick={handleClick} />}
 	</BigWrapper>
 );
