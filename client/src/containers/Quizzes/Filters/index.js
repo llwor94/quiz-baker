@@ -1,9 +1,8 @@
 import React, { Fragment } from 'react';
 import Sort from './Sort';
 import Filter from './Filter';
-import TopicSort from './Topics';
 
-const Filters = ({ quizzes, changeQuizzes, topics }) => {
+const Filters = ({ quizzes, changeQuizzes }) => {
 	return (
 		<Fragment>
 			<div style={{ margin: '10px 0', display: 'flex', justifyContent: 'center' }}>

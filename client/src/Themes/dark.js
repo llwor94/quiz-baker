@@ -5,4 +5,6 @@ export const DarkMode = {
 	link: 'rgb(129, 131, 132)',
 	text: 'rgb(215, 218, 220)',
 	accentText: 'rgb(135, 138, 140)',
+	accentPink: '#dc758f',
+	accentRed: '#873D48',
 };

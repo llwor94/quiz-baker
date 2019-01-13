@@ -6,7 +6,7 @@ import { Button } from '../../components/Quizzes/button';
 
 const Question = ({ question, ...props }) => {
 	const [ selected, setSelected ] = useState(null);
-
+	console.log(selected);
 	const checkAnswer = () => {
 		let option = selected + 1;
 		server
@@ -33,7 +33,7 @@ const Question = ({ question, ...props }) => {
 				handleChange={e => setSelected(e.value)}
 				inputSelection={selected}
 			/>
-			<Button handleClick={checkAnswer} text='Submit' disabled={!selected} />
+			<Button handleClick={checkAnswer} text='Submit' disabled={selected === null} />
 		</Fragment>
 	);
 };

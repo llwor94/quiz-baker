@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import server from '../../utils/server';
 import { Wrapper } from '../../components/Styles/Wrappers/index';
 import { StyledLeaderBoard } from '../../components/Quizzes/Quiz/leaderboard';
-import blankProfile from '../../assets/blank-profile.png';
+
 import styled from 'styled-components';
 
 let LeaderboardWrapper = styled(Wrapper)`
@@ -21,8 +21,9 @@ const LeaderBoard = ({ quiz, ...props }) => {
 		server
 			.get(`quizzes/${quiz.id}/scores`)
 			.then(({ data }) => {
-				console.log(data);
-				setUserScores([ ...data ].sort((a, b) => b.score - a.score));
+				setUserScores(
+					[ ...data ].filter(quiz => quiz.score).sort((a, b) => b.score - a.score),
+				);
 			})
 			.catch(err => console.log(err));
 	}, []);
@@ -30,9 +31,13 @@ const LeaderBoard = ({ quiz, ...props }) => {
 	return (
 		<LeaderboardWrapper style={{ position: 'absolute', top: '0', left: '-250px' }}>
 			Leader Board
-			{userScores.map(userScore => (
-				<StyledLeaderBoard key={userScore.username} userScore={userScore} />
-			))}
+			{userScores.length ? (
+				userScores.map(userScore => (
+					<StyledLeaderBoard key={userScore.username} userScore={userScore} />
+				))
+			) : (
+				<p style={{ fontSize: '12px' }}>No users have taken this quiz yet.</p>
+			)}
 		</LeaderboardWrapper>
 	);
 };

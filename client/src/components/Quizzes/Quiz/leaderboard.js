@@ -23,14 +23,12 @@ const User = styled.div`
 
 export const StyledLeaderBoard = ({ userScore }) => {
 	return (
-		<div>
-			<UserWrapper>
-				<User>
+		<UserWrapper>
+			<User>
 				<img src={userScore.img_url ? userScore.img_url : blankProfile} />
 				<span>{userScore.username}</span>
-				</User>
-				<div>{userScore.score}</div>
-			</UserWrapper>
-		</div>
+			</User>
+			<div>{userScore.score}</div>
+		</UserWrapper>
 	);
 };

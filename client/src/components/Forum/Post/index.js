@@ -59,7 +59,6 @@ export const Post = ({
 	user,
 	...props
 }) => {
-	console.log(author);
 	const footer = (
 		<div>
 			<Button
