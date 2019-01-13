@@ -182,7 +182,6 @@ export const NewPost = ({
           <Button
             style={{ position: "absolute", top: "5px", right: "5px" }}
             icon="pi pi-times"
-            className="p-button-secondary"
             onClick={() => setNewPost(false)}
           />
           <span className="p-float-label" style={{ margin: "10px 0 " }}>
@@ -202,7 +201,6 @@ export const NewPost = ({
           <Button
             label="Submit"
             disabled={!post.title || !post.body}
-            className="p-button-secondary"
             onClick={handleSubmit}
           />
         </NewInner>
