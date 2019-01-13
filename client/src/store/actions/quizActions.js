@@ -12,7 +12,6 @@ export const fetchTopics = () => dispatch => {
 		url: `${URL}/topics`,
 	})
 		.then(({ data }) => {
-			console.log(data);
 			dispatch({ type: actions.FETCH_TOPICS_SUCCESS, payload: data });
 		})
 		.catch(({ response }) =>
@@ -75,6 +74,7 @@ export const fetchQuiz = id => async (dispatch, getState) => {
 	})
 		.then(({ data }) => {
 			dispatch({ type: actions.FETCH_QUIZ_SUCCESS, payload: data });
+			dispatch(fetchQuizQuestions(id));
 		})
 		.catch(({ response }) =>
 			dispatch({ type: actions.FETCH_QUIZ_FAILURE, payload: response.data.message }),
@@ -97,4 +97,26 @@ export const fetchQuizForEdit = id => async (dispatch, getState) => {
 		.catch(({ response }) =>
 			dispatch({ type: actions.FETCH_USER_QUIZ_FAILURE, payload: response.data.message }),
 		);
+};
+
+export const fetchQuizQuestions = id => async (dispatch, getState) => {
+	dispatch({ type: actions.FETCH_QUIZ_QUESTIONS_REQUEST });
+	await checkUser();
+	axios({
+		method: 'get',
+		url: `${URL}/${id}/questions`,
+		headers: {
+			authorization: getState().authReducer.token,
+		},
+	})
+		.then(({ data }) => {
+			dispatch({ type: actions.FETCH_QUIZ_QUESTIONS_SUCCESS, payload: data });
+		})
+		.catch(({ response }) => {
+			console.log(response);
+			dispatch({
+				type: actions.FETCH_QUIZ_QUESTIONS_FAILURE,
+				payload: response,
+			});
+		});
 };

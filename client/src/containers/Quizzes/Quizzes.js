@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import server from '../../utils/server';
 
 import { fetchQuizzes } from '../../store/actions/quizActions';
-import { fetchQuestion } from '../../store/actions/questionActions';
+
 import { Quiz, QuizzesContainer } from '../../components/Quizzes/Quiz';
 
 const Quizzes = ({ quizzes, user, fetchQuizzes, ...props }) => {
@@ -55,4 +55,4 @@ const mapStateToProps = ({ authReducer }) => ({
 	user: authReducer.user,
 });
 
-export default connect(mapStateToProps, { fetchQuestion, fetchQuizzes })(Quizzes);
+export default connect(mapStateToProps, { fetchQuizzes })(Quizzes);

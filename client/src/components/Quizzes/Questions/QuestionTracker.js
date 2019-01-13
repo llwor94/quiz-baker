@@ -18,6 +18,7 @@ const Box = styled.div`
 `;
 
 export const QuestionTracker = ({ questions, currentQuestion }) => {
+	console.log(questions);
 	return (
 		<Wrapper>
 			{questions ? (

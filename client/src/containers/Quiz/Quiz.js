@@ -15,6 +15,7 @@ const Quiz = ({ quiz, questions, user, ...props }) => {
 	const [ currentQuestion, setQuestion ] = useState(null);
 
 	useEffect(() => {
+		console.log('mounted');
 		setQuestionResponse(_.fill(Array(questions.length), { correct: null }));
 	}, []);
 
@@ -85,10 +86,10 @@ const Quiz = ({ quiz, questions, user, ...props }) => {
 	);
 };
 
-const mapStateToProps = ({ quizReducer, questionReducer, authReducer }) => ({
+const mapStateToProps = ({ quizReducer, authReducer }) => ({
 	quiz: quizReducer.quiz,
 	loading: quizReducer.loading,
-	questions: questionReducer.questions,
+	questions: quizReducer.questions,
 	user: authReducer.user,
 });
 

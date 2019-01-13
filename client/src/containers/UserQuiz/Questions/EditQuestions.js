@@ -5,7 +5,7 @@ import _ from 'lodash';
 
 import server from '../../../utils/server';
 
-import { fetchQuizQuestions } from '../../../store/actions/questionActions';
+import { fetchQuizQuestions } from '../../../store/actions/quizActions';
 import { QuestionWrapper, EditQuestionWrapper } from '../../../components/Quizzes/Questions/edit';
 import { MultipleChoice } from '../../../components/Quizzes/Questions/multipleChoice';
 import { TrueFalse } from '../../../components/Quizzes/Questions/trueFalse';
@@ -103,9 +103,7 @@ const EditQuestion = ({ question, quiz, ...props }) => {
 		);
 };
 
-const mapStateToProps = ({ quizReducer, questionReducer }) => ({
-	loading: questionReducer.loading,
-	error: questionReducer.error,
+const mapStateToProps = ({ quizReducer }) => ({
 	quiz: quizReducer.edittingQuiz,
 });
 

@@ -4,7 +4,7 @@ import { Button } from 'primereact/button';
 import _ from 'lodash';
 import server from '../../../utils/server';
 
-import { fetchQuizQuestions } from '../../../store/actions/questionActions';
+import { fetchQuizQuestions } from '../../../store/actions/quizActions';
 import { EditQuestionWrapper } from '../../../components/Quizzes/Questions/edit';
 import { MultipleChoice } from '../../../components/Quizzes/Questions/multipleChoice';
 import { TrueFalse } from '../../../components/Quizzes/Questions/trueFalse';
@@ -91,9 +91,7 @@ const CreateQuestion = ({ fetchQuizQuestions, quiz, ...props }) => {
 	);
 };
 
-const mapStateToProps = ({ questionReducer, quizReducer }) => ({
-	loading: questionReducer.loading,
-	error: questionReducer.error,
+const mapStateToProps = ({ quizReducer }) => ({
 	quiz: quizReducer.edittingQuiz,
 });
 
