@@ -33,11 +33,11 @@ const Questions = ({ questions, ...props }) => {
 	);
 };
 
-const mapStateToProps = ({ quizReducer, questionReducer }) => ({
+const mapStateToProps = ({ quizReducer }) => ({
 	edittingQuiz: quizReducer.edittingQuiz,
 	loading: quizReducer.loading,
 	error: quizReducer.error,
-	questions: questionReducer.questions,
+	questions: quizReducer.questions,
 	topics: quizReducer.topics,
 });
 

@@ -2,7 +2,7 @@ import React, { useEffect, Fragment } from 'react';
 import { connect } from 'react-redux';
 
 import { fetchQuizForEdit, fetchTopics } from '../store/actions/quizActions';
-import { fetchQuizQuestions } from '../store/actions/questionActions';
+import { fetchQuizQuestions } from '../store/actions/quizActions';
 import QuizContainer from '../containers/UserQuiz/Quiz';
 import QuestionsContainer from '../containers/UserQuiz/Questions/';
 
@@ -33,11 +33,11 @@ const UserQuizPage = ({
 	}
 };
 
-const mapStateToProps = ({ quizReducer, questionReducer }) => ({
+const mapStateToProps = ({ quizReducer }) => ({
 	edittingQuiz: quizReducer.edittingQuiz,
 	loading: quizReducer.loading,
 	error: quizReducer.error,
-	questions: questionReducer.questions,
+	questions: quizReducer.questions,
 	topics: quizReducer.topics,
 });
 
