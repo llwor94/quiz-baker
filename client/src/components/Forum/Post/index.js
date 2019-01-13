@@ -173,41 +173,46 @@ const NewInner = styled.div`
 	background-color: ${props => props.theme.secondary};
 `;
 
-export const NewPost = ({ newPost, setNewPost, post, setPost, handleSubmit }) => {
-	return (
-		<NewPostWrapper>
-			{newPost ? (
-				<NewInner>
-					<Button
-						style={{ position: 'absolute', top: '5px', right: '5px' }}
-						icon='pi pi-times'
-						className='p-button-secondary'
-						onClick={() => setNewPost(false)}
-					/>
-					<span className='p-float-label' style={{ margin: '10px 0 ' }}>
-						<InputText
-							id='in'
-							value={post.title}
-							onChange={e => setPost({ ...post, title: e.target.value })}
-						/>
-						<label htmlFor='in'>Title</label>
-					</span>
-					<textarea
-						style={{ marginBottom: '10px' }}
-						rows={5}
-						value={post.body}
-						onChange={e => setPost({ ...post, body: e.target.value })}
-					/>
-					<Button
-						label='Submit'
-						disabled={!post.title || !post.body}
-						className='p-button-secondary'
-						onClick={handleSubmit}
-					/>
-				</NewInner>
-			) : (
-				<Button label='Create a New Post' onClick={() => setNewPost(true)} />
-			)}
-		</NewPostWrapper>
-	);
-};
+
+export const NewPost = ({
+  newPost,
+  setNewPost,
+  post,
+  setPost,
+  handleSubmit
+}) => {
+  return (
+    <NewPostWrapper>
+      {newPost ? (
+        <NewInner>
+          <Button
+            style={{ position: "absolute", top: "5px", right: "5px" }}
+            icon="pi pi-times"
+            onClick={() => setNewPost(false)}
+          />
+          <span className="p-float-label" style={{ margin: "10px 0 " }}>
+            <InputText
+              id="in"
+              value={post.title}
+              onChange={e => setPost({ ...post, title: e.target.value })}
+            />
+            <label htmlFor="in">Title</label>
+          </span>
+          <textarea
+            style={{ marginBottom: "10px" }}
+            rows={5}
+            value={post.body}
+            onChange={e => setPost({ ...post, body: e.target.value })}
+          />
+          <Button
+            label="Submit"
+            disabled={!post.title || !post.body}
+            onClick={handleSubmit}
+          />
+        </NewInner>
+      ) : (
+        <Button label="Create a New Post" onClick={() => setNewPost(true)} />
+      )}
+    </NewPostWrapper>
+  );
+}
