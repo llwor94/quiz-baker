@@ -51,6 +51,10 @@ const UserName = styled.a`
 	padding-left: 3px;
 `;
 
+const CommentCount = styled(FooterLink)`
+	color: ${props => props.theme.topic}
+`;
+
 export const Post = ({
 	post,
 	handleClick,
@@ -100,9 +104,9 @@ export const Post = ({
 					</BodyWrapper>
 				</div>
 				<FooterWrapper>
-					<FooterLink style={{ cursor: 'default', fontWeight: 'bold' }}>
+					<CommentCount style={{ cursor: 'default', fontWeight: 'bold' }}>
 						{comment_count === 1 ? '1 comment' : `${comment_count} comments`}
-					</FooterLink>
+					</CommentCount>
 					<FooterLink onClick={handleCopy}>Share</FooterLink>
 					{user &&
 						(user.username === username && (
