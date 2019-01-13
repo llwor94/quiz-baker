@@ -2,6 +2,7 @@ import React, { useEffect, useState, Fragment } from 'react';
 import { connect } from 'react-redux';
 import server from '../../utils/server';
 import _ from 'lodash';
+import { Growl } from 'primereact/growl';
 
 import { fetchQuiz } from '../../store/actions/quizActions';
 import Question from './Question';
@@ -13,9 +14,8 @@ import { Button } from '../../components/Quizzes/button';
 const Quiz = ({ quiz, questions, user, ...props }) => {
 	const [ questionResponse, setQuestionResponse ] = useState(null);
 	const [ currentQuestion, setQuestion ] = useState(null);
-
+	const growl = React.createRef();
 	useEffect(() => {
-		console.log('mounted');
 		setQuestionResponse(_.fill(Array(questions.length), { correct: null }));
 	}, []);
 
@@ -24,6 +24,13 @@ const Quiz = ({ quiz, questions, user, ...props }) => {
 		newQuestions[currentQuestion] = newQuestion;
 		setQuestionResponse(newQuestions);
 		setQuestion(currentQuestion + 1);
+	};
+
+	const handleCopy = id => {
+		let value = `http://localhost:3000/quizzes/${id}`;
+		navigator.clipboard.writeText(value).then(() => {
+			growl.current.show({ severity: 'info', summary: 'Link Copied!' });
+		});
 	};
 
 	const handleFavoriteToggle = () => {
@@ -55,6 +62,7 @@ const Quiz = ({ quiz, questions, user, ...props }) => {
 
 	return (
 		<Fragment>
+			<Growl ref={growl} />
 			{currentQuestion === null ? (
 				<Fragment>
 					<QuizWrapper
@@ -62,6 +70,7 @@ const Quiz = ({ quiz, questions, user, ...props }) => {
 						user={user}
 						handleFavoriteToggle={() => handleFavoriteToggle(quiz)}
 						handleVote={val => handleUserVote(val)}
+						handleCopy={() => handleCopy(quiz.id)}
 					/>
 					<Button
 						currentQuestion={currentQuestion}

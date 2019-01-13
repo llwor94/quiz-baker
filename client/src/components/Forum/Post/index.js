@@ -58,7 +58,7 @@ const UserName = styled.a`
 `;
 
 export const Post = ({
-	post: { title, author, body, created_at, comment_count, author_img, id },
+	post,
 	handleClick,
 	handleDelete,
 	setModalVisable,
@@ -67,6 +67,13 @@ export const Post = ({
 	user,
 	...props
 }) => {
+	let comment_count = post.hasOwnProperty('comment_count')
+		? post.comment_count
+		: post.comments.length;
+	let img = post.author.img_url
+		? post.author.img_url
+		: post.author_img ? post.author_img : blankProfile;
+	let username = post.author.username ? post.author.username : post.author;
 	const footer = (
 		<div>
 			<Button
@@ -88,25 +95,15 @@ export const Post = ({
 			<InnerWrapper>
 				<Header>
 					<UserNameWrapper>
-						<img
-							src={
-								author.img_url ? (
-									author.img_url
-								) : author_img ? (
-									author_img
-								) : (
-									blankProfile
-								)
-							}
-						/>
-						Posted by <UserName>{author.username ? author.username : author}</UserName>
+						<img src={img} />
+						Posted by <UserName>{username}</UserName>
 					</UserNameWrapper>
 					<span style={{ padding: '0 3px' }}>&#8226;</span>
-					{moment(created_at).fromNow()}
+					{moment(post.created_at).fromNow()}
 				</Header>
-				<Title onClick={handleClick}>{title}</Title>
+				<Title onClick={handleClick}>{post.title}</Title>
 				<BodyWrapper>
-					<p>{body}</p>
+					<p>{post.body}</p>
 				</BodyWrapper>
 				<FooterWrapper>
 					<FooterLink style={{ cursor: 'default', fontWeight: 'bold' }}>
@@ -114,7 +111,7 @@ export const Post = ({
 					</FooterLink>
 					<FooterLink onClick={handleCopy}>Share</FooterLink>
 					{user &&
-						(user.username === author && (
+						(user.username === username && (
 							<FooterLink label='delete' onClick={() => setModalVisable(true)}>
 								Delete
 							</FooterLink>

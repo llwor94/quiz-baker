@@ -1,12 +1,13 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import server from '../../utils/server';
-
+import { Growl } from 'primereact/growl';
 import { fetchQuizzes } from '../../store/actions/quizActions';
 
 import { Quiz, QuizzesContainer } from '../../components/Quizzes/Quiz';
 
 const Quizzes = ({ quizzes, user, fetchQuizzes, ...props }) => {
+	const growl = React.createRef();
 	const handleFavoriteToggle = quiz => {
 		server
 			.patch(`quizzes/${quiz.id}`, { favorite: !quiz.favorite })
@@ -14,6 +15,13 @@ const Quizzes = ({ quizzes, user, fetchQuizzes, ...props }) => {
 				fetchQuizzes();
 			})
 			.catch(err => console.log(err));
+	};
+
+	const handleCopy = id => {
+		let value = `http://localhost:3000/quizzes/${id}`;
+		navigator.clipboard.writeText(value).then(() => {
+			growl.current.show({ severity: 'info', summary: 'Link Copied!' });
+		});
 	};
 
 	const handleUserVote = (quiz, val) => {
@@ -37,11 +45,13 @@ const Quizzes = ({ quizzes, user, fetchQuizzes, ...props }) => {
 
 	return (
 		<QuizzesContainer>
+			<Growl ref={growl} />
 			{quizzes.map(quiz => (
 				<Quiz
 					key={quiz.id}
 					quiz={quiz}
 					user={user}
+					handleCopy={() => handleCopy(quiz.id)}
 					handleClick={() => pushQuiz(quiz.id)}
 					mainPage={true}
 					handleFavoriteToggle={() => handleFavoriteToggle(quiz)}

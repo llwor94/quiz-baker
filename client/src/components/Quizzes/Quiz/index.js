@@ -123,7 +123,15 @@ export const QuizzesContainer = styled.div`
 	align-items: center;
 `;
 
-export const Quiz = ({ quiz, user, handleClick, handleFavoriteToggle, handleVote, mainPage }) => {
+export const Quiz = ({
+	quiz,
+	user,
+	handleClick,
+	handleFavoriteToggle,
+	handleVote,
+	mainPage,
+	handleCopy,
+}) => {
 	return (
 		<QuizWrapper hasDescription={quiz.description} main={mainPage}>
 			<div style={{ display: 'flex' }}>
@@ -177,7 +185,7 @@ export const Quiz = ({ quiz, user, handleClick, handleFavoriteToggle, handleVote
 					<FooterWrapper>
 						<Topic isQuizTopic>{quiz.topic}</Topic>
 						<FooterLink>{quiz.question_count} questions</FooterLink>
-						<FooterLink>Share</FooterLink>
+						<FooterLink onClick={handleCopy}>Share</FooterLink>
 					</FooterWrapper>
 				</InnerWrapper>
 			</div>
