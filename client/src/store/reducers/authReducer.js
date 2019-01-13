@@ -7,6 +7,9 @@ import {
 	LOG_IN_SUCCESS,
 	LOG_OUT_REQUEST,
 	CHECK_USER_SUCCESS,
+	GET_USER_REQUEST,
+	GET_USER_FAILURE,
+	GET_USER_SUCCESS,
 } from '../actions';
 
 const initialState = {
@@ -64,6 +67,17 @@ const authReducer = (state = initialState, { payload, type }) => {
 				...state,
 				user: payload.user,
 				token: payload.token,
+			};
+		case GET_USER_REQUEST:
+			return {
+				...state,
+				loading: true,
+			};
+		case GET_USER_SUCCESS:
+			return {
+				...state,
+				loading: false,
+				user: payload,
 			};
 		default:
 			return state;

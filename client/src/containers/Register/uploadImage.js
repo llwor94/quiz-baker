@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import { connect } from 'react-redux';
 import blankProfile from '../../assets/blank-profile.png';
 import server from '../../utils/server';
@@ -29,9 +29,15 @@ const ProfileImage = styled.img`
 	border-radius: 50%;
 `;
 
-const UploadImage = ({ user, getUser }) => {
+const UploadImage = ({ user, getUser, doneEditting }) => {
 	const [ img_url, setImg ] = useState(null);
-	const [ imgUpload, setImgUpload ] = useState(true);
+
+	useEffect(() => {
+		if (user.img_url) {
+			setImg(user.img_url);
+		}
+	}, []);
+
 	const handleUploadFile = async e => {
 		const files = e.target.files;
 		const data = new FormData();
@@ -48,45 +54,36 @@ const UploadImage = ({ user, getUser }) => {
 	};
 
 	const handleEditUser = () => {
-		console.log(typeof img_url);
 		if (img_url) {
 			server
 				.patch('/auth/update', { newImg: img_url })
 				.then(response => {
 					getUser(user.id);
-					setImgUpload(false);
+					doneEditting();
 				})
 				.catch(err => console.log(err));
-		} else setImgUpload(false);
+		}
 	};
-	if (imgUpload)
-		return (
-			<Fragment>
-				<QuestWrapper>
-					<div>Set a profile image?</div>
-					<ProfileImage src={img_url ? img_url : blankProfile} />
 
-					<Label for='file'>Choose a file</Label>
-					<Input
-						type='file'
-						id='file'
-						name='file'
-						placeholder={img_url ? 'Choose a different Image' : 'Upload an Image'}
-						accept='image/*'
-						onChange={handleUploadFile}
-					/>
-				</QuestWrapper>
-				<Button label={img_url ? 'done' : 'skip'} onClick={handleEditUser} />
-			</Fragment>
-		);
-	else
-		return (
+	return (
+		<Fragment>
 			<QuestWrapper>
-				<div>Success!</div>
-				<div>Welcome {user.username}</div>
-				<ProfileImage src={user.img_url} />
+				<div>Set a profile image?</div>
+				<ProfileImage src={img_url ? img_url : blankProfile} />
+
+				<Label for='file'>Choose a file</Label>
+				<Input
+					type='file'
+					id='file'
+					name='file'
+					placeholder={img_url ? 'Choose a different Image' : 'Upload an Image'}
+					accept='image/*'
+					onChange={handleUploadFile}
+				/>
 			</QuestWrapper>
-		);
+			<Button label={img_url ? 'done' : 'skip'} onClick={handleEditUser} />
+		</Fragment>
+	);
 };
 
 const mapStateToProps = ({ authReducer }) => ({

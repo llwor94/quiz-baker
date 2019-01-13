@@ -51,7 +51,7 @@ export const getUser = id => dispatch => {
 		.then(({ data }) => {
 			let newUser = { ...userData, user: data };
 			localStorage.setItem('user', JSON.stringify(newUser));
-			dispatch({ type: actions.GET_USER_SUCCESS, payload: data[0] });
+			dispatch({ type: actions.GET_USER_SUCCESS, payload: data });
 		})
 		.catch(({ response }) => console.log(response));
 };
