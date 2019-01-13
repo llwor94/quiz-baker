@@ -131,6 +131,22 @@ const NewPostWrapper = styled.div`
 	width: 100%;
 	flex-direction: column;
 	padding-bottom: 10px;
+	.p-button {
+		background-color: #dc758f;
+		border: #dc758f;
+
+		&:enabled:hover {
+			background-color: #ad546b;
+			border: #ad546b;
+		}
+		&:enabled:focus {
+			box-shadow: 0 0 0 0.2em #ad546b;
+		}
+	}
+
+	.p-inputtext:enabled:focus:not(.p-error) {
+		border-color: green;
+	}
 `;
 
 const NewInner = styled.div`
