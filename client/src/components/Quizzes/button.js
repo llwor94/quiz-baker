@@ -23,10 +23,10 @@ const StyledButtonWrapper = styled.div`
 	}
 `;
 
-export const Button = ({ handleClick, text }) => {
+export const Button = ({ handleClick, text, disabled }) => {
 	return (
 		<StyledButtonWrapper>
-			<StyledButton label={text} onClick={handleClick} />
+			<StyledButton label={text} onClick={handleClick} disabled={disabled} />
 		</StyledButtonWrapper>
 	);
 };
