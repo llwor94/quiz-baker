@@ -33,7 +33,7 @@ const Question = ({ question, ...props }) => {
 				handleChange={e => setSelected(e.value)}
 				inputSelection={selected}
 			/>
-			<Button handleClick={checkAnswer} text='Submit' />
+			<Button handleClick={checkAnswer} text='Submit' disabled={!selected} />
 		</Fragment>
 	);
 };
