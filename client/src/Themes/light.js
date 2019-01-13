@@ -5,5 +5,6 @@ export const LightMode = {
 	link: 'rgb(120, 124, 126)',
 	text: 'rgb(34, 34, 34)',
 	accentText: 'rgb(135, 138, 140)',
-	
+	accentPink: '#dc758f',
+	accentRed: '#873D48',
 };

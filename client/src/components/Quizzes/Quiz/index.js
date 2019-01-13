@@ -65,8 +65,8 @@ const Header = styled.div`
 		font-size: 12px;
 		margin-top: 6px;
 	}
-	span{
-		color: #873D48;
+	span {
+		color: #873d48;
 		font-weight: 700;
 	}
 `;
@@ -124,7 +124,6 @@ export const QuizzesContainer = styled.div`
 `;
 
 export const Quiz = ({ quiz, user, handleClick, handleFavoriteToggle, handleVote, mainPage }) => {
-	console.log(quiz);
 	return (
 		<QuizWrapper hasDescription={quiz.description} main={mainPage}>
 			<div style={{ display: 'flex' }}>
@@ -157,8 +156,7 @@ export const Quiz = ({ quiz, user, handleClick, handleFavoriteToggle, handleVote
 								<p>
 									Created by{' '}
 									<span>
-
-									{quiz.author.username ? quiz.author.username : quiz.author}
+										{quiz.author.username ? quiz.author.username : quiz.author}
 									</span>
 								</p>
 							</div>
@@ -166,7 +164,13 @@ export const Quiz = ({ quiz, user, handleClick, handleFavoriteToggle, handleVote
 
 						{quiz.description && (
 							<DescriptionWrapper>
-								<p>{quiz.description.length > 70 ? quiz.description.slice(0, 150) + "..." : quiz.description}</p>
+								<p>
+									{quiz.description.length > 70 ? (
+										quiz.description.slice(0, 150) + '...'
+									) : (
+										quiz.description
+									)}
+								</p>
 							</DescriptionWrapper>
 						)}
 					</div>

@@ -11,14 +11,12 @@ const Quizzes = ({ quizzes, user, fetchQuizzes, ...props }) => {
 		server
 			.patch(`quizzes/${quiz.id}`, { favorite: !quiz.favorite })
 			.then(({ data }) => {
-				console.log(data);
 				fetchQuizzes();
 			})
 			.catch(err => console.log(err));
 	};
 
 	const handleUserVote = (quiz, val) => {
-		console.log(quiz, val);
 		let user_vote;
 		if (val === quiz.user_vote) {
 			user_vote = 0;
@@ -28,7 +26,6 @@ const Quizzes = ({ quizzes, user, fetchQuizzes, ...props }) => {
 		server
 			.patch(`quizzes/${quiz.id}`, { vote: user_vote })
 			.then(({ data }) => {
-				console.log(data);
 				fetchQuizzes();
 			})
 			.catch(err => console.log(err));
@@ -37,8 +34,6 @@ const Quizzes = ({ quizzes, user, fetchQuizzes, ...props }) => {
 	const pushQuiz = id => {
 		props.history.push(`quizzes/${id}`);
 	};
-
-	console.log(quizzes);
 
 	return (
 		<QuizzesContainer>

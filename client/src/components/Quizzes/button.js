@@ -7,7 +7,6 @@ const StyledButtonWrapper = styled.div`
 	width: 100%;
 	flex-direction: column;
 	padding-bottom: 10px;
-	background-color: '#DC758F';
 
 	.p-button {
 		background-color: #dc758f;
