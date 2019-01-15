@@ -1,12 +1,10 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import RegisterForm from '../containers/Register/RegisterForm';
-import UploadImage from '../containers/Register/uploadImage';
+import RegisterContainer from '../containers/Register';
 
 const Register = ({ user, ...props }) => {
-	if (!user) return <RegisterForm {...props} />;
-	else return <UploadImage />;
+	return <RegisterContainer />;
 };
 
 const mapStateToProps = ({ authReducer }) => ({

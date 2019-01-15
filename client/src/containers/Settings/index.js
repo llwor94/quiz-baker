@@ -1,10 +1,11 @@
 import React, { useEffect, useState, Fragment } from 'react';
 import { connect } from 'react-redux';
 import server from '../../utils/server';
-import blankProfile from '../../assets/blank-profile.png';
+
 import { getUser } from '../../store/actions/authActions';
-import UploadImage from '../Register/uploadImage';
+import ImageUpload from '../ImageUpload';
 import Button from '../../components/Styles/Button';
+import { LargeImage } from '../../components/Styles/Image';
 import UpdateUsername from './updateUsername';
 
 const Settings = ({ user, getUser }) => {
@@ -13,19 +14,27 @@ const Settings = ({ user, getUser }) => {
 	useEffect(() => {
 		getUser(user.id);
 	}, []);
-	if (imageUpdate) return <UploadImage doneEditting={() => setImageUpdate(false)} />;
-	else
-		return (
-			<div style={{ display: 'flex', flexDirection: 'column' }}>
-				<div>Welcome, {user.username}!</div>
-				<img
-					src={user.img_url ? user.img_url : blankProfile}
-					style={{ width: '300px', height: '300px', borderRadius: '50%' }}
-				/>
-				<Button label='Update Image?' onClick={() => setImageUpdate(true)} />
-				<UpdateUsername />
-			</div>
-		);
+	return (
+		<div style={{ display: 'flex', flexDirection: 'column' }}>
+			<div>Welcome, {user.username}!</div>
+			{imageUpdate ? (
+				<ImageUpload doneEditting={() => setImageUpdate(false)}>
+					<Button
+						icon='pi pi-times'
+						style={{ position: 'absolute', top: '5px', right: '5px' }}
+						onClick={() => setImageUpdate(false)}
+					/>
+				</ImageUpload>
+			) : (
+				<Fragment>
+					<LargeImage src={user.img_url} />
+					<Button label='Update Image?' onClick={() => setImageUpdate(true)} />
+				</Fragment>
+			)}
+
+			<UpdateUsername />
+		</div>
+	);
 };
 
 const mapStateToProps = ({ authReducer }) => ({

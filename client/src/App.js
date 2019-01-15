@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { connect } from 'react-redux';
 import { Route, Switch, withRouter } from 'react-router-dom';
+
 import 'primereact/resources/themes/nova-light/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
