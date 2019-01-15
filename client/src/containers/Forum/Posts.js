@@ -5,6 +5,7 @@ import server from '../../utils/server';
 import { fetchPosts } from '../../store/actions/forumActions';
 import { NewPost } from '../../components/Forum/Post';
 import Post from '../Post';
+import Button from '../../components/Styles/Button';
 
 const Posts = ({ fetchPosts, posts, user, ...props }) => {
 	const [ newPost, setNewPost ] = useState(false);
@@ -26,23 +27,21 @@ const Posts = ({ fetchPosts, posts, user, ...props }) => {
 	};
 
 	return (
-		<Fragment>
-			<div style={{ width: '500px' }}>
-				{user && (
-					<NewPost
-						newPost={newPost}
-						setNewPost={setNewPost}
-						post={post}
-						setPost={setPost}
-						handleSubmit={addPost}
-						{...props}
-					/>
-				)}
-				{posts.map(post => (
-					<Post key={post.id} user={user} post={post} getPost={() => getPost(post.id)} />
-				))}{' '}
-			</div>
-		</Fragment>
+		<div style={{ width: '500px' }}>
+			{user && (
+				<NewPost
+					newPost={newPost}
+					setNewPost={setNewPost}
+					post={post}
+					setPost={setPost}
+					handleSubmit={addPost}
+					{...props}
+				/>
+			)}
+			{posts.map(post => (
+				<Post key={post.id} user={user} post={post} getPost={() => getPost(post.id)} />
+			))}{' '}
+		</div>
 	);
 };
 

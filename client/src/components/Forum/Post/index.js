@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
 
@@ -132,12 +132,15 @@ const NewPostWrapper = styled.div`
 	display: flex;
 	width: 100%;
 	flex-direction: column;
+
 	padding-bottom: 10px;
 `;
 
 const NewInner = styled.div`
 	display: flex;
+	width: 100%;
 	border-radius: 4px;
+	align-items: flex-start;
 	border: 1px solid;
 	border-color: ${props => props.theme.accent};
 	flex-direction: column;
@@ -147,6 +150,16 @@ const NewInner = styled.div`
 `;
 
 export const NewPost = ({ newPost, setNewPost, post, setPost, handleSubmit }) => {
+	let input = React.createRef();
+	useEffect(
+		() => {
+			if (newPost) {
+				input.current.focus();
+			}
+		},
+		[ newPost ],
+	);
+
 	return (
 		<NewPostWrapper>
 			{newPost ? (
@@ -157,6 +170,7 @@ export const NewPost = ({ newPost, setNewPost, post, setPost, handleSubmit }) =>
 						onClick={() => setNewPost(false)}
 					/>
 					<Input
+						inputRef={input}
 						value={post.title}
 						onChange={e => setPost({ ...post, title: e.target.value })}
 						label='Title'
