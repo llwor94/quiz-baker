@@ -93,6 +93,7 @@ const Header = ({ user, setValue, darkMode, ...props }) => {
 					label: 'Logout',
 					command: () => {
 						props.logout();
+						props.history.push('/quizzes');
 					},
 				},
 			],
