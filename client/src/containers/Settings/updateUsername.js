@@ -47,7 +47,6 @@ const UpdateUsername = ({ user, getUser }) => {
 	if (usernameUpdate)
 		return (
 			<div>
-				<Input value={username} onChange={handleChange} />
 				{error && <p>{error}</p>}
 				<Button
 					secondary
@@ -56,6 +55,7 @@ const UpdateUsername = ({ user, getUser }) => {
 					onClick={handleUpdate}
 				/>
 				<Button secondary icon='pi pi-times' onClick={() => setUsernameUpdate(false)} />
+				<Input value={username} onChange={handleChange} />
 			</div>
 		);
 	else
