@@ -52,7 +52,7 @@ const UserName = styled.a`
 `;
 
 const CommentCount = styled(FooterLink)`
-	color: ${props => props.theme.topic}
+	color: ${props => props.theme.aqua}
 `;
 
 export const Post = ({

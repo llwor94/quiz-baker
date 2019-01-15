@@ -33,7 +33,7 @@ const StyledLink = styled(Link)`
   padding-right: 5px;
   color: ${props => props.theme.header};
   &:hover{
-	  color:${props => props.theme.topic}
+	  color:${props => props.theme.aqua}
   }
 `;
 

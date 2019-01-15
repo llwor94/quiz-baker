@@ -25,6 +25,7 @@ const Comments = ({ user, post, fetchPost, ...props }) => {
 			.then(({ data }) => {
 				console.log(data);
 				setCommentInput('');
+				setNewComment(false);
 				fetchPost(post.id);
 			})
 			.catch(error => console.log(error));

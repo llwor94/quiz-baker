@@ -25,18 +25,20 @@ const Quizzes = ({ quizzes, user, fetchQuizzes, ...props }) => {
 	};
 
 	const handleUserVote = (quiz, val) => {
-		let user_vote;
-		if (val === quiz.user_vote) {
-			user_vote = 0;
-		} else {
-			user_vote = val;
+		if (user) {
+			let user_vote;
+			if (val === quiz.user_vote) {
+				user_vote = 0;
+			} else {
+				user_vote = val;
+			}
+			server
+				.patch(`quizzes/${quiz.id}`, { vote: user_vote })
+				.then(({ data }) => {
+					fetchQuizzes();
+				})
+				.catch(err => console.log(err));
 		}
-		server
-			.patch(`quizzes/${quiz.id}`, { vote: user_vote })
-			.then(({ data }) => {
-				fetchQuizzes();
-			})
-			.catch(err => console.log(err));
 	};
 
 	const pushQuiz = id => {
