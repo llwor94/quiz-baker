@@ -47,6 +47,6 @@ const StyledTextArea = styled.textarea`
 	}
 `;
 
-export const TextArea = ({ value, onChange, name }) => (
-	<StyledTextArea value={value} onChange={onChange} name={name} />
+export const TextArea = ({ value, onChange, name, inputRef }) => (
+	<StyledTextArea value={value} onChange={onChange} name={name} rows='5' ref={inputRef} />
 );

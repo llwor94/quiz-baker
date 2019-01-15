@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
 
@@ -12,7 +12,7 @@ const NewCommentArea = styled.div`
 	border-radius: 4px;
 	border: 1px solid;
 	border-color: ${props => props.theme.accent};
-	padding: 10px;
+	padding: 20px 10px;
 	position: relative;
 	background-color: ${props => props.theme.secondary};
 `;
@@ -24,21 +24,26 @@ export const CommentArea = styled.div`
 	width: 500px;
 	border-color: ${props => props.theme.accent};
 
-	margin-bottom: 10px;
+	margin: 10px 0;
 	background-color: ${props => props.theme.secondary};
 `;
 
-export const NewComment = ({ user, commentInput, setCommentInput, handleClick, handleClose }) => (
-	<NewCommentArea>
-		<Button
-			style={{ position: 'absolute', top: '5px', right: '5px' }}
-			icon='pi pi-times'
-			onClick={handleClose}
-		/>
-		<TextArea value={commentInput} onChange={e => setCommentInput(e.target.value)} />
-		<Button label='Comment' onClick={handleClick} disabled={!commentInput} />
-	</NewCommentArea>
-);
+export const NewComment = ({ user, commentInput, setCommentInput, handleClick, handleClose }) => {
+	let input = React.createRef();
+	useEffect(() => {
+		input.current.focus();
+	}, []);
+	return (
+		<NewCommentArea onBlur={handleClose}>
+			<TextArea
+				inputRef={input}
+				value={commentInput}
+				onChange={e => setCommentInput(e.target.value)}
+			/>
+			<Button label='Comment' onClick={handleClick} disabled={!commentInput} />
+		</NewCommentArea>
+	);
+};
 
 const BigWrapper = styled.div`
 	display: flex;
