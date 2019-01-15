@@ -61,11 +61,13 @@ const UploadImage = ({ user, doneEditting, children }) => {
 		openUploadWidget(uploadOptions, (error, photo) => {
 			if (!error) {
 				console.log(photo);
+				setImg(photo[0].secure_url);
 			} else {
 				console.log(error);
 			}
 		});
 	};
+	console.log(img_url);
 
 	const handleEditUser = () => {
 		if (img_url) {
