@@ -49,15 +49,15 @@ const UpdateUsername = ({ user, getUser }) => {
 			<div>
 				<Input value={username} onChange={handleChange} />
 				{error && <p>{error}</p>}
-				<Button
+				<Button secondary
 					label='Update'
 					disabled={!username || error || username === user.username}
 					onClick={handleUpdate}
 				/>
-				<Button icon='pi pi-times' onClick={() => setUsernameUpdate(false)} />
+				<Button secondary icon='pi pi-times' onClick={() => setUsernameUpdate(false)} />
 			</div>
 		);
-	else return <Button label='Update Username?' onClick={() => setUsernameUpdate(true)} />;
+	else return <Button secondary label='Update Username?' onClick={() => setUsernameUpdate(true)} />;
 };
 const mapStateToProps = ({ authReducer }) => ({
 	user: authReducer.user,
