@@ -44,7 +44,7 @@ const StyledMenu = styled.div`
 	display: flex;
 	justify-content: space-between;
 	top: 70px;
-	padding: 12px;
+	padding: 12px 25px;
 	z-index: 100;
 	width: 100%;
 	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
