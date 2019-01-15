@@ -23,7 +23,6 @@ const UploadImage = ({ user, doneEditting, children }) => {
 			sources: [ 'local', 'url', 'camera' ],
 			multiple: false,
 			croppingAspectRatio: 1,
-			theme: 'white',
 			gravity: 'custom',
 		};
 		openUploadWidget(uploadOptions, (error, photo) => {
