@@ -43,8 +43,6 @@ const GlobalStyle = createGlobalStyle`
 const Wrapper = styled.div`
 	width: 100%;
 	padding: 125px 24px 20px;
-	display: flex;
-	justify-content: center;
 `;
 
 const App = ({ checkUser }) => {
@@ -65,8 +63,6 @@ const App = ({ checkUser }) => {
 							<Route exact path='/register' component={RegisterPage} />
 							<Route exact path='/forum' component={ForumPage} />
 							<Route exact path={[ '/', '/quizzes' ]} component={QuizzesPage} />
-							{/* <Route exact path='/quizzes/user/:id' component={UserQuizzesPage} />
-							<Route exact path='/quizzes/edit/:id' component={UserQuizPage} /> */}
 							<Route exact path='/quizzes/:id' component={QuizPage} />
 							<Route exact path='/forum/:id' component={PostPage} />
 							<Route exact path='/user/settings' component={SettingsPage} />

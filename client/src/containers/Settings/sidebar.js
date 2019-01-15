@@ -26,7 +26,7 @@ const Sidebar = ({ user, getUser, ...props }) => {
 		);
 	else
 		return (
-			<div style={{ display: 'flex', flexDirection: 'column' }}>
+			<div style={{ display: 'flex', flexDirection: 'column', position: 'absolute', left: 0, top: 0, borderRight: '1px solid black', height: '100%' }}>
 				<div>Welcome, {user.username}!</div>
 
 				<LargeImage src={user.img_url} />
