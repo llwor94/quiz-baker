@@ -34,21 +34,6 @@ const UploadImage = ({ user, doneEditting, children }) => {
 		}
 	}, []);
 
-	const handleUploadFile = async e => {
-		const files = e.target.files;
-		const data = new FormData();
-		data.append('file', files[0]);
-		data.append('upload_preset', 'quizbaker');
-
-		const res = await fetch('https://api.cloudinary.com/v1_1/dcwn6afsq/image/upload', {
-			method: 'POST',
-			body: data,
-		});
-		const file = await res.json();
-		console.log(file);
-		setImg(file.secure_url);
-	};
-
 	const handleUpload = () => {
 		const uploadOptions = {
 			cropping: true,
@@ -88,15 +73,7 @@ const UploadImage = ({ user, doneEditting, children }) => {
 				<QuestWrapper>
 					<LargeImage src={img_url} />
 					<Button label='Upload Image?' onClick={handleUpload} />
-					{/* <Label for='file'>Choose a file</Label> */}
-					{/* <Input
-						type='file'
-						id='file'
-						name='file'
-						placeholder={img_url ? 'Choose a different Image' : 'Upload an Image'}
-						accept='image/*'
-						onChange={handleUploadFile}
-					/> */}
+
 					<Button label={img_url ? 'done' : 'skip'} onClick={handleEditUser} />
 				</QuestWrapper>
 			</div>
