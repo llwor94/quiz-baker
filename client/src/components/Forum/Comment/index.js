@@ -33,8 +33,17 @@ export const NewComment = ({ user, commentInput, setCommentInput, handleClick, h
 	useEffect(() => {
 		input.current.focus();
 	}, []);
+
+	const handleBlur = e => {
+		let currentTarget = e.currentTarget;
+		setTimeout(() => {
+			if (!currentTarget.contains(document.activeElement)) {
+				handleClose();
+			}
+		}, 0);
+	};
 	return (
-		<NewCommentArea onBlur={handleClose}>
+		<NewCommentArea onBlur={handleBlur}>
 			<TextArea
 				inputRef={input}
 				value={commentInput}
