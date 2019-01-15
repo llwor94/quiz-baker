@@ -5,7 +5,7 @@ export const openUploadWidget = (options, callback) => {
 	options.uploadPreset = process.env.REACT_APP_UPLOAD_PRESET;
 	options.styles = {
 		palette: {
-			window: '#FFFFFF',
+			window: '#FFF',
 			sourceBg: '#FFFFFF',
 			windowBorder: '#90a0b3',
 			tabIcon: '#00BA96',
@@ -20,11 +20,7 @@ export const openUploadWidget = (options, callback) => {
 			textLight: '#FFFFFF',
 		},
 		fonts: {
-			default: null,
-			"'Raleway', sans-serif": {
-				url: 'https://fonts.googleapis.com/css?family=Raleway',
-				active: true,
-			},
+			"'Raleway', sans-serif": 'https://fonts.googleapis.com/css?family=Raleway',
 		},
 	};
 	const scOptions = Util.withSnakeCaseKeys(options);

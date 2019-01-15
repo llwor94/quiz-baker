@@ -17,6 +17,15 @@ const UploadImage = ({ user, doneEditting, children }) => {
 		}
 	}, []);
 
+	useEffect(
+		() => {
+			if (user.img_url) {
+				setImg(user.img_url);
+			}
+		},
+		[ user.img_url ],
+	);
+
 	const handleUpload = () => {
 		const uploadOptions = {
 			cropping: true,
@@ -24,13 +33,12 @@ const UploadImage = ({ user, doneEditting, children }) => {
 			multiple: false,
 			croppingAspectRatio: 1,
 			gravity: 'custom',
+			croppingShowBackButton: false,
 		};
-		openUploadWidget(uploadOptions, (error, photo) => {
-			if (!error) {
-				console.log(photo);
-				setImg(photo[0].secure_url);
-			} else {
-				console.log(error);
+		openUploadWidget(uploadOptions, (error, result) => {
+			if (result.event === 'success') {
+				console.log(result.info);
+				setImg(result.info.secure_url);
 			}
 		});
 	};
