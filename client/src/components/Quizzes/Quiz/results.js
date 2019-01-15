@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Wrapper } from '../../Styles/Wrappers/index';
 
 const SideColor = styled.div`
-	width: 40px;
+	min-width: 40px;
 	background-color: ${props => (props.correct ? '#00ba96' : '#873D48')};
 
 	i {
@@ -21,6 +21,9 @@ const InnerWrapper = styled.div`
 	padding: 8px;
 	flex-grow: 1;
 	max-width: 606px;
+	h3{
+		margin-bottom: 15px;
+	}
 `;
 
 const NumberWrapper = styled.div`
