@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import server from '../../utils/server';
+import server from '../../../utils/server';
 
-import { fetchUserQuizzes } from '../../store/actions/quizActions';
-import { Quiz } from '../../components/Quizzes/Quiz/userQuiz';
+import { fetchUserQuizzes } from '../../../store/actions/quizActions';
+import { Quiz } from '../../../components/Quizzes/Quiz/userQuiz';
 
 const Quizzes = ({ quizzes, fetchUserQuizzes, ...props }) => {
 	const deleteQuiz = id => {

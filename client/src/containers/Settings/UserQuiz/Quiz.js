@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import server from '../../utils/server';
+import server from '../../../utils/server';
 
-import { fetchQuizForEdit, fetchTopics } from '../../store/actions/quizActions';
-import { EditUserQuiz } from '../../components/Quizzes/Quiz/edit';
-import QuizForm from '../../components/Quizzes/QuizForm';
+import { fetchQuizForEdit, fetchTopics } from '../../../store/actions/quizActions';
+import { EditUserQuiz } from '../../../components/Quizzes/Quiz/edit';
+import QuizForm from '../../../components/Quizzes/QuizForm';
 import _ from 'lodash';
 
 const Quiz = ({ topics, ...props }) => {
