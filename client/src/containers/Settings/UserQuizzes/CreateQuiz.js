@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
-import server from '../../utils/server';
+import server from '../../../utils/server';
 import _ from 'lodash';
 
-import { CreateNewQuiz, CreateQuizButton } from '../../components/Quizzes/Quiz/create';
-import { fetchTopics, fetchUserQuizzes } from '../../store/actions/quizActions';
-import QuizForm from '../../components/Quizzes/QuizForm';
+import { CreateNewQuiz, CreateQuizButton } from '../../../components/Quizzes/Quiz/create';
+import { fetchTopics, fetchUserQuizzes } from '../../../store/actions/quizActions';
+import QuizForm from '../../../components/Quizzes/QuizForm';
 
 const CreateQuiz = ({ fetchTopics, topics, fetchUserQuizzes, ...props }) => {
 	const [ newQuiz, setNewQuiz ] = useState(false);

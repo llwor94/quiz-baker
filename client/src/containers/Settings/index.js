@@ -1,44 +1,20 @@
-import React, { useEffect, useState, Fragment } from 'react';
-import { connect } from 'react-redux';
-import server from '../../utils/server';
+import React from "react";
+import Sidebar from "./sidebar";
+import styled from "styled-components";
 
-import { getUser } from '../../store/actions/authActions';
-import ImageUpload from '../ImageUpload';
-import Button from '../../components/Styles/Button';
-import { LargeImage } from '../../components/Styles/Image';
-import UpdateUsername from './updateUsername';
+import QuizzesContainer from "./UserQuizzes/Quizzes";
 
-const Settings = ({ user, getUser, ...props }) => {
-	const [ imageUpdate, setImageUpdate ] = useState(false);
+const SettingsWrapper = styled.div`
+    display: flex;
+`;
 
-	useEffect(() => {
-		getUser(user.id);
-	}, []);
-	if (imageUpdate)
-		return (
-			<ImageUpload doneEditting={() => setImageUpdate(false)} {...props}>
-				<Button
-					icon='pi pi-arrow-left'
-					label='back'
-					onClick={() => setImageUpdate(false)}
-				/>
-			</ImageUpload>
-		);
-	else
-		return (
-			<div style={{ display: 'flex', flexDirection: 'column' }}>
-				<div>Welcome, {user.username}!</div>
-
-				<LargeImage src={user.img_url} />
-				<Button label='Update Image?' onClick={() => setImageUpdate(true)} />
-
-				<UpdateUsername />
-			</div>
-		);
+const Settings = ({...props}) => {
+  return (
+    <SettingsWrapper>
+      <Sidebar />
+      <QuizzesContainer {...props}/>
+    </SettingsWrapper>
+  );
 };
 
-const mapStateToProps = ({ authReducer }) => ({
-	user: authReducer.user,
-});
-
-export default connect(mapStateToProps, { getUser })(Settings);
+export default Settings;

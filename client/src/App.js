@@ -7,8 +7,8 @@ import 'primereact/resources/themes/nova-light/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 
-import UserQuizPage from './pages/UserQuiz';
-import UserQuizzesPage from './pages/UserQuizzes';
+// import UserQuizPage from './pages/UserQuiz';
+// import UserQuizzesPage from './pages/UserQuizzes';
 import QuizzesPage from './pages/Quizzes';
 import QuizPage from './pages/Quiz';
 import ForumPage from './pages/Forum';
@@ -65,8 +65,8 @@ const App = ({ checkUser }) => {
 							<Route exact path='/register' component={RegisterPage} />
 							<Route exact path='/forum' component={ForumPage} />
 							<Route exact path={[ '/', '/quizzes' ]} component={QuizzesPage} />
-							<Route exact path='/quizzes/user/:id' component={UserQuizzesPage} />
-							<Route exact path='/quizzes/edit/:id' component={UserQuizPage} />
+							{/* <Route exact path='/quizzes/user/:id' component={UserQuizzesPage} />
+							<Route exact path='/quizzes/edit/:id' component={UserQuizPage} /> */}
 							<Route exact path='/quizzes/:id' component={QuizPage} />
 							<Route exact path='/forum/:id' component={PostPage} />
 							<Route exact path='/user/settings' component={SettingsPage} />

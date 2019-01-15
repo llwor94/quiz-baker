@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
-import Button from '../../../components/Styles/Button';
+import Button from '../../../../components/Styles/Button';
 import EditQuestionContainer from './EditQuestions';
-import { QuestionsWrapper } from '../../../components/Quizzes/Questions/edit';
+import { QuestionsWrapper } from '../../../../components/Quizzes/Questions/edit';
 import CreateQuestionContainer from './CreateQuestion';
 
 const Questions = ({ questions, ...props }) => {

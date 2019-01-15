@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import Button from '../../../components/Styles/Button';
+import Button from '../../../../components/Styles/Button';
 import _ from 'lodash';
 
-import server from '../../../utils/server';
+import server from '../../../../utils/server';
 
-import { fetchQuizQuestions } from '../../../store/actions/quizActions';
-import { QuestionWrapper, EditQuestionWrapper } from '../../../components/Quizzes/Questions/edit';
-import { MultipleChoice } from '../../../components/Quizzes/Questions/multipleChoice';
-import { TrueFalse } from '../../../components/Quizzes/Questions/trueFalse';
+import { fetchQuizQuestions } from '../../../../store/actions/quizActions';
+import { QuestionWrapper, EditQuestionWrapper } from '../../../../components/Quizzes/Questions/edit';
+import { MultipleChoice } from '../../../../components/Quizzes/Questions/multipleChoice';
+import { TrueFalse } from '../../../../components/Quizzes/Questions/trueFalse';
 
 const EditQuestion = ({ question, quiz, ...props }) => {
 	const TFOptions = { option1: 'True', option2: 'False' };
