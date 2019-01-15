@@ -37,99 +37,27 @@ const StyledLink = styled(Link)`
   }
 `;
 
-const StyledMenu = styled(Menubar)`
-  position: fixed;
-  background-color: ${props => props.theme.secondary} !important;
-  border-color: ${props => props.theme.accent} !important;
-  top: 70px;
-  z-index: 100;
-  width: 100%;
-		box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
+const StyledMenu = styled.div`
+	position: fixed;
+	background-color: ${props => props.theme.secondary};
+	border-color: ${props => props.theme.accent};
+	display: flex;
+	justify-content: space-between;
+	top: 70px;
+	padding: 12px;
+	z-index: 100;
+	width: 100%;
+	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
 		0 2px 1px -1px rgba(0, 0, 0, 0.12);
 
-  a,
-  span {
-    background-color: ${props => props.theme.secondary} !important;
-    color: ${props => props.theme.text} !important;
-  }
-  ul {
-    border-color: ${props => props.theme.accent} !important;
-  }
+	a {
+		background-color: ${props => props.theme.secondary};
+		color: ${props => props.theme.text};
+		font-size: 14px;
+		margin: 9px;
+	}
 `;
 const Header = ({ user, setValue, darkMode, ...props }) => {
-	const AuthItems = [
-		{
-			label: 'Quizzes',
-			command: () => {
-				props.history.push('/quizzes');
-			},
-		},
-		{
-			label: 'Forum',
-			command: () => {
-				props.history.push('/forum');
-			},
-		},
-		{
-			label: user && user.username,
-			items: [
-				{
-					label: 'Settings',
-					command: () => {
-						props.history.push(`/user/settings`);
-					},
-				},
-				{
-					label: 'Your quizzes',
-					command: () => {
-						props.history.push(`/quizzes/user/${user.id}`);
-					},
-				},
-
-				{
-					separator: true,
-				},
-				{
-					label: 'Logout',
-					command: () => {
-						props.logout();
-						props.history.push('/quizzes');
-					},
-				},
-			],
-		},
-	];
-	const NoAuthItems = [
-		{
-			label: 'Quizzes',
-			command: () => {
-				props.history.push('/quizzes');
-			},
-		},
-		{
-			label: 'Forum',
-			command: () => {
-				props.history.push('/forum');
-			},
-		},
-		{
-			label: 'Join us',
-			items: [
-				{
-					label: 'Login',
-					command: () => {
-						props.history.push('/login');
-					},
-				},
-				{
-					label: 'Register',
-					command: () => {
-						props.history.push('/register');
-					},
-				},
-			],
-		},
-	];
 	return (
 		<Fragment>
 			<HeaderWrapper>
@@ -145,7 +73,25 @@ const Header = ({ user, setValue, darkMode, ...props }) => {
 					onChange={e => setValue(e.value)}
 				/>
 			</HeaderWrapper>
-			<StyledMenu style={{ paddingLeft: '10px' }} model={user ? AuthItems : NoAuthItems} />
+			<StyledMenu>
+				<div>
+					<Link to='/quizzes'>Quizzes</Link>
+					<Link to='/forum'>Forum</Link>
+				</div>
+				{user && (
+					<div>
+						<Link to='/user/settings'>{user.username}</Link>
+						<a
+							onClick={() => {
+								props.logout();
+								props.history.push('/quizzes');
+							}}
+						>
+							logout
+						</a>
+					</div>
+				)}
+			</StyledMenu>
 		</Fragment>
 	);
 };

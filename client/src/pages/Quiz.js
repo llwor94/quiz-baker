@@ -5,6 +5,7 @@ import { fetchQuiz } from '../store/actions/quizActions';
 import QuizContainer from '../containers/Quiz/Quiz';
 import LeaderBoardContainer from '../containers/Quiz/LeaderBoard';
 import styled from 'styled-components';
+import Loading from '../components/Styles/Loading';
 
 const StyledWrapper = styled.div`
 	position: relative;
@@ -18,7 +19,7 @@ const QuizPage = ({ fetchQuiz, fetchQuizQuestions, quiz, questions, ...props }) 
 		fetchQuiz(props.match.params.id);
 	}, []);
 
-	if (!quiz || !questions) return <div>Loading...</div>;
+	if (!quiz || !questions) return <Loading />;
 	else
 		return (
 			<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
