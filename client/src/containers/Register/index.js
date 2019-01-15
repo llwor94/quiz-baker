@@ -12,7 +12,7 @@ const Register = ({ user, ...props }) => {
 		return (
 			<Fragment>
 				<p>Upload Image?</p>
-				<ImageUpload doneEditting={() => setFinished(true)} />
+				<ImageUpload doneEditting={() => setFinished(true)} {...props} />
 			</Fragment>
 		);
 	else

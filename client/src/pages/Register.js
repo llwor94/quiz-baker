@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import RegisterContainer from '../containers/Register';
 
 const Register = ({ user, ...props }) => {
-	return <RegisterContainer />;
+	return <RegisterContainer {...props} />;
 };
 
 const mapStateToProps = ({ authReducer }) => ({

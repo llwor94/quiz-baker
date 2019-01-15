@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { checkUser } from '../store/actions/authActions';
 import SettingsContainer from '../containers/Settings/index';
 
-const Settings = ({ user, checkUser }) => {
+const Settings = ({ user, checkUser, ...props }) => {
 	useEffect(() => {
 		checkUser();
 	}, []);
@@ -12,7 +12,7 @@ const Settings = ({ user, checkUser }) => {
 	else
 		return (
 			<div>
-				<SettingsContainer />
+				<SettingsContainer {...props} />
 			</div>
 		);
 };

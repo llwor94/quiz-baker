@@ -8,7 +8,7 @@ import { QuestWrapper } from '../components/Styles/Wrappers/index';
 import { LargeImage } from '../components/Styles/Image';
 import Button from '../components/Styles/Button';
 
-const UploadImage = ({ user, doneEditting, children }) => {
+const UploadImage = ({ user, doneEditting, children, ...props }) => {
 	const [ img_url, setImg ] = useState(null);
 
 	useEffect(() => {
@@ -58,13 +58,14 @@ const UploadImage = ({ user, doneEditting, children }) => {
 	return (
 		<CloudinaryContext>
 			<div style={{ position: 'relative' }}>
-				{children && children}
 				<QuestWrapper>
 					<LargeImage src={img_url} />
-					<Button label='Upload Image?' onClick={handleUpload} />
-
-					<Button label={img_url ? 'done' : 'skip'} onClick={handleEditUser} />
+					<Button label='Browse...' full onClick={handleUpload} />
 				</QuestWrapper>
+				<div style={{ display: 'flex', justifyContent: 'space-between' }}>
+					{children && children}
+					<Button label={img_url ? 'done' : 'skip'} onClick={handleEditUser} />
+				</div>
 			</div>
 		</CloudinaryContext>
 	);
