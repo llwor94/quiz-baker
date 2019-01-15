@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { InputText } from 'primereact/inputtext';
 
 const InputWrapper = styled.span`
 	margin: 10px 0;
