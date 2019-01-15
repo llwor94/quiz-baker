@@ -13,10 +13,10 @@ const PostPage = ({ fetchPost, post, ...props }) => {
 	if (!post) return <div>Loading...</div>;
 	else
 		return (
-			<Fragment>
+			<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
 				<PostContainer {...props} />
 				<CommentsContainer />
-			</Fragment>
+			</div>
 		);
 };
 

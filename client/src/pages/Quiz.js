@@ -21,10 +21,14 @@ const QuizPage = ({ fetchQuiz, fetchQuizQuestions, quiz, questions, ...props }) 
 	if (!quiz || !questions) return <div>Loading...</div>;
 	else
 		return (
-			<StyledWrapper>
-				<LeaderBoardContainer />
-				<QuizContainer />
-			</StyledWrapper>
+			<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+				<div style={{ width: '500px' }}>
+					<StyledWrapper>
+						<LeaderBoardContainer />
+						<QuizContainer />
+					</StyledWrapper>
+				</div>
+			</div>
 		);
 };
 

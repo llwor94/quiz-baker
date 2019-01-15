@@ -31,7 +31,7 @@ const Comments = ({ user, post, fetchPost, ...props }) => {
 			.catch(error => console.log(error));
 	};
 	return (
-		<Fragment>
+		<div style={{ width: '500px' }}>
 			{user &&
 				(!newComment ? (
 					<Button label='Post a Comment' onClick={() => setNewComment(true)} full />
@@ -57,7 +57,7 @@ const Comments = ({ user, post, fetchPost, ...props }) => {
 					))}
 				</CommentArea>
 			)}
-		</Fragment>
+		</div>
 	);
 };
 const mapStateToProps = ({ forumReducer, authReducer }) => ({

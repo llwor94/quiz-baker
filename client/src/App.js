@@ -7,8 +7,6 @@ import 'primereact/resources/themes/nova-light/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 
-// import UserQuizPage from './pages/UserQuiz';
-// import UserQuizzesPage from './pages/UserQuizzes';
 import QuizzesPage from './pages/Quizzes';
 import QuizPage from './pages/Quiz';
 import ForumPage from './pages/Forum';

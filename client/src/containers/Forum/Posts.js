@@ -27,20 +27,29 @@ const Posts = ({ fetchPosts, posts, user, ...props }) => {
 	};
 
 	return (
-		<div style={{ width: '500px' }}>
-			{user && (
-				<NewPost
-					newPost={newPost}
-					setNewPost={setNewPost}
-					post={post}
-					setPost={setPost}
-					handleSubmit={addPost}
-					{...props}
-				/>
-			)}
-			{posts.map(post => (
-				<Post key={post.id} user={user} post={post} getPost={() => getPost(post.id)} />
-			))}{' '}
+		<div
+			style={{
+				width: '100%',
+				display: 'flex',
+				flexDirection: 'column',
+				alignItems: 'center',
+			}}
+		>
+			<div style={{ width: '500px' }}>
+				{user && (
+					<NewPost
+						newPost={newPost}
+						setNewPost={setNewPost}
+						post={post}
+						setPost={setPost}
+						handleSubmit={addPost}
+						{...props}
+					/>
+				)}
+				{posts.map(post => (
+					<Post key={post.id} user={user} post={post} getPost={() => getPost(post.id)} />
+				))}{' '}
+			</div>
 		</div>
 	);
 };

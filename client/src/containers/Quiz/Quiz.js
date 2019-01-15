@@ -61,7 +61,7 @@ const Quiz = ({ quiz, questions, user, ...props }) => {
 	};
 
 	return (
-		<Fragment>
+		<div>
 			<Growl ref={growl} />
 			{currentQuestion === null ? (
 				<Fragment>
@@ -87,7 +87,7 @@ const Quiz = ({ quiz, questions, user, ...props }) => {
 			)}
 
 			<QuestionTracker questions={questionResponse} currentQuestion={currentQuestion} />
-		</Fragment>
+		</div>
 	);
 };
 
