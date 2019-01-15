@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import debounce from 'lodash/debounce';
 import server from '../../utils/server';
-import Button from '../../components/Styles/Button';
+import Button, { SettingsButton } from '../../components/Styles/Button';
 import { getUser } from '../../store/actions/authActions';
 import { Input } from '../../components/Styles/Input';
 
@@ -49,7 +49,8 @@ const UpdateUsername = ({ user, getUser }) => {
 			<div>
 				<Input value={username} onChange={handleChange} />
 				{error && <p>{error}</p>}
-				<Button secondary
+				<Button
+					secondary
 					label='Update'
 					disabled={!username || error || username === user.username}
 					onClick={handleUpdate}
@@ -57,7 +58,15 @@ const UpdateUsername = ({ user, getUser }) => {
 				<Button secondary icon='pi pi-times' onClick={() => setUsernameUpdate(false)} />
 			</div>
 		);
-	else return <Button secondary label='Update Username?' onClick={() => setUsernameUpdate(true)} />;
+	else
+		return (
+			<Button
+				secondary
+				label='Update Username?'
+				style={SettingsButton}
+				onClick={() => setUsernameUpdate(true)}
+			/>
+		);
 };
 const mapStateToProps = ({ authReducer }) => ({
 	user: authReducer.user,
