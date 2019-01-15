@@ -5,6 +5,7 @@ import { Button as StyledButton } from 'primereact/button';
 const StyledButtonWrapper = styled.div`
 	display: inline-block;
 	width: ${props => props.full && '100%'};
+	
 	.p-button {
 		width: ${props => props.full && '100%'};
 		background-color: ${props => props.theme.pink};
