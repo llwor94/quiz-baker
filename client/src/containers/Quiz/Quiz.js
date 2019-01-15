@@ -75,7 +75,12 @@ const Quiz = ({ quiz, questions, user, ...props }) => {
 					<Button label='Take Quiz' onClick={() => setQuestion(0)} full />
 				</Fragment>
 			) : currentQuestion === questions.length ? (
-				<Results quiz={quiz} results={questionResponse} />
+				<Results
+					quiz={quiz}
+					results={questionResponse}
+					handleCopy={handleCopy}
+					handleFavoriteToggle={handleFavoriteToggle}
+				/>
 			) : (
 				<Question
 					quiz={quiz}

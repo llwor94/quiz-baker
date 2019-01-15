@@ -21,7 +21,7 @@ const InnerWrapper = styled.div`
 	padding: 8px;
 	flex-grow: 1;
 	max-width: 606px;
-	h3{
+	h3 {
 		margin-bottom: 15px;
 	}
 `;
@@ -38,7 +38,7 @@ const NumberWrapper = styled.div`
 		padding: 0 10px;
 	}
 `;
-export const Results = ({ results }) => {
+export const Results = ({ results, children }) => {
 	return (
 		<Fragment>
 			<Wrapper style={{ width: '500px' }}>
@@ -52,6 +52,7 @@ export const Results = ({ results }) => {
 					</ResultWrapper>
 				))}
 			</Wrapper>
+			{children}
 			<NumberWrapper>
 				<h3>
 					{results.filter(result => result.correct).length} / {results.length}

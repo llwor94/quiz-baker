@@ -159,9 +159,17 @@ export const NewPost = ({ newPost, setNewPost, post, setPost, handleSubmit }) =>
 		},
 		[ newPost ],
 	);
+	const handleBlur = e => {
+		let currentTarget = e.currentTarget;
+		setTimeout(() => {
+			if (!currentTarget.contains(document.activeElement)) {
+				setNewPost(false);
+			}
+		}, 0);
+	};
 
 	return (
-		<NewPostWrapper onBlur={() => setNewPost(false)}>
+		<NewPostWrapper onBlur={handleBlur}>
 			{newPost ? (
 				<NewInner>
 					<Button
