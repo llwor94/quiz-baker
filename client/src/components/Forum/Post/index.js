@@ -161,7 +161,7 @@ export const NewPost = ({ newPost, setNewPost, post, setPost, handleSubmit }) =>
 	);
 
 	return (
-		<NewPostWrapper>
+		<NewPostWrapper onBlur={() => setNewPost(false)}>
 			{newPost ? (
 				<NewInner>
 					<Button
