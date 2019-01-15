@@ -7,23 +7,6 @@ import { getUser } from '../store/actions/authActions';
 import { QuestWrapper } from '../components/Styles/Wrappers/index';
 import { LargeImage } from '../components/Styles/Image';
 import Button from '../components/Styles/Button';
-import styled from 'styled-components';
-
-const Input = styled.input`
-	width: 0.1px;
-	height: 0.1px;
-	opacity: 0;
-	overflow: hidden;
-	position: absolute;
-	z-index: -1;
-`;
-const Label = styled.label`
-	font-size: 1.25em;
-	font-weight: 700;
-	color: white;
-	background-color: black;
-	display: inline-block;
-`;
 
 const UploadImage = ({ user, doneEditting, children }) => {
 	const [ img_url, setImg ] = useState(null);
@@ -52,7 +35,6 @@ const UploadImage = ({ user, doneEditting, children }) => {
 			}
 		});
 	};
-	console.log(img_url);
 
 	const handleEditUser = () => {
 		if (img_url) {
