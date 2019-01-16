@@ -12,7 +12,7 @@ const PostPage = props => {
 		<PostCtx.Provider value={[ post, setPost ]}>
 			<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
 				<PostContainer {...props} />
-				<CommentsContainer />
+				<CommentsContainer {...props} />
 			</div>
 		</PostCtx.Provider>
 	);

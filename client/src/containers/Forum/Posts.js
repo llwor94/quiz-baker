@@ -20,7 +20,7 @@ const Posts = props => {
 			})
 			.catch(err => console.log(err));
 	}, []);
-	console.log(user);
+
 	const addPost = () => {
 		server
 			.post('/posts', post)
@@ -63,7 +63,7 @@ const Posts = props => {
 							key={post.id}
 							user={user}
 							post={post}
-							getPost={() => props.history.push(`forum/${post.id}`)}
+							handleClick={() => props.history.push(`forum/${post.id}`)}
 						/>
 					))}
 				</div>

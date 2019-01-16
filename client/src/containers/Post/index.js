@@ -10,10 +10,11 @@ const Post = props => {
 	const [ modalVisable, setModalVisable ] = useState(false);
 	const [ post, setPost ] = useContext(PostCtx);
 	const [ posts, setPosts ] = useContext(PostsCtx);
-
+	console.log(post);
 	const growl = React.createRef();
 	useEffect(() => {
 		server.get(`/posts/${props.match.params.id}`).then(({ data }) => {
+			console.log(data);
 			setPost(data);
 		});
 	}, []);
@@ -41,7 +42,6 @@ const Post = props => {
 				<Growl ref={growl} />
 				<PostWrapper
 					post={post}
-					handleClick={props.getPost}
 					handleDelete={deletePost}
 					handleCopy={() => handleCopy(post.id)}
 					setModalVisable={setModalVisable}
