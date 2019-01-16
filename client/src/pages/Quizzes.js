@@ -5,6 +5,7 @@ import { fetchQuizzes, fetchTopics } from '../store/actions/quizActions';
 
 import FiltersContainer from '../containers/Quizzes/Filters/';
 import QuizzesContainer from '../containers/Quizzes/Quizzes';
+import Loading from '../components/Styles/Loading';
 
 const QuizzesPage = ({ quizzes, loading, fetchQuizzes, fetchTopics, topics, ...props }) => {
 	const [ showingQuizzes, changeQuizzes ] = useState(null);
@@ -23,7 +24,7 @@ const QuizzesPage = ({ quizzes, loading, fetchQuizzes, fetchTopics, topics, ...p
 		[ quizzes ],
 	);
 
-	if (!showingQuizzes || !topics) return <div>Loading...</div>;
+	if (!showingQuizzes || !topics) return <Loading />;
 	else
 		return (
 			<Fragment>

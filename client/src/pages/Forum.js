@@ -3,13 +3,14 @@ import { connect } from 'react-redux';
 
 import { fetchPosts } from '../store/actions/forumActions';
 import PostsContainer from '../containers/Forum/Posts';
+import Loading from '../components/Styles/Loading';
 
 const ForumPage = ({ fetchPosts, posts, ...props }) => {
 	useEffect(() => {
 		fetchPosts();
 	}, []);
 
-	if (!posts) return <div>Loading...</div>;
+	if (!posts) return <Loading />;
 	else return <PostsContainer {...props} />;
 };
 
