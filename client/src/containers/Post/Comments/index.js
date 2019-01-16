@@ -5,7 +5,6 @@ import { UserCtx } from '../../../App';
 import Loading from '../../../components/Styles/Loading';
 import { CommentArea, Comment, NewComment } from '../../../components/Forum/Comment';
 import Button from '../../../components/Styles/Button';
-import { fetchPost } from '../../../store/actions/forumActions';
 
 const Comments = props => {
 	const [ post, setPost ] = useContext(PostCtx);
