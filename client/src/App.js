@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, createContext } from 'react';
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
-import { connect } from 'react-redux';
+
 import { Route, Switch, withRouter } from 'react-router-dom';
 
 import 'primereact/resources/themes/nova-light/theme.css';
@@ -16,8 +16,6 @@ import SettingsPage from './pages/Settings';
 import LoginContainer from './containers/Login';
 
 import Header from './components/Header';
-
-import { checkUser } from './store/actions/authActions';
 
 import { DarkMode } from './Themes/dark';
 import { LightMode } from './Themes/light';
@@ -43,33 +41,35 @@ const Wrapper = styled.div`
 	padding: 125px 24px 20px;
 `;
 
-const App = ({ checkUser }) => {
+export const UserCtx = createContext([ undefined, () => {} ]);
+
+const App = () => {
 	const [ darkMode, setValue ] = useState(false);
-	useEffect(() => {
-		checkUser();
-	}, []);
+	const [ user, setUser ] = useState(undefined);
 
 	return (
 		<ThemeProvider theme={darkMode ? DarkMode : LightMode}>
-			<div>
-				<GlobalStyle />
-				<Header setValue={setValue} darkMode={darkMode} />
-				<Wrapper>
-					<div style={{ position: 'relative' }}>
-						<Switch>
-							<Route exact path='/login' component={LoginContainer} />
-							<Route exact path='/register' component={RegisterPage} />
-							<Route exact path='/forum' component={ForumPage} />
-							<Route exact path={[ '/', '/quizzes' ]} component={QuizzesPage} />
-							<Route exact path='/quizzes/:id' component={QuizPage} />
-							<Route exact path='/forum/:id' component={PostPage} />
-							<Route exact path='/user/settings' component={SettingsPage} />
-						</Switch>
-					</div>
-				</Wrapper>
-			</div>
+			<UserCtx.Provider value={[ user, setUser ]}>
+				<div>
+					<GlobalStyle />
+					<Header setValue={setValue} darkMode={darkMode} />
+					<Wrapper>
+						<div style={{ position: 'relative' }}>
+							<Switch>
+								<Route exact path='/login' component={LoginContainer} />
+								<Route exact path='/register' component={RegisterPage} />
+								<Route exact path='/forum' component={ForumPage} />
+								<Route exact path={[ '/', '/quizzes' ]} component={QuizzesPage} />
+								<Route exact path='/quizzes/:id' component={QuizPage} />
+								<Route exact path='/forum/:id' component={PostPage} />
+								<Route exact path='/user/settings' component={SettingsPage} />
+							</Switch>
+						</div>
+					</Wrapper>
+				</div>
+			</UserCtx.Provider>
 		</ThemeProvider>
 	);
 };
 
-export default withRouter(connect(null, { checkUser })(App));
+export default App;

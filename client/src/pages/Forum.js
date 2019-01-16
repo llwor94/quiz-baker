@@ -1,22 +1,17 @@
-import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
+import React, { useState, createContext } from 'react';
 
-import { fetchPosts } from '../store/actions/forumActions';
 import PostsContainer from '../containers/Forum/Posts';
-import Loading from '../components/Styles/Loading';
 
-const ForumPage = ({ fetchPosts, posts, ...props }) => {
-	useEffect(() => {
-		fetchPosts();
-	}, []);
+export const PostsCtx = createContext([ undefined, () => {} ]);
 
-	if (!posts) return <Loading />;
-	else return <PostsContainer {...props} />;
+const ForumPage = props => {
+	const [ posts, setPosts ] = useState(undefined);
+
+	return (
+		<PostsCtx.Provider value={[ posts, setPosts ]}>
+			<PostsContainer {...props} />
+		</PostsCtx.Provider>
+	);
 };
 
-const mapStateToProps = ({ forumReducer }) => ({
-	posts: forumReducer.posts,
-	loading: forumReducer.loading,
-});
-
-export default connect(mapStateToProps, { fetchPosts })(ForumPage);
+export default ForumPage;

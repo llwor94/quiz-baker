@@ -1,24 +1,23 @@
-import React, { useState, useEffect, Fragment } from 'react';
-import { connect } from 'react-redux';
+import React, { useState, useEffect, useContext, Fragment } from 'react';
+import { PostsCtx } from '../../pages/Forum';
+import { PostCtx } from '../../pages/Post';
 import server from '../../utils/server';
 import { Growl } from 'primereact/growl';
-import { fetchPosts } from '../../store/actions/forumActions';
 import { Post as PostWrapper } from '../../components/Forum/Post';
+import Loading from '../../components/Styles/Loading';
 
-const Post = ({ user, fetchPosts, singlePost, ...props }) => {
+const Post = props => {
 	const [ modalVisable, setModalVisable ] = useState(false);
-	const [ post, setPost ] = useState(props.post);
+	const [ post, setPost ] = useContext(PostCtx);
+	const [ posts, setPosts ] = useContext(PostsCtx);
+	console.log(post);
 	const growl = React.createRef();
-	useEffect(
-		() => {
-			if (singlePost) {
-				setPost(singlePost);
-			} else {
-				setPost(props.post);
-			}
-		},
-		[ singlePost ],
-	);
+	useEffect(() => {
+		server.get(`/posts/${props.match.params.id}`).then(({ data }) => {
+			console.log(data);
+			setPost(data);
+		});
+	}, []);
 	const handleCopy = id => {
 		let value = `http://localhost:3000/forum/${id}`;
 		navigator.clipboard.writeText(value).then(() => {
@@ -29,21 +28,20 @@ const Post = ({ user, fetchPosts, singlePost, ...props }) => {
 		server
 			.delete(`posts/${post.id}`)
 			.then(({ data }) => {
-				fetchPosts();
+				server.get('/posts').then(({ data }) => {
+					setPosts(data);
+				});
 				setModalVisable(false);
 			})
 			.catch(err => console.log(err));
 	};
-
-	if (post === undefined) return <div>Loading...</div>;
+	if (!post) return <Loading />;
 	else
 		return (
 			<Fragment>
 				<Growl ref={growl} />
 				<PostWrapper
 					post={post}
-					user={user}
-					handleClick={props.getPost}
 					handleDelete={deletePost}
 					handleCopy={() => handleCopy(post.id)}
 					setModalVisable={setModalVisable}
@@ -53,9 +51,4 @@ const Post = ({ user, fetchPosts, singlePost, ...props }) => {
 		);
 };
 
-const mapStateToProps = ({ forumReducer, authReducer }) => ({
-	singlePost: forumReducer.post,
-	loading: forumReducer.loading,
-	user: authReducer.user,
-});
-export default connect(mapStateToProps, { fetchPosts })(Post);
+export default Post;

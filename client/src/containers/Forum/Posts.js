@@ -1,63 +1,74 @@
-import React, { useState, Fragment } from 'react';
-import { connect } from 'react-redux';
+import React, { useState, useEffect, useContext } from 'react';
+import { PostsCtx } from '../../pages/Forum';
+import { UserCtx } from '../../App';
+
 import server from '../../utils/server';
+import Loading from '../../components/Styles/Loading';
+import { NewPost, Post } from '../../components/Forum/Post';
 
-import { fetchPosts } from '../../store/actions/forumActions';
-import { NewPost } from '../../components/Forum/Post';
-import Post from '../Post';
-import Button from '../../components/Styles/Button';
-
-const Posts = ({ fetchPosts, posts, user, ...props }) => {
+const Posts = props => {
+	const [ posts, setPosts ] = useContext(PostsCtx);
+	const [ user, setUser ] = useContext(UserCtx);
 	const [ newPost, setNewPost ] = useState(false);
 	const [ post, setPost ] = useState({ title: '', body: '' });
 
-	const getPost = id => {
-		props.history.push(`forum/${id}`);
-	};
+	useEffect(() => {
+		server
+			.get('/posts')
+			.then(({ data }) => {
+				setPosts(data.sort((a, b) => b.id - a.id));
+			})
+			.catch(err => console.log(err));
+	}, []);
 
 	const addPost = () => {
 		server
 			.post('/posts', post)
-			.then(({ data }) => {
+			.then(() => {
 				setPost({ title: '', body: '' });
 				setNewPost(false);
-				fetchPosts();
+				server
+					.get('/posts')
+					.then(({ data }) => {
+						setPosts(data);
+					})
+					.catch(error => console.log(error));
 			})
 			.catch(error => console.log(error));
 	};
-
-	return (
-		<div
-			style={{
-				width: '100%',
-				display: 'flex',
-				flexDirection: 'column',
-				alignItems: 'center',
-			}}
-		>
-			<div style={{ width: '500px' }}>
-				{user && (
-					<NewPost
-						newPost={newPost}
-						setNewPost={setNewPost}
-						post={post}
-						setPost={setPost}
-						handleSubmit={addPost}
-						{...props}
-					/>
-				)}
-				{posts.map(post => (
-					<Post key={post.id} user={user} post={post} getPost={() => getPost(post.id)} />
-				))}{' '}
+	if (!posts) return <Loading />;
+	else
+		return (
+			<div
+				style={{
+					width: '100%',
+					display: 'flex',
+					flexDirection: 'column',
+					alignItems: 'center',
+				}}
+			>
+				<div style={{ width: '500px' }}>
+					{user && (
+						<NewPost
+							newPost={newPost}
+							setNewPost={setNewPost}
+							post={post}
+							setPost={setPost}
+							handleSubmit={addPost}
+							{...props}
+						/>
+					)}
+					{posts.map(post => (
+						<Post
+							key={post.id}
+							user={user}
+							post={post}
+							handleClick={() => props.history.push(`forum/${post.id}`)}
+						/>
+					))}
+				</div>
 			</div>
-		</div>
-	);
+		);
 };
 
-const mapStateToProps = ({ forumReducer, authReducer }) => ({
-	posts: forumReducer.posts,
-	loading: forumReducer.loading,
-	user: authReducer.user,
-});
-
-export default connect(mapStateToProps, { fetchPosts })(Posts);
+export default Posts;
