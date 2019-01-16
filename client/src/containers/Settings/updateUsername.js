@@ -54,8 +54,11 @@ const UpdateUsername = ({ user, getUser }) => {
 					disabled={!username || error || username === user.username}
 					onClick={handleUpdate}
 				/>
+				<div>
+
 				<Button secondary icon='pi pi-times' onClick={() => setUsernameUpdate(false)} />
 				<Input value={username} onChange={handleChange} />
+				</div>
 			</div>
 		);
 	else

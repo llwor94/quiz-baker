@@ -59,10 +59,10 @@ const UploadImage = ({ user, doneEditting, children, ...props }) => {
 		<CloudinaryContext>
 			<div style={{ position: 'relative' }}>
 					<LargeImage src={img_url} />
-					<h4>Welcome</h4>
-					<Button secondary label='Browse...' full onClick={handleUpload} />
-				<div style={{ display: 'flex', justifyContent: 'space-between' }}>
+					<h4 style={{textAlign: 'center'}}>Update Profile Picture</h4>
+					<div style={{ display: 'flex', justifyContent: 'space-between' }}>
 					{children && children}
+					<Button secondary label='Browse...' onClick={handleUpload} />
 					<Button secondary label={img_url ? 'done' : 'skip'} onClick={handleEditUser} />
 				</div>
 			</div>
