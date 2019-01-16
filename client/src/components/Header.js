@@ -1,8 +1,8 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect, useContext } from 'react';
+import { UserCtx } from '../App';
 import styled from 'styled-components';
-import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
-import { Menubar } from 'primereact/menubar';
+
 import { InputSwitch } from 'primereact/inputswitch';
 
 import pieIcon from '../assets/noun_Pie_706498.svg';
@@ -57,7 +57,15 @@ const StyledMenu = styled.div`
 		margin: 9px;
 	}
 `;
-const Header = ({ user, setValue, darkMode, ...props }) => {
+const Header = ({ setValue, darkMode, ...props }) => {
+	const [ user, setUser ] = useContext(UserCtx);
+
+	useEffect(() => {
+		let data = JSON.parse(localStorage.getItem('user'));
+		if (data) {
+			setUser(data.user);
+		}
+	}, []);
 	return (
 		<Fragment>
 			<HeaderWrapper>
@@ -96,8 +104,4 @@ const Header = ({ user, setValue, darkMode, ...props }) => {
 	);
 };
 
-const mapStateToProps = ({ authReducer }) => ({
-	user: authReducer.user,
-});
-
-export default withRouter(connect(mapStateToProps, { logout })(Header));
+export default withRouter(Header);
