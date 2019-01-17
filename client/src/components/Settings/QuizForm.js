@@ -1,13 +1,18 @@
 import React, { useEffect, useState, Fragment } from 'react';
 
-import { Input, TextArea } from '../../components/Styles/Input';
+import server from '../../utils/server';
+import { Input, TextArea } from '../../Styles/Components/Input';
 import { StyledAutoComplete } from '../../components/Styles/Text/autoComplete';
 
-const QuizForm = ({ topics, quiz, setQuiz, ...props }) => {
+const QuizForm = ({ quiz, setQuiz, ...props }) => {
+	const [ topics, setTopics ] = useState(undefined);
 	const [ searchTopics, setSearchOptions ] = useState(null);
 
 	useEffect(() => {
-		setSearchOptions(topics);
+		server.get('/quizzes/topics').then(({ data }) => {
+			setTopics(data);
+			setSearchOptions(data);
+		});
 	}, []);
 
 	const handleChange = e => {

@@ -6,7 +6,7 @@ import _ from 'lodash';
 
 import { CreateNewQuiz, CreateQuizButton } from '../../../components/Quizzes/Quiz/create';
 import { fetchTopics, fetchUserQuizzes } from '../../../store/actions/quizActions';
-import QuizForm from '../../../components/Quizzes/QuizForm';
+import QuizForm from '../../../components/Settings/QuizForm';
 
 const CreateQuiz = ({ fetchTopics, topics, fetchUserQuizzes, ...props }) => {
 	const [ newQuiz, setNewQuiz ] = useState(false);
