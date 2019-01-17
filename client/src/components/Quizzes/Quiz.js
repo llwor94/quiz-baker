@@ -120,7 +120,7 @@ const Quiz = ({ quiz, ...props }) => {
 					<FooterWrapper>
 						<UserNameWrapper>
 							<ProfileIcon src={quiz.author_img} />
-							Created by <a>{quiz.author}</a>
+							<span>Created by <a>{quiz.author}</a></span>
 						</UserNameWrapper>
 
 						<a onClick={handleCopy}>Share</a>

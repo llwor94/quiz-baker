@@ -121,13 +121,13 @@ export const UserNameWrapper = styled.div`
 	align-items: flex-end;
 	font-size: 12px;
 	font-weight: 400;
-	line-height: 16px;
+	/* line-height: 16px; */
 	margin-right: 20px;
 
 	a {
 		font-size: 12px;
 		font-weight: 400;
-		line-height: 16px;
+		/* line-height: 16px; */
 		color: ${props => props.theme.accentRed};
 		padding-left: 3px;
 	}
@@ -156,6 +156,13 @@ export const FooterWrapper = styled.div`
 		margin-right: 4px;
 		text-transform: capitalize;
 		cursor: pointer;
-		color: ${props => props.theme.accentText};
+		color: ${props => props.theme.accentRed};
+		&:hover{
+			color: ${props => props.theme.aqua}
+		}
+	}
+
+	img{
+		border-radius: 10px;
 	}
 `;
