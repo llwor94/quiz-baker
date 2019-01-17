@@ -4,8 +4,9 @@ import { UserCtx } from '../App';
 
 import server from '../utils/server';
 import Loading from '../components/Styles/Loading';
-import { Post } from '../components/Forum/Post';
+
 import NewPost from '../components/Posts/NewPost';
+import Post from '../components/Posts/Post';
 
 const Posts = props => {
 	const [ posts, setPosts ] = useContext(PostsCtx);
@@ -33,14 +34,7 @@ const Posts = props => {
 			>
 				<div style={{ width: '500px' }}>
 					{user && <NewPost />}
-					{posts.map(post => (
-						<Post
-							key={post.id}
-							user={user}
-							post={post}
-							handleClick={() => props.history.push(`forum/${post.id}`)}
-						/>
-					))}
+					{posts.map(post => <Post key={post.id} post={post} />)}
 				</div>
 			</div>
 		);

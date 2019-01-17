@@ -9,7 +9,7 @@ import { Dialog } from 'primereact/dialog';
 import { PostWrapper } from '../../Styles/Wrappers/index';
 import { FooterWrapper, FooterLink } from '../../Styles/Wrappers/footer';
 import { Title } from '../../Styles/Text/title';
-import { Input, TextArea } from '../../Styles/Input';
+
 import { ProfileIcon } from '../../Styles/Image';
 
 const InnerWrapper = styled.div`
@@ -17,7 +17,7 @@ const InnerWrapper = styled.div`
 	margin: 0 8px;
 `;
 
-const BodyWrapper = styled.div`
+export const BodyWrapper = styled.div`
 	max-height: 250px;
 	overflow: hidden;
 	p {
@@ -28,7 +28,7 @@ const BodyWrapper = styled.div`
 		color: ${props => props.theme.text};
 	}
 `;
-const Header = styled.div`
+export const Header = styled.div`
 	font-size: 12px;
 	font-weight: 400;
 	line-height: 16px;
@@ -38,9 +38,13 @@ const Header = styled.div`
 	color: ${props => props.theme.link};
 `;
 
-const UserNameWrapper = styled.div`
+export const UserNameWrapper = styled.div`
 	display: flex;
 	align-items: center;
+	a {
+		color: ${props => props.theme.accentRed};
+		padding-left: 3px;
+	}
 `;
 
 const UserName = styled.a`
