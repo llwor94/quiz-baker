@@ -3,7 +3,7 @@ import { Dialog } from 'primereact/dialog';
 import server from '../../utils/server';
 import { UserQuizzesCtx } from '../../pages/Settings';
 import { UserCtx } from '../../App';
-import Loading from '../Styles/Loading';
+import { withRouter } from 'react-router-dom';
 import { Button } from '../../Styles/Components/Button';
 import {
 	Wrapper,
@@ -12,13 +12,13 @@ import {
 	DescriptionWrapper,
 	FooterWrapper,
 } from '../../Styles/Settings/UserQuiz';
-const UserQuiz = ({ quiz }) => {
+const UserQuiz = ({ quiz, ...props }) => {
 	const [ userQuizzes, setUserQuizzes ] = useContext(UserQuizzesCtx);
 	const [ user, setUser ] = useContext(UserCtx);
 	console.log(quiz.quiz);
 	const [ modalVisable, setModalVisable ] = useState(false);
 
-	const deleteQuiz = () => {
+	const deleteQuiz = props => {
 		server
 			.delete(`quizzes/${quiz.id}`)
 			.then(response => {
@@ -54,26 +54,30 @@ const UserQuiz = ({ quiz }) => {
 	return (
 		<Wrapper>
 			<InnerWrapper>
-				<Header>
-					<a>{quiz.topic}</a>
-				</Header>
-				<div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-					<a>{quiz.title}</a>
+				<div onClick={() => props.history.push(`/user/quizzes/${quiz.id}`)}>
+					<Header>
+						<a>{quiz.topic}</a>
+					</Header>
+					<div
+						style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}
+					>
+						<a>{quiz.title}</a>
+					</div>
+					<Dialog
+						visible={modalVisable}
+						style={{ width: '25vw' }}
+						footer={footer}
+						onHide={() => setModalVisable(false)}
+					>
+						Are you sure you'd like to delete your quiz {quiz.title}? This action cannot
+						be undone.
+					</Dialog>
+					{quiz.description && (
+						<DescriptionWrapper>
+							<p>{quiz.description}</p>
+						</DescriptionWrapper>
+					)}
 				</div>
-				<Dialog
-					visible={modalVisable}
-					style={{ width: '25vw' }}
-					footer={footer}
-					onHide={() => setModalVisable(false)}
-				>
-					Are you sure you'd like to delete your quiz {quiz.title}? This action cannot be
-					undone.
-				</Dialog>
-				{quiz.description && (
-					<DescriptionWrapper>
-						<p>{quiz.description}</p>
-					</DescriptionWrapper>
-				)}
 				<FooterWrapper>
 					<a style={{ cursor: 'default', fontWeight: 'bold' }}>
 						{quiz.question_count} questions
@@ -88,4 +92,4 @@ const UserQuiz = ({ quiz }) => {
 	);
 };
 
-export default UserQuiz;
+export default withRouter(UserQuiz);

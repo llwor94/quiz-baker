@@ -30,9 +30,9 @@ const CreateQuiz = () => {
 			})
 			.catch(error => console.log(error));
 	};
+	console.log(newQuiz);
 
-	if (!newQuiz)
-		return <Button label='Create a New Quiz' handleClick={() => setNewQuiz(true)} full />;
+	if (!newQuiz) return <Button label='Create a New Quiz' onClick={() => setNewQuiz(true)} full />;
 	else
 		return (
 			<Wrapper>

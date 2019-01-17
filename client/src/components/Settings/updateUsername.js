@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { connect } from 'react-redux';
 
 import debounce from 'lodash/debounce';
 import server from '../../utils/server';
