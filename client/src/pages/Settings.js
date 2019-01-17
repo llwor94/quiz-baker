@@ -1,41 +1,17 @@
-import React, { useEffect, useState, Fragment } from "react";
-import { connect } from "react-redux";
+import React, { useEffect, useState, createContext } from 'react';
 
-import { fetchUserQuizzes, fetchTopics } from "../store/actions/quizActions";
-import { checkUser } from "../store/actions/authActions";
-import SettingsContainer from "../containers/Settings/index";
+import SettingsContainer from '../containers/Settings';
 
-const Settings = ({
-  user,
-  checkUser,
-  userQuizzes,
-  fetchUserQuizzes,
-  topics,
-  fetchTopics,
-  ...props
-}) => {
-  useEffect(() => {
-    checkUser();
-    fetchUserQuizzes();
-    fetchTopics();
-  }, []);
-  if (!user || !userQuizzes || !topics) return <div>Loading...</div>;
-  else
-    return (
-      <div>
-        <SettingsContainer {...props} />
-      </div>
-    );
+export const UserQuizzesCtx = createContext([ undefined, () => {} ]);
+
+const Settings = () => {
+	const [ userQuizzes, setUserQuizzes ] = useState(undefined);
+
+	return (
+		<UserQuizzesCtx.Provider value={[ userQuizzes, setUserQuizzes ]}>
+			<SettingsContainer />
+		</UserQuizzesCtx.Provider>
+	);
 };
 
-const mapStateToProps = ({ authReducer, quizReducer }) => ({
-  user: authReducer.user,
-  userQuizzes: quizReducer.userQuizzes,
-  loading: quizReducer.loading,
-  topics: quizReducer.topics
-});
-
-export default connect(
-  mapStateToProps,
-  { checkUser, fetchUserQuizzes, fetchTopics }
-)(Settings);
+export default Settings;

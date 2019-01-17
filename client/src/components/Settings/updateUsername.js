@@ -1,11 +1,11 @@
-import React, { useEffect, useState, Fragment } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { connect } from 'react-redux';
 
 import debounce from 'lodash/debounce';
 import server from '../../utils/server';
-import Button, { SettingsButton } from '../../components/Styles/Button';
-import { getUser } from '../../store/actions/authActions';
-import { Input } from '../../components/Styles/Input';
+import { Button, SettingsButton } from '../../Styles/Components/Button';
+import { UserCtx } from '../../App';
+import { Input } from '../../Styles/Components/Input';
 
 const checkData = debounce(async (username, setError) => {
 	if (username) {
@@ -21,10 +21,10 @@ const checkData = debounce(async (username, setError) => {
 	}
 }, 500);
 
-const UpdateUsername = ({ user, getUser }) => {
-	const [ usernameUpdate, setUsernameUpdate ] = useState(false);
-	const [ username, setUsername ] = useState(user.username);
+const UpdateUsername = ({ usernameUpdate, setUsernameUpdate, updateUser }) => {
 	const [ error, setError ] = useState(undefined);
+	const [ user, setUser ] = useContext(UserCtx);
+	const [ username, setUsername ] = useState(user.username);
 
 	const handleChange = async e => {
 		e.persist();
@@ -38,8 +38,7 @@ const UpdateUsername = ({ user, getUser }) => {
 		server
 			.patch('/auth/update', { newUsername: username })
 			.then(response => {
-				getUser(user.id);
-				setUsernameUpdate(false);
+				updateUser();
 			})
 			.catch(err => console.log(err));
 	};
@@ -55,9 +54,8 @@ const UpdateUsername = ({ user, getUser }) => {
 					onClick={handleUpdate}
 				/>
 				<div>
-
-				<Button secondary icon='pi pi-times' onClick={() => setUsernameUpdate(false)} />
-				<Input value={username} onChange={handleChange} />
+					<Button secondary icon='pi pi-times' onClick={() => setUsernameUpdate(false)} />
+					<Input value={username} onChange={handleChange} />
 				</div>
 			</div>
 		);
@@ -71,8 +69,4 @@ const UpdateUsername = ({ user, getUser }) => {
 			/>
 		);
 };
-const mapStateToProps = ({ authReducer }) => ({
-	user: authReducer.user,
-});
-
-export default connect(mapStateToProps, { getUser })(UpdateUsername);
+export default UpdateUsername;
