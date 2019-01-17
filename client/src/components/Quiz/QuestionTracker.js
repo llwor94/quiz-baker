@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+import { QuestionCtx } from '../../containers/Quiz';
+import { ResponseCtx } from '../../pages/Quiz';
 
 const Wrapper = styled.div`
 	display: flex;
@@ -17,21 +19,17 @@ const Box = styled.div`
 	border-color: ${props => (props.currentQuestion ? 'gold' : props.theme.accent)};
 `;
 
-export const QuestionTracker = ({ questions, currentQuestion }) => {
-	console.log(questions);
+const QuestionTracker = () => {
+	const [ questionResponse, setQuestionReponse ] = useContext(ResponseCtx);
+	const [ currentQuestion, setCurrentQuestion ] = useContext(QuestionCtx);
+
 	return (
 		<Wrapper>
-			{questions ? (
-				questions.map((question, id) => (
-					<Box
-						key={id}
-						correct={question.correct}
-						currentQuestion={currentQuestion === id}
-					/>
-				))
-			) : (
-				<div>hi</div>
-			)}
+			{questionResponse.map((question, id) => (
+				<Box key={id} correct={question.correct} currentQuestion={currentQuestion === id} />
+			))}
 		</Wrapper>
 	);
 };
+
+export default QuestionTracker;

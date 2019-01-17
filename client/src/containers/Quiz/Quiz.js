@@ -8,7 +8,7 @@ import { fetchQuiz } from '../../store/actions/quizActions';
 import Question from './Question';
 import Results from './Results';
 import { Quiz as QuizWrapper } from '../../components/Quizzes/Quiz';
-import { QuestionTracker } from '../../components/Quizzes/Questions/QuestionTracker';
+import { QuestionTracker } from '../../components/Quiz/QuestionTracker';
 import Button from '../../components/Styles/Button';
 
 const Quiz = ({ quiz, questions, user, ...props }) => {
