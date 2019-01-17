@@ -9,7 +9,6 @@ import {
 	BodyWrapper,
 	Header,
 	FooterWrapper,
-	FooterLink,
 	CommentCount,
 	Title,
 	InnerWrapper,
