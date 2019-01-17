@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import RadioButton from '../../Styles/RadioButton';
-import { StyledInput, Input } from '../../Styles/Input';
+import RadioButton from '../Styles/RadioButton';
+import { StyledInput, Input } from '../../Styles/Components/Input';
 
 const Wrapper = styled.div`
 	display: flex;
@@ -85,6 +85,35 @@ export const MultipleChoice = ({
 					value={options.option4}
 					onChange={handleOptionChange}
 				/>
+			</InputWrapper>
+		</Wrapper>
+	);
+};
+
+export const TrueFalse = ({ handleCorrectChange, correctOption, ...props }) => {
+	return (
+		<Wrapper>
+			<InputWrapper className='p-col-12'>
+				<RadioButton
+					inputId='rb1'
+					value={1}
+					onChange={handleCorrectChange}
+					checked={correctOption === 1}
+				/>
+				<label htmlFor='rb1' className='p-radiobutton-label'>
+					True
+				</label>
+			</InputWrapper>
+			<InputWrapper className='p-col-12'>
+				<RadioButton
+					inputId='rb2'
+					value={2}
+					onChange={handleCorrectChange}
+					checked={correctOption === 2}
+				/>
+				<label htmlFor='rb2' className='p-radiobutton-label'>
+					False
+				</label>
 			</InputWrapper>
 		</Wrapper>
 	);

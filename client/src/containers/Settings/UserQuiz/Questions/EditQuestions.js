@@ -6,8 +6,11 @@ import _ from 'lodash';
 import server from '../../../../utils/server';
 
 import { fetchQuizQuestions } from '../../../../store/actions/quizActions';
-import { QuestionWrapper, EditQuestionWrapper } from '../../../../components/Quizzes/Questions/edit';
-import { MultipleChoice } from '../../../../components/Quizzes/Questions/multipleChoice';
+import {
+	QuestionWrapper,
+	EditQuestionWrapper,
+} from '../../../../components/Quizzes/Questions/edit';
+import { MultipleChoice } from '../../../../components/UserQuiz/InputOptions';
 import { TrueFalse } from '../../../../components/Quizzes/Questions/trueFalse';
 
 const EditQuestion = ({ question, quiz, ...props }) => {
