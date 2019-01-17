@@ -1,42 +1,17 @@
-import React, { useEffect, Fragment } from 'react';
-import { connect } from 'react-redux';
+import React, { useState, createContext } from 'react';
 
-import { fetchQuiz } from '../store/actions/quizActions';
-import QuizContainer from '../containers/Quiz/Quiz';
-import LeaderBoardContainer from '../containers/Quiz/LeaderBoard';
-import styled from 'styled-components';
-import Loading from '../components/Styles/Loading';
+import QuizContainer from '../containers/Quiz';
 
-const StyledWrapper = styled.div`
-	position: relative;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-`;
-const QuizPage = ({ fetchQuiz, fetchQuizQuestions, quiz, questions, ...props }) => {
-	useEffect(() => {
-		fetchQuiz(props.match.params.id);
-	}, []);
+export const QuizCtx = createContext([ undefined, () => {} ]);
 
-	if (!quiz || !questions) return <Loading />;
-	else
-		return (
-			<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-				<div style={{ width: '500px' }}>
-					<StyledWrapper>
-						<LeaderBoardContainer />
-						<QuizContainer />
-					</StyledWrapper>
-				</div>
-			</div>
-		);
+const QuizPage = props => {
+	const [ quiz, setQuiz ] = useState(undefined);
+
+	return (
+		<QuizCtx.Provider value={[ quiz, setQuiz ]}>
+			<QuizContainer {...props} />
+		</QuizCtx.Provider>
+	);
 };
 
-const mapStateToProps = ({ quizReducer }) => ({
-	quiz: quizReducer.quiz,
-	loading: quizReducer.loading,
-	questions: quizReducer.questions,
-});
-
-export default connect(mapStateToProps, { fetchQuiz })(QuizPage);
+export default QuizPage;
