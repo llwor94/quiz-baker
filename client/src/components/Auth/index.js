@@ -41,6 +41,13 @@ const Redirect = styled.div`
     padding-right: 4px;
     color: ${props => props.theme.text};
   }
+
+  a {
+	  color: ${props => props.theme.aqua};
+	  &:hover {
+		  color: ${props => props.theme.header};
+	  }
+  }
 `;
 
 const RegisterWrapper = styled.div`

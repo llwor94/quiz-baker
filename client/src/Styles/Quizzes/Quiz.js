@@ -82,7 +82,6 @@ export const Title = styled.a`
 
 const FooterAccent = styled.div`
 	font-weight: 500;
-
 	padding: 5px;
 	border-radius: 5px;
 `;
@@ -153,6 +152,7 @@ export const FooterWrapper = styled.div`
 
 	a {
 		padding-right: 4px;
+		padding-left: 0px;
 		margin-right: 4px;
 		text-transform: capitalize;
 		cursor: pointer;
@@ -164,5 +164,6 @@ export const FooterWrapper = styled.div`
 
 	img{
 		border-radius: 10px;
+		margin-right: 7px;
 	}
 `;
