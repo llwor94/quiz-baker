@@ -4,13 +4,22 @@ import blankProfile from '../../assets/blank-profile.png';
 import brownie from '../../assets/brownie.svg';
 import cake from '../../assets/cake.svg';
 
+const IconWrapper = styled.div`
+	background-color: gray;
+	margin-right: 3px;
+	height: 40px;
+	width: 40px;
+`;
 const StyledIcon = styled.img`
 	height: 40px;
 	width: 40px;
 	border-radius: 50%;
-	margin-right: 3px;
 `;
-export const ProfileIcon = ({ src }) => <StyledIcon src={src ? src : cake} />;
+export const ProfileIcon = ({ src }) => (
+	<IconWrapper>
+		<StyledIcon src={src ? src : cake} />
+	</IconWrapper>
+);
 
 const StyledImage = styled.img`
 	height: 300px;
