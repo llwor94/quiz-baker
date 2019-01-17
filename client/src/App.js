@@ -13,6 +13,7 @@ import ForumPage from './pages/Forum';
 import PostPage from './pages/Post';
 import RegisterPage from './pages/Register';
 import SettingsPage from './pages/Settings';
+import UserQuizPage from './pages/UserQuiz';
 import LoginContainer from './containers/Login';
 
 import Header from './components/Header';
@@ -63,6 +64,7 @@ const App = () => {
 								<Route exact path='/quizzes/:id' component={QuizPage} />
 								<Route exact path='/forum/:id' component={PostPage} />
 								<Route exact path='/user/settings' component={SettingsPage} />
+								<Route exact path='/user/quizzes/:id' component={UserQuizPage} />
 							</Switch>
 						</div>
 					</Wrapper>

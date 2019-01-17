@@ -1,5 +1,25 @@
 import styled from 'styled-components';
 
+export const QuestionWrapper = styled.div`
+	border-radius: 4px;
+	border: 1px solid;
+	border-color: ${props => props.theme.accent};
+	padding: 12px;
+	background-color: ${props => props.theme.secondary};
+	margin-bottom: 10px;
+	padding: 5px;
+	padding-bottom: ${props => props.edit && '20px'};
+	position: ${props => props.edit && 'relative'};
+	display: flex;
+	flex-direction: ${props => (props.secondary ? 'row' : 'column')};
+	justify-content: ${props => props.secondary && 'space-between'};
+	margin-bottom: ${props => (props.main ? '200px' : '10px')};
+	align-items: ${props => props.edit || (props.secondary && 'center')};
+	width: ${props => props.secondary && '500px'};
+	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
+		0 2px 1px -1px rgba(0, 0, 0, 0.12);
+`;
+
 export const Wrapper = styled.div`
 	border-radius: 4px;
 	border: 1px solid;
@@ -11,33 +31,20 @@ export const Wrapper = styled.div`
 		0 2px 1px -1px rgba(0, 0, 0, 0.12);
 `;
 
-export const QuestWrapper = styled(Wrapper)`
-	padding: 5px;
-	padding-bottom: ${props => props.edit && '20px'};
-	position: ${props => props.edit && 'relative'};
-	display: flex;
-	flex-direction: ${props => (props.secondary ? 'row' : 'column')};
-	justify-content: ${props => props.secondary && 'space-between'};
-	margin-bottom: ${props => (props.main ? '200px' : '10px')};
-	align-items: ${props => props.edit || (props.secondary && 'center')};
-	width: ${props => props.secondary && '500px'}
+export const Title = styled.div`
+	font-size: 18px;
+	font-weight: 500;
+	line-height: 22px;
+	cursor: pointer;
+	color: ${props => props.theme.text};
 `;
 
-export const PostWrapper = styled.div`
-	border-radius: 4px;
-	border: 1px solid;
-	padding: 0 8px;
-	position: relative;
+export const EditWrapper = styled(Wrapper)`
 	display: flex;
-	justify-content: space-between;
+	flex-direction: column;
 	align-items: center;
-	width: 500px;
-	background-color: ${props => props.theme.secondary};
-	margin-bottom: 10px;
-	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
-		0 2px 1px -1px rgba(0, 0, 0, 0.12);
-
-	&:hover {
-		border-color: rgb(129, 131, 132);
-	}
+	position: relative;
+	
 `;
+
+export const InputTitleWrapper = styled.div`padding: 20px;`;
