@@ -43,6 +43,13 @@ const Redirect = styled.div`
   }
 `;
 
+const RegisterWrapper = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+`;
+
 export const Wrapper = ({
   type,
   handleSubmit,
@@ -54,7 +61,7 @@ export const Wrapper = ({
   return (
     <FormWrapper>
       <h1>{type}</h1>
-	  <div style={{display: 'flex'}}>
+	  <RegisterWrapper style={{display: 'flex', position: 'relative'}}>
 
       <LogoWrapper style={{ position: "relative" }}>
         <span className="Q">Q</span>
@@ -71,7 +78,7 @@ export const Wrapper = ({
           style={{ marginTop: "20px", textTransform: "uppercase" }}
         />
       </form>
-	  </div>
+	  </RegisterWrapper>
       {type === "login" ? (
         <Redirect>
           <span>Don't have an account?</span>
