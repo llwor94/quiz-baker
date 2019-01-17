@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import blankProfile from '../../assets/blank-profile.png';
+import brownie from '../../assets/brownie.svg';
+import cake from '../../assets/cake.svg';
 
 const StyledIcon = styled.img`
 	height: 40px;
@@ -8,7 +10,7 @@ const StyledIcon = styled.img`
 	border-radius: 50%;
 	margin-right: 3px;
 `;
-export const ProfileIcon = ({ src }) => <StyledIcon src={src ? src : blankProfile} />;
+export const ProfileIcon = ({ src }) => <StyledIcon src={src ? src : cake} />;
 
 const StyledImage = styled.img`
 	height: 300px;
