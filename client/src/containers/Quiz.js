@@ -34,7 +34,7 @@ const QuizContainer = props => {
 	else
 		return (
 			<QuestionCtx.Provider value={[ currentQuestion, setCurrentQuestion ]}>
-				<div style={{ display: 'relative' }}>
+				<div style={{width: '70%'}}>
 					<LeaderBoard />
 					{currentQuestion === undefined ? (
 						<Quiz />
