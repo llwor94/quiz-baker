@@ -25,17 +25,19 @@ const UserQuizContainer = props => {
 	if (!quiz || questions === undefined) return <Loading />;
 	else
 		return (
-			<Fragment>
-				<Quiz />
-				<QuestionWrapper main>
-					{questions.length ? (
-						questions.map(question => <Question question={question} />)
-					) : (
-						<div>This quiz has no questions.</div>
-					)}
-					<CreateQuestion />
-				</QuestionWrapper>
-			</Fragment>
+			<div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+				<div style={{ width: '500px' }}>
+					<Quiz />
+					<QuestionWrapper main>
+						{questions.length ? (
+							questions.map(question => <Question question={question} />)
+						) : (
+							<div>This quiz has no questions.</div>
+						)}
+						<CreateQuestion />
+					</QuestionWrapper>
+				</div>
+			</div>
 		);
 };
 

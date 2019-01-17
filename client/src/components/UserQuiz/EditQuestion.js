@@ -73,7 +73,7 @@ const EditQuestion = ({ question, handleEdit, setEdit }) => {
 				<Input
 					value={questionTitle}
 					onChange={e => setQuestionTitle(e.target.value)}
-					label='Question Title'
+					//label='Question Title'
 				/>
 			</InputTitleWrapper>
 			{multipleChoice ? (
