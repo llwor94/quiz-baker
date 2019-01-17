@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { openUploadWidget } from '../../utils/cloudinary';
 import { Button, SettingsButton } from '../../Styles/Components/Button';
+import {ProfileButtonWrapper} from '../../Styles/Settings/Sidebar';
 
 import server from '../../utils/server';
 const UpdateImage = ({ imageUpdate, setImageUpdate, updateUser }) => {
@@ -24,15 +25,16 @@ const UpdateImage = ({ imageUpdate, setImageUpdate, updateUser }) => {
 	};
 	if (imageUpdate)
 		return (
-			<div>
+			<ProfileButtonWrapper>
 				<Button
+					style={{marginBottom: '5px'}}
 					secondary
 					icon='pi pi-arrow-left'
 					label='back'
 					onClick={() => setImageUpdate(false)}
 				/>
 				<Button secondary label='Browse...' onClick={handleUpload} />
-			</div>
+			</ProfileButtonWrapper>
 		);
 	else
 		return (
