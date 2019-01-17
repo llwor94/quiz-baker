@@ -71,10 +71,13 @@ const Quiz = ({ quiz, ...props }) => {
 				.catch(err => console.log(err));
 		}
 	};
+
 	return (
 		<Wrapper>
 			<Growl ref={growl} />
-			{user && user.username === quiz.author && <HatWrapper src={hatIcon} />}
+			{user &&
+			user.username === quiz.author &&
+			props.history.location.pathname === '/quizzes' && <HatWrapper src={hatIcon} />}
 			<div style={{ display: 'flex' }}>
 				<LeftSide user={user}>
 					<i

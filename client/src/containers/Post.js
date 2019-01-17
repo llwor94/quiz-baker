@@ -19,6 +19,10 @@ const PostContainer = props => {
 			setPost(data);
 		});
 	}, []);
+
+	const handlePush = () => {
+		props.history.goBack();
+	};
 	if (!post) return <Loading />;
 	else
 		return (
@@ -27,7 +31,7 @@ const PostContainer = props => {
 					style={{ position: 'absolute', top: 0, left: -68 }}
 					secondary
 					icon='pi pi-arrow-left'
-					onClick={() => props.history.push('/forum')}
+					onClick={handlePush}
 				/>
 				<Post {...props} />
 				{user && <NewComment />}

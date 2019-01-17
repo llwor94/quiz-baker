@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import UserQuiz from '../components/Settings/UserQuiz';
+import Quiz from '../components/Quizzes/Quiz';
 import CreateQuiz from '../components/Settings/CreateQuiz';
 import Sidebar from '../components/Settings/Sidebar';
 import Loading from '../components/Styles/Loading';
@@ -39,7 +40,7 @@ const Settings = props => {
 
 	console.log(userQuizzes);
 
-	if (!userQuizzes) return <Loading />;
+	if (!userQuizzes || !userPosts) return <Loading />;
 	else
 		return (
 			<div
@@ -54,7 +55,7 @@ const Settings = props => {
 				<Sidebar />
 				<div>
 					<CreateQuiz />
-					{userQuizzes.map(quiz => <UserQuiz key={quiz.id} quiz={quiz} />)}
+					{userQuizzes.map(quiz => <Quiz key={quiz.id} quiz={quiz} {...props} />)}
 				</div>
 				<div>
 					{' '}

@@ -34,7 +34,7 @@ const Post = ({ post, ...props }) => {
 					<span style={{ padding: '0 3px' }}>&#8226;</span>
 					{moment(post.created_at).fromNow()}
 				</Header>
-				<BodyWrapper onClick={() => props.history.push(`forum/${post.id}`)}>
+				<BodyWrapper onClick={() => props.history.push(`/forum/${post.id}`)}>
 					<Title>{post.title}</Title>
 
 					<p>{post.body}</p>

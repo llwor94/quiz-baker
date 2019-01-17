@@ -6,7 +6,7 @@ import Quiz from '../components/UserQuiz/Quiz';
 import Question from '../components/UserQuiz/Question';
 import { QuestionWrapper } from '../Styles/UserQuiz/Questions';
 import CreateQuestion from '../components/UserQuiz/CreateQuestion';
-
+import { Button } from '../Styles/Components/Button';
 const UserQuizContainer = props => {
 	const [ quiz, setQuiz ] = useContext(UserQuizCtx);
 	const [ questions, setQuestions ] = useContext(QuizQuestionsCtx);
@@ -26,7 +26,13 @@ const UserQuizContainer = props => {
 	else
 		return (
 			<div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-				<div style={{ width: '500px' }}>
+				<div style={{ width: '500px', position: 'relative' }}>
+					<Button
+						style={{ position: 'absolute', top: 0, left: -68 }}
+						secondary
+						icon='pi pi-arrow-left'
+						onClick={() => props.history.goBack()}
+					/>
 					<Quiz />
 					<QuestionWrapper main>
 						{questions.length ? (
