@@ -18,7 +18,7 @@ const Posts = props => {
 			.then(({ data }) => {
 				setPosts(data.sort((a, b) => b.id - a.id));
 			})
-			.catch(err => console.log(err));
+			.catch(error => console.log(error.response));
 	}, []);
 
 	if (!posts) return <Loading />;

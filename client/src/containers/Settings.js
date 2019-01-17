@@ -1,13 +1,18 @@
 import React, { useEffect, useState, useContext } from 'react';
 import UserQuiz from '../components/Settings/UserQuiz';
+import Quiz from '../components/Quizzes/Quiz';
 import CreateQuiz from '../components/Settings/CreateQuiz';
 import Sidebar from '../components/Settings/Sidebar';
 import Loading from '../components/Styles/Loading';
-import { UserQuizzesCtx } from '../pages/Settings';
+import { UserQuizzesCtx, UserPostsCtx } from '../pages/Settings';
 import { UserCtx } from '../App';
+import NewPost from '../components/Posts/NewPost';
+import Post from '../components/Posts/Post';
+
 import server from '../utils/server';
-const Settings = () => {
+const Settings = props => {
 	const [ userQuizzes, setUserQuizzes ] = useContext(UserQuizzesCtx);
+	const [ userPosts, setUserPosts ] = useContext(UserPostsCtx);
 	const [ user, setUser ] = useContext(UserCtx);
 	useEffect(
 		() => {
@@ -20,20 +25,42 @@ const Settings = () => {
 					);
 				}
 			});
+			server.get('/posts').then(({ data }) => {
+				if (user) {
+					setUserPosts(
+						data
+							.filter(post => post.author === user.username)
+							.sort((a, b) => b.id - a.id),
+					);
+				}
+			});
 		},
 		[ user ],
 	);
 
 	console.log(userQuizzes);
 
-	if (!userQuizzes) return <Loading />;
+	if (!userQuizzes || !userPosts) return <Loading />;
 	else
 		return (
-			<div style={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
+			<div
+				style={{
+					display: 'flex',
+					width: '100%',
+					maxWidth: '1400px',
+					justifyContent: 'space-around',
+					alignItems: 'flex-start',
+				}}
+			>
 				<Sidebar />
-				<div style={{ width: '500px' }}>
+				<div>
 					<CreateQuiz />
-					{userQuizzes.map(quiz => <UserQuiz key={quiz.id} quiz={quiz} />)}
+					{userQuizzes.map(quiz => <Quiz key={quiz.id} quiz={quiz} {...props} />)}
+				</div>
+				<div>
+					{' '}
+					<NewPost />
+					{userPosts.map(post => <Post key={post.id} post={post} {...props} />)}
 				</div>
 			</div>
 		);

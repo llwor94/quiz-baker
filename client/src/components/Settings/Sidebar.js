@@ -33,17 +33,21 @@ const Sidebar = () => {
 		<ProfileWrapper>
 			<LargeImage src={user.img_url} />
 			<h4>Welcome, {user.username}!</h4>
-			<ProfileButtonWrapper >
-				<UpdateImage
-					imageUpdate={imageUpdate}
-					setImageUpdate={setImageUpdate}
-					updateUser={updateUser}
-				/>
-				<UpdateUsername
-					usernameUpdate={usernameUpdate}
-					setUsernameUpdate={setUsernameUpdate}
-					updateUser={updateUser}
-				/>
+			<ProfileButtonWrapper>
+				{!usernameUpdate && (
+					<UpdateImage
+						imageUpdate={imageUpdate}
+						setImageUpdate={setImageUpdate}
+						updateUser={updateUser}
+					/>
+				)}
+				{!imageUpdate && (
+					<UpdateUsername
+						usernameUpdate={usernameUpdate}
+						setUsernameUpdate={setUsernameUpdate}
+						updateUser={updateUser}
+					/>
+				)}
 			</ProfileButtonWrapper>
 		</ProfileWrapper>
 	);

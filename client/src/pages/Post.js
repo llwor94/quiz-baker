@@ -9,7 +9,7 @@ const PostPage = props => {
 
 	return (
 		<PostCtx.Provider value={[ post, setPost ]}>
-			<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+			<div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
 				<PostContainer {...props} />
 			</div>
 		</PostCtx.Provider>

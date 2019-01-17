@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const PostWrapper = styled.div`
 	border-radius: 4px;
 	border: 1px solid;
+	border-color: ${props => props.theme.accent};
 	padding: 0 8px;
 	position: relative;
 	display: flex;

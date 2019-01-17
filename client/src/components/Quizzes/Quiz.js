@@ -15,6 +15,7 @@ import {
 	Title,
 	Header,
 	Topic,
+	User,
 	Score,
 	DescriptionWrapper,
 	UserNameWrapper,
@@ -37,12 +38,14 @@ const Quiz = ({ quiz, ...props }) => {
 		});
 	};
 
-	const handleFavoriteToggle = quiz => {
+	const handleFavoriteToggle = () => {
 		server
 			.patch(`quizzes/${quiz.id}`, { favorite: !quiz.favorite })
 			.then(({ data }) => {
 				server.get('/quizzes').then(({ data }) => {
-					setQuizzes(data);
+					setQuizzes(
+						data.filter(quiz => quiz.question_count).sort((a, b) => b.id - a.id),
+					);
 				});
 			})
 			.catch(err => console.log(err));
@@ -60,16 +63,21 @@ const Quiz = ({ quiz, ...props }) => {
 				.patch(`quizzes/${quiz.id}`, { vote: user_vote })
 				.then(({ data }) => {
 					server.get('/quizzes').then(({ data }) => {
-						setQuizzes(data);
+						setQuizzes(
+							data.filter(quiz => quiz.question_count).sort((a, b) => b.id - a.id),
+						);
 					});
 				})
 				.catch(err => console.log(err));
 		}
 	};
+
 	return (
 		<Wrapper>
 			<Growl ref={growl} />
-			{user && user.username === quiz.author && <HatWrapper src={hatIcon} />}
+			{user &&
+			user.username === quiz.author &&
+			props.history.location.pathname === '/quizzes' && <HatWrapper src={hatIcon} />}
 			<div style={{ display: 'flex' }}>
 				<LeftSide user={user}>
 					<i
@@ -120,7 +128,9 @@ const Quiz = ({ quiz, ...props }) => {
 					<FooterWrapper>
 						<UserNameWrapper>
 							<ProfileIcon src={quiz.author_img} />
-							<span>Created by <a>{quiz.author}</a></span>
+							<span>
+								Created by <User>{quiz.author}</User>
+							</span>
 						</UserNameWrapper>
 
 						<a onClick={handleCopy}>Share</a>

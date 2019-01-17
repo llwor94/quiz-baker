@@ -6,7 +6,7 @@ import { Button, SettingsButton } from '../../Styles/Components/Button';
 import { UserCtx } from '../../App';
 import { Input } from '../../Styles/Components/Input';
 
-import {ProfileButtonWrapper} from '../../Styles/Settings/Sidebar';
+import { ProfileButtonWrapper } from '../../Styles/Settings/Sidebar';
 
 const checkData = debounce(async (username, setError) => {
 	if (username) {
@@ -50,13 +50,19 @@ const UpdateUsername = ({ usernameUpdate, setUsernameUpdate, updateUser }) => {
 				{error && <p>{error}</p>}
 				<Button
 					secondary
-					label='Update'
-					disabled={!username || error || username === user.username}
-					onClick={handleUpdate}
+					icon='pi pi-arrow-left'
+					label='back'
+					onClick={() => setUsernameUpdate(false)}
 				/>
+
 				<div>
-					<Button secondary icon='pi pi-times' onClick={() => setUsernameUpdate(false)} />
 					<Input value={username} onChange={handleChange} />
+					<Button
+						secondary
+						label='Update'
+						disabled={!username || error || username === user.username}
+						onClick={handleUpdate}
+					/>
 				</div>
 			</ProfileButtonWrapper>
 		);

@@ -61,7 +61,11 @@ const App = () => {
 					<GlobalStyle />
 					<Header setValue={setValue} darkMode={darkMode} />
 					<Wrapper>
+
 						<InnerWrapper>
+
+						
+
 							<Switch>
 								<Route exact path='/login' component={LoginContainer} />
 								<Route exact path='/register' component={RegisterPage} />
