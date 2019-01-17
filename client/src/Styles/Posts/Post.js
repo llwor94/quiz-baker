@@ -27,6 +27,8 @@ export const InnerWrapper = styled.div`
 export const BodyWrapper = styled.div`
 	max-height: 250px;
 	overflow: hidden;
+	cursor: pointer;
+
 	p {
 		font-size: 14px;
 		font-weight: 400;
@@ -43,11 +45,6 @@ export const Header = styled.div`
 	align-items: center;
 	margin-bottom: 8px;
 	color: ${props => props.theme.link};
-`;
-
-export const UserNameWrapper = styled.div`
-	display: flex;
-	align-items: center;
 	a {
 		color: ${props => props.theme.accentRed};
 		padding-left: 3px;
@@ -59,14 +56,13 @@ export const FooterWrapper = styled.div`
 	align-items: flex-end;
 	font-size: 12px;
 	font-weight: 700;
-`;
-
-export const FooterLink = styled.div`
-	padding-right: 4px;
-	margin-right: 4px;
-	text-transform: capitalize;
-	cursor: pointer;
-	color: ${props => props.theme.accentText};
+	a {
+		padding-right: 4px;
+		margin-right: 4px;
+		text-transform: capitalize;
+		cursor: pointer;
+		color: ${props => props.theme.accentText};
+	}
 `;
 
 export const CommentCount = styled.div`

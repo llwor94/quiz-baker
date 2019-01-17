@@ -12,7 +12,7 @@ import { Title } from '../../Styles/Text/title';
 
 import { ProfileIcon } from '../../Styles/Image';
 
-const InnerWrapper = styled.div`
+export const InnerWrapper = styled.div`
 	padding: 8px 0;
 	margin: 0 8px;
 `;

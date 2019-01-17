@@ -34,7 +34,7 @@ const Posts = props => {
 			>
 				<div style={{ width: '500px' }}>
 					{user && <NewPost />}
-					{posts.map(post => <Post key={post.id} post={post} />)}
+					{posts.map(post => <Post key={post.id} post={post} {...props} />)}
 				</div>
 			</div>
 		);

@@ -8,7 +8,6 @@ import {
 	PostWrapper,
 	BodyWrapper,
 	Header,
-	UserNameWrapper,
 	FooterWrapper,
 	FooterLink,
 	CommentCount,
@@ -18,7 +17,6 @@ import {
 import { ProfileIcon } from '../../Styles/Components/Image';
 
 const Post = ({ post, ...props }) => {
-	console.log(post);
 	const growl = React.createRef();
 	const handleCopy = id => {
 		let value = `http://localhost:3000/forum/${id}`;
@@ -32,27 +30,22 @@ const Post = ({ post, ...props }) => {
 			<Growl ref={growl} />
 			<InnerWrapper>
 				<Header>
-					<UserNameWrapper>
-						<ProfileIcon src={post.author_img} />
-						Posted by <a>{post.author}</a>
-						<span style={{ padding: '0 3px' }}>&#8226;</span>
-						{moment(post.created_at).fromNow()}
-					</UserNameWrapper>
+					<ProfileIcon src={post.author_img} />
+					Posted by <a>{post.author}</a>
+					<span style={{ padding: '0 3px' }}>&#8226;</span>
+					{moment(post.created_at).fromNow()}
 				</Header>
-				<div
-					onClick={() => props.history.push(`forum/${post.id}`)}
-					style={{ cursor: 'pointer' }}
-				>
+				<BodyWrapper onClick={() => props.history.push(`forum/${post.id}`)}>
 					<Title>{post.title}</Title>
-					<BodyWrapper>
-						<p>{post.body}</p>
-					</BodyWrapper>
-				</div>
+
+					<p>{post.body}</p>
+				</BodyWrapper>
+
 				<FooterWrapper>
 					<CommentCount>
 						{post.comment_count === 1 ? '1 comment' : `${post.comment_count} comments`}
 					</CommentCount>
-					<FooterLink onClick={handleCopy}>Share</FooterLink>
+					<a onClick={handleCopy}>Share</a>
 				</FooterWrapper>
 			</InnerWrapper>
 		</PostWrapper>
