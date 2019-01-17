@@ -5,15 +5,18 @@ import brownie from '../../assets/brownie.svg';
 import cake from '../../assets/cake.svg';
 
 const IconWrapper = styled.div`
-	background-color: gray;
+	background-color: #e4e6e7;
 	margin-right: 3px;
 	height: 40px;
 	width: 40px;
+	border-radius: 10px;
 `;
 const StyledIcon = styled.img`
 	height: 40px;
 	width: 40px;
-	border-radius: 50%;
+
+	border-radius: 10px;
+	margin-right: 7px;
 `;
 export const ProfileIcon = ({ src }) => (
 	<IconWrapper>

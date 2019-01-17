@@ -157,13 +157,8 @@ export const FooterWrapper = styled.div`
 		text-transform: capitalize;
 		cursor: pointer;
 		color: ${props => props.theme.accentRed};
-		&:hover{
-			color: ${props => props.theme.aqua}
+		&:hover {
+			color: ${props => props.theme.aqua};
 		}
-	}
-
-	img{
-		border-radius: 10px;
-		margin-right: 7px;
 	}
 `;
