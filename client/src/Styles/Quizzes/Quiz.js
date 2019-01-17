@@ -122,14 +122,16 @@ export const UserNameWrapper = styled.div`
 	font-weight: 400;
 	/* line-height: 16px; */
 	margin-right: 20px;
+`;
 
-	a {
-		font-size: 12px;
-		font-weight: 400;
-		/* line-height: 16px; */
-		color: ${props => props.theme.accentRed};
-		padding-left: 3px;
-	}
+export const User = styled.div`
+	font-size: 12px;
+	font-weight: 400;
+	display: inline;
+	/* line-height: 16px; */
+
+	color: ${props => props.theme.accentRed};
+	padding-left: 3px;
 `;
 
 export const RightSide = styled.div`
@@ -156,7 +158,7 @@ export const FooterWrapper = styled.div`
 		margin-right: 4px;
 		text-transform: capitalize;
 		cursor: pointer;
-		color: ${props => props.theme.accentRed};
+		color: ${props => props.theme.accentText};
 		&:hover {
 			color: ${props => props.theme.aqua};
 		}

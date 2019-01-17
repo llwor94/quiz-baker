@@ -15,6 +15,7 @@ import {
 	Title,
 	Header,
 	Topic,
+	User,
 	Score,
 	DescriptionWrapper,
 	UserNameWrapper,
@@ -120,7 +121,9 @@ const Quiz = ({ quiz, ...props }) => {
 					<FooterWrapper>
 						<UserNameWrapper>
 							<ProfileIcon src={quiz.author_img} />
-							<span>Created by <a>{quiz.author}</a></span>
+							<span>
+								Created by <User>{quiz.author}</User>
+							</span>
 						</UserNameWrapper>
 
 						<a onClick={handleCopy}>Share</a>
