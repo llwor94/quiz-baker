@@ -55,7 +55,7 @@ const App = () => {
 					<GlobalStyle />
 					<Header setValue={setValue} darkMode={darkMode} />
 					<Wrapper>
-						<div style={{ position: 'relative' }}>
+						<div style={{ position: 'relative', display: 'flex', justifyContent: 'flex-end' }}>
 							<Switch>
 								<Route exact path='/login' component={LoginContainer} />
 								<Route exact path='/register' component={RegisterPage} />
