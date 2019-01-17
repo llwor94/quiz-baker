@@ -1,7 +1,6 @@
 import React, { useState, createContext } from 'react';
 
-import PostContainer from '../containers/Post/index';
-import CommentsContainer from '../containers/Post/Comments';
+import PostContainer from '../containers/Post';
 
 export const PostCtx = createContext([ undefined, () => {} ]);
 
@@ -12,7 +11,6 @@ const PostPage = props => {
 		<PostCtx.Provider value={[ post, setPost ]}>
 			<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
 				<PostContainer {...props} />
-				<CommentsContainer {...props} />
 			</div>
 		</PostCtx.Provider>
 	);
