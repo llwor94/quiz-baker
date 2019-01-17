@@ -44,7 +44,7 @@ const Wrapper = styled.div`
 
 const InnerWrapper = styled.div`
 	display: flex;
-	justify-content: flex-end;
+	justify-content: center;
 	position: relative;
 	margin-top: 30px;
 `;
@@ -61,11 +61,7 @@ const App = () => {
 					<GlobalStyle />
 					<Header setValue={setValue} darkMode={darkMode} />
 					<Wrapper>
-
 						<InnerWrapper>
-
-						
-
 							<Switch>
 								<Route exact path='/login' component={LoginContainer} />
 								<Route exact path='/register' component={RegisterPage} />
