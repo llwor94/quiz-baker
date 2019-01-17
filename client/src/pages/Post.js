@@ -1,7 +1,6 @@
 import React, { useState, createContext } from 'react';
 
 import PostContainer from '../containers/Post';
-import CommentsContainer from '../containers/Post/Comments';
 
 export const PostCtx = createContext([ undefined, () => {} ]);
 

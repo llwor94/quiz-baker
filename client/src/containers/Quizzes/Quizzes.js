@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import server from '../../utils/server';
 import { Growl } from 'primereact/growl';
 import { fetchQuizzes } from '../../store/actions/quizActions';
+import Loading from '../components/Styles/Loading';
 
 import { Quiz, QuizzesContainer } from '../../components/Quizzes/Quiz';
 
