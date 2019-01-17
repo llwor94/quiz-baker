@@ -4,7 +4,6 @@ import { CloudinaryContext } from 'cloudinary-react';
 import { openUploadWidget } from '../utils/cloudinary';
 import server from '../utils/server';
 import { getUser } from '../store/actions/authActions';
-import { QuestWrapper } from '../components/Styles/Wrappers/index';
 import { LargeImage } from '../components/Styles/Image';
 import Button from '../components/Styles/Button';
 
