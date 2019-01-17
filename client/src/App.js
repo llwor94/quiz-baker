@@ -42,6 +42,12 @@ const Wrapper = styled.div`
 	padding: 125px 24px 20px;
 `;
 
+const InnerWrapper = styled.div`
+	display: flex;
+	justify-content: flex-end;
+	position: relative;
+	margin-top: 30px;
+`;
 export const UserCtx = createContext([ undefined, () => {} ]);
 
 const App = () => {
@@ -55,7 +61,7 @@ const App = () => {
 					<GlobalStyle />
 					<Header setValue={setValue} darkMode={darkMode} />
 					<Wrapper>
-						<div style={{ position: 'relative', display: 'flex', justifyContent: 'flex-end' }}>
+						<InnerWrapper>
 							<Switch>
 								<Route exact path='/login' component={LoginContainer} />
 								<Route exact path='/register' component={RegisterPage} />
@@ -66,7 +72,7 @@ const App = () => {
 								<Route exact path='/user/settings' component={SettingsPage} />
 								<Route exact path='/user/quizzes/:id' component={UserQuizPage} />
 							</Switch>
-						</div>
+						</InnerWrapper>
 					</Wrapper>
 				</div>
 			</UserCtx.Provider>
