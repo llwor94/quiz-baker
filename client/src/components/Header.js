@@ -86,7 +86,7 @@ const Header = ({ setValue, darkMode, ...props }) => {
 					<Link to='/quizzes'>Quizzes</Link>
 					<Link to='/forum'>Forum</Link>
 				</div>
-				{user && (
+				{user ? (
 					<div>
 						<Link to='/user/settings'>{user.username}</Link>
 						<a
@@ -97,6 +97,10 @@ const Header = ({ setValue, darkMode, ...props }) => {
 						>
 							logout
 						</a>
+					</div>
+				) : (
+					<div>
+						<Link to='/login'>Join Us</Link>
 					</div>
 				)}
 			</StyledMenu>
