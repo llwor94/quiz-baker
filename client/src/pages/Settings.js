@@ -3,13 +3,17 @@ import React, { useEffect, useState, createContext } from 'react';
 import SettingsContainer from '../containers/Settings';
 
 export const UserQuizzesCtx = createContext([ undefined, () => {} ]);
+export const UserPostsCtx = createContext([ undefined, () => {} ]);
 
-const Settings = () => {
+const Settings = props => {
 	const [ userQuizzes, setUserQuizzes ] = useState(undefined);
+	const [ userPosts, setUserPosts ] = useState(undefined);
 
 	return (
 		<UserQuizzesCtx.Provider value={[ userQuizzes, setUserQuizzes ]}>
-			<SettingsContainer />
+			<UserPostsCtx.Provider value={[ userPosts, setUserPosts ]}>
+				<SettingsContainer {...props} />
+			</UserPostsCtx.Provider>
 		</UserQuizzesCtx.Provider>
 	);
 };
