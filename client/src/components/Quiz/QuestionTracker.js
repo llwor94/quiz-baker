@@ -5,7 +5,7 @@ import { ResponseCtx } from '../../pages/Quiz';
 
 const Wrapper = styled.div`
 	display: flex;
-	justify-content: center;
+	justify-content: flex-start;
 `;
 
 const Box = styled.div`

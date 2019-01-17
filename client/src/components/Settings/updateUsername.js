@@ -6,6 +6,8 @@ import { Button, SettingsButton } from '../../Styles/Components/Button';
 import { UserCtx } from '../../App';
 import { Input } from '../../Styles/Components/Input';
 
+import {ProfileButtonWrapper} from '../../Styles/Settings/Sidebar';
+
 const checkData = debounce(async (username, setError) => {
 	if (username) {
 		let user = await server.get('/users', { params: { username } });
@@ -44,7 +46,7 @@ const UpdateUsername = ({ usernameUpdate, setUsernameUpdate, updateUser }) => {
 
 	if (usernameUpdate)
 		return (
-			<div>
+			<ProfileButtonWrapper>
 				{error && <p>{error}</p>}
 				<Button
 					secondary
@@ -56,7 +58,7 @@ const UpdateUsername = ({ usernameUpdate, setUsernameUpdate, updateUser }) => {
 					<Button secondary icon='pi pi-times' onClick={() => setUsernameUpdate(false)} />
 					<Input value={username} onChange={handleChange} />
 				</div>
-			</div>
+			</ProfileButtonWrapper>
 		);
 	else
 		return (

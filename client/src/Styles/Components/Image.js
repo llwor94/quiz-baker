@@ -13,7 +13,7 @@ export const ProfileIcon = ({ src }) => <StyledIcon src={src ? src : blankProfil
 const StyledImage = styled.img`
 	height: 300px;
 	width: 300px;
-	border-radius: 50%;
+	border-radius: 10px;
 `;
 
 export const LargeImage = ({ src }) => <StyledImage src={src ? src : blankProfile} />;

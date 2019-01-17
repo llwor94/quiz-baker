@@ -3,7 +3,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import server from '../../utils/server';
 import { LargeImage } from '../../Styles/Components/Image';
 import { Button, SettingsButton } from '../../Styles/Components/Button';
-import { ProfileWrapper } from '../../Styles/Settings/Sidebar';
+import { ProfileWrapper, ProfileButtonWrapper } from '../../Styles/Settings/Sidebar';
 import { UserCtx } from '../../App';
 import UpdateImage from './UpdateImage';
 import UpdateUsername from './updateUsername';
@@ -33,7 +33,7 @@ const Sidebar = () => {
 		<ProfileWrapper>
 			<LargeImage src={user.img_url} />
 			<h4>Welcome, {user.username}!</h4>
-			<div style={{ display: 'flex' }}>
+			<ProfileButtonWrapper >
 				<UpdateImage
 					imageUpdate={imageUpdate}
 					setImageUpdate={setImageUpdate}
@@ -44,7 +44,7 @@ const Sidebar = () => {
 					setUsernameUpdate={setUsernameUpdate}
 					updateUser={updateUser}
 				/>
-			</div>
+			</ProfileButtonWrapper>
 		</ProfileWrapper>
 	);
 };
