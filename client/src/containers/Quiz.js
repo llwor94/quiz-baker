@@ -34,7 +34,15 @@ const QuizContainer = props => {
 	else
 		return (
 			<QuestionCtx.Provider value={[ currentQuestion, setCurrentQuestion ]}>
-				<div style={{width: '70%'}}>
+				<div
+					style={{
+						width: '70%',
+						display: 'flex',
+						flexDirection: 'column',
+						alignItems: 'center',
+						position: 'relative',
+					}}
+				>
 					<LeaderBoard />
 					{currentQuestion === undefined ? (
 						<Quiz />

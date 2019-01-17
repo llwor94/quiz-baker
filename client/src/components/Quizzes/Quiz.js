@@ -52,6 +52,7 @@ const Quiz = ({ quiz, ...props }) => {
 	};
 
 	const handleVote = val => {
+		console.log(quiz.user_vote, val);
 		if (user) {
 			let user_vote;
 			if (val === quiz.user_vote) {
@@ -59,6 +60,7 @@ const Quiz = ({ quiz, ...props }) => {
 			} else {
 				user_vote = val;
 			}
+			console.log(user_vote);
 			server
 				.patch(`quizzes/${quiz.id}`, { vote: user_vote })
 				.then(({ data }) => {
