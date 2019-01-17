@@ -38,12 +38,14 @@ const Quiz = ({ quiz, ...props }) => {
 		});
 	};
 
-	const handleFavoriteToggle = quiz => {
+	const handleFavoriteToggle = () => {
 		server
 			.patch(`quizzes/${quiz.id}`, { favorite: !quiz.favorite })
 			.then(({ data }) => {
 				server.get('/quizzes').then(({ data }) => {
-					setQuizzes(data);
+					setQuizzes(
+						data.filter(quiz => quiz.question_count).sort((a, b) => b.id - a.id),
+					);
 				});
 			})
 			.catch(err => console.log(err));
@@ -61,7 +63,9 @@ const Quiz = ({ quiz, ...props }) => {
 				.patch(`quizzes/${quiz.id}`, { vote: user_vote })
 				.then(({ data }) => {
 					server.get('/quizzes').then(({ data }) => {
-						setQuizzes(data);
+						setQuizzes(
+							data.filter(quiz => quiz.question_count).sort((a, b) => b.id - a.id),
+						);
 					});
 				})
 				.catch(err => console.log(err));
