@@ -32,7 +32,15 @@ const CreateQuiz = () => {
 	};
 	console.log(newQuiz);
 
-	if (!newQuiz) return <Button label='Create a New Quiz' onClick={() => setNewQuiz(true)} full />;
+	if (!newQuiz)
+		return (
+			<Button
+				label='Create a New Quiz'
+				onClick={() => setNewQuiz(true)}
+				style={{ marginBottom: '10px' }}
+				full
+			/>
+		);
 	else
 		return (
 			<Wrapper>
