@@ -12,11 +12,13 @@ const Wrapper = styled.div`
 	position: fixed;
 	width: 100%;
 	z-index: 100;
+	display: flex;
+	align-items: center;
 `;
 
 const HeaderWrapper = styled.div`
-	height: 50px;
-
+	height: 55px;
+	position: relative;
 	display: flex;
 	width: 100%;
 	align-items: center;
@@ -26,6 +28,17 @@ const HeaderWrapper = styled.div`
 	top: 0;
 	z-index: 200;
 	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.3);
+`;
+
+const InnerWrapper = styled.div`
+	display: flex;
+	border-bottom: ${props => props.menu && '1px solid gray'};
+	width: ${props => (props.menu ? '100%' : '700px')};
+	position: absolute;
+	justify-content: center;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
 `;
 
 const LeftHeader = styled.div`margin-left: 20px;`;
@@ -80,28 +93,25 @@ const StyledMenu = styled.div`
 	justify-content: center;
 	height: 85px;
 	padding: 12px 25px;
-
 	width: 100%;
 	top: 40px;
 `;
 
 const Logo = styled.img`
 	z-index: 1000;
-	width: 150px;
-	height: 150px;
-	position: absolute;
-	top: 0;
+	width: 45px;
+	height: 45px;
 `;
 
-const animateLogoUp = logo => anime({ targets: logo, scale: 0.3, translateY: -52 });
+const animateLogoUp = logo => anime({ targets: logo, scale: 3, translateY: 4 });
 const animateLogoDown = logo => anime({ targets: logo, scale: 1, translateY: 0 });
-const animateMenuUp = menu => anime({ targets: menu, translateY: -85 });
+const animateMenuUp = menu => anime({ targets: menu, translateY: 85 });
 const animateMenuDown = menu => anime({ targets: menu, translateY: 0 });
-const animateLinkUp = link => anime({ targets: link, translateY: 25, translateX: -100 });
+const animateLinkUp = link => anime({ targets: link, translateY: -25, translateX: 125 });
 const animateLinkDown = link => anime({ targets: link, translateY: 0, translateX: 0 });
-const animateSecondLinkUp = link => anime({ targets: link, translateY: 25 });
+const animateSecondLinkUp = link => anime({ targets: link, translateY: -25 });
 const animateSecondLinkDown = link => anime({ targets: link, translateY: 0 });
-const animateThirdLinkUp = link => anime({ targets: link, translateX: 100 });
+const animateThirdLinkUp = link => anime({ targets: link, translateX: -125 });
 const animateThirdLinkDown = link => anime({ targets: link, translateX: 0 });
 
 const listenScrollEvent = (setMenuShowing, location) => {
@@ -146,7 +156,7 @@ const Header = ({ setValue, darkMode, ...props }) => {
 	);
 
 	return (
-		<Wrapper>
+		<Wrapper menu={menuShowing}>
 			<HeaderWrapper>
 				<LeftHeader>
 					<StyledHeader to='/'>
@@ -154,6 +164,79 @@ const Header = ({ setValue, darkMode, ...props }) => {
 					</StyledHeader>
 				</LeftHeader>
 
+				<Transition
+					in={menuShowing}
+					appear
+					onExit={animateMenuDown}
+					onEnter={animateMenuUp}
+				>
+					<InnerWrapper menu={menuShowing}>
+						<div style={{ marginRight: '40px', display: 'flex', alignItems: 'center' }}>
+							<Transition
+								in={menuShowing}
+								appear
+								onExit={animateLinkDown}
+								onEnter={animateLinkUp}
+							>
+								<LinkWrapper>
+									<StyledLink to='/quizzes'>Quizzes</StyledLink>
+								</LinkWrapper>
+							</Transition>
+							<LinkWrapper>
+								<StyledLink to='/forum'>Forum</StyledLink>
+							</LinkWrapper>
+						</div>
+						<Transition
+							in={menuShowing}
+							appear
+							onExit={animateLogoDown}
+							onEnter={animateLogoUp}
+						>
+							<Logo src={quizbaker} />
+						</Transition>
+						{user ? (
+							<div
+								style={{
+									marginLeft: '40px',
+									display: 'flex',
+									alignItems: 'center',
+								}}
+							>
+								<Transition
+									in={menuShowing}
+									appear
+									onExit={animateSecondLinkDown}
+									onEnter={animateSecondLinkUp}
+								>
+									<LinkWrapper>
+										<StyledLink to='/user/settings'>{user.username}</StyledLink>
+									</LinkWrapper>
+								</Transition>
+								<Transition
+									in={menuShowing}
+									appear
+									onExit={animateThirdLinkDown}
+									onEnter={animateThirdLinkUp}
+								>
+									<LinkWrapper>
+										<StyledLink
+											as='a'
+											onClick={() => {
+												props.history.push('/quizzes');
+											}}
+										>
+											logout
+										</StyledLink>
+									</LinkWrapper>
+								</Transition>
+							</div>
+						) : (
+							<div>
+								<Link to='/login'>Join Us</Link>
+							</div>
+						)}
+					</InnerWrapper>
+				</Transition>
 				<InputSwitch
 					style={{ marginRight: '20px' }}
 					onLabel='Dark Mode'
@@ -162,69 +245,6 @@ const Header = ({ setValue, darkMode, ...props }) => {
 					onChange={e => setValue(e.value)}
 				/>
 			</HeaderWrapper>
-
-			<Transition in={menuShowing} appear onExit={animateMenuUp} onEnter={animateMenuDown}>
-				<StyledMenu menuUp={menuShowing}>
-					<div style={{ marginRight: '40px' }}>
-						<Transition
-							in={menuShowing}
-							appear
-							onExit={animateLinkUp}
-							onEnter={animateLinkDown}
-						>
-							<LinkWrapper>
-								<StyledLink to='/quizzes'>Quizzes</StyledLink>
-							</LinkWrapper>
-						</Transition>
-						<LinkWrapper>
-							<StyledLink to='/forum'>Forum</StyledLink>
-						</LinkWrapper>
-					</div>
-					<Transition
-						in={menuShowing}
-						appear
-						onExit={animateLogoUp}
-						onEnter={animateLogoDown}
-					>
-						<Logo src={quizbaker} />
-					</Transition>
-					{user ? (
-						<div style={{ marginLeft: '40px' }}>
-							<Transition
-								in={menuShowing}
-								appear
-								onExit={animateSecondLinkUp}
-								onEnter={animateSecondLinkDown}
-							>
-								<LinkWrapper>
-									<StyledLink to='/user/settings'>{user.username}</StyledLink>
-								</LinkWrapper>
-							</Transition>
-							<Transition
-								in={menuShowing}
-								appear
-								onExit={animateThirdLinkUp}
-								onEnter={animateThirdLinkDown}
-							>
-								<LinkWrapper>
-									<StyledLink
-										as='a'
-										onClick={() => {
-											props.history.push('/quizzes');
-										}}
-									>
-										logout
-									</StyledLink>
-								</LinkWrapper>
-							</Transition>
-						</div>
-					) : (
-						<div>
-							<Link to='/login'>Join Us</Link>
-						</div>
-					)}
-				</StyledMenu>
-			</Transition>
 		</Wrapper>
 	);
 };
