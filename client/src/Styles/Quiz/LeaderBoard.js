@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
 		0 2px 1px -1px rgba(0, 0, 0, 0.12);
 	position: absolute;
 	top: 0;
-	left: 0;
+	left: -22%;
 
 	@media (max-width: 977px) {
 		display: none;

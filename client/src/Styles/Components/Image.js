@@ -31,8 +31,8 @@ export const ProfileIcon = ({ src }) => {
 };
 
 const StyledImage = styled.img`
-	height: 300px;
-	width: 300px;
+	height: 150px;
+	width: 150px;
 	border-radius: 10px;
 `;
 
