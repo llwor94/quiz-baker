@@ -4,9 +4,10 @@ import { UserCtx } from '../../App';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCookieBite, faCookie } from '@fortawesome/free-solid-svg-icons';
-
+import { userImage } from '../../utils/imgArray';
 import server from '../../utils/server';
 import { QuizzesCtx } from '../../pages/Quizzes';
+
 import {
 	Wrapper,
 	HatWrapper,
@@ -30,6 +31,15 @@ const Quiz = ({ quiz, ...props }) => {
 	const growl = React.createRef();
 	const [ quizzes, setQuizzes ] = useContext(QuizzesCtx);
 	const [ user, setUser ] = useContext(UserCtx);
+
+	// useEffect(() => {
+	// 	if (!quiz.author_img) {
+	// 		console.log(Object.keys(userImage())[0]);
+	// 		quiz.author_img = Object.values(userImage())[0];
+	// 	}
+	// }, []);
+
+	// console.log(quiz);
 
 	const handleCopy = id => {
 		let value = `http://localhost:3000/quizzes/${id}`;
