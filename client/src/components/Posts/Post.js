@@ -23,9 +23,9 @@ const Post = ({ post, ...props }) => {
 			growl.current.show({ severity: 'info', summary: 'Link Copied!' });
 		});
 	};
-
+	console.log(props.history.location.pathname === '/user/settings');
 	return (
-		<PostWrapper>
+		<PostWrapper style={{ width: '450px', margin: '8px' }}>
 			<Growl ref={growl} />
 			<InnerWrapper>
 				<Header>

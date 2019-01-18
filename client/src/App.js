@@ -39,14 +39,13 @@ const GlobalStyle = createGlobalStyle`
 
 const Wrapper = styled.div`
 	width: 100%;
-	padding: 125px 24px 20px;
+	padding: 70px 24px 20px;
 `;
 
 const InnerWrapper = styled.div`
 	display: flex;
 	justify-content: center;
 	position: relative;
-	margin-top: 30px;
 `;
 export const UserCtx = createContext([ undefined, () => {} ]);
 
@@ -80,4 +79,4 @@ const App = () => {
 	);
 };
 
-export default App;
+export default withRouter(App);

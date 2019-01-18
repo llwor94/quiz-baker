@@ -4,8 +4,6 @@ export const NewPostWrapper = styled.div`
 	display: flex;
 	width: 100%;
 	flex-direction: column;
-
-	padding-bottom: 10px;
 `;
 
 export const InnerWrapper = styled.div`
