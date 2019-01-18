@@ -4,14 +4,14 @@ export const PostWrapper = styled.div`
 	border-radius: 4px;
 	border: 1px solid;
 	border-color: ${props => props.theme.accent};
-	padding: ${props => (props.userPost ? '8px' : '0 8px')};
+	margin: ${props => (props.userPage ? '8px' : '8px 0')};
 	position: relative;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	width: 100%;
+	width: ${props => (props.userPage ? '450px' : '100%')};
 	background-color: ${props => props.theme.secondary};
-	margin: 8px;
+	padding: 8px;
 	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
 		0 2px 1px -1px rgba(0, 0, 0, 0.12);
 

@@ -24,8 +24,9 @@ const Post = ({ post, ...props }) => {
 		});
 	};
 	console.log(props.history.location.pathname === '/user/settings');
+
 	return (
-		<PostWrapper style={{ width: '450px', margin: '8px' }}>
+		<PostWrapper userPage={props.history.location.pathname === '/user/settings'}>
 			<Growl ref={growl} />
 			<InnerWrapper>
 				<Header>
