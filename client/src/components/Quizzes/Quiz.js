@@ -143,9 +143,9 @@ const Quiz = ({ quiz, ...props }) => {
 							<span>
 								Created by <User>{quiz.author}</User>
 							</span>
+							<span style={{ padding: '0 5px' }}>&#8226;</span>
+							<a onClick={handleCopy}>Share</a>
 						</UserNameWrapper>
-
-						<a onClick={handleCopy}>Share</a>
 					</FooterWrapper>
 				</InnerWrapper>
 			</div>

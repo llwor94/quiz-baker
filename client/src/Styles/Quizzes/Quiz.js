@@ -117,11 +117,23 @@ export const DescriptionWrapper = styled.div`
 
 export const UserNameWrapper = styled.div`
 	display: flex;
-	align-items: flex-end;
+	align-items: center;
 	font-size: 12px;
 	font-weight: 400;
 	/* line-height: 16px; */
 	margin-right: 20px;
+	a {
+		padding-right: 4px;
+		padding-left: 0px;
+		font-weight: 700;
+		margin-right: 4px;
+		text-transform: capitalize;
+		cursor: pointer;
+		color: ${props => props.theme.accentText};
+		&:hover {
+			color: ${props => props.theme.aqua};
+		}
+	}
 `;
 
 export const User = styled.div`
@@ -151,16 +163,4 @@ export const FooterWrapper = styled.div`
 	align-items: flex-end;
 	font-size: 12px;
 	font-weight: 700;
-
-	a {
-		padding-right: 4px;
-		padding-left: 0px;
-		margin-right: 4px;
-		text-transform: capitalize;
-		cursor: pointer;
-		color: ${props => props.theme.accentText};
-		&:hover {
-			color: ${props => props.theme.aqua};
-		}
-	}
 `;
