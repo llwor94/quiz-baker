@@ -98,6 +98,7 @@ export const Score = styled(FooterAccent)`
   font-size: 20px;
   padding: 0;
   color: ${props => (props.noScore ? 'grey' : props.theme.text)};
+	margin-bottom: 10px;
 `;
 
 export const DescriptionWrapper = styled.div`
