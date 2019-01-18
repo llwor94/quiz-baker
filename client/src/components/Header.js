@@ -9,18 +9,23 @@ import pieIcon from '../assets/noun_Pie_706498.svg';
 import quizbaker from '../assets/quizbaker.png';
 import { logout } from '../store/actions/authActions';
 
+const Wrapper = styled.div`
+	position: fixed;
+	width: 100%;
+	top: 0;
+	z-index: 100;
+	left: 0;
+`;
+
 const HeaderWrapper = styled.div`
 	height: 70px;
-	position: fixed;
+
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	background-color: ${props => props.theme.secondary};
 	padding: 0 10px;
-	top: 0;
-	z-index: 100;
-	left: 0;
-	width: 100%;
+
 	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.3);
 `;
 
@@ -52,7 +57,7 @@ const StyledMenu = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	top: 70px;
+
 	padding: 12px 25px;
 	z-index: 100;
 	width: 100%;
@@ -76,7 +81,7 @@ const Header = ({ setValue, darkMode, ...props }) => {
 		}
 	}, []);
 	return (
-		<Fragment>
+		<Wrapper>
 			<HeaderWrapper>
 				<LeftHeader>
 					<StyledLink to='/'>
@@ -118,7 +123,7 @@ const Header = ({ setValue, darkMode, ...props }) => {
 					</div>
 				)}
 			</StyledMenu>
-		</Fragment>
+		</Wrapper>
 	);
 };
 
