@@ -1,36 +1,35 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const LogoWrapper = styled.div`
-  position: relative;
-  span {
-    font-size: 128px;
-    font-family: "Merienda One", cursive;
-  }
+	position: relative;
+	font-size: 256px;
+	span {
+		font-family: "Merienda One", cursive;
+	}
 
-  .Q {
-    color: ${props => props.theme.pink};
-  }
+	.Q {
+		color: ${props => props.theme.pink};
+	}
 
-  .B {
-    color: ${props => props.theme.aqua};
-  }
+	.B {
+		color: ${props => props.theme.aqua};
+	}
 
-  .dot {
-    font-size: 128px;
-    font-family: "Merienda One", cursive;
-    color: ${props => props.theme.pink};
-    position: absolute;
-    bottom: -66px;
-    left: 34px;
-  }
+	.dot {
+		font-family: "Merienda One", cursive;
+		color: ${props => props.theme.pink};
+		position: absolute;
+		bottom: -132px;
+		left: 68px;
+	}
 
-  img {
-    height: 100px;
-    position: absolute;
-    top: -30px;
-    left: -47px;
-    transform: rotate(-40deg);
-    z-index: 1;
-    background-color: white;
-  }
+	img {
+		height: 200px;
+		position: absolute;
+		top: -60px;
+		left: -93px;
+		transform: rotate(-40deg);
+		z-index: 1;
+		background-color: white;
+	}
 `;

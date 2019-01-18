@@ -6,7 +6,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { InputSwitch } from 'primereact/inputswitch';
 
 import pieIcon from '../assets/noun_Pie_706498.svg';
-
+import quizbaker from '../assets/quizbaker.png';
 import { logout } from '../store/actions/authActions';
 
 const HeaderWrapper = styled.div`
@@ -31,18 +31,27 @@ const StyledLink = styled(Link)`
   font-size: 30px;
   font-family: 'Merienda One', cursive;
   padding-right: 5px;
-  color: ${props => props.theme.header};
+  color: ${props => props.theme.pink};
+	span {
+		color: ${props => props.theme.aqua};
+		font-family: 'Merienda One', cursive;
+		
+	}
   &:hover{
-	  color:${props => props.theme.aqua}
+	  color:${props => props.theme.aqua};
+		span {
+			color: ${props => props.theme.pink}
+		}
   }
 `;
 
 const StyledMenu = styled.div`
-	position: fixed;
+	position: relative;
 	background-color: ${props => props.theme.secondary};
 	border-color: ${props => props.theme.accent};
 	display: flex;
-	justify-content: space-between;
+	align-items: center;
+	justify-content: center;
 	top: 70px;
 	padding: 12px 25px;
 	z-index: 100;
@@ -54,7 +63,7 @@ const StyledMenu = styled.div`
 		background-color: ${props => props.theme.secondary};
 		color: ${props => props.theme.text};
 		font-size: 14px;
-		margin: 9px;
+		margin: 12px 20px;
 	}
 `;
 const Header = ({ setValue, darkMode, ...props }) => {
@@ -70,8 +79,9 @@ const Header = ({ setValue, darkMode, ...props }) => {
 		<Fragment>
 			<HeaderWrapper>
 				<LeftHeader>
-					<img src={pieIcon} style={{ width: '40px' }} />
-					<StyledLink to='/'>Quiz Baker</StyledLink>
+					<StyledLink to='/'>
+						Quiz <span> Baker</span>
+					</StyledLink>
 				</LeftHeader>
 				<InputSwitch
 					style={{ marginRight: '20px' }}
@@ -82,12 +92,16 @@ const Header = ({ setValue, darkMode, ...props }) => {
 				/>
 			</HeaderWrapper>
 			<StyledMenu>
-				<div>
+				<div style={{ marginRight: '40px' }}>
 					<Link to='/quizzes'>Quizzes</Link>
 					<Link to='/forum'>Forum</Link>
 				</div>
+				<img
+					src={quizbaker}
+					style={{ width: '70px', height: '70px', position: 'absolute', top: 0 }}
+				/>
 				{user ? (
-					<div>
+					<div style={{ marginLeft: '40px' }}>
 						<Link to='/user/settings'>{user.username}</Link>
 						<a
 							onClick={() => {
