@@ -1,11 +1,11 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext, Fragment } from 'react';
 
 import moment from 'moment';
 
 import server from '../../utils/server';
 import { Growl } from 'primereact/growl';
 import { Dialog } from 'primereact/dialog';
-import { Button } from '../../Styles/Components/Button';
+import { Button, BackButton } from '../../Styles/Components/Button';
 import {
 	PostWrapper,
 	BodyWrapper,
@@ -59,46 +59,53 @@ const Post = props => {
 		</div>
 	);
 	return (
-		<PostWrapper>
-			<Growl ref={growl} />
-			<InnerWrapper>
-				<Header>
-					<ProfileIcon src={post.author.img_url} />
-					Posted by <a>{post.author.username}</a>
-					<span style={{ padding: '0 3px' }}>&#8226;</span>
-					{moment(post.created_at).fromNow()}
-				</Header>
-				<BodyWrapper>
-					<Title>{post.title}</Title>
+		<Fragment>
+			<BackButton
+				style={{ position: 'absolute', top: 8, right: 550, maxWidth: '200px' }}
+				onClick={() => props.history.goBack()}
+			/>
+			<PostWrapper>
+				<Growl ref={growl} />
+				<InnerWrapper>
+					<Header>
+						<ProfileIcon src={post.author.img_url} />
+						Posted by <a>{post.author.username}</a>
+						<span style={{ padding: '0 3px' }}>&#8226;</span>
+						{moment(post.created_at).fromNow()}
+					</Header>
+					<BodyWrapper>
+						<Title>{post.title}</Title>
 
-					<p>{post.body}</p>
-				</BodyWrapper>
-				<FooterWrapper>
-					<CommentCount>
-						{post.comments.length === 1 ? (
-							'1 comment'
-						) : (
-							`${post.comments.length} comments`
-						)}
-					</CommentCount>
-					<a onClick={handleCopy}>Share</a>
-					{user &&
-						(user.username === post.author.username && (
-							<a label='delete' onClick={() => setModalVisable(true)}>
-								Delete
-							</a>
-						))}
-					<Dialog
-						visible={modalVisable}
-						style={{ width: '25vw' }}
-						footer={footer}
-						onHide={() => setModalVisable(false)}
-					>
-						Are you sure you'd like to delete this post? This action cannot be undone.
-					</Dialog>
-				</FooterWrapper>
-			</InnerWrapper>
-		</PostWrapper>
+						<p>{post.body}</p>
+					</BodyWrapper>
+					<FooterWrapper>
+						<CommentCount>
+							{post.comments.length === 1 ? (
+								'1 comment'
+							) : (
+								`${post.comments.length} comments`
+							)}
+						</CommentCount>
+						<a onClick={handleCopy}>Share</a>
+						{user &&
+							(user.username === post.author.username && (
+								<a label='delete' onClick={() => setModalVisable(true)}>
+									Delete
+								</a>
+							))}
+						<Dialog
+							visible={modalVisable}
+							style={{ width: '25vw' }}
+							footer={footer}
+							onHide={() => setModalVisable(false)}
+						>
+							Are you sure you'd like to delete this post? This action cannot be
+							undone.
+						</Dialog>
+					</FooterWrapper>
+				</InnerWrapper>
+			</PostWrapper>
+		</Fragment>
 	);
 };
 

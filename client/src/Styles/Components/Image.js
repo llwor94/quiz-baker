@@ -1,10 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import blankProfile from '../../assets/blank-profile.png';
-import bread from '../../assets/bread.svg';
-import cake from '../../assets/cake.svg';
-import cupcake from '../../assets/cupcake.svg';
-import doughnut from '../../assets/doughnut.svg';
+
 import { userImage } from '../../utils/imgArray';
 
 const IconWrapper = styled.div`

@@ -20,19 +20,10 @@ const PostContainer = props => {
 		});
 	}, []);
 
-	const handlePush = () => {
-		props.history.goBack();
-	};
 	if (!post) return <Loading />;
 	else
 		return (
 			<div style={{ width: '500px', position: 'relative' }}>
-				<Button
-					style={{ position: 'absolute', top: 0, left: -68 }}
-					secondary
-					icon='pi pi-arrow-left'
-					onClick={handlePush}
-				/>
 				<Post {...props} />
 				{user && <NewComment />}
 				{post.comments.length > 0 && <Comments />}

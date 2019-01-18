@@ -17,8 +17,12 @@ export const Wrapper = styled.div`
 	background-color: #fff;
 	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
 		0 2px 1px -1px rgba(0, 0, 0, 0.12);
+	.p-growl.p-growl-topright {
+		opacity: 1 !important;
+	}
 	.p-growl .p-growl-item-container.p-growl-message-info {
 		background-color: ${props => props.theme.pink};
+		opacity: 1 !important;
 		font-family: 'Raleway', sans-serif !important;
 		border-radius: 4px;
 		color: white;
@@ -28,6 +32,9 @@ export const Wrapper = styled.div`
 	}
 	.p-growl .p-growl-item-container.p-growl-message-info .p-growl-icon-close {
 		color: white;
+	}
+	&:hover {
+		border-color: ${props => props.theme.pink};
 	}
 `;
 
@@ -133,14 +140,16 @@ export const UserNameWrapper = styled.div`
 	align-items: center;
 	font-size: 12px;
 	font-weight: 400;
-	/* line-height: 16px; */
+
 	margin-right: 20px;
+
 	a {
 		padding-right: 4px;
 		padding-left: 0px;
 		font-weight: 700;
 		margin-right: 4px;
 		text-transform: capitalize;
+
 		cursor: pointer;
 		color: ${props => props.theme.accentText};
 		&:hover {

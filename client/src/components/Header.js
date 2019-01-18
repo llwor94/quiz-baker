@@ -32,7 +32,7 @@ const HeaderWrapper = styled.div`
 
 const InnerWrapper = styled.div`
 	display: flex;
-	border-bottom: ${props => props.menu && '1px solid gray'};
+	border-bottom: ${props => props.menu && '1px solid lightgray'};
 	width: ${props => (props.menu ? '100%' : '700px')};
 	position: absolute;
 	justify-content: center;
@@ -75,7 +75,7 @@ const StyledLink = styled(Link)`
 	color: ${props => props.theme.text};
 	font-size: 15px;
 	line-height: 30px;
-	transition: all .5s ease-in-out;
+	transition: all .7s ease-in-out;
 	cursor: pointer;
 	
 	&:hover {
@@ -92,7 +92,7 @@ const Logo = styled.img`
 
 const animateLogoUp = logo => anime({ targets: logo, scale: 3, translateY: 4 });
 const animateLogoDown = logo => anime({ targets: logo, scale: 1, translateY: 0 });
-const animateMenuUp = menu => anime({ targets: menu, translateY: 85 });
+const animateMenuUp = menu => anime({ targets: menu, translateY: 90 });
 const animateMenuDown = menu => anime({ targets: menu, translateY: 0 });
 const animateLinkUp = link => anime({ targets: link, translateY: -25, translateX: 125 });
 const animateLinkDown = link => anime({ targets: link, translateY: 0, translateX: 0 });
