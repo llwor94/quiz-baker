@@ -84,19 +84,6 @@ const StyledLink = styled(Link)`
 	}
 `;
 
-const StyledMenu = styled.div`
-	border: .5px solid;
-	background-color: transparent;
-	border-color: ${props => props.theme.accent};
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: 85px;
-	padding: 12px 25px;
-	width: 100%;
-	top: 40px;
-`;
-
 const Logo = styled.img`
 	z-index: 1000;
 	width: 45px;
