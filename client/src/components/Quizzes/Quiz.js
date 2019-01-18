@@ -41,8 +41,8 @@ const Quiz = ({ quiz, ...props }) => {
 
 	// console.log(quiz);
 
-	const handleCopy = id => {
-		let value = `http://localhost:3000/quizzes/${id}`;
+	const handleCopy = () => {
+		let value = `http://localhost:3000/quizzes/${quiz.id}`;
 		navigator.clipboard.writeText(value).then(() => {
 			growl.current.show({ severity: 'info', summary: 'Link Copied!' });
 		});

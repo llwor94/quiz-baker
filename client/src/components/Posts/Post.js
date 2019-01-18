@@ -17,8 +17,8 @@ import { ProfileIcon } from '../../Styles/Components/Image';
 
 const Post = ({ post, ...props }) => {
 	const growl = React.createRef();
-	const handleCopy = id => {
-		let value = `http://localhost:3000/forum/${id}`;
+	const handleCopy = () => {
+		let value = `http://localhost:3000/forum/${post.id}`;
 		navigator.clipboard.writeText(value).then(() => {
 			growl.current.show({ severity: 'info', summary: 'Link Copied!' });
 		});

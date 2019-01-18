@@ -1,7 +1,7 @@
 import React, { useEffect, useState, createContext } from 'react';
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
 
-import { Route, Switch, withRouter } from 'react-router-dom';
+import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 
 import 'primereact/resources/themes/nova-light/theme.css';
 import 'primereact/resources/primereact.min.css';
@@ -62,10 +62,11 @@ const App = () => {
 					<Wrapper>
 						<InnerWrapper>
 							<Switch>
+								<Route exact path='/' render={() => <Redirect to='/quizzes' />} />
 								<Route exact path='/login' component={LoginContainer} />
 								<Route exact path='/register' component={RegisterPage} />
 								<Route exact path='/forum' component={ForumPage} />
-								<Route exact path={[ '/', '/quizzes' ]} component={QuizzesPage} />
+								<Route exact path='/quizzes' component={QuizzesPage} />
 								<Route exact path='/quizzes/:id' component={QuizPage} />
 								<Route exact path='/forum/:id' component={PostPage} />
 								<Route exact path='/user/settings' component={SettingsPage} />

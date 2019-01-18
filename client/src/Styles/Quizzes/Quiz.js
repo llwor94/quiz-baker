@@ -17,6 +17,18 @@ export const Wrapper = styled.div`
 	background-color: #fff;
 	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
 		0 2px 1px -1px rgba(0, 0, 0, 0.12);
+	.p-growl .p-growl-item-container.p-growl-message-info {
+		background-color: ${props => props.theme.pink};
+		font-family: 'Raleway', sans-serif !important;
+		border-radius: 4px;
+		color: white;
+	}
+	.p-growl .p-growl-item-container.p-growl-message-info .p-growl-image {
+		display: none;
+	}
+	.p-growl .p-growl-item-container.p-growl-message-info .p-growl-icon-close {
+		color: white;
+	}
 `;
 
 export const HatWrapper = styled.img`

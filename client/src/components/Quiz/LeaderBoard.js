@@ -22,7 +22,7 @@ const Leaderboard = () => {
 			Leader Board
 			{userScores.length ? (
 				userScores.map(userScore => (
-					<UserWrapper>
+					<UserWrapper key={userScore.username}>
 						<User>
 							<ProfileIcon src={userScore.img_url} />
 							<span>{userScore.username}</span>

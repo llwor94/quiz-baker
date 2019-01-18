@@ -18,6 +18,19 @@ export const PostWrapper = styled.div`
 	&:hover {
 		border-color: rgb(129, 131, 132);
 	}
+	.p-growl .p-growl-item-container.p-growl-message-info {
+		background-color: ${props => props.theme.aqua};
+		font-family: 'Raleway', sans-serif !important;
+		border-radius: 4px;
+		color: white;
+		opacity: .75;
+	}
+	.p-growl .p-growl-item-container.p-growl-message-info .p-growl-image {
+		display: none;
+	}
+	.p-growl .p-growl-item-container.p-growl-message-info .p-growl-icon-close {
+		color: white;
+	}
 `;
 
 export const InnerWrapper = styled.div`
@@ -63,6 +76,9 @@ export const FooterWrapper = styled.div`
 		text-transform: capitalize;
 		cursor: pointer;
 		color: ${props => props.theme.accentText};
+		&:hover {
+			color: ${props => props.theme.pink};
+		}
 	}
 `;
 
