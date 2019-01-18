@@ -49,13 +49,17 @@ const Settings = props => {
         <Sidebar />
         <div style={{ display: "flex" }}>
           <div style={{ marginRight: "15px" }}>
-            <CreateQuiz />
+          <div style={{display: 'flex'}}>
+
+          <h2>Your Quizzes</h2>
+            <CreateQuiz fromSettings/>
+          </div>
             {userQuizzes.map(quiz => (
               <Quiz key={quiz.id} quiz={quiz} {...props} />
             ))}
           </div>
           <div>
-            {" "}
+              <h2>Your Posts</h2>
             <NewPost />
             {userPosts.map(post => (
               <Post key={post.id} post={post} {...props} />
