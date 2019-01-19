@@ -20,7 +20,7 @@ const UserQuiz = ({ quiz, ...props }) => {
 	console.log(quiz.quiz);
 	const [ modalVisable, setModalVisable ] = useState(false);
 
-	const deleteQuiz = props => {
+	const deleteQuiz = e => {
 		server
 			.delete(`quizzes/${quiz.id}`)
 			.then(response => {
@@ -38,23 +38,27 @@ const UserQuiz = ({ quiz, ...props }) => {
 
 	const footer = (
 		<div>
-			<Button
-				label='Yes'
-				icon='pi pi-check'
-				onClick={deleteQuiz}
-				className='p-button-danger'
-			/>
+			<Button label='Yes' icon='pi pi-check' onClick={deleteQuiz} />
 			<Button
 				label='No'
 				icon='pi pi-times'
 				onClick={() => setModalVisable(false)}
-				className='p-button-secondary'
+				secondary
 			/>
 		</div>
 	);
 
 	return (
 		<Wrapper>
+			<Dialog
+				visible={modalVisable}
+				style={{ width: '25vw' }}
+				footer={footer}
+				onHide={() => setModalVisable(false)}
+			>
+				Are you sure you'd like to delete your quiz {quiz.title}? This action cannot be
+				undone.
+			</Dialog>
 			<InnerWrapper>
 				<div onClick={() => props.history.push(`/user/quizzes/${quiz.id}`)}>
 					<Header>
@@ -64,15 +68,7 @@ const UserQuiz = ({ quiz, ...props }) => {
 					<div
 						style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}
 					/>
-					<Dialog
-						visible={modalVisable}
-						style={{ width: '25vw' }}
-						footer={footer}
-						onHide={() => setModalVisable(false)}
-					>
-						Are you sure you'd like to delete your quiz {quiz.title}? This action cannot
-						be undone.
-					</Dialog>
+
 					{quiz.description && (
 						<DescriptionWrapper>
 							<p>{quiz.description}</p>
@@ -80,13 +76,15 @@ const UserQuiz = ({ quiz, ...props }) => {
 					)}
 				</div>
 				<FooterWrapper>
-					<a style={{ cursor: 'default', fontWeight: 'bold' }}>
-						{quiz.question_count} questions
-					</a>
-					<a style={{ cursor: 'default', fontWeight: 'bold' }}>
-						{quiz.votes === 1 ? '1 vote' : `${quiz.votes} votes`}
-					</a>
-					<a onClick={() => setModalVisable(true)}>Delete</a>
+					<div>
+						<a style={{ cursor: 'default', fontWeight: 'bold' }}>
+							{quiz.question_count} questions
+						</a>
+						<a style={{ cursor: 'default', fontWeight: 'bold' }}>
+							{quiz.votes === 1 ? '1 vote' : `${quiz.votes} votes`}
+						</a>
+					</div>
+					<Button white icon='pi pi-trash' onClick={() => setModalVisable(true)} />
 				</FooterWrapper>
 			</InnerWrapper>
 		</Wrapper>

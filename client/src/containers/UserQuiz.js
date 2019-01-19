@@ -25,8 +25,15 @@ const UserQuizContainer = props => {
 	if (!quiz || questions === undefined) return <Loading />;
 	else
 		return (
-			<div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-				<div style={{ width: '500px', position: 'relative' }}>
+			<div
+				style={{
+					width: '100%',
+					display: 'flex',
+					justifyContent: 'center',
+					marginTop: '10px',
+				}}
+			>
+				<div style={{ width: '400px', position: 'relative' }}>
 					<Button
 						style={{ position: 'absolute', top: 0, left: -68 }}
 						secondary

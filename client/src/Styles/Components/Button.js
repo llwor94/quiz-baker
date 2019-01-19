@@ -10,12 +10,23 @@ const StyledButtonWrapper = styled.div`
 	margin-bottom: ${props => props.full && '10px'};
 	.p-button {
 		width: ${props => props.full && '100%'};
-		background-color: ${props => (props.secondary ? props.theme.aqua : props.theme.pink)};
-		border-color: ${props => (props.secondary ? props.theme.aqua : props.theme.pink)};
+		background-color: ${props =>
+			props.secondary
+				? props.theme.aqua
+				: props.white ? props.theme.lightGray : props.theme.pink};
+		border-color: ${props =>
+			props.secondary
+				? props.theme.aqua
+				: props.white ? props.theme.lightGray : props.theme.pink};
 		&:enabled:hover {
 			background-color: ${props =>
-				props.secondary ? props.theme.aqua : props.theme.darkPink};
-			border-color: ${props => (props.secondary ? props.theme.aqua : props.theme.darkPink)};
+				props.secondary
+					? props.theme.aqua
+					: props.white ? props.theme.gray : props.theme.darkPink};
+			border-color: ${props =>
+				props.secondary
+					? props.theme.aqua
+					: props.white ? props.theme.gray : props.theme.darkPink};
 		}
 		&:enabled:focus {
 			box-shadow: 0 0 0 0.2em
@@ -28,8 +39,8 @@ export const SettingsButton = {
 	margin: '5px 0',
 };
 
-export const Button = ({ label, onClick, disabled, icon, style, full, secondary }) => (
-	<StyledButtonWrapper full={full} style={style} secondary={secondary}>
+export const Button = ({ label, onClick, disabled, icon, style, full, secondary, white }) => (
+	<StyledButtonWrapper full={full} style={style} secondary={secondary} white={white}>
 		<StyledButton label={label} onClick={onClick} disabled={disabled} icon={icon} />
 	</StyledButtonWrapper>
 );

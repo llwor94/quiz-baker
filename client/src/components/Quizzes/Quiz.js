@@ -134,8 +134,9 @@ const Quiz = ({ quiz, ...props }) => {
 							<span>
 								Created by <User>{quiz.author}</User>
 							</span>
-							<span style={{ padding: '0 5px' }}>&#8226;</span>
-							<a onClick={handleCopy}>Share</a>
+							{/* <span style={{ padding: '0 5px' }}>&#8226;</span> */}
+							<i class='pi pi-share-alt' onClick={handleCopy} />
+							{/* <a onClick={handleCopy}>Share</a> */}
 						</UserNameWrapper>
 					</FooterWrapper>
 				</InnerWrapper>

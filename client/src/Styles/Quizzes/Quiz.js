@@ -156,6 +156,15 @@ export const UserNameWrapper = styled.div`
 			color: ${props => props.theme.aqua};
 		}
 	}
+	i {
+		cursor: pointer;
+		font-size: 18px;
+		padding-left: 4px;
+		color: ${props => props.theme.accentText};
+		&:hover {
+			color: ${props => props.theme.aqua};
+		}
+	}
 `;
 
 export const User = styled.div`

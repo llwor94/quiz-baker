@@ -32,7 +32,10 @@ export const Wrapper = styled.div`
 	justify-content: ${props => props.secondary && 'space-between'};
 	margin-bottom: ${props => (props.main ? '200px' : '10px')};
 	align-items: ${props => props.edit || (props.secondary && 'center')};
-	width: ${props => props.secondary && '500px'};
+	width: ${props => props.secondary && '400px'};
+	&:hover {
+		border-color: ${props => props.theme.pink};
+	}
 `;
 
 export const Title = styled.div`

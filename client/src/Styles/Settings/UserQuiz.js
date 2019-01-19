@@ -14,7 +14,6 @@ export const Header = styled.div`
 	font-weight: 400;
 	line-height: 16px;
 	display: flex;
-	justify-content: space-between;
 	align-items: center;
 	color: ${props => props.theme.link};
 	margin-bottom: 5px;
@@ -51,6 +50,27 @@ export const Wrapper = styled.div`
 	margin-bottom: 10px;
 	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
 		0 2px 1px -1px rgba(0, 0, 0, 0.12);
+	&:hover {
+		border-color: ${props => props.theme.pink};
+	}
+
+	.p-dialog .p-dialog-titlebar {
+		text-align: right;
+	}
+	.p-dialog .p-dialog-titlebar-icons {
+		float: none;
+	}
+	.p-dialog .p-dialog-content {
+		padding: 10px 20px;
+		font-size: 15px;
+		line-height: 22px;
+	}
+	.p-dialog .p-dialog-footer {
+		padding: 16px;
+	}
+	.p-dialog .p-dialog-footer button {
+		margin-left: 10px;
+	}
 `;
 
 export const FooterWrapper = styled.div`
@@ -58,7 +78,7 @@ export const FooterWrapper = styled.div`
 	align-items: flex-end;
 	font-size: 12px;
 	font-weight: 700;
-
+	justify-content: space-between;
 	a {
 		padding-right: 4px;
 		margin-right: 4px;
@@ -71,7 +91,7 @@ export const FooterWrapper = styled.div`
 export const Title = styled.a`
 	font-size: 24px;
 	font-weight: 700;
-
+	margin-right: 10px;
 	margin-bottom: 5px;
 	color: ${props => props.theme.text};
 	cursor: pointer;

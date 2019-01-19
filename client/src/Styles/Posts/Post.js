@@ -36,6 +36,7 @@ export const PostWrapper = styled.div`
 export const InnerWrapper = styled.div`
 	padding: 8px 0;
 	margin: 0 8px;
+	width: 100%;
 `;
 
 export const BodyWrapper = styled.div`
@@ -68,6 +69,7 @@ export const Header = styled.div`
 export const FooterWrapper = styled.div`
 	display: flex;
 	align-items: flex-end;
+	justify-content: space-between;
 	font-size: 12px;
 	font-weight: 700;
 	a {
@@ -78,6 +80,15 @@ export const FooterWrapper = styled.div`
 		color: ${props => props.theme.accentText};
 		&:hover {
 			color: ${props => props.theme.pink};
+		}
+	}
+	i {
+		cursor: pointer;
+		font-size: 18px;
+		padding-left: 4px;
+		color: ${props => props.theme.accentText};
+		&:hover {
+			color: ${props => props.theme.aqua};
 		}
 	}
 `;

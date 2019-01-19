@@ -42,10 +42,16 @@ const Post = ({ post, ...props }) => {
 				</BodyWrapper>
 
 				<FooterWrapper>
-					<CommentCount>
-						{post.comment_count === 1 ? '1 comment' : `${post.comment_count} comments`}
-					</CommentCount>
-					<a onClick={handleCopy}>Share</a>
+					<div style={{ display: 'flex', alignItems: 'center' }}>
+						<CommentCount>
+							{post.comment_count === 1 ? (
+								'1 comment'
+							) : (
+								`${post.comment_count} comments`
+							)}
+						</CommentCount>
+						<i class='pi pi-share-alt' onClick={handleCopy} />
+					</div>
 				</FooterWrapper>
 			</InnerWrapper>
 		</PostWrapper>

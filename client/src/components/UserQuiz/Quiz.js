@@ -32,15 +32,15 @@ const Quiz = () => {
 	return (
 		<Wrapper secondary edit={edit}>
 			<InnerWrapper>
+				<Button
+					style={{ position: 'absolute', top: '5px', right: '5px' }}
+					icon={edit ? 'pi pi-times' : 'pi pi-pencil'}
+					onClick={() => setEdit(!edit)}
+				/>
 				{edit ? (
 					<Fragment>
-						<Button
-							style={{ position: 'absolute', top: '5px', right: '5px' }}
-							icon='pi pi-times'
-							className='p-button-secondary'
-							onClick={() => setEdit(false)}
-						/>
 						<QuizForm quiz={newQuiz} setQuiz={setNewQuiz} />
+						<Button label={edit ? 'Save' : 'Edit'} onClick={handleQuizEdit} />
 					</Fragment>
 				) : (
 					<Fragment>
@@ -52,7 +52,6 @@ const Quiz = () => {
 					</Fragment>
 				)}
 			</InnerWrapper>
-			<Button label={edit ? 'Save' : 'Edit'} onClick={handleQuizEdit} />
 		</Wrapper>
 	);
 };

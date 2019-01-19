@@ -7,9 +7,11 @@ export const LightMode = {
 	header: '#ad546b',
 	aqua: '#00ba96',
 	darkAqua: '#009175',
-	accentText: 'rgb(135, 138, 140)',
+	accentText: '#878A8C',
 	accentPink: '#dc758f',
 	pink: '#dc758f',
 	darkPink: '#ad546b',
 	accentRed: '#873D48',
+	gray: '#878A8C',
+	lightGray: '#ACADAE',
 };

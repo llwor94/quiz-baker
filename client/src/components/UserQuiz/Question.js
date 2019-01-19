@@ -22,7 +22,11 @@ const Question = ({ question }) => {
 			<Wrapper>
 				<div style={{ display: 'flex', justifyContent: 'space-between' }}>
 					<Title main>{question.question}</Title>
-					<Button label='Edit' onClick={() => setEdit(true)} />
+					<Button
+						style={{ position: 'absolute', top: '5px', right: '5px' }}
+						icon='pi pi-pencil'
+						onClick={() => setEdit(true)}
+					/>
 				</div>
 				<ul style={{ paddingLeft: '40px' }}>
 					{question.options.map((option, i) => (
