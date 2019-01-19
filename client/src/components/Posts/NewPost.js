@@ -49,7 +49,7 @@ const NewPost = ({ userPage, quiz }) => {
 						.get(`/quizzes/${quiz.id}/posts`)
 						.then(({ data }) => {
 							console.log(data);
-							setQuizPosts(data);
+							setQuizPosts(data.sort((a, b) => b.id - a.id));
 						})
 						.catch(error => console.log(error));
 				} else {

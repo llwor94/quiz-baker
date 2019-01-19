@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 
 import server from '../../utils/server';
 import _ from 'lodash';
-
+import {Calendar} from 'primereact/calendar';
 import { Button } from '../../Styles/Components/Button';
 import { Wrapper, InnerWrapper } from '../../Styles/Settings/CreateQuiz';
 import QuizForm from './QuizForm';
@@ -15,6 +15,7 @@ const CreateQuiz = () => {
 	const [ quiz, setQuiz ] = useState({ title: '', description: '', topic: '' });
 	const [ userQuizzes, setUserQuizzes ] = useContext(UserQuizzesCtx);
 	const [ user, setUser ] = useContext(UserCtx);
+	const [timeLimit, setTimeLimit] = useState(undefined)
 
 	const handleCreateQuiz = () => {
 		server
@@ -43,6 +44,7 @@ const CreateQuiz = () => {
 					onClick={() => setNewQuiz(false)}
 				/>
 				<QuizForm quiz={quiz} setQuiz={setQuiz} />
+				
 				<InnerWrapper>
 					{!quiz.topic &&
 					quiz.title && (

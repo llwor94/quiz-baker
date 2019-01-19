@@ -6,6 +6,7 @@ import { Button } from '../../Styles/Components/Button';
 import { Input } from '../../Styles/Components/Input';
 import { ToggleButton } from 'primereact/togglebutton';
 import { MultipleChoice, TrueFalse } from './InputOptions';
+
 import { UserQuizCtx, QuizQuestionsCtx } from '../../pages/UserQuiz';
 
 const CreateQuestion = () => {
@@ -14,6 +15,7 @@ const CreateQuestion = () => {
 	const [ multipleChoice, setMultipleChoice ] = useState(true);
 	const [ questionTitle, setQuestionTitle ] = useState(undefined);
 	const [ newQuestion, setNewQuestion ] = useState(false);
+	
 	const [ options, setOptions ] = useState({
 		option1: '',
 		option2: '',
@@ -80,6 +82,7 @@ const CreateQuestion = () => {
 						label='Question Title'
 					/>
 				</InputTitleWrapper>
+				
 				{multipleChoice ? (
 					<MultipleChoice
 						correctOption={correctOption}
