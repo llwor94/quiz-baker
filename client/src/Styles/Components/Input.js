@@ -9,14 +9,15 @@ const InputWrapper = styled.span`
 export const StyledInput = styled.input`
 	outline: none;
 	border-radius: 3px;
-
+	border-top-left-radius: ${props => props.radio && 0};
+	border-bottom-left-radius: ${props => props.radio && 0};
 	resize: none;
 	font-size: 14px;
-
 	color: #333333;
 	background: #ffffff;
 	padding: 0.429em;
 	border: 1px solid #a6a6a6;
+	border-left: ${props => props.radio && 'none'};
 	&:focus {
 		border-color: ${props => props.theme.pink};
 	}
@@ -28,8 +29,8 @@ export const StyledInput = styled.input`
 	}
 `;
 
-export const Input = ({ value, onChange, label, name, type, disabled, style, inputRef }) => (
-	<InputWrapper className='p-float-label' style={style}>
+export const Input = ({ value, onChange, label, name, type, disabled, style, inputRef, radio }) => (
+	<InputWrapper className='p-float-label' style={style} radio={radio}>
 		<StyledInput
 			value={value}
 			onChange={onChange}
@@ -70,3 +71,17 @@ export const TextArea = ({ value, onChange, name, inputRef }) => (
 		style={{ width: '100%' }}
 	/>
 );
+
+export const Label = styled.label`
+	border-radius: 3px;
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+
+	font-size: 16px;
+	color: #333333;
+	background: #ffffff;
+	padding: 0.429em;
+	border: 1px solid #a6a6a6;
+	border-left: none;
+	width: 55px;
+`;

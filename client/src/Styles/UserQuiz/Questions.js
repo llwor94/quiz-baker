@@ -44,7 +44,14 @@ export const EditWrapper = styled(Wrapper)`
 	flex-direction: column;
 	align-items: center;
 	position: relative;
-	
+	.p-togglebutton.p-highlight {
+		background-color: ${props => props.theme.aqua};
+		border-color: ${props => props.theme.aqua};
+		&:hover {
+			background-color: ${props => props.theme.darkAqua};
+			border-color: ${props => props.theme.darkAqua};
+		}
+	}
 `;
 
 export const InputTitleWrapper = styled.div`padding: 20px;`;
