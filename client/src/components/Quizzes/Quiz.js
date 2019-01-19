@@ -32,15 +32,6 @@ const Quiz = ({ quiz, ...props }) => {
 	const [ quizzes, setQuizzes ] = useContext(QuizzesCtx);
 	const [ user, setUser ] = useContext(UserCtx);
 
-	// useEffect(() => {
-	// 	if (!quiz.author_img) {
-	// 		console.log(Object.keys(userImage())[0]);
-	// 		quiz.author_img = Object.values(userImage())[0];
-	// 	}
-	// }, []);
-
-	// console.log(quiz);
-
 	const handleCopy = () => {
 		let value = `http://localhost:3000/quizzes/${quiz.id}`;
 		navigator.clipboard.writeText(value).then(() => {

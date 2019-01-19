@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { openUploadWidget } from '../../utils/cloudinary';
 import { Button, SettingsButton } from '../../Styles/Components/Button';
-import {ProfileButtonWrapper} from '../../Styles/Settings/Sidebar';
+import { ProfileButtonWrapper } from '../../Styles/Settings/Sidebar';
 
 import server from '../../utils/server';
 const UpdateImage = ({ imageUpdate, setImageUpdate, updateUser }) => {
@@ -27,7 +27,7 @@ const UpdateImage = ({ imageUpdate, setImageUpdate, updateUser }) => {
 		return (
 			<ProfileButtonWrapper>
 				<Button
-					style={{marginBottom: '5px'}}
+					style={{ marginBottom: '5px' }}
 					secondary
 					icon='pi pi-arrow-left'
 					label='back'
@@ -39,6 +39,7 @@ const UpdateImage = ({ imageUpdate, setImageUpdate, updateUser }) => {
 	else
 		return (
 			<Button
+				full
 				style={SettingsButton}
 				secondary
 				label='Update Image?'

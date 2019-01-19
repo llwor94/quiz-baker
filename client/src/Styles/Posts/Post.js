@@ -9,14 +9,14 @@ export const PostWrapper = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	width: ${props => (props.userPage ? '450px' : '100%')};
+	width: ${props => (props.userPage ? '400px' : '100%')};
 	background-color: ${props => props.theme.secondary};
 	padding: 8px;
 	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
 		0 2px 1px -1px rgba(0, 0, 0, 0.12);
 
 	&:hover {
-		border-color: rgb(129, 131, 132);
+		border-color: ${props => props.theme.pink};
 	}
 	.p-growl .p-growl-item-container.p-growl-message-info {
 		background-color: ${props => props.theme.aqua};

@@ -69,6 +69,7 @@ const UpdateUsername = ({ usernameUpdate, setUsernameUpdate, updateUser }) => {
 	else
 		return (
 			<Button
+				full
 				secondary
 				label='Update Username?'
 				style={SettingsButton}

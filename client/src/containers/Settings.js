@@ -8,14 +8,16 @@ import { UserQuizzesCtx, UserPostsCtx } from '../pages/Settings';
 import { UserCtx } from '../App';
 import NewPost from '../components/Posts/NewPost';
 import Post from '../components/Posts/Post';
-
-import { SettingsWrapper } from '../Styles/Settings/';
-
+import Quizzes from '../components/Settings/Quizzes';
+import Posts from '../components/Settings/Posts';
+import { SettingsWrapper, Menu } from '../Styles/Settings/';
 import server from '../utils/server';
+
 const Settings = props => {
 	const [ userQuizzes, setUserQuizzes ] = useContext(UserQuizzesCtx);
 	const [ userPosts, setUserPosts ] = useContext(UserPostsCtx);
 	const [ user, setUser ] = useContext(UserCtx);
+	const [ activeTab, setActiveTab ] = useState('quizzes');
 	useEffect(
 		() => {
 			server.get('/quizzes').then(({ data }) => {
@@ -27,6 +29,7 @@ const Settings = props => {
 					);
 				}
 			});
+
 			server.get('/posts').then(({ data }) => {
 				if (user) {
 					setUserPosts(
@@ -39,27 +42,27 @@ const Settings = props => {
 		},
 		[ user ],
 	);
-
-	console.log(userQuizzes);
+	const tabs = [
+		{ label: 'Your Quizzes', command: () => setActiveTab('quizzes') },
+		{ label: 'Your Posts', command: () => setActiveTab('posts') },
+	];
+	console.log(activeTab);
 
 	if (!userQuizzes || !userPosts) return <Loading />;
 	else
 		return (
 			<SettingsWrapper>
 				<Sidebar />
-				<div style={{ display: 'flex' }}>
-					<div style={{ marginRight: '15px' }}>
-						<div style={{ display: 'flex' }}>
-							<h2>Your Quizzes</h2>
-							<CreateQuiz fromSettings />
+
+				<div style={{ marginRight: '15px' }}>
+					<Menu model={tabs} style={{ width: '100%' }} />
+					{activeTab === 'quizzes' ? (
+						<Quizzes {...props} />
+					) : (
+						<div>
+							<Posts {...props} />
 						</div>
-						{userQuizzes.map(quiz => <Quiz key={quiz.id} quiz={quiz} {...props} />)}
-					</div>
-					<div>
-						<h2>Your Posts</h2>
-						<NewPost />
-						{userPosts.map(post => <Post key={post.id} post={post} {...props} />)}
-					</div>
+					)};
 				</div>
 			</SettingsWrapper>
 		);

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const NewPostWrapper = styled.div`
 	display: flex;
-	width: 100%;
+	width: ${props => !props.userPage && '100%'};
 	flex-direction: column;
 `;
 

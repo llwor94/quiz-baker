@@ -6,7 +6,7 @@ import { Button } from '../../Styles/Components/Button';
 import { Input, TextArea } from '../../Styles/Components/Input';
 import server from '../../utils/server';
 
-const NewPost = () => {
+const NewPost = ({ userPage }) => {
 	const [ posts, setPosts ] = useContext(PostsCtx);
 	const [ newPost, setNewPost ] = useState(false);
 	const [ post, setPost ] = useState({ title: '', body: '' });
@@ -45,7 +45,7 @@ const NewPost = () => {
 	};
 
 	return (
-		<NewPostWrapper onBlur={handleBlur}>
+		<NewPostWrapper onBlur={handleBlur} userPage={userPage}>
 			{newPost ? (
 				<InnerWrapper>
 					<Button
@@ -66,7 +66,7 @@ const NewPost = () => {
 					<Button label='Submit' disabled={!post.title || !post.body} onClick={addPost} />
 				</InnerWrapper>
 			) : (
-				<Button label='Create a New Post' onClick={() => setNewPost(true)} full />
+				<Button label='Create a New Post' onClick={() => setNewPost(true)} />
 			)}
 		</NewPostWrapper>
 	);

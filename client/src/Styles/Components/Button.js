@@ -25,7 +25,7 @@ const StyledButtonWrapper = styled.div`
 `;
 
 export const SettingsButton = {
-	margin: '5px',
+	margin: '5px 0',
 };
 
 export const Button = ({ label, onClick, disabled, icon, style, full, secondary }) => (

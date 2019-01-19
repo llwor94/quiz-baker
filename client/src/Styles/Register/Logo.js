@@ -31,6 +31,5 @@ export const LogoWrapper = styled.div`
 		transform: rotate(-40deg);
 		z-index: 1;
 		background-color: white;
-		color: ${props => props.theme.accent};
 	}
 `;

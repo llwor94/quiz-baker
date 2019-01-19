@@ -29,7 +29,7 @@ const QuizContainer = props => {
 			});
 		});
 	}, []);
-
+	console.log(quiz, currentQuestion);
 	if (!quiz) return <Loading />;
 	else
 		return (
@@ -41,6 +41,7 @@ const QuizContainer = props => {
 						flexDirection: 'column',
 						alignItems: 'center',
 						position: 'relative',
+						perspective: '1000px',
 					}}
 				>
 					<LeaderBoard />

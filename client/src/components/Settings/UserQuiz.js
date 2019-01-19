@@ -11,6 +11,8 @@ import {
 	Header,
 	DescriptionWrapper,
 	FooterWrapper,
+	Title,
+	Topic,
 } from '../../Styles/Settings/UserQuiz';
 const UserQuiz = ({ quiz, ...props }) => {
 	const [ userQuizzes, setUserQuizzes ] = useContext(UserQuizzesCtx);
@@ -56,13 +58,12 @@ const UserQuiz = ({ quiz, ...props }) => {
 			<InnerWrapper>
 				<div onClick={() => props.history.push(`/user/quizzes/${quiz.id}`)}>
 					<Header>
-						<a>{quiz.topic}</a>
+						<Title>{quiz.title}</Title>
+						<Topic>{quiz.topic}</Topic>
 					</Header>
 					<div
 						style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}
-					>
-						<a>{quiz.title}</a>
-					</div>
+					/>
 					<Dialog
 						visible={modalVisable}
 						style={{ width: '25vw' }}
