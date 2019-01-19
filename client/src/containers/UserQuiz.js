@@ -38,7 +38,7 @@ const UserQuizContainer = props => {
 						{questions.length ? (
 							questions.map(question => <Question question={question} />)
 						) : (
-							<div>This quiz has no questions.</div>
+							<p className='no-questions'>This quiz has no questions.</p>
 						)}
 						<CreateQuestion />
 					</QuestionWrapper>

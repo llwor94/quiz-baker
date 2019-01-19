@@ -2,7 +2,7 @@ import React, { useEffect, useContext, useState, Fragment } from 'react';
 import _ from 'lodash';
 import server from '../../utils/server';
 import { Button } from '../../Styles/Components/Button';
-import { Wrapper, InnerWrapper, Title } from '../../Styles/UserQuiz/Quiz';
+import { Wrapper, InnerWrapper, Title, Topic } from '../../Styles/UserQuiz/Quiz';
 import { UserQuizCtx } from '../../pages/UserQuiz';
 import QuizForm from '../Settings/QuizForm';
 const Quiz = () => {
@@ -44,9 +44,11 @@ const Quiz = () => {
 					</Fragment>
 				) : (
 					<Fragment>
-						<Title>{quiz.title}</Title>
-						<a>{quiz.topic}</a>
-						{quiz.description && <a>{quiz.description}</a>}
+						<div style={{ display: 'flex', alignItems: 'center' }}>
+							<Title>{quiz.title}</Title>
+							<Topic>{quiz.topic}</Topic>
+						</div>
+						{quiz.description && <p>{quiz.description}</p>}
 					</Fragment>
 				)}
 			</InnerWrapper>

@@ -9,6 +9,10 @@ export const InnerWrapper = styled.div`
 		color: ${props => props.theme.text};
 		padding: 0 8px 8px;
 	}
+
+	p {
+		margin: 5px;
+	}
 `;
 
 export const Wrapper = styled.div`
@@ -40,4 +44,15 @@ export const Title = styled.div`
 	padding-right: ${props => props.main && '10px'};
 	display: inline-block;
 	color: ${props => (props.correct ? 'green' : props.theme.text)};
+`;
+
+export const Topic = styled.div`
+	font-size: 14px;
+	color: white;
+	background-color: ${props => props.theme.aqua};
+	margin-right: 10px;
+	display: inline-block;
+	font-weight: 500;
+	padding: 5px;
+	border-radius: 5px;
 `;

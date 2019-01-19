@@ -8,6 +8,7 @@ export const SettingsWrapper = styled.div`
 	max-width: 900px;
 	justify-content: flex-start;
 	align-items: flex-start;
+	margin: 0 80px;
 	h2 {
 		text-align: center;
 		text-transform: capitalize;

@@ -18,6 +18,9 @@ export const QuestionWrapper = styled.div`
 	width: ${props => props.secondary && '500px'};
 	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
 		0 2px 1px -1px rgba(0, 0, 0, 0.12);
+	.no-questions {
+		margin: 10px 0;
+	}
 `;
 
 export const Wrapper = styled.div`
@@ -44,6 +47,7 @@ export const EditWrapper = styled(Wrapper)`
 	flex-direction: column;
 	align-items: center;
 	position: relative;
+	box-shadow: none;
 	.p-togglebutton.p-highlight {
 		background-color: ${props => props.theme.aqua};
 		border-color: ${props => props.theme.aqua};
