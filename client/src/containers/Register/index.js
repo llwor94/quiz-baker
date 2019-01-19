@@ -1,11 +1,12 @@
-import React, { useState, Fragment } from 'react';
-import { connect } from 'react-redux';
+import React, { useState, Fragment, useContext } from 'react';
+import { UserCtx } from '../../App';
 import ImageUpload from '../ImageUpload';
 import { LargeImage } from '../../components/Styles/Image';
 import Button from '../../components/Styles/Button';
 import RegisterForm from './RegisterForm';
 
-const Register = ({ user, ...props }) => {
+const Register = props => {
+	const [ user, setUser ] = useContext(UserCtx);
 	const [ finished, setFinished ] = useState(false);
 	if (!user) return <RegisterForm {...props} />;
 	else if (!finished)
@@ -24,14 +25,10 @@ const Register = ({ user, ...props }) => {
 				<Button label='Go to Quizzes?' onClick={() => props.history.push('/quizzes')} />
 				<Button
 					label='Create a Quiz?'
-					onClick={() => props.history.push(`/quizzes/user/${user.id}`)}
+					onClick={() => props.history.push(`/user/settings`)}
 				/>
 			</Fragment>
 		);
 };
 
-const mapStateToProps = ({ authReducer }) => ({
-	user: authReducer.user,
-});
-
-export default connect(mapStateToProps)(Register);
+export default Register;

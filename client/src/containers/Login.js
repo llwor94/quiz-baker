@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
-import _ from 'lodash';
+import React, { useState, useEffect, useContext } from 'react';
 
-import { login } from '../store/actions/authActions';
+import _ from 'lodash';
+import { UserCtx } from '../App';
+import server from '../utils/server';
 import { Wrapper, InputWrap } from '../components/Auth';
 
-const Login = ({ login, serverError, user, ...props }) => {
+const Login = props => {
+	const [ user, setUser ] = useContext(UserCtx);
 	const [ userInput, setValue ] = useState({
 		email: undefined,
 		password: undefined,
@@ -22,13 +23,6 @@ const Login = ({ login, serverError, user, ...props }) => {
 		[ user ],
 	);
 
-	useEffect(
-		() => {
-			if (serverError) setError('Your email or password is incorrect.');
-		},
-		[ serverError ],
-	);
-
 	const handleChange = e => {
 		setValue({ ...userInput, [e.target.name]: e.target.value });
 		setError(undefined);
@@ -36,7 +30,14 @@ const Login = ({ login, serverError, user, ...props }) => {
 
 	const handleSubmit = e => {
 		e.preventDefault();
-		login(userInput);
+		server
+			.post('/auth/login', userInput)
+			.then(({ data }) => {
+				localStorage.setItem('user', JSON.stringify(data));
+				server.defaults.headers.common['Authorization'] = data.token;
+				setUser(data.user);
+			})
+			.catch(err => setError('Your email or password is incorrect'));
 	};
 
 	return (
@@ -65,9 +66,4 @@ const Login = ({ login, serverError, user, ...props }) => {
 	);
 };
 
-const mapStateToProps = ({ authReducer }) => ({
-	serverError: authReducer.error,
-	user: authReducer.user,
-});
-
-export default connect(mapStateToProps, { login })(Login);
+export default Login;

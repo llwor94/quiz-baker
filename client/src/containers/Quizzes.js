@@ -9,7 +9,7 @@ import Quiz from '../components/Quizzes/Quiz';
 
 const Quizzes = props => {
 	const [ quizzes, setQuizzes ] = useContext(QuizzesCtx);
-
+	const [ user, setUser ] = useContext(UserCtx);
 	useEffect(() => {
 		server
 			.get('/quizzes')
@@ -18,6 +18,20 @@ const Quizzes = props => {
 			})
 			.catch(err => console.log(err));
 	}, []);
+
+	useEffect(
+		() => {
+			server
+				.get('/quizzes')
+				.then(({ data }) => {
+					setQuizzes(
+						data.filter(quiz => quiz.question_count).sort((a, b) => b.id - a.id),
+					);
+				})
+				.catch(err => console.log(err));
+		},
+		[ user ],
+	);
 
 	if (!quizzes) return <Loading />;
 	else

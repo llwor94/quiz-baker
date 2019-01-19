@@ -195,3 +195,9 @@ export const FooterWrapper = styled.div`
 	font-size: 12px;
 	font-weight: 700;
 `;
+
+export const QuestionCount = styled.div`
+	border: 1px solid ${props => props.theme.gray};
+	border-radius: 4px;
+	padding: 3px;
+`;

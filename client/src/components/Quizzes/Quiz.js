@@ -21,6 +21,7 @@ import {
 	DescriptionWrapper,
 	UserNameWrapper,
 	RightSide,
+	QuestionCount,
 	FooterWrapper,
 } from '../../Styles/Quizzes/Quiz';
 import hatIcon from '../../assets/chef.svg';
@@ -134,24 +135,31 @@ const Quiz = ({ quiz, ...props }) => {
 							<span>
 								Created by <User>{quiz.author}</User>
 							</span>
-							{/* <span style={{ padding: '0 5px' }}>&#8226;</span> */}
+
 							<i class='pi pi-share-alt' onClick={handleCopy} />
-							{/* <a onClick={handleCopy}>Share</a> */}
 						</UserNameWrapper>
 					</FooterWrapper>
 				</InnerWrapper>
 			</div>
 			<RightSide>
-				<FontAwesomeIcon
-					title='Take a bite out of that, Boogin'
-					icon={quiz.favorite ? faCookieBite : faCookie}
-					color={quiz.favorite ? '#875818' : '#b2b2b2'}
-					style={{ cursor: 'pointer' }}
-					onClick={handleFavoriteToggle}
-				/>
-				<Score noScore={quiz.score === null}>
-					{quiz.score === null ? '--' : quiz.score}/{quiz.question_count}
-				</Score>
+				{user ? (
+					<FontAwesomeIcon
+						title='Take a bite out of that, Boogin'
+						icon={quiz.favorite ? faCookieBite : faCookie}
+						color={quiz.favorite ? '#875818' : '#b2b2b2'}
+						style={{ cursor: 'pointer' }}
+						onClick={handleFavoriteToggle}
+					/>
+				) : (
+					<div />
+				)}
+				{user ? (
+					<Score noScore={quiz.score === null}>
+						{quiz.score === null ? '--' : quiz.score}/{quiz.question_count}
+					</Score>
+				) : (
+					<QuestionCount>{quiz.question_count} Qs</QuestionCount>
+				)}
 			</RightSide>
 		</Wrapper>
 	);

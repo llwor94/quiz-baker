@@ -5,6 +5,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { Transition } from 'react-transition-group';
 import { InputSwitch } from 'primereact/inputswitch';
 import anime from 'animejs';
+import server from '../utils/server';
 
 import quizbaker from '../assets/quizbaker.png';
 
@@ -142,6 +143,13 @@ const Header = ({ setValue, darkMode, ...props }) => {
 		[ props.history.location.pathname ],
 	);
 
+	const logout = () => {
+		delete server.defaults.headers.common['Authorization'];
+		localStorage.removeItem('user');
+		setUser(undefined);
+		props.history.push('/quizzes');
+	};
+
 	return (
 		<Wrapper menu={menuShowing}>
 			<HeaderWrapper>
@@ -206,20 +214,41 @@ const Header = ({ setValue, darkMode, ...props }) => {
 									onEnter={animateThirdLinkUp}
 								>
 									<LinkWrapper>
-										<StyledLink
-											as='a'
-											onClick={() => {
-												props.history.push('/quizzes');
-											}}
-										>
+										<StyledLink as='a' onClick={logout}>
 											logout
 										</StyledLink>
 									</LinkWrapper>
 								</Transition>
 							</div>
 						) : (
-							<div>
-								<Link to='/login'>Join Us</Link>
+							<div
+								style={{
+									marginLeft: '40px',
+									display: 'flex',
+									alignItems: 'center',
+								}}
+							>
+								<Transition
+									in={menuShowing}
+									appear
+									onExit={animateSecondLinkDown}
+									onEnter={animateSecondLinkUp}
+								>
+									<LinkWrapper>
+										<StyledLink to='/login'>Log In</StyledLink>
+									</LinkWrapper>
+								</Transition>
+								<Transition
+									in={menuShowing}
+									appear
+									onExit={animateThirdLinkDown}
+									onEnter={animateThirdLinkUp}
+								>
+									<LinkWrapper>
+										{' '}
+										<StyledLink to='/register'>Sign Up</StyledLink>
+									</LinkWrapper>
+								</Transition>
 							</div>
 						)}
 					</InnerWrapper>
