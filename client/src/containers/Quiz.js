@@ -10,14 +10,18 @@ import Question from '../components/Quiz/Question';
 import QuestionTracker from '../components/Quiz/QuestionTracker';
 import Results from '../components/Quiz/Results';
 import LeaderBoard from '../components/Quiz/LeaderBoard';
+import QuizPosts from '../components/Quiz/QuizPosts';
 
 export const QuestionCtx = createContext([ undefined, () => {} ]);
+export const QuizPostCtx = createContext([ undefined, () => {} ]);
 
 const QuizContainer = props => {
 	const [ quiz, setQuiz ] = useContext(QuizCtx);
 	const [ user, setUser ] = useContext(UserCtx);
+
 	const [ questionResponse, setQuestionReponse ] = useContext(ResponseCtx);
 	const [ currentQuestion, setCurrentQuestion ] = useState(undefined);
+	const [ quizPosts, setQuizPosts ] = useState(undefined);
 
 	useEffect(() => {
 		server.get(`/quizzes/${props.match.params.id}`).then(({ data }) => {
@@ -29,7 +33,7 @@ const QuizContainer = props => {
 			});
 		});
 	}, []);
-	console.log(quiz, currentQuestion);
+
 	if (!quiz) return <Loading />;
 	else
 		return (
@@ -53,6 +57,9 @@ const QuizContainer = props => {
 						<Question />
 					)}
 					<QuestionTracker />
+					<QuizPostCtx.Provider value={[ quizPosts, setQuizPosts ]}>
+						<QuizPosts quiz={quiz} />
+					</QuizPostCtx.Provider>
 				</div>
 			</QuestionCtx.Provider>
 		);

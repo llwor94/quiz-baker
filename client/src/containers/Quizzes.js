@@ -32,7 +32,7 @@ const Quizzes = props => {
 		},
 		[ user ],
 	);
-
+	console.log(quizzes);
 	if (!quizzes) return <Loading />;
 	else
 		return (

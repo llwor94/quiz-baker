@@ -1,6 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
-
+import { Picker } from 'emoji-mart';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSmile } from '@fortawesome/free-solid-svg-icons';
 const InputWrapper = styled.span`
 	margin: 10px 0;
 	display: inline-block !important;
@@ -85,3 +87,138 @@ export const Label = styled.label`
 	border-left: none;
 	width: 55px;
 `;
+
+const StyledEmojiArea = styled.div`
+	border-radius: 3px;
+	position: relative;
+	resize: none;
+	width: 100%;
+	font-size: 14px;
+	margin-bottom: 10px;
+	color: #333333;
+	background: #ffffff;
+
+	border: 1px solid #a6a6a6;
+
+	i {
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+
+	textarea {
+		padding: 0.429em;
+		font-size: 14px;
+		resize: none;
+		border: none;
+		&:focus {
+			border: none;
+			outline: none;
+		}
+	}
+	.emoji-mart {
+		position: absolute;
+		top: 25px;
+		right: -207px;
+		border: 1px solid #d9d9d9;
+		border-radius: 5px;
+		background: #fff;
+		z-index: 10000;
+		padding-bottom: 5px;
+
+		.emoji-mart-search {
+			margin-top: 6px;
+			padding: 0 6px;
+			position: relative;
+			input {
+				font-size: 16px;
+				display: block;
+				width: 100%;
+				padding: 5px 25px 6px 10px;
+				border-radius: 5px;
+				border: 1px solid #d9d9d9;
+				outline: 0;
+			}
+			.emoji-mart-search-icon {
+				position: absolute;
+				top: 9px;
+				right: 16px;
+				z-index: 2;
+				padding: 0;
+				border: none;
+				background: none;
+			}
+		}
+	}
+	.emoji-mart-bar {
+		border: 0 solid #d9d9d9;
+		.emoji-mart-anchors {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			padding: 0 6px;
+			color: #858585 !important;
+			line-height: 0;
+			svg,
+			.emoji-mart-anchors img {
+				fill: currentColor;
+				height: 18px;
+				width: 18px;
+			}
+			.emoji-mart-anchor {
+				position: relative;
+				display: block;
+				flex: 1 1 auto;
+				text-align: center;
+				padding: 12px 4px;
+				overflow: hidden;
+				transition: color .1s ease-out;
+			}
+		}
+	}
+	.emoji-mart {
+		.emoji-mart-scroll {
+			overflow-y: scroll;
+			height: 270px;
+			padding: 0 6px 6px 6px;
+			will-change: transform;
+			.emoji-mart-category-label {
+				z-index: 2;
+				position: relative;
+				position: -webkit-sticky;
+				position: sticky;
+				top: 0;
+				.emoji-mart-category-label span {
+					display: block;
+					width: 100%;
+					font-weight: 500;
+					padding: 5px 6px;
+				}
+			}
+		}
+	}
+	.emoji-mart-bar {
+		display: none;
+	}
+`;
+
+export const EmojiTextArea = ({ value, onChange, name, inputRef, handleSelect }) => {
+	const [emojis, showEmojis] = useState(false)
+	return (
+		<StyledEmojiArea>
+			<textarea
+			onClick={() => showEmojis(false)}
+				value={value}
+				onChange={onChange}
+				name={name}
+				rows='5'
+				ref={inputRef}
+				style={{ width: '100%', height: '100%' }}
+			/>
+			<div >
+			<FontAwesomeIcon icon={faSmile} onClick={() => showEmojis(true)} style={{ color: 'lightgray', position: 'absolute', top: 5, right: 5, cursor: 'pointer' }} />
+			{emojis && <Picker style={{ width: '231px' }}  onSelect={handleSelect} />}
+			</div>
+		</StyledEmojiArea>
+	);
+};

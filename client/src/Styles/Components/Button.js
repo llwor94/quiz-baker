@@ -45,7 +45,7 @@ export const Button = ({ label, onClick, disabled, icon, style, full, secondary,
 	</StyledButtonWrapper>
 );
 
-const animateButtonOut = button => anime({ targets: button, width: 150 });
+const animateButtonOut = button => anime({ targets: button, width: 125 });
 const animateButtonIn = button => anime({ targets: button, width: 35 });
 export const BackButton = ({ onClick, style }) => {
 	const [ hovered, setHovered ] = useState(false);
@@ -61,7 +61,7 @@ export const BackButton = ({ onClick, style }) => {
 				<StyledButton
 					style={{ width: '100%' }}
 					className='p-button'
-					label={hovered && 'Go Back'}
+					label={hovered ? 'Go Back' : ''}
 					onClick={onClick}
 					icon='pi pi-arrow-left'
 				/>

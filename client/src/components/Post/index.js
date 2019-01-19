@@ -79,19 +79,23 @@ const Post = props => {
 						<p>{post.body}</p>
 					</BodyWrapper>
 					<FooterWrapper>
-						<CommentCount>
-							{post.comments.length === 1 ? (
-								'1 comment'
-							) : (
-								`${post.comments.length} comments`
-							)}
-						</CommentCount>
-						<a onClick={handleCopy}>Share</a>
+						<div style={{ display: 'flex', alignItems: 'center' }}>
+							<CommentCount>
+								{post.comments.length === 1 ? (
+									'1 comment'
+								) : (
+									`${post.comments.length} comments`
+								)}
+							</CommentCount>
+							<i class='pi pi-share-alt' onClick={handleCopy} />
+						</div>
 						{user &&
 							(user.username === post.author.username && (
-								<a label='delete' onClick={() => setModalVisable(true)}>
-									Delete
-								</a>
+								<Button
+									white
+									icon='pi pi-trash'
+									onClick={() => setModalVisable(true)}
+								/>
 							))}
 						<Dialog
 							visible={modalVisable}

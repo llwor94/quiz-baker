@@ -111,9 +111,12 @@ const Quiz = ({ quiz, ...props }) => {
 				<InnerWrapper>
 					<div>
 						<Header>
-							<Title onClick={() => props.history.push(`quizzes/${quiz.id}`)}>
-								{quiz.title}
-							</Title>
+							<div>
+								<Title onClick={() => props.history.push(`quizzes/${quiz.id}`)}>
+									{quiz.title}
+								</Title>
+								{quiz.time_limit_seconds && <i className='pi pi-clock' />}
+							</div>
 							<Topic>{quiz.topic}</Topic>
 						</Header>
 
@@ -136,7 +139,7 @@ const Quiz = ({ quiz, ...props }) => {
 								Created by <User>{quiz.author}</User>
 							</span>
 
-							<i class='pi pi-share-alt' onClick={handleCopy} />
+							<i className='pi pi-share-alt' onClick={handleCopy} />
 						</UserNameWrapper>
 					</FooterWrapper>
 				</InnerWrapper>

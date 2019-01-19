@@ -11,6 +11,7 @@
     "classnames": "^2.2.6",
     "cloudinary-core": "^2.5.0",
     "cloudinary-react": "^1.1.0",
+    "emoji-mart": "^2.9.2",
     "lodash": "^4.17.11",
     "moment": "^2.23.0",
     "primeflex": "^1.0.0-rc.1",

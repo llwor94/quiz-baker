@@ -24,12 +24,6 @@ export const UserWrapper = styled.div`
 	align-items: center;
 	width: 200px;
 	margin: 10px 0;
-	img {
-		height: 30px;
-		width: 30px;
-		border-radius: 50%;
-		margin-right: 4px;
-	}
 `;
 
 export const User = styled.div`
