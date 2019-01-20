@@ -31,18 +31,32 @@ const Quiz = () => {
           <span className="author">{quiz.author.username}</span>{" "}
         </SplashHeader>
         <SplashMidWrapper>
-          <div style={{width: '500px'}}>
+          <div style={{ width: "500px" }}>
             <SplashDescription>Description:</SplashDescription>
             <div>{quiz.description}</div>
           </div>
           <Fork src={forkIcon} />
         </SplashMidWrapper>
         <SplashFooter>
-          This quiz has{" "}
-          <span className="questionCount">{quiz.question_count} questions </span>
+          {" "}
+          {quiz.question_count === 1 ? (
+            <span>
+              <span>This quiz has </span>
+              <span className="questionCount">
+                {quiz.question_count} question{" "}
+              </span>
+            </span>
+          ) : (
+            <span>
+              <span>This quiz has </span>
+              <span className="questionCount">
+                {quiz.question_count} questions{" "}
+              </span>
+            </span>
+          )}
           {quiz.score ? (
             <span>
-               and you got <span className="score">{quiz.score}</span> right.
+              and you got <span className="score">{quiz.score}</span> right.
             </span>
           ) : (
             <span>Hungry for knowledge?</span>

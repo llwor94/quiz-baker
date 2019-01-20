@@ -54,7 +54,7 @@ const Settings = props => {
 			<SettingsWrapper>
 
 				<div style={{ marginRight: '15px' }}>
-					<div style={{display: 'flex'}}>
+					<div style={{display: 'flex', justifyContent: 'center', position: 'relative'}}>
 						
 					<Sidebar />
 					<Menu model={tabs} style={{ width: '100%' }} />

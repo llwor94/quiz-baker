@@ -5,6 +5,8 @@ import { LargeImage } from '../../Styles/Components/Image';
 import { Button, SettingsButton } from '../../Styles/Components/Button';
 import { ProfileWrapper, ProfileButtonWrapper } from '../../Styles/Settings/Sidebar';
 import { UserCtx } from '../../App';
+
+
 import UpdateImage from './UpdateImage';
 import UpdateUsername from './updateUsername';
 
@@ -31,8 +33,6 @@ const Sidebar = () => {
 	};
 	return (
 		<ProfileWrapper>
-			<LargeImage src={user.img_url} />
-			<h4>Welcome, {user.username}!</h4>
 			<ProfileButtonWrapper>
 				{!usernameUpdate && (
 					<UpdateImage
@@ -49,6 +49,11 @@ const Sidebar = () => {
 					/>
 				)}
 			</ProfileButtonWrapper>
+			<div>
+
+			<LargeImage src={user.img_url} />
+			<h4>{user.username}</h4>
+			</div>
 		</ProfileWrapper>
 	);
 };
