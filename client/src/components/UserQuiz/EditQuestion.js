@@ -61,6 +61,7 @@ const EditQuestion = ({ question, handleEdit, setEdit }) => {
 				style={{ position: 'absolute', top: '3px', right: '3px' }}
 				icon='pi pi-times'
 				onClick={() => setEdit(false)}
+				white
 			/>
 			<ToggleButton
 				style={{ width: '150px', marginTop: '5px' }}
@@ -90,7 +91,7 @@ const EditQuestion = ({ question, handleEdit, setEdit }) => {
 				/>
 			)}
 			<Button
-				label='Edit Question'
+				label='Submit'
 				disabled={
 					(multipleChoice && _.some(options, _.isEmpty)) ||
 					correctOption === null ||

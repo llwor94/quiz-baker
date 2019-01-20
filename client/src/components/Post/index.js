@@ -73,7 +73,7 @@ const Post = props => {
 						<span style={{ padding: '0 3px' }}>&#8226;</span>
 						{moment(post.created_at).fromNow()}
 					</Header>
-					<BodyWrapper>
+					<BodyWrapper post>
 						<Title>{post.title}</Title>
 
 						<p>{post.body}</p>
