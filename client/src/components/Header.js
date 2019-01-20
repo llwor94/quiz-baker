@@ -151,7 +151,7 @@ const Header = ({ setValue, darkMode, ...props }) => {
 	};
 
 	return (
-		<Wrapper menu={menuShowing}>
+		<Wrapper>
 			<HeaderWrapper>
 				<LeftHeader>
 					<StyledHeader to='/'>

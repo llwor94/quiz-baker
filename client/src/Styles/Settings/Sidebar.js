@@ -5,8 +5,8 @@ export const ProfileWrapper = styled.div`
 	margin-right: 20px;
 	text-align: center;
 	position: absolute;
-	top: 0;
-	left: 0;
+	top: 12px;
+	left: 50px;
 
 	h4 {
 		margin: 5px auto;
