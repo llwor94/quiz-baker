@@ -14,7 +14,7 @@ export const ProfileWrapper = styled.div`
 `;
 
 export const ProfileButtonWrapper = styled.div`
-	display: none;
+	/* display: none; */
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: flex-start;

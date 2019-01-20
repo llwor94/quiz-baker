@@ -5,6 +5,8 @@ import { LargeImage } from '../../Styles/Components/Image';
 import { Button, SettingsButton } from '../../Styles/Components/Button';
 import { ProfileWrapper, ProfileButtonWrapper } from '../../Styles/Settings/Sidebar';
 import { UserCtx } from '../../App';
+
+
 import UpdateImage from './UpdateImage';
 import UpdateUsername from './updateUsername';
 
