@@ -14,7 +14,7 @@ const QuizPosts = ({ quiz }) => {
 		server
 			.get(`/quizzes/${quiz.id}/posts`)
 			.then(({ data }) => {
-				setQuizPosts(data);
+				setQuizPosts(data.sort((a, b) => b.id - a.id));
 			})
 			.catch(err => console.log(err));
 	}, []);

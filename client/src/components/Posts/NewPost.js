@@ -44,7 +44,6 @@ const NewPost = ({ userPage, quiz }) => {
 				setPost({ title: '', body: '' });
 
 				if (quiz) {
-					console.log('hi');
 					server
 						.get(`/quizzes/${quiz.id}/posts`)
 						.then(({ data }) => {
