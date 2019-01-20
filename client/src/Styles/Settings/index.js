@@ -24,12 +24,15 @@ const StyledMenu = styled.div`
 	}
 	.p-tabmenu .p-tabmenu-nav {
 		border-bottom-color: ${props => props.theme.darkPink};
+		display: flex;
+		justify-content: space-around;
 	}
 	.p-tabmenu .p-tabmenu-nav .p-tabmenuitem {
-		border: none;
+		border: 1px solid white;
 		background-color: white;
-		border-bottom: 1px solid ${props => props.theme.darkPink};
+		margin-bottom: 20px;
 	}
+
 	.p-tabmenu .p-tabmenu-nav .p-tabmenuitem .p-menuitem-link .p-menuitem-text {
 		font-family: "Merienda One", cursive;
 		color: ${props => props.theme.accentText};

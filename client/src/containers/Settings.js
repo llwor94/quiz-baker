@@ -52,10 +52,13 @@ const Settings = props => {
 	else
 		return (
 			<SettingsWrapper>
-				<Sidebar />
 
 				<div style={{ marginRight: '15px' }}>
+					<div style={{display: 'flex'}}>
+						
+					<Sidebar />
 					<Menu model={tabs} style={{ width: '100%' }} />
+					</div>
 					{activeTab === 'quizzes' ? (
 						<Quizzes {...props} />
 					) : (

@@ -5,7 +5,7 @@ export const ProfileWrapper = styled.div`
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: flex-start;
-	position: absolute;
+	/* position: absolute; */
 	top: 66px;
 	left: 0;
 
