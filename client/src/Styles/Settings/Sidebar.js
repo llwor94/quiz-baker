@@ -2,11 +2,10 @@ import styled from 'styled-components';
 
 export const ProfileWrapper = styled.div`
 	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	align-items: flex-start;
-	/* position: absolute; */
-	top: 66px;
+	margin-right: 20px;
+	text-align: center;
+	position: absolute;
+	top: 0;
 	left: 0;
 
 	h4 {
@@ -15,7 +14,7 @@ export const ProfileWrapper = styled.div`
 `;
 
 export const ProfileButtonWrapper = styled.div`
-	display: flex;
+	display: none;
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: flex-start;

@@ -28,7 +28,8 @@ export const ProfileIcon = ({ src }) => {
 };
 
 const StyledImage = styled.img`
-	width: 155px;
+	width: 90px;
+	height: 90px;
 	border-radius: 10px;
 `;
 

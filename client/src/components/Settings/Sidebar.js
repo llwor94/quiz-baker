@@ -31,8 +31,6 @@ const Sidebar = () => {
 	};
 	return (
 		<ProfileWrapper>
-			<LargeImage src={user.img_url} />
-			<h4>Welcome, {user.username}!</h4>
 			<ProfileButtonWrapper>
 				{!usernameUpdate && (
 					<UpdateImage
@@ -49,6 +47,11 @@ const Sidebar = () => {
 					/>
 				)}
 			</ProfileButtonWrapper>
+			<div>
+
+			<LargeImage src={user.img_url} />
+			<h4>{user.username}</h4>
+			</div>
 		</ProfileWrapper>
 	);
 };
