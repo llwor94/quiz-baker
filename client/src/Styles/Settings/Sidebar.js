@@ -6,7 +6,7 @@ export const ProfileWrapper = styled.div`
 	text-align: center;
 	position: absolute;
 	top: 12px;
-	left: 50px;
+	left: -170px;
 
 	h4 {
 		margin: 5px auto;
@@ -18,4 +18,6 @@ export const ProfileButtonWrapper = styled.div`
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: flex-start;
+	opacity: 0;
+	transform: translateX(280px);
 `;
