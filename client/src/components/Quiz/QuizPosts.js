@@ -23,7 +23,7 @@ const QuizPosts = ({ quiz }) => {
 	else
 		return (
 			<div style={{ width: '500px', marginTop: '15px' }}>
-				{quiz.questions.length === currentQuestion && <NewPost quiz={quiz} />}
+				{quiz.question_count === currentQuestion && <NewPost quiz={quiz} />}
 				{quizPosts.length ? (
 					quizPosts.map(post => <QuizPost key={post.id} post={post} />)
 				) : (

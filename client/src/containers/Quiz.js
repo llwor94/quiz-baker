@@ -58,7 +58,7 @@ const QuizContainer = props => {
 					<LeaderBoard />
 					{currentQuestion === undefined ? (
 						<Quiz {...props} />
-					) : currentQuestion === quiz.questions.length ? (
+					) : currentQuestion === quiz.question_count ? (
 						<Results />
 					) : (
 						<Question />

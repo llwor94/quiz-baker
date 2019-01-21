@@ -118,8 +118,10 @@ const Header = ({ setValue, darkMode, ...props }) => {
 	useEffect(
 		() => {
 			let data = JSON.parse(localStorage.getItem('user'));
+			console.log(data);
 			if (data) {
 				setUser(data.user);
+				server.defaults.headers.common['Authorization'] = data.token;
 			}
 
 			if (props.history.location.pathname === '/quizzes') {

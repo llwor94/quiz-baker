@@ -21,10 +21,9 @@ import forkIcon from '../../assets/fork.svg';
 const Quiz = props => {
 	const [ quiz, setQuiz ] = useContext(QuizCtx);
 	const [ currentQuestion, setCurrentQuestion ] = useContext(QuestionCtx);
-	console.log(quiz);
+
 	return (
 		<Fragment>
-
 			<SplashWrapper>
 				<BackButton
 					style={{ position: 'absolute', top: 8, right: 520, maxWidth: '200px' }}
