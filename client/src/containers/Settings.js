@@ -5,7 +5,7 @@ import { UserQuizzesCtx, UserPostsCtx } from '../pages/Settings';
 import { UserCtx } from '../App';
 import Quizzes from '../components/Settings/Quizzes';
 import Posts from '../components/Settings/Posts';
-import { SettingsWrapper, Menu } from '../Styles/Settings/';
+import { SettingsWrapper, Menu, NewMenu } from '../Styles/Settings/';
 import server from '../utils/server';
 
 const Settings = props => {
@@ -52,7 +52,8 @@ const Settings = props => {
 						style={{ display: 'flex', justifyContent: 'center', position: 'relative' }}
 					>
 						<Sidebar />
-						<Menu model={tabs} style={{ width: '100%' }} />
+						{/* <Menu model={tabs} activeTab={activeTab} /> */}
+						<NewMenu activeTab={activeTab} setActiveTab={setActiveTab} />
 					</div>
 					{activeTab === 'quizzes' ? (
 						<Quizzes {...props} />

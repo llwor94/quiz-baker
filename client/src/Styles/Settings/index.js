@@ -55,6 +55,80 @@ export const Menu = ({ model }) => {
 	);
 };
 
+const MenuStyles = styled.div`
+	font-size: 30px;
+	border-bottom-color: ${props => props.theme.darkPink};
+	ul {
+		border-bottom: 1px solid;
+		border-bottom-color: ${props => props.theme.darkPink};
+		display: flex;
+		justify-content: space-around;
+	}
+`;
+
+const ListItem = styled.li`
+	background-color: white;
+	margin-bottom: 20px;
+	margin-right: 2px;
+
+	transition: background-color 0.2s;
+	list-style: none;
+	float: left;
+
+	padding: 0;
+	white-space: nowrap;
+	display: block;
+
+	top: 1px;
+	a {
+		float: left;
+		padding: .5em 1em;
+		text-decoration: none;
+		margin: 0 .2em 1px 0px;
+		cursor: pointer;
+		border: 1px solid white;
+		border-top-left-radius: 3px;
+		border-top-right-radius: 3px;
+		span {
+			color: ${props => (props.isActive ? props.theme.text : props.theme.accentText)};
+			font-family: "Merienda One", cursive;
+			vertical-align: middle;
+		}
+	}
+
+	&:hover {
+		a {
+			background-color: #dbdbdb;
+			border: 1px solid #dbdbdb;
+			span {
+				color: ${props => props.theme.text};
+			}
+		}
+	}
+`;
+
+export const NewMenu = ({ activeTab, setActiveTab }) => {
+	return (
+		<MenuStyles>
+			<ul>
+				<ListItem
+					isActive={activeTab === 'quizzes'}
+					onClick={() => setActiveTab('quizzes')}
+				>
+					<a>
+						<span>Your Quizzes</span>
+					</a>
+				</ListItem>
+				<ListItem isActive={activeTab === 'posts'} onClick={() => setActiveTab('posts')}>
+					<a>
+						<span>Your Posts</span>
+					</a>
+				</ListItem>
+			</ul>
+		</MenuStyles>
+	);
+};
+
 export const Wrapper = styled.div`
 	display: flex;
 	flex-wrap: wrap;
