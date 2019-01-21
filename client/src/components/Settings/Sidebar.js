@@ -28,7 +28,7 @@ const Sidebar = () => {
   const [img_url, setImg] = useState(null);
   const [user, setUser] = useContext(UserCtx);
 
-  const [buttonsHiding, setButtonsShowing] = useState(false);
+  const [buttonsHiding, setButtonsShowing] = useState(true);
 
   useEffect(() => {
     if (user.img_url) {
