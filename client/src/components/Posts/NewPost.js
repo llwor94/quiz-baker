@@ -6,12 +6,23 @@ import { Button } from '../../Styles/Components/Button';
 import { Input, TextArea, EmojiTextArea } from '../../Styles/Components/Input';
 import server from '../../utils/server';
 import { QuizPostCtx } from '../../containers/Quiz';
+import { StyledAutoComplete } from '../../components/Styles/Text/autoComplete';
 
 const NewPost = ({ userPage, quiz }) => {
 	const [ posts, setPosts ] = useContext(PostsCtx);
 	const [ newPost, setNewPost ] = useState(false);
 	const [ post, setPost ] = useState({ title: '', body: '' });
+	const [ topic, setTopic ] = useState('');
 	const [ quizPosts, setQuizPosts ] = useContext(QuizPostCtx);
+	const [ topics, setTopics ] = useState(undefined);
+	const [ searchTopics, setSearchOptions ] = useState(null);
+
+	useEffect(() => {
+		server.get('/quizzes/topics').then(({ data }) => {
+			setTopics(data);
+			setSearchOptions(data);
+		});
+	}, []);
 
 	let input = React.createRef();
 	useEffect(
@@ -31,12 +42,36 @@ const NewPost = ({ userPage, quiz }) => {
 		}, 0);
 	};
 
+	const filterTopics = e => {
+		setTimeout(() => {
+			let results;
+
+			if (e.query.length === 0) {
+				results = [ ...topics ];
+			} else {
+				results = topics.filter(topic => {
+					return topic.name.toLowerCase().startsWith(e.query.toLowerCase());
+				});
+			}
+			setSearchOptions(results);
+		}, 250);
+	};
+
 	const handleSelect = e => {
+		console.log(e.value.id);
+		setTopic(e.value.name);
+	};
+
+	const handleEmojiSelect = e => {
 		console.log(e);
 		setPost({ ...post, body: post.body + e.native });
 	};
 	const addPost = () => {
-		if (quiz) post.quiz = quiz.id;
+		if (quiz) {
+			post.quiz = quiz.id;
+		} else {
+			post.topic = topic;
+		}
 		console.log(post);
 		server
 			.post('/posts', post)
@@ -79,8 +114,19 @@ const NewPost = ({ userPage, quiz }) => {
 						onChange={e => setPost({ ...post, title: e.target.value })}
 						label='Title'
 					/>
+					<StyledAutoComplete
+						value={topic}
+						suggestions={searchTopics}
+						completeMethod={filterTopics}
+						placeholder='Topics'
+						minLength={1}
+						name='topic'
+						field='name'
+						onSelect={handleSelect}
+						dropdown={true}
+					/>
 					<EmojiTextArea
-						handleSelect={handleSelect}
+						handleSelect={handleEmojiSelect}
 						value={post.body}
 						onChange={e => setPost({ ...post, body: e.target.value })}
 					/>

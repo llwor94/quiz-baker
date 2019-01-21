@@ -58,6 +58,7 @@ export const Header = styled.div`
 	font-weight: 400;
 	line-height: 16px;
 	display: flex;
+	justify-content: space-between;
 	align-items: center;
 	margin-bottom: 8px;
 	color: ${props => props.theme.link};
@@ -106,4 +107,15 @@ export const Title = styled.div`
 	line-height: 22px;
 	cursor: pointer;
 	color: ${props => props.theme.text};
+`;
+
+export const Topic = styled.div`
+	font-size: 14px;
+	color: white;
+	background-color: ${props => props.theme.aqua};
+	margin-right: 10px;
+	display: inline-block;
+	font-weight: 500;
+	padding: 5px;
+	border-radius: 5px;
 `;
