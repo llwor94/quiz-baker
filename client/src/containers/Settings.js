@@ -1,13 +1,8 @@
 import React, { useEffect, useState, useContext } from 'react';
-import UserQuiz from '../components/Settings/UserQuiz';
-import Quiz from '../components/Quizzes/Quiz';
-import CreateQuiz from '../components/Settings/CreateQuiz';
 import Sidebar from '../components/Settings/Sidebar';
 import Loading from '../components/Styles/Loading';
 import { UserQuizzesCtx, UserPostsCtx } from '../pages/Settings';
 import { UserCtx } from '../App';
-import NewPost from '../components/Posts/NewPost';
-import Post from '../components/Posts/Post';
 import Quizzes from '../components/Settings/Quizzes';
 import Posts from '../components/Settings/Posts';
 import { SettingsWrapper, Menu } from '../Styles/Settings/';
@@ -52,12 +47,12 @@ const Settings = props => {
 	else
 		return (
 			<SettingsWrapper>
-
 				<div style={{ marginRight: '15px' }}>
-					<div style={{display: 'flex', justifyContent: 'center', position: 'relative'}}>
-						
-					<Sidebar />
-					<Menu model={tabs} style={{ width: '100%' }} />
+					<div
+						style={{ display: 'flex', justifyContent: 'center', position: 'relative' }}
+					>
+						<Sidebar />
+						<Menu model={tabs} style={{ width: '100%' }} />
 					</div>
 					{activeTab === 'quizzes' ? (
 						<Quizzes {...props} />
