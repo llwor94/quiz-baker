@@ -11,6 +11,7 @@ import {
 	UserName,
 	CommentBody,
 } from '../../Styles/Comments/Comment';
+import Comment from './Comment';
 import { ProfileIcon } from '../../Styles/Components/Image';
 import { Button } from '../../Styles/Components/Button';
 
@@ -31,25 +32,11 @@ const Comments = () => {
 
 	return (
 		<CommentArea>
-			{post.comments.sort((a, b) => b.id - a.id).map(comment => (
-				<Wrapper key={comment.id}>
-					<div>
-						<CommentHeader>
-							<ProfileIcon src={comment.author_img} />
-							Posted by <UserName>{comment.author}</UserName>
-							<span style={{ padding: '0 3px' }}>&#8226;</span>
-							<span>{moment(comment.created_at).fromNow()}</span>
-						</CommentHeader>
-						<CommentBody>
-							<p>{comment.text}</p>
-						</CommentBody>
-					</div>
-					{user &&
-					user.username === comment.author && (
-						<Button label='delete' onClick={() => deleteComment(comment.id)} />
-					)}
-				</Wrapper>
-			))}
+			{post.comments
+				.sort((a, b) => b.id - a.id)
+				.map(comment => (
+					<Comment comment={comment} key={comment.id} deleteComment={deleteComment} />
+				))}
 		</CommentArea>
 	);
 };

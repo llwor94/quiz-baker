@@ -96,8 +96,8 @@ export const FooterWrapper = styled.div`
 
 export const CommentCount = styled.div`
 	color: ${props => props.theme.aqua};
-	padding-right: 4px;
-	margin-right: 4px;
+	padding-right: 2px;
+	margin-right: 2px;
 `;
 
 export const Title = styled.div`

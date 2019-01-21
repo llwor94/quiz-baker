@@ -15,7 +15,7 @@ import {
 } from '../../Styles/Posts/Post';
 import { ProfileIcon } from '../../Styles/Components/Image';
 
-const Post = ({ post, ...props }) => {
+const Post = ({ post, showComments, ...props }) => {
 	const growl = React.createRef();
 	const handleCopy = () => {
 		let value = `http://localhost:3000/forum/${post.id}`;
@@ -50,7 +50,10 @@ const Post = ({ post, ...props }) => {
 								`${post.comment_count} comments`
 							)}
 						</CommentCount>
-						<i class='pi pi-share-alt' onClick={handleCopy} />
+						{post.comment_count > 0 && (
+							<i className='pi pi-eye' onClick={showComments} />
+						)}
+						<i className='pi pi-share-alt' onClick={handleCopy} />
 					</div>
 				</FooterWrapper>
 			</InnerWrapper>
