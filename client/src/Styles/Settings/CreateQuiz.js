@@ -29,10 +29,15 @@ export const Wrapper = styled.div`
 	margin-bottom: ${props => (props.main ? '200px' : '10px')};
 	align-items: ${props => props.edit || (props.secondary && 'center')};
 	/* width: ${props => props.secondary && '500px'}; */
-	width: 30%;
+	width: 60%;
+	height: 50%;
 	padding: 40px;
 	.p-ampm-picker {
 		display: none;
+	}
+	img{
+		width: 40%;
+		height: 40%;
 	}
 `;
 

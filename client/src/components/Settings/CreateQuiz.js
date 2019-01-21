@@ -6,6 +6,7 @@ import { Calendar } from 'primereact/calendar';
 import { Button } from '../../Styles/Components/Button';
 import { Wrapper, InnerWrapper, ModalWrapper } from '../../Styles/Settings/CreateQuiz';
 import QuizForm from './QuizForm';
+import ovenIcon from '../../assets/oven.svg';
 
 import { UserQuizzesCtx } from '../../pages/Settings';
 import { UserCtx } from '../../App';
@@ -34,6 +35,8 @@ const CreateQuiz = props => {
 			{newQuiz && (
 				<ModalWrapper>
 					<Wrapper>
+						<div style={{display: 'flex', justifyContent: 'space-between'}}>
+
 						<Button
 							style={{ position: 'absolute', top: '5px', right: '5px' }}
 							icon='pi pi-times'
@@ -41,6 +44,8 @@ const CreateQuiz = props => {
 							onClick={() => setNewQuiz(false)}
 						/>
 						<QuizForm quiz={quiz} setQuiz={setQuiz} />
+						<img src={ovenIcon} />
+						</div>
 
 						<InnerWrapper>
 							{!quiz.topic &&

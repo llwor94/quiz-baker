@@ -4,7 +4,6 @@ import server from "../../utils/server";
 import { Input, TextArea } from "../../Styles/Components/Input";
 import { StyledAutoComplete } from "../../components/Styles/Text/autoComplete";
 
-import ovenIcon from "../../assets/oven.svg";
 
 const QuizForm = ({ quiz, setQuiz, ...props }) => {
   const [topics, setTopics] = useState(undefined);
@@ -43,7 +42,7 @@ const QuizForm = ({ quiz, setQuiz, ...props }) => {
   };
 
   return (
-    <div>
+    <div style={{width: '60%'}}>
       <div style={{display: 'flex'}}>
 
       <div>
@@ -62,7 +61,7 @@ const QuizForm = ({ quiz, setQuiz, ...props }) => {
           dropdown={true}
         />
       </div>
-      <img src={ovenIcon} />
+  
       </div>
 
       <p>Description:</p>
