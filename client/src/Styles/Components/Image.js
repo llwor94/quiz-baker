@@ -31,6 +31,7 @@ const StyledImage = styled.img`
 	width: 90px;
 	height: 90px;
 	border-radius: 10px;
+	z-index: 1000;
 `;
 
 export const LargeImage = ({ src }) => <StyledImage src={src ? src : blankProfile} />;
