@@ -33,6 +33,16 @@ export const PostWrapper = styled.div`
 	}
 `;
 
+export const HatWrapper = styled.img`
+	position: absolute;
+	top: -20px;
+	left: -20px;
+	height: 40px;
+	width: 40px;
+	transform: rotate(-45deg);
+	background-color: white;
+`;
+
 export const InnerWrapper = styled.div`
 	padding: 8px 0;
 	margin: 0 8px;

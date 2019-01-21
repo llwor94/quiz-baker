@@ -4,6 +4,9 @@ import moment from 'moment';
 import { UserCtx } from '../../App';
 import { Growl } from 'primereact/growl';
 import server from '../../utils/server';
+import hatIcon from '../../assets/chef.svg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCookieBite, faCookie } from '@fortawesome/free-solid-svg-icons';
 import {
 	PostWrapper,
 	BodyWrapper,
@@ -14,6 +17,7 @@ import {
 	InnerWrapper,
 	Topic,
 	LeftSide,
+	HatWrapper,
 } from '../../Styles/Posts/Post';
 import { ProfileIcon } from '../../Styles/Components/Image';
 
@@ -26,6 +30,17 @@ const Post = ({ post, showComments, ...props }) => {
 		navigator.clipboard.writeText(value).then(() => {
 			growl.current.show({ severity: 'info', summary: 'Link Copied!' });
 		});
+	};
+
+	const handleFavoriteToggle = () => {
+		server
+			.patch(`posts/${post.id}/vote`, { favorite: !post.favorite })
+			.then(({ data }) => {
+				server.get('/posts').then(({ data }) => {
+					setPosts(data.sort((a, b) => b.id - a.id));
+				});
+			})
+			.catch(err => console.log(err));
 	};
 
 	const handleVote = val => {
@@ -50,6 +65,7 @@ const Post = ({ post, showComments, ...props }) => {
 	};
 	return (
 		<PostWrapper userPage={props.history.location.pathname === '/user/settings'}>
+			{user && user.username === post.author && <HatWrapper src={hatIcon} />}
 			<Growl ref={growl} />
 			<LeftSide user={user}>
 				<i
@@ -105,6 +121,17 @@ const Post = ({ post, showComments, ...props }) => {
 							<i className='pi pi-eye' onClick={showComments} />
 						)}
 						<i className='pi pi-share-alt' onClick={handleCopy} />
+						{user ? (
+							<FontAwesomeIcon
+								title='Take a bite out of that, Boogin'
+								icon={post.favorite ? faCookieBite : faCookie}
+								color={post.favorite ? '#875818' : '#b2b2b2'}
+								style={{ cursor: 'pointer' }}
+								onClick={handleFavoriteToggle}
+							/>
+						) : (
+							<div />
+						)}
 					</div>
 				</FooterWrapper>
 			</InnerWrapper>
