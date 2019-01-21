@@ -62,12 +62,12 @@ const CreateQuiz = () => {
 									<span style={{ fontWeight: 'bold' }}>{quiz.topic}</span>
 								</div>
 							)}
-
 							<Button
-								label='Create Quiz?'
+								label='Bake Quiz!'
 								disabled={!quiz.title || !quiz.topic}
 								onClick={handleCreateQuiz}
 							/>
+
 						</InnerWrapper>
 					</Wrapper>
 				</ModalWrapper>
