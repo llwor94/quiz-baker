@@ -8,6 +8,8 @@ import anime from 'animejs';
 import server from '../utils/server';
 
 import quizbaker from '../assets/quizbaker.png';
+import darkModeLogo from '../assets/logo-darkmode.png';
+import logoShadow from '../assets/logoShadow.png';
 
 const Wrapper = styled.div`
 	position: fixed;
@@ -89,6 +91,7 @@ const Logo = styled.img`
 	z-index: 1000;
 	width: 45px;
 	height: 45px;
+	background-color: ${props => props.dark && props.theme.secondary};
 `;
 
 const animateLogoUp = logo => anime({ targets: logo, scale: 3, translateY: 4 });
@@ -189,7 +192,7 @@ const Header = ({ setValue, darkMode, ...props }) => {
 							onExit={animateLogoDown}
 							onEnter={animateLogoUp}
 						>
-							<Logo src={quizbaker} />
+							<Logo dark={darkMode} src={darkMode ? darkModeLogo : quizbaker} />
 						</Transition>
 						{user ? (
 							<div

@@ -45,35 +45,46 @@ const InnerWrapper = styled.div`
 	position: relative;
 `;
 export const UserCtx = createContext([ undefined, () => {} ]);
+export const ColorCtx = createContext([ undefined, () => {} ]);
 
 const App = () => {
 	const [ darkMode, setValue ] = useState(false);
 	const [ user, setUser ] = useState(undefined);
 
 	return (
-		<ThemeProvider theme={darkMode ? DarkMode : LightMode}>
-			<UserCtx.Provider value={[ user, setUser ]}>
-				<div>
-					<GlobalStyle />
-					<Header setValue={setValue} darkMode={darkMode} />
-					<Wrapper>
-						<InnerWrapper>
-							<Switch>
-								<Route exact path='/' render={() => <Redirect to='/quizzes' />} />
-								<Route exact path='/login' component={LoginContainer} />
-								<Route exact path='/register' component={RegisterPage} />
-								<Route exact path='/forum' component={ForumPage} />
-								<Route exact path='/quizzes' component={QuizzesPage} />
-								<Route exact path='/quizzes/:id' component={QuizPage} />
-								<Route exact path='/forum/:id' component={PostPage} />
-								<Route exact path='/user/settings' component={SettingsPage} />
-								<Route exact path='/user/quizzes/:id' component={UserQuizPage} />
-							</Switch>
-						</InnerWrapper>
-					</Wrapper>
-				</div>
-			</UserCtx.Provider>
-		</ThemeProvider>
+		<ColorCtx.Provider value={[ darkMode, setValue ]}>
+			<ThemeProvider theme={darkMode ? DarkMode : LightMode}>
+				<UserCtx.Provider value={[ user, setUser ]}>
+					<div>
+						<GlobalStyle />
+						<Header setValue={setValue} darkMode={darkMode} />
+						<Wrapper>
+							<InnerWrapper>
+								<Switch>
+									<Route
+										exact
+										path='/'
+										render={() => <Redirect to='/quizzes' />}
+									/>
+									<Route exact path='/login' component={LoginContainer} />
+									<Route exact path='/register' component={RegisterPage} />
+									<Route exact path='/forum' component={ForumPage} />
+									<Route exact path='/quizzes' component={QuizzesPage} />
+									<Route exact path='/quizzes/:id' component={QuizPage} />
+									<Route exact path='/forum/:id' component={PostPage} />
+									<Route exact path='/user/settings' component={SettingsPage} />
+									<Route
+										exact
+										path='/user/quizzes/:id'
+										component={UserQuizPage}
+									/>
+								</Switch>
+							</InnerWrapper>
+						</Wrapper>
+					</div>
+				</UserCtx.Provider>
+			</ThemeProvider>
+		</ColorCtx.Provider>
 	);
 };
 

@@ -2,9 +2,11 @@ import React, { useEffect, useContext } from 'react';
 import { PostsCtx } from '../../pages/Forum';
 import moment from 'moment';
 import { UserCtx } from '../../App';
+import { ColorCtx } from '../../App';
 import { Growl } from 'primereact/growl';
 import server from '../../utils/server';
-import hatIcon from '../../assets/chef.svg';
+import hatDark from '../../assets/chef-dark.svg';
+import hatLight from '../../assets/chef.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCookieBite, faCookie } from '@fortawesome/free-solid-svg-icons';
 import {
@@ -24,6 +26,7 @@ import { ProfileIcon } from '../../Styles/Components/Image';
 const Post = ({ post, showComments, ...props }) => {
 	const [ posts, setPosts ] = useContext(PostsCtx);
 	const [ user, setUser ] = useContext(UserCtx);
+	const [ darkMode, setValue ] = useContext(ColorCtx);
 	const growl = React.createRef();
 	const handleCopy = () => {
 		let value = `http://localhost:3000/forum/${post.id}`;
@@ -65,7 +68,8 @@ const Post = ({ post, showComments, ...props }) => {
 	};
 	return (
 		<PostWrapper userPage={props.history.location.pathname === '/user/settings'}>
-			{user && user.username === post.author && <HatWrapper src={hatIcon} />}
+			{user &&
+			user.username === post.author && <HatWrapper src={darkMode ? hatDark : hatLight} />}
 			<Growl ref={growl} />
 			<LeftSide user={user}>
 				<i

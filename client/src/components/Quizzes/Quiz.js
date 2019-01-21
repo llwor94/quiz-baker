@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 
 import { UserCtx } from '../../App';
-
+import { ColorCtx } from '../../App';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCookieBite, faCookie } from '@fortawesome/free-solid-svg-icons';
 import { userImage } from '../../utils/imgArray';
@@ -25,6 +25,7 @@ import {
 	FooterWrapper,
 } from '../../Styles/Quizzes/Quiz';
 import hatIcon from '../../assets/chef.svg';
+import hatDark from '../../assets/chef-dark.svg';
 import { ProfileIcon } from '../../Styles/Components/Image';
 import { Growl } from 'primereact/growl';
 
@@ -32,6 +33,7 @@ const Quiz = ({ quiz, ...props }) => {
 	const growl = React.createRef();
 	const [ quizzes, setQuizzes ] = useContext(QuizzesCtx);
 	const [ user, setUser ] = useContext(UserCtx);
+	const [ darkMode, setValue ] = useContext(ColorCtx);
 
 	const handleCopy = () => {
 		let value = `http://localhost:3000/quizzes/${quiz.id}`;
@@ -82,7 +84,9 @@ const Quiz = ({ quiz, ...props }) => {
 			<Growl ref={growl} />
 			{user &&
 			user.username === quiz.author &&
-			props.history.location.pathname === '/quizzes' && <HatWrapper src={hatIcon} />}
+			props.history.location.pathname === '/quizzes' && (
+				<HatWrapper src={darkMode ? hatDark : hatIcon} />
+			)}
 			<div style={{ display: 'flex' }}>
 				<LeftSide user={user}>
 					<i

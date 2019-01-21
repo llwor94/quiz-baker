@@ -14,7 +14,7 @@ export const Wrapper = styled.div`
 	height: 200px;
 	width: 450px;
 	margin: 8px;
-	background-color: #fff;
+
 	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
 		0 2px 1px -1px rgba(0, 0, 0, 0.12);
 	.p-growl.p-growl-topright {
@@ -45,7 +45,7 @@ export const HatWrapper = styled.img`
 	height: 40px;
 	width: 40px;
 	transform: rotate(-45deg);
-	background-color: white;
+	background-color: ${props => props.theme.secondary};
 `;
 
 export const LeftSide = styled.div`

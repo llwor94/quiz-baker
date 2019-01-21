@@ -40,7 +40,7 @@ export const HatWrapper = styled.img`
 	height: 40px;
 	width: 40px;
 	transform: rotate(-45deg);
-	background-color: white;
+	background-color: ${props => props.theme.secondary};
 `;
 
 export const InnerWrapper = styled.div`
