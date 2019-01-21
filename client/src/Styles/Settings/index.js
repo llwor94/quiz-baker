@@ -5,10 +5,11 @@ import { TabMenu } from 'primereact/tabmenu';
 export const SettingsWrapper = styled.div`
 	display: flex;
 	width: 100%;
+
 	max-width: 900px;
 	justify-content: flex-start;
 	align-items: flex-start;
-	margin: 0 80px;
+	margin: 70px 80px 0;
 	h2 {
 		text-align: center;
 		text-transform: capitalize;
