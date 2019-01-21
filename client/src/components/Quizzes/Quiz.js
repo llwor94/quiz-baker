@@ -92,15 +92,13 @@ const Quiz = ({ quiz, ...props }) => {
 					<i
 						className='pi pi-chevron-up'
 						style={{
-							color: quiz.user_vote === 1 ? '#DC758F' : !user ? 'gray' : 'black',
+							color: quiz.user_vote === 1 && '#DC758F',
 						}}
 						onClick={() => handleVote(1)}
 					/>
 					<p
 						style={{
-							color: quiz.user_vote
-								? quiz.user_vote === 1 ? '#DC758F' : '#E3D3E4'
-								: 'black',
+							color: quiz.user_vote && quiz.user_vote === 1 ? '#DC758F' : '#E3D3E4',
 						}}
 					>
 						{quiz.votes}
@@ -108,7 +106,7 @@ const Quiz = ({ quiz, ...props }) => {
 					<i
 						className='pi pi-chevron-down'
 						style={{
-							color: quiz.user_vote === -1 ? '#E3D3E4' : !user ? 'gray' : 'black',
+							color: quiz.user_vote === -1 && '#E3D3E4',
 						}}
 						onClick={() => handleVote(-1)}
 					/>

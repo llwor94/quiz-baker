@@ -31,6 +31,15 @@ const HeaderWrapper = styled.div`
 	top: 0;
 	z-index: 200;
 	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.3);
+	.p-inputswitch.p-inputswitch-checked .p-inputswitch-slider {
+		background-color: ${props => props.theme.main};
+	}
+	.p-inputswitch .p-inputswitch-slider:before {
+		background-color: ${props => props.theme.pink};
+	}
+	.p-inputswitch.p-inputswitch-checked:not(.p-disabled):hover .p-inputswitch-slider {
+		background-color: ${props => props.theme.secondary};
+	}
 `;
 
 const InnerWrapper = styled.div`

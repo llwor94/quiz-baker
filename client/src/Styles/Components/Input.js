@@ -96,16 +96,11 @@ export const Label = styled.label`
 `;
 
 const StyledEmojiArea = styled.div`
-	border-radius: 3px;
 	position: relative;
 	resize: none;
 	width: 100%;
 	font-size: 14px;
 	margin-bottom: 10px;
-	color: #333333;
-	background: #ffffff;
-
-	border: 1px solid #a6a6a6;
 
 	i {
 		position: absolute;
@@ -117,9 +112,12 @@ const StyledEmojiArea = styled.div`
 		padding: 0.429em;
 		font-size: 14px;
 		resize: none;
-		border: none;
+		width: 100%;
+		height: 100%;
+		border-radius: 3px;
+		border: 1px solid #a6a6a6;
 		&:focus {
-			border: none;
+			border-color: ${props => props.theme.pink};
 			outline: none;
 		}
 	}
@@ -232,7 +230,6 @@ export const EmojiTextArea = ({ value, onChange, name, inputRef, handleSelect })
 				name={name}
 				rows='5'
 				ref={inputRef}
-				style={{ width: '100%', height: '100%' }}
 			/>
 			<Emojis onBlur={handleBlur} tabIndex='0'>
 				<FontAwesomeIcon
@@ -258,6 +255,10 @@ const StyledEmojiInput = styled.div`
 	input {
 		width: 100%;
 		height: 100%;
+
+		&:focus {
+			border-color: ${props => props.theme.pink};
+		}
 	}
 `;
 
