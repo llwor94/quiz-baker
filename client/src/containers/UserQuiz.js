@@ -30,7 +30,7 @@ const UserQuizContainer = props => {
 					width: '100%',
 					display: 'flex',
 					justifyContent: 'center',
-					marginTop: '10px',
+					marginTop: '80px',
 				}}
 			>
 				<div style={{ width: '400px', position: 'relative' }}>

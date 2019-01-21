@@ -16,6 +16,7 @@ import {
 	QuestionWrapper,
 	Logo,
 } from '../../Styles/Quiz/Question';
+import Timer from '../../Styles/Components/Timer';
 
 const Question = () => {
 	const [ quiz, setQuiz ] = useContext(QuizCtx);
@@ -23,20 +24,38 @@ const Question = () => {
 	const [ questionResponse, setQuestionResponse ] = useContext(ResponseCtx);
 	const [ question, setQuestion ] = useState(quiz.questions[0]);
 	const [ selected, setSelected ] = useState(null);
+	const [ timeLimit, setTimeLimit ] = useState(quiz.questionTimeLimit);
+
+	// };
 	// useEffect(() => {
-	// 	setQuestion(quiz.questions[0]);
+	// 	if (quiz.questionTimeLimit) {
+	// 		setTimeLimit(quiz.questionTimeLimit);
+	// 		setInterval(() => timer(timeLimit, setTimeLimit), 1000);
+	// 	}
 	// }, []);
-	console.log(currentQuestion);
-	console.log(quiz);
+
 	useEffect(
 		() => {
 			if (currentQuestion) {
-				console.log('hey');
 				setQuestion(quiz.questions[currentQuestion]);
+				setTimeLimit(quiz.questionTimeLimit);
 			}
 		},
 		[ currentQuestion ],
 	);
+
+	const handleTimer = () => {
+		let newQuestions = [ ...questionResponse ];
+		newQuestions[currentQuestion] = {
+			correct: false,
+			question: question,
+			option: 'You did not answer this question in time.',
+		};
+		setQuestionResponse(newQuestions);
+		setCurrentQuestion(currentQuestion + 1);
+	};
+
+	console.log(timeLimit);
 	const checkAnswer = () => {
 		let option = selected + 1;
 		server
@@ -52,7 +71,9 @@ const Question = () => {
 				};
 				setQuestionResponse(newQuestions);
 				setCurrentQuestion(currentQuestion + 1);
-
+				if (quiz.questionTimeLimit) {
+					setTimeLimit(quiz.questionTimeLimit);
+				}
 				setSelected(null);
 			})
 			.catch(err => console.log(err));
@@ -63,6 +84,11 @@ const Question = () => {
 			<div style={{ width: '500px' }}>
 				<Wrapper>
 					<QuestionWrapper>{question.question}</QuestionWrapper>
+					<Timer
+						startCount={quiz.questionTimeLimit}
+						handleTimer={handleTimer}
+						question={question}
+					/>
 					<AnswerWrapper>
 						{question.options &&
 							question.options.map((option, i) => (

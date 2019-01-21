@@ -87,7 +87,7 @@ const Post = props => {
 									`${post.comments.length} comments`
 								)}
 							</CommentCount>
-							<i class='pi pi-share-alt' onClick={handleCopy} />
+							<i className='pi pi-share-alt' onClick={handleCopy} />
 						</div>
 						{user &&
 							(user.username === post.author.username && (

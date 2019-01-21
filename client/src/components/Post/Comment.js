@@ -22,7 +22,7 @@ const Comment = ({ comment, deleteComment }) => {
 			</div>
 			{user &&
 			user.username === comment.author && (
-				<Button label='delete' onClick={() => deleteComment(comment.id)} />
+				<Button icon='pi pi-trash' white onClick={() => deleteComment(comment.id)} />
 			)}
 		</Wrapper>
 	);

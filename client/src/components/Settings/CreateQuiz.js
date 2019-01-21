@@ -1,5 +1,5 @@
 import React, { useState, useContext, Fragment } from 'react';
-
+import { withRouter } from 'react-router-dom';
 import server from '../../utils/server';
 import _ from 'lodash';
 import { Calendar } from 'primereact/calendar';
@@ -10,7 +10,7 @@ import QuizForm from './QuizForm';
 import { UserQuizzesCtx } from '../../pages/Settings';
 import { UserCtx } from '../../App';
 
-const CreateQuiz = () => {
+const CreateQuiz = props => {
 	const [ newQuiz, setNewQuiz ] = useState(false);
 	const [ quiz, setQuiz ] = useState({ title: '', description: '', topic: '' });
 	const [ userQuizzes, setUserQuizzes ] = useContext(UserQuizzesCtx);
@@ -20,14 +20,9 @@ const CreateQuiz = () => {
 	const handleCreateQuiz = () => {
 		server
 			.post('/quizzes', quiz)
-			.then(response => {
-				server.get('/quizzes').then(({ data }) => {
-					setUserQuizzes(data.filter(quiz => quiz.author === user.username)).sort(
-						(a, b) => b.id - a.id,
-					);
-				});
-				setQuiz(_.mapValues(quiz, ''));
-				setNewQuiz(false);
+			.then(({ data }) => {
+				console.log(data);
+				props.history.push(`/user/quizzes/${data[0]}`);
 			})
 			.catch(error => console.log(error));
 	};
@@ -67,7 +62,6 @@ const CreateQuiz = () => {
 								disabled={!quiz.title || !quiz.topic}
 								onClick={handleCreateQuiz}
 							/>
-
 						</InnerWrapper>
 					</Wrapper>
 				</ModalWrapper>
@@ -76,4 +70,4 @@ const CreateQuiz = () => {
 	);
 };
 
-export default CreateQuiz;
+export default withRouter(CreateQuiz);

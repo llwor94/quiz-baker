@@ -4,16 +4,8 @@ import moment from 'moment';
 import server from '../../utils/server';
 import { PostCtx } from '../../pages/Post';
 import { UserCtx } from '../../App';
-import {
-	CommentArea,
-	Wrapper,
-	CommentHeader,
-	UserName,
-	CommentBody,
-} from '../../Styles/Comments/Comment';
+import { CommentArea } from '../../Styles/Comments/Comment';
 import Comment from './Comment';
-import { ProfileIcon } from '../../Styles/Components/Image';
-import { Button } from '../../Styles/Components/Button';
 
 const Comments = () => {
 	const [ post, setPost ] = useContext(PostCtx);

@@ -49,9 +49,17 @@ const animateButtonOut = button => anime({ targets: button, width: 125 });
 const animateButtonIn = button => anime({ targets: button, width: 35 });
 export const BackButton = ({ onClick, style }) => {
 	const [ hovered, setHovered ] = useState(false);
+	const [ entered, setEntered ] = useState(false);
 
 	return (
-		<Transition in={hovered} onEnter={animateButtonOut} onExit={animateButtonIn}>
+		<Transition
+			in={hovered}
+			timeout={100}
+			onEnter={animateButtonOut}
+			onExit={animateButtonIn}
+			onEntered={() => setEntered(true)}
+			onExiting={() => setEntered(false)}
+		>
 			<StyledButtonWrapper
 				secondary
 				style={style}
@@ -61,7 +69,7 @@ export const BackButton = ({ onClick, style }) => {
 				<StyledButton
 					style={{ width: '100%' }}
 					className='p-button'
-					label={hovered ? 'Go Back' : ''}
+					label={entered ? 'Go Back' : ''}
 					onClick={onClick}
 					icon='pi pi-arrow-left'
 				/>

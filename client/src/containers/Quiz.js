@@ -27,6 +27,11 @@ const QuizContainer = props => {
 		server.get(`/quizzes/${props.match.params.id}`).then(({ data }) => {
 			let retrievedQuiz = data;
 			server.get(`/quizzes/${props.match.params.id}/questions`).then(({ data }) => {
+				if (retrievedQuiz.time_limit_seconds) {
+					console.log(retrievedQuiz.time_limit_seconds);
+					retrievedQuiz.questionTimeLimit =
+						retrievedQuiz.time_limit_seconds / data.length;
+				}
 				retrievedQuiz.questions = data;
 				setQuestionReponse(_.fill(Array(data.length), { correct: null }));
 				setQuiz(retrievedQuiz);
@@ -46,11 +51,12 @@ const QuizContainer = props => {
 						alignItems: 'center',
 						position: 'relative',
 						perspective: '1000px',
+						marginTop: '70px',
 					}}
 				>
 					<LeaderBoard />
 					{currentQuestion === undefined ? (
-						<Quiz />
+						<Quiz {...props} />
 					) : currentQuestion === quiz.questions.length ? (
 						<Results />
 					) : (

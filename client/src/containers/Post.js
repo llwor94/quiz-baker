@@ -23,7 +23,7 @@ const PostContainer = props => {
 	if (!post) return <Loading />;
 	else
 		return (
-			<div style={{ width: '500px', position: 'relative' }}>
+			<div style={{ width: '500px', position: 'relative', marginTop: '70px' }}>
 				<Post {...props} />
 				{user && <NewComment />}
 				{post.comments.length > 0 && <Comments />}
