@@ -68,4 +68,7 @@ export const CommentWrapper = styled.div`
 	border-radius: 4px;
 `;
 
-export const PostComment = styled.div`display: flex;`;
+export const PostComment = styled.div`
+	display: flex;
+	align-items: center;
+`;
