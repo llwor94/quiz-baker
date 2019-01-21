@@ -3,10 +3,9 @@ import { ProfileIcon } from '../../Styles/Components/Image';
 import { UserCtx } from '../../App';
 import server from '../../utils/server';
 import { EmojiInput } from '../../Styles/Components/Input';
-import { CommentWrapper, PostComment } from '../../Styles/Comments/Comment';
 import moment from 'moment';
 import { Button } from '../../Styles/Components/Button';
-import { Wrapper, CommentHeader, UserName, CommentBody } from '../../Styles/Comments/Comment';
+import { Wrapper, CommentHeader, UserName, CommentWrapper, PostComment, RightSide } from '../../Styles/Comments/Comment';
 const Comments = ({ post }) => {
 	const [ user, setUser ] = useContext(UserCtx);
 	const [ comments, setComments ] = useState(undefined);
@@ -68,10 +67,11 @@ const Comments = ({ post }) => {
 						<CommentHeader>
 							{' '}
 							<ProfileIcon src={comment.author_img} />
-							<UserName>{comment.author}</UserName>
+							<UserName>{comment.author}: </UserName>
 							<p>{comment.text}</p>
 						</CommentHeader>
-						<div>{moment(comment.created_at).fromNow()}</div>
+						<RightSide>
+
 						{user &&
 						user.username === comment.author && (
 							<Button
@@ -80,6 +80,8 @@ const Comments = ({ post }) => {
 								onClick={() => deleteComment(comment.id)}
 							/>
 						)}
+						<div>{moment(comment.created_at).fromNow()}</div>
+						</RightSide>
 					</Wrapper>
 				))
 			)}
