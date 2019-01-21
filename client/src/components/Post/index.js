@@ -14,6 +14,7 @@ import {
 	CommentCount,
 	Title,
 	InnerWrapper,
+	Topic,
 } from '../../Styles/Posts/Post';
 import { ProfileIcon } from '../../Styles/Components/Image';
 
@@ -68,10 +69,13 @@ const Post = props => {
 				<Growl ref={growl} />
 				<InnerWrapper>
 					<Header>
-						<ProfileIcon src={post.author.img_url} />
-						Posted by <a>{post.author.username}</a>
-						<span style={{ padding: '0 3px' }}>&#8226;</span>
-						{moment(post.created_at).fromNow()}
+						<div style={{ display: 'flex', alignItems: 'center' }}>
+							<ProfileIcon src={post.author.img_url} />
+							Posted by <a>{post.author.username}</a>
+							<span style={{ padding: '0 3px' }}>&#8226;</span>
+							{moment(post.created_at).fromNow()}
+						</div>
+						{post.topic && <Topic>{post.topic}</Topic>}
 					</Header>
 					<BodyWrapper post>
 						<Title>{post.title}</Title>
