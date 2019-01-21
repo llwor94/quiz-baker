@@ -37,10 +37,7 @@ const GlobalStyle = createGlobalStyle`
 	}
 `;
 
-const Wrapper = styled.div`
-	width: 100%;
-	padding: 70px 24px 20px;
-`;
+const Wrapper = styled.div`width: 100%;`;
 
 const InnerWrapper = styled.div`
 	display: flex;
