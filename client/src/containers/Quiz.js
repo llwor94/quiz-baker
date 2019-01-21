@@ -29,8 +29,9 @@ const QuizContainer = props => {
 			server.get(`/quizzes/${props.match.params.id}/questions`).then(({ data }) => {
 				if (retrievedQuiz.time_limit_seconds) {
 					console.log(retrievedQuiz.time_limit_seconds);
-					retrievedQuiz.questionTimeLimit =
-						retrievedQuiz.time_limit_seconds / data.length;
+					retrievedQuiz.questionTimeLimit = Math.round(
+						retrievedQuiz.time_limit_seconds / data.length,
+					);
 				}
 				retrievedQuiz.questions = data;
 				setQuestionReponse(_.fill(Array(data.length), { correct: null }));
