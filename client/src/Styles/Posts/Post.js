@@ -40,7 +40,7 @@ export const InnerWrapper = styled.div`
 `;
 
 export const BodyWrapper = styled.div`
-	max-height: 250px;
+	max-height: ${props => !props.post && '250px'};
 	overflow: hidden;
 	cursor: pointer;
 
@@ -48,8 +48,9 @@ export const BodyWrapper = styled.div`
 		font-size: 14px;
 		font-weight: 400;
 		line-height: 21px;
-		mask-image: linear-gradient(180deg, #000 60%, transparent);
+		mask-image: ${props => !props.post && 'linear-gradient(180deg, #000 60%, transparent)'};
 		color: ${props => props.theme.text};
+		word-wrap: break-word;
 	}
 `;
 export const Header = styled.div`

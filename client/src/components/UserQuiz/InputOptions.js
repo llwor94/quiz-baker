@@ -11,12 +11,14 @@ const Wrapper = styled.div`
 	align-items: center;
 	padding-bottom: 10px;
 	.p-radiobutton .p-radiobutton-box.p-highlight {
-		background-color: ${props => props.theme.aqua};
-		border-color: ${props => props.theme.aqua};
+		background-color: ${props => props.theme.pink};
+		border-color: ${props => props.theme.pink};
+		/* background-color: ${props => (props.mc ? props.theme.pink : props.theme.aqua)};
+		border-color: ${props => (props.mc ? props.theme.pink : props.theme.aqua)}; */
 	}
 	.p-radiobutton .p-radiobutton-box.p-highlight:not(.p-disabled):hover {
-		background-color: ${props => props.theme.darkAqua};
-		border-color: ${props => props.theme.darkAqua};
+		background-color: ${props => (props.mc ? props.theme.darkPink : props.theme.darkAqua)};
+		border-color: ${props => (props.mc ? props.theme.darkPink : props.theme.darkAqua)};
 	}
 `;
 
@@ -30,7 +32,7 @@ export const MultipleChoice = ({
 	...props
 }) => {
 	return (
-		<Wrapper>
+		<Wrapper mc>
 			<InputWrapper className='p-inputgroup'>
 				<span className='p-inputgroup-addon'>
 					<RadioButton

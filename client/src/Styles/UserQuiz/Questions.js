@@ -50,9 +50,27 @@ export const EditWrapper = styled(Wrapper)`
 	.p-togglebutton.p-highlight {
 		background-color: ${props => props.theme.aqua};
 		border-color: ${props => props.theme.aqua};
+		color: #ffffff;
 		&:hover {
 			background-color: ${props => props.theme.darkAqua};
 			border-color: ${props => props.theme.darkAqua};
+			color: #ffffff;
+		}
+		/* background-color: ${props => props.theme.pink};
+		border-color: ${props => props.theme.pink};
+		&:hover {
+			background-color: ${props => props.theme.darkPink};
+			border-color: ${props => props.theme.darkPink};
+		} */
+	}
+	.p-togglebutton:not(.p-disabled):not(.p-highlight) {
+		background-color: ${props => props.theme.aqua};
+		border-color: ${props => props.theme.aqua};
+		color: #ffffff;
+		&:hover {
+			background-color: ${props => props.theme.darkAqua};
+			border-color: ${props => props.theme.darkAqua};
+			color: #ffffff;
 		}
 	}
 `;

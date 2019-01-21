@@ -34,6 +34,7 @@ const Question = ({ question }) => {
 							key={i}
 							style={{
 								color: question.answer === i + 1 ? 'green' : 'black',
+								fontWeight: question.answer === i + 1 && 'bold',
 							}}
 						>
 							{option}
