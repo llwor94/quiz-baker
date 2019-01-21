@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Picker } from 'emoji-mart';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -6,6 +6,11 @@ import { faSmile } from '@fortawesome/free-solid-svg-icons';
 const InputWrapper = styled.span`
 	margin: 10px 0;
 	display: inline-block !important;
+
+	label {
+		top: ${props => props.isInput && '-.75em'} !important;
+		font-size: ${props => props.isInput && '12px'} !important;
+	}
 `;
 
 export const StyledInput = styled.input`
@@ -31,21 +36,23 @@ export const StyledInput = styled.input`
 	}
 `;
 
-export const Input = ({ value, onChange, label, name, type, disabled, style, inputRef, radio }) => (
-	<InputWrapper className='p-float-label' style={style} radio={radio}>
-		<StyledInput
-			value={value}
-			onChange={onChange}
-			id={name}
-			name={name}
-			type={type}
-			autoComplete='off'
-			disabled={disabled}
-			ref={inputRef}
-		/>
-		{label && <label htmlFor={name}>{label}</label>}
-	</InputWrapper>
-);
+export const Input = ({ value, onChange, label, name, type, disabled, style, inputRef, radio }) => {
+	return (
+		<InputWrapper className='p-float-label' style={style} radio={radio} isInput={value}>
+			<StyledInput
+				value={value}
+				onChange={onChange}
+				id={name}
+				name={name}
+				type={type}
+				autoComplete='off'
+				disabled={disabled}
+				ref={inputRef}
+			/>
+			{label && <label htmlFor={name}>{label}</label>}
+		</InputWrapper>
+	);
+};
 
 const StyledTextArea = styled.textarea`
 	outline: none;
@@ -203,11 +210,11 @@ const StyledEmojiArea = styled.div`
 `;
 
 export const EmojiTextArea = ({ value, onChange, name, inputRef, handleSelect }) => {
-	const [emojis, showEmojis] = useState(false)
+	const [ emojis, showEmojis ] = useState(false);
 	return (
 		<StyledEmojiArea>
 			<textarea
-			onClick={() => showEmojis(false)}
+				onClick={() => showEmojis(false)}
 				value={value}
 				onChange={onChange}
 				name={name}
@@ -215,9 +222,19 @@ export const EmojiTextArea = ({ value, onChange, name, inputRef, handleSelect })
 				ref={inputRef}
 				style={{ width: '100%', height: '100%' }}
 			/>
-			<div >
-			<FontAwesomeIcon icon={faSmile} onClick={() => showEmojis(true)} style={{ color: 'lightgray', position: 'absolute', top: 5, right: 5, cursor: 'pointer' }} />
-			{emojis && <Picker style={{ width: '231px' }}  onSelect={handleSelect} />}
+			<div>
+				<FontAwesomeIcon
+					icon={faSmile}
+					onClick={() => showEmojis(true)}
+					style={{
+						color: 'lightgray',
+						position: 'absolute',
+						top: 5,
+						right: 5,
+						cursor: 'pointer',
+					}}
+				/>
+				{emojis && <Picker style={{ width: '231px' }} onSelect={handleSelect} />}
 			</div>
 		</StyledEmojiArea>
 	);
