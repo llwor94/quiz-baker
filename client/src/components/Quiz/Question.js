@@ -84,11 +84,13 @@ const Question = () => {
 			<div style={{ width: '500px' }}>
 				<Wrapper>
 					<QuestionWrapper>{question.question}</QuestionWrapper>
-					<Timer
-						startCount={quiz.questionTimeLimit}
-						handleTimer={handleTimer}
-						question={question}
-					/>
+					{quiz.questionTimeLimit && (
+						<Timer
+							startCount={quiz.questionTimeLimit}
+							handleTimer={handleTimer}
+							question={question}
+						/>
+					)}
 					<AnswerWrapper>
 						{question.options &&
 							question.options.map((option, i) => (
