@@ -58,7 +58,9 @@ export const LeftSide = styled.div`
 	background-color: transparent;
 	color: ${props => props.theme.text};
 	margin: 0 10px 0 0;
-
+	p {
+		color: ${props => props.theme.text};
+	}
 	i {
 		cursor: ${props => (props.user ? 'pointer' : 'default')};
 		color: ${props => props.theme.text};
