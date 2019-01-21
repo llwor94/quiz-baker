@@ -30,7 +30,7 @@ const CreateQuiz = props => {
 
 	return (
 		<Fragment>
-			<Button label='Create a New Quiz' onClick={() => setNewQuiz(true)} />
+			<Button label='Bake Quiz' onClick={() => setNewQuiz(true)} />
 			{newQuiz && (
 				<ModalWrapper>
 					<Wrapper>

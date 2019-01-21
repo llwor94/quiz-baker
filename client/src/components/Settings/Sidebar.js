@@ -60,7 +60,6 @@ const Sidebar = () => {
 				onExit={animateButtonsOut}
 			>
 				{state => {
-					console.log(state);
 					return (
 						<ProfileButtonWrapper style={transitionStyles[state]}>
 							{!usernameUpdate && (
@@ -84,14 +83,11 @@ const Sidebar = () => {
 			</Transition>
 
 			<div>
+				<div style={{ display: 'flex', position: 'relative' }}>
+				<ButtonCollapse onClick={() => setButtonsShowing(!buttonsHiding)}><div>···</div></ButtonCollapse>
 				<LargeImage src={user.img_url} />
-				<div style={{ display: 'flex' }}>
-					<Button
-						icon={buttonsHiding ? 'pi pi-pencil' : 'pi pi-times'}
-						onClick={() => setButtonsShowing(!buttonsHiding)}
-					/>
-					<h4>{user.username}</h4>
 				</div>
+					<h4>{user.username}</h4>
 			</div>
 		</ProfileWrapper>
 	);
