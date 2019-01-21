@@ -42,6 +42,15 @@ export const CommentHeader = styled.div`
 
 		flex: 0 0 auto;
 	}
+
+	p{
+		max-width: 300px;
+		margin: 15px 0;
+	}
+
+	img{
+		width: 40px;
+	}
 `;
 
 export const UserName = styled.a`
@@ -50,6 +59,7 @@ export const UserName = styled.a`
 	line-height: 16px;
 	color: ${props => props.theme.accentRed};
 	padding-left: 3px;
+	margin-right: 10px;
 `;
 
 export const CommentBody = styled.div`
@@ -62,6 +72,7 @@ export const CommentBody = styled.div`
 `;
 
 export const CommentWrapper = styled.div`
+	margin-bottom: 40px;
 	width: 100%;
 	padding: 10px;
 	border: 1px solid ${props => props.theme.lightGray};
@@ -71,4 +82,18 @@ export const CommentWrapper = styled.div`
 export const PostComment = styled.div`
 	display: flex;
 	align-items: center;
+`;
+
+export const RightSide = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	justify-content: flex-end;
+	height: 56px;
+	div{
+		font-size: 10px;
+		color: ${props => props.theme.gray};
+		margin-top: 5px;
+
+	}
 `;
