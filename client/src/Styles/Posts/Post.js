@@ -42,7 +42,7 @@ export const InnerWrapper = styled.div`
 export const BodyWrapper = styled.div`
 	max-height: ${props => !props.post && '250px'};
 	overflow: hidden;
-	cursor: pointer;
+	cursor: ${props => (props.quiz ? 'default' : 'pointer')};
 
 	p {
 		font-size: 14px;
@@ -105,7 +105,7 @@ export const Title = styled.div`
 	font-size: 18px;
 	font-weight: 500;
 	line-height: 22px;
-	cursor: pointer;
+
 	color: ${props => props.theme.text};
 `;
 
@@ -119,3 +119,5 @@ export const Topic = styled.div`
 	padding: 5px;
 	border-radius: 5px;
 `;
+
+export const CommentWrapper = styled.div`width: 100%;`;

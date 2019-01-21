@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const SplashWrapper = styled.div`
 	display: flex;
 	justify-content: flex-start;
-
+	position: relative;
 	strong {
 		margin-bottom: 5px;
 	}

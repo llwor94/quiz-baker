@@ -24,11 +24,11 @@ const Quiz = props => {
 	console.log(quiz);
 	return (
 		<Fragment>
-			<BackButton
-				style={{ position: 'absolute', top: 8, right: 785, maxWidth: '200px' }}
-				onClick={() => props.history.goBack()}
-			/>
 			<SplashWrapper>
+				<BackButton
+					style={{ position: 'absolute', top: 8, right: 520, maxWidth: '200px' }}
+					onClick={() => props.history.goBack()}
+				/>
 				<div style={{ maxWidth: '600px' }}>
 					<SplashTitle>{quiz.title}</SplashTitle>
 					<SplashHeader>

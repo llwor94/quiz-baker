@@ -60,3 +60,12 @@ export const CommentBody = styled.div`
 	line-height: 21px;
 	overflow: auto;
 `;
+
+export const CommentWrapper = styled.div`
+	width: 100%;
+	padding: 10px;
+	border: 1px solid ${props => props.theme.lightGray};
+	border-radius: 4px;
+`;
+
+export const PostComment = styled.div`display: flex;`;

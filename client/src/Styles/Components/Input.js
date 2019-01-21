@@ -123,6 +123,9 @@ const StyledEmojiArea = styled.div`
 			outline: none;
 		}
 	}
+`;
+
+const Emojis = styled.div`
 	.emoji-mart {
 		position: absolute;
 		top: 25px;
@@ -222,7 +225,7 @@ export const EmojiTextArea = ({ value, onChange, name, inputRef, handleSelect })
 				ref={inputRef}
 				style={{ width: '100%', height: '100%' }}
 			/>
-			<div>
+			<Emojis>
 				<FontAwesomeIcon
 					icon={faSmile}
 					onClick={() => showEmojis(true)}
@@ -235,7 +238,54 @@ export const EmojiTextArea = ({ value, onChange, name, inputRef, handleSelect })
 					}}
 				/>
 				{emojis && <Picker style={{ width: '231px' }} onSelect={handleSelect} />}
-			</div>
+			</Emojis>
 		</StyledEmojiArea>
+	);
+};
+
+const StyledEmojiInput = styled.div`
+	position: relative;
+	height: 100%;
+	input {
+		width: 100%;
+		height: 100%;
+	}
+`;
+
+export const EmojiInput = ({
+	value,
+	onChange,
+	name,
+	handleSelect,
+	onKeyUp,
+	style,
+	placeholder,
+}) => {
+	const [ emojis, showEmojis ] = useState(false);
+	return (
+		<StyledEmojiInput style={style}>
+			<StyledInput
+				value={value}
+				onChange={onChange}
+				name={name}
+				onKeyUp={onKeyUp}
+				onClick={() => showEmojis(false)}
+				placeholder={placeholder}
+			/>
+			<Emojis>
+				<FontAwesomeIcon
+					icon={faSmile}
+					onClick={() => showEmojis(true)}
+					style={{
+						color: 'lightgray',
+						position: 'absolute',
+						top: 5,
+						right: 5,
+						cursor: 'pointer',
+					}}
+				/>
+				{emojis && <Picker style={{ width: '231px' }} onSelect={handleSelect} />}
+			</Emojis>
+		</StyledEmojiInput>
 	);
 };
