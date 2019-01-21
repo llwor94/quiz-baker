@@ -52,6 +52,7 @@ const Quiz = ({ quiz, ...props }) => {
 			})
 			.catch(err => console.log(err));
 	};
+	console.log(quizzes);
 
 	const handleVote = val => {
 		console.log(quiz.user_vote, val);
@@ -140,6 +141,9 @@ const Quiz = ({ quiz, ...props }) => {
 							</span>
 
 							<i className='pi pi-share-alt' onClick={handleCopy} />
+							{quiz.post_count && (
+								<i className='pi pi-comments' style={{ cursor: 'default' }} />
+							)}
 						</UserNameWrapper>
 					</FooterWrapper>
 				</InnerWrapper>

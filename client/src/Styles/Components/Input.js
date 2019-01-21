@@ -214,6 +214,15 @@ const Emojis = styled.div`
 
 export const EmojiTextArea = ({ value, onChange, name, inputRef, handleSelect }) => {
 	const [ emojis, showEmojis ] = useState(false);
+
+	const handleBlur = e => {
+		let currentTarget = e.currentTarget;
+		setTimeout(() => {
+			if (!currentTarget.contains(document.activeElement)) {
+				showEmojis(false);
+			}
+		}, 0);
+	};
 	return (
 		<StyledEmojiArea>
 			<textarea
@@ -225,7 +234,7 @@ export const EmojiTextArea = ({ value, onChange, name, inputRef, handleSelect })
 				ref={inputRef}
 				style={{ width: '100%', height: '100%' }}
 			/>
-			<Emojis>
+			<Emojis onBlur={handleBlur} tabIndex='0'>
 				<FontAwesomeIcon
 					icon={faSmile}
 					onClick={() => showEmojis(true)}
@@ -245,7 +254,7 @@ export const EmojiTextArea = ({ value, onChange, name, inputRef, handleSelect })
 
 const StyledEmojiInput = styled.div`
 	position: relative;
-	height: 100%;
+	/* //height: 100%; */
 	input {
 		width: 100%;
 		height: 100%;
@@ -262,6 +271,16 @@ export const EmojiInput = ({
 	placeholder,
 }) => {
 	const [ emojis, showEmojis ] = useState(false);
+
+	const handleBlur = e => {
+		let currentTarget = e.currentTarget;
+		setTimeout(() => {
+			if (!currentTarget.contains(document.activeElement)) {
+				showEmojis(false);
+			}
+		}, 0);
+	};
+
 	return (
 		<StyledEmojiInput style={style}>
 			<StyledInput
@@ -272,7 +291,7 @@ export const EmojiInput = ({
 				onClick={() => showEmojis(false)}
 				placeholder={placeholder}
 			/>
-			<Emojis>
+			<Emojis onBlur={handleBlur} tabIndex='0'>
 				<FontAwesomeIcon
 					icon={faSmile}
 					onClick={() => showEmojis(true)}
@@ -284,7 +303,7 @@ export const EmojiInput = ({
 						cursor: 'pointer',
 					}}
 				/>
-				{emojis && <Picker style={{ width: '231px' }} onSelect={handleSelect} />}
+				{emojis && <Picker style={{ width: '231px' }} />}
 			</Emojis>
 		</StyledEmojiInput>
 	);
