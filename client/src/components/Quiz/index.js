@@ -24,6 +24,7 @@ const Quiz = props => {
 	console.log(quiz);
 	return (
 		<Fragment>
+
 			<SplashWrapper>
 				<BackButton
 					style={{ position: 'absolute', top: 8, right: 520, maxWidth: '200px' }}
