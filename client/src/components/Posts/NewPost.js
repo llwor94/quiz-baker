@@ -106,6 +106,7 @@ const NewPost = ({ userPage, quiz }) => {
 					<Button
 						style={{ position: 'absolute', top: '5px', right: '5px' }}
 						icon='pi pi-times'
+						white
 						onClick={() => setNewPost(false)}
 					/>
 					<Input

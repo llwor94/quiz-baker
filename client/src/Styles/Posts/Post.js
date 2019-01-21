@@ -43,7 +43,7 @@ export const BodyWrapper = styled.div`
 	max-height: ${props => !props.post && '250px'};
 	overflow: hidden;
 	cursor: ${props => (props.quiz ? 'default' : 'pointer')};
-
+	max-width: 420px;
 	p {
 		font-size: 14px;
 		font-weight: 400;
@@ -121,3 +121,19 @@ export const Topic = styled.div`
 `;
 
 export const CommentWrapper = styled.div`width: 100%;`;
+
+export const LeftSide = styled.div`
+	font-size: 20px;
+	width: 40px;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	background-color: transparent;
+	color: ${props => props.theme.text};
+	margin: 0 10px 0 0;
+
+	i {
+		cursor: ${props => (props.user ? 'pointer' : 'default')};
+	}
+`;
