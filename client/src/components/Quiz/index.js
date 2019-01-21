@@ -25,7 +25,7 @@ const Quiz = props => {
 	return (
 		<Fragment>
 			<BackButton
-				style={{ position: 'absolute', top: 8, right: 785, maxWidth: '200px' }}
+				style={{ position: 'absolute', top:11, right: 858, maxWidth: '200px' }}
 				onClick={() => props.history.goBack()}
 			/>
 			<SplashWrapper>
