@@ -5,7 +5,8 @@ import { LargeImage } from "../../Styles/Components/Image";
 import { Button, SettingsButton } from "../../Styles/Components/Button";
 import {
   ProfileWrapper,
-  ProfileButtonWrapper
+  ProfileButtonWrapper,
+  ButtonCollapse
 } from "../../Styles/Settings/Sidebar";
 import { UserCtx } from "../../App";
 import { Transition } from "react-transition-group";
@@ -16,9 +17,10 @@ import UpdateImage from "./UpdateImage";
 import UpdateUsername from "./updateUsername";
 
 const animateButtonsOut = buttons =>
-  anime({ targets: buttons, opacity: 0, translateX: 286 });
-const animateButtonsIn = buttons =>
   anime({ targets: buttons, opacity: 1, translateX: 0 });
+
+const animateButtonsIn = buttons =>
+  anime({ targets: buttons, opacity: 0, translateX: 290 });
 
 const Sidebar = () => {
   const [imageUpdate, setImageUpdate] = useState(false);
@@ -26,7 +28,7 @@ const Sidebar = () => {
   const [img_url, setImg] = useState(null);
   const [user, setUser] = useContext(UserCtx);
 
-  const [buttonsShowing, setButtonsShowing] = useState(false);
+  const [buttonsHiding, setButtonsShowing] = useState(false);
 
   useEffect(() => {
     if (user.img_url) {
@@ -47,14 +49,16 @@ const Sidebar = () => {
   return (
     <ProfileWrapper>
       <Transition
-        in={buttonsShowing}
-        onExit={animateButtonsOut}
+        in={buttonsHiding}
+        appear
         onEnter={animateButtonsIn}
+        onExit={animateButtonsOut}
       >
-        <ProfileButtonWrapper>
+        <ProfileButtonWrapper display={buttonsHiding}>
           {!usernameUpdate && (
             <UpdateImage
               imageUpdate={imageUpdate}
+              appear
               setImageUpdate={setImageUpdate}
               updateUser={updateUser}
             />
@@ -68,6 +72,11 @@ const Sidebar = () => {
           )}
         </ProfileButtonWrapper>
       </Transition>
+
+      <Button
+        icon={buttonsHiding ? "pi pi-times" : "pi pi-pencil"}
+        onClick={() => setButtonsShowing(!buttonsHiding)}
+      />
       <div>
         <LargeImage src={user.img_url} />
         <h4>{user.username}</h4>
