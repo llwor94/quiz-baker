@@ -20,13 +20,6 @@ const UserPost = ({ post, ...props }) => {
 	const [ userPosts, setUserPosts ] = useContext(UserPostsCtx);
 	const [ modalVisable, setModalVisable ] = useState(false);
 	const [ user, setUser ] = useContext(UserCtx);
-	const growl = React.createRef();
-	const handleCopy = () => {
-		let value = `http://localhost:3000/forum/${post.id}`;
-		navigator.clipboard.writeText(value).then(() => {
-			growl.current.show({ severity: 'info', summary: 'Link Copied!' });
-		});
-	};
 
 	const deletePost = () => {
 		server
@@ -57,7 +50,6 @@ const UserPost = ({ post, ...props }) => {
 	);
 	return (
 		<PostWrapper userPage>
-			<Growl ref={growl} />
 			<Dialog
 				visible={modalVisable}
 				style={{ width: '25vw' }}
@@ -74,7 +66,7 @@ const UserPost = ({ post, ...props }) => {
 				</BodyWrapper>
 
 				<FooterWrapper>
-					<div>
+					<div style={{ display: 'flex' }}>
 						<CommentCount>
 							{post.comment_count === 1 ? (
 								'1 comment'
@@ -82,7 +74,7 @@ const UserPost = ({ post, ...props }) => {
 								`${post.comment_count} comments`
 							)}
 						</CommentCount>
-						<a onClick={handleCopy}>Share</a>
+
 						<span style={{ padding: '0 3px' }}>&#8226;</span>
 						<span>Posted {moment(post.created_at).fromNow()}</span>
 					</div>
