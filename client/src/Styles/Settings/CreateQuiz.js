@@ -31,6 +31,7 @@ export const Wrapper = styled.div`
 	/* width: ${props => props.secondary && '500px'}; */
 	width: 60%;
 	height: 50%;
+	min-height: 400px;
 	padding: 40px;
 	.p-ampm-picker {
 		display: none;
@@ -38,6 +39,14 @@ export const Wrapper = styled.div`
 	img{
 		width: 40%;
 		height: 40%;
+	}
+
+	button {
+		width: 100%;
+	}
+	
+	textarea{
+		height: 150px;
 	}
 `;
 

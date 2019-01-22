@@ -24,6 +24,7 @@ export const SettingsWrapper = styled.div`
 		width: 50%;
 		top: -90px;
 		left: 190px;
+		z-index: 0;
 	}
 `;
 
