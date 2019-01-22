@@ -1,7 +1,7 @@
-import React, { useEffect, useState, createContext } from "react";
 import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
 import React, { useEffect, useState, createContext, Fragment } from 'react';
-import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
+
+
 
 import { Route, Switch, withRouter, Redirect } from "react-router-dom";
 
@@ -41,8 +41,10 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const Wrapper = styled.div`
+
 	width: 100%;
 	min-height: calc(100vh - 50px);
+
 `;
 
 const InnerWrapper = styled.div`
