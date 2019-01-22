@@ -1,11 +1,11 @@
 import React, { useState, useEffect, Fragment, useContext } from 'react';
-import { CloudinaryContext } from 'cloudinary-react';
+
 import { openUploadWidget } from '../utils/cloudinary';
 import server from '../utils/server';
 import { UserCtx } from '../App';
-import { LargeImage } from '../components/Styles/Image';
-import Button from '../components/Styles/Button';
-
+import { HugeImage } from '../Styles/Components/Image';
+import { Button } from '../Styles/Components/Button';
+import { UploadImageWrapper } from '../Styles/Register';
 const UploadImage = ({ doneEditting }) => {
 	const [ user, setUser ] = useContext(UserCtx);
 	const [ img_url, setImg ] = useState(null);
@@ -56,16 +56,20 @@ const UploadImage = ({ doneEditting }) => {
 	};
 
 	return (
-		<CloudinaryContext>
-			<div style={{ position: 'relative' }}>
-				<LargeImage src={img_url} />
-				<h4 style={{ textAlign: 'center' }}>Update Profile Picture</h4>
-				<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-					<Button secondary label='Browse...' onClick={handleUpload} />
-					<Button secondary label={img_url ? 'done' : 'skip'} onClick={handleEditUser} />
-				</div>
+		<UploadImageWrapper>
+			<HugeImage src={img_url} />
+
+			<div>
+				<Button secondary label='Browse...' onClick={handleUpload} full />
+
+				<Button
+					label={img_url ? 'done' : 'skip'}
+					onClick={handleEditUser}
+					white={!img_url}
+					style={{ float: 'right' }}
+				/>
 			</div>
-		</CloudinaryContext>
+		</UploadImageWrapper>
 	);
 };
 

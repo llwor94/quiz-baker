@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Input } from '../Styles/Input';
+import { Input } from '../../Styles/Components/Input';
+
 import Button from '../Styles/Button';
 import { Link } from 'react-router-dom';
 
@@ -32,6 +33,7 @@ const FormWrapper = styled.div`
 		justify-content: center;
 		flex-direction: column;
 		padding: 30px;
+		padding-top: 40px;
 	}
 `;
 
@@ -97,10 +99,14 @@ export const Wrapper = ({ type, handleSubmit, submitDisabled, error, children, l
 
 const InputWrapper = styled.div`
 	display: flex;
-	padding: 15px 0;
+	padding: 5px 0;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	p {
+		font-size: 12px;
+		color: ${props => props.theme.accentRed};
+	}
 `;
 
 export const InputWrap = ({ name, type, handleChange, value, placeholder, disabled, error }) => (

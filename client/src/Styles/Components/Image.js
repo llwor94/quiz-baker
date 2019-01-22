@@ -35,3 +35,11 @@ const StyledImage = styled.img`
 `;
 
 export const LargeImage = ({ src }) => <StyledImage src={src ? src : blankProfile} />;
+
+const BiggerImage = styled.img`
+	width: 350px;
+	height: 350px;
+	border-radius: 10px;
+	z-index: 1000;
+`;
+export const HugeImage = ({ src }) => <BiggerImage src={src ? src : blankProfile} />;
