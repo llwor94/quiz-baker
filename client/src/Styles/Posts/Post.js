@@ -36,6 +36,7 @@ export const PostWrapper = styled.div`
 `;
 
 export const CurrentPost = styled(PostWrapper)`
+	border-radius: 17px;
 	border-top-right-radius: 0;
 	border-bottom-right-radius: 0;
 
