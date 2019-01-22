@@ -1,5 +1,7 @@
 import React, { useEffect, useState, createContext } from "react";
 import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
+import React, { useEffect, useState, createContext, Fragment } from 'react';
+import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
 
 import { Route, Switch, withRouter, Redirect } from "react-router-dom";
 
@@ -28,8 +30,9 @@ const GlobalStyle = createGlobalStyle`
 		box-sizing: border-box;
 		font-family: 'Raleway', sans-serif;
   }
+	
 
-	html, body {
+	html, body{
 		height: 100%;
 		width: 100%;
 		background-color: ${props => props.theme.secondary};
@@ -38,7 +41,8 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const Wrapper = styled.div`
-  width: 100%;
+	width: 100%;
+	min-height: calc(100vh - 50px);
 `;
 
 const InnerWrapper = styled.div`
@@ -63,42 +67,42 @@ const App = () => {
   const [darkMode, setValue] = useState(false);
   const [user, setUser] = useState(undefined);
 
-  return (
-    <ColorCtx.Provider value={[darkMode, setValue]}>
-      <ThemeProvider theme={darkMode ? DarkMode : LightMode}>
-        <UserCtx.Provider value={[user, setUser]}>
-          <div style={{minHeight: '100vh'}}>
-            <GlobalStyle />
-            <Header setValue={setValue} darkMode={darkMode} />
-            <Wrapper>
-              <InnerWrapper>
-                <Switch>
-                  <Route
-                    exact
-                    path="/"
-                    render={() => <Redirect to="/quizzes" />}
-                  />
-                  <Route exact path="/login" component={LoginContainer} />
-                  <Route exact path="/register" component={RegisterPage} />
-                  <Route exact path="/forum" component={ForumPage} />
-                  <Route exact path="/quizzes" component={QuizzesPage} />
-                  <Route exact path="/quizzes/:id" component={QuizPage} />
-                  <Route exact path="/forum/:id" component={PostPage} />
-                  <Route exact path="/user/settings" component={SettingsPage} />
-                  <Route
-                    exact
-                    path="/user/quizzes/:id"
-                    component={UserQuizPage}
-                  />
-                </Switch>
-              </InnerWrapper>
-            </Wrapper>
-          </div>
-          <Footer />
-        </UserCtx.Provider>
-      </ThemeProvider>
-    </ColorCtx.Provider>
-  );
+	return (
+		<ColorCtx.Provider value={[ darkMode, setValue ]}>
+			<ThemeProvider theme={darkMode ? DarkMode : LightMode}>
+				<UserCtx.Provider value={[ user, setUser ]}>
+					<Fragment>
+						<GlobalStyle />
+						<Header setValue={setValue} darkMode={darkMode} />
+						<Wrapper>
+							<InnerWrapper>
+								<Switch>
+									<Route
+										exact
+										path='/'
+										render={() => <Redirect to='/quizzes' />}
+									/>
+									<Route exact path='/login' component={LoginContainer} />
+									<Route exact path='/register' component={RegisterPage} />
+									<Route exact path='/forum' component={ForumPage} />
+									<Route exact path='/quizzes' component={QuizzesPage} />
+									<Route exact path='/quizzes/:id' component={QuizPage} />
+									<Route exact path='/forum/:id' component={PostPage} />
+									<Route exact path='/user/settings' component={SettingsPage} />
+									<Route
+										exact
+										path='/user/quizzes/:id'
+										component={UserQuizPage}
+									/>
+								</Switch>
+							</InnerWrapper>
+						</Wrapper>
+						<Footer />
+					</Fragment>
+				</UserCtx.Provider>
+			</ThemeProvider>
+		</ColorCtx.Provider>
+	);
 };
 
 export default withRouter(App);

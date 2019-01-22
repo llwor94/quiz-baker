@@ -2,10 +2,10 @@ import styled from 'styled-components';
 
 export const NewPostWrapper = styled.div`
 	display: flex;
-	width: ${props => !props.userPage && '100%'};
+	width: 100%;
 	flex-direction: column;
-	align-items: flex-start;
-	position: relative;
+	align-content: space-between;
+
 	padding-bottom: 30px;
 `;
 

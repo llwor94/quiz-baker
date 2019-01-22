@@ -192,9 +192,11 @@ const Emojis = styled.div`
 			will-change: transform;
 			.emoji-mart-category-label {
 				z-index: 2;
-				position: relative;
+
 				position: -webkit-sticky;
 				position: sticky;
+				background: white;
+				padding: 2px;
 				top: 0;
 				.emoji-mart-category-label span {
 					display: block;
@@ -205,7 +207,7 @@ const Emojis = styled.div`
 			}
 		}
 	}
-	.emoji-mart-bar {
+	.emoji-mart-preview {
 		display: none;
 	}
 `;

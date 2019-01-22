@@ -20,6 +20,14 @@ const Posts = props => {
 			})
 			.catch(error => console.log(error.response));
 	}, []);
+
+	const handleComments = id => {
+		if (id === currentPost) {
+			setCurrentPost(undefined);
+		} else {
+			setCurrentPost(id);
+		}
+	};
 	console.log(currentPost);
 	if (!posts) return <Loading />;
 	else
@@ -41,7 +49,7 @@ const Posts = props => {
 							key={post.id}
 							post={post}
 							{...props}
-							showComments={() => setCurrentPost(post.id)}
+							showComments={() => handleComments(post.id)}
 							currentPost={currentPost}
 						/>
 					))}

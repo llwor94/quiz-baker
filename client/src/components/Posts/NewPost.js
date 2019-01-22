@@ -143,11 +143,10 @@ const NewPost = ({ userPage, quiz }) => {
 					</InnerWrapper>
 				</Fragment>
 			) : (
-				<Button
-					label='Create a New Post'
-					onClick={() => setNewPost(true)}
-					style={{ position: 'absolute', top: '0px', right: '0px' }}
-				/>
+				<Fragment>
+					<div>Hellooo</div>
+					<Button label='Create a New Post' onClick={() => setNewPost(true)} />
+				</Fragment>
 			)}
 		</NewPostWrapper>
 	);
