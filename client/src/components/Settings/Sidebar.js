@@ -16,16 +16,17 @@ import anime from 'animejs';
 import UpdateImage from './UpdateImage';
 import UpdateUsername from './updateUsername';
 
-const animateButtonsOut = buttons =>
-	anime({ targets: buttons, visibilty: 'hidden', translateX: 0 });
+// const animateButtonsOut = buttons =>
+// 	anime({ targets: buttons, visibilty: 'hidden', translateX: 0 });
 
-const animateButtonsIn = buttons => anime({ targets: buttons, translateX: 220 });
-const transitionStyles = {
-	entering: { visibility: 'hidden' },
-	entered: { visibility: 'hidden' },
-	exiting: { visibility: 'hidden' },
-	exited: { visibility: 'visible' },
-};
+// const animateButtonsIn = buttons => anime({ targets: buttons, translateX: 220 });
+// const transitionStyles = {
+// 	entering: { visibility: 'hidden' },
+// 	entered: { visibility: 'hidden' },
+// 	exiting: { visibility: 'hidden' },
+// 	exited: { visibility: 'visible' },
+// };
+
 const Sidebar = () => {
 	const [ imageUpdate, setImageUpdate ] = useState(false);
 	const [ usernameUpdate, setUsernameUpdate ] = useState(false);
@@ -33,12 +34,35 @@ const Sidebar = () => {
 	const [ user, setUser ] = useContext(UserCtx);
 
 	const [ buttonsHiding, setButtonsShowing ] = useState(true);
+	const buttonRef = React.createRef();
 
 	useEffect(() => {
 		if (user.img_url) {
 			setImg(user.img_url);
 		}
 	}, []);
+
+	useEffect(()=> {
+		buttonRef = anime({
+			targets: buttonRef.current,
+			translateX: () => {
+				if (buttonsHiding === false) {
+					return ['-100%', '0%'];
+				} else if (buttonsHiding === true) {
+					return ['0%', '100%']
+				}
+			},
+			elasticity: () => {
+				if (buttonsHiding === false) {
+					return 300;
+				} else if (buttonsHiding === true) {
+					return 0;
+				}
+			}
+		})
+
+
+	}, buttonsHiding)
 
 	const updateUser = () => {
 		let userData = JSON.parse(localStorage.getItem('user'));
@@ -50,18 +74,22 @@ const Sidebar = () => {
 			setImageUpdate(false);
 		});
 	};
+
+
 	return (
 		<ProfileWrapper>
 			<Transition
 				timeout={100}
 				in={buttonsHiding}
-				appear
-				onEnter={animateButtonsIn}
-				onExit={animateButtonsOut}
+				// appear
+				onEnter={setButtonsShowing(true)}
+				onExit={setButtonsShowing(false)}
 			>
 				{state => {
 					return (
-						<ProfileButtonWrapper style={transitionStyles[state]}>
+						<ProfileButtonWrapper ref={buttonRef} 
+						// style={transitionStyles[state]}
+						>{console.log(state)}
 							{!usernameUpdate && (
 								<UpdateImage
 									imageUpdate={imageUpdate}
