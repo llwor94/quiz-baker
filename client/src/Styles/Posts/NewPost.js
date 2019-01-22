@@ -4,6 +4,7 @@ export const NewPostWrapper = styled.div`
 	display: flex;
 	width: ${props => !props.userPage && '100%'};
 	flex-direction: column;
+	align-items: flex-end;
 `;
 
 export const InnerWrapper = styled.div`

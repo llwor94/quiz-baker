@@ -6,7 +6,7 @@ import { Button } from '../../Styles/Components/Button';
 import { Input, TextArea, EmojiTextArea } from '../../Styles/Components/Input';
 import server from '../../utils/server';
 import { QuizPostCtx } from '../../containers/Quiz';
-import { StyledAutoComplete } from '../../components/Styles/Text/autoComplete';
+import { StyledAutoComplete } from '../../Styles/Components/Autocomplete';
 
 const NewPost = ({ userPage, quiz }) => {
 	const [ posts, setPosts ] = useContext(PostsCtx);
@@ -135,7 +135,7 @@ const NewPost = ({ userPage, quiz }) => {
 					<Button label='Submit' disabled={!post.title || !post.body} onClick={addPost} />
 				</InnerWrapper>
 			) : (
-				<Button label='Create a New Post' onClick={() => setNewPost(true)} full />
+				<Button label='Create a New Post' onClick={() => setNewPost(true)} />
 			)}
 		</NewPostWrapper>
 	);
