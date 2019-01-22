@@ -56,10 +56,10 @@ const InnerWrapper = styled.div`
 const LeftHeader = styled.div`margin-left: 20px;`;
 
 const LinkWrapper = styled.div`
-	margin: 0 40px;
-	width: 60px;
+	margin: 0 35px;
+	width: 70px;
 	text-align: center;
-	height: 25px;
+	height: 35px;
 `;
 
 const StyledHeader = styled(Link)`
