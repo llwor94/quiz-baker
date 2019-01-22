@@ -1,25 +1,27 @@
+import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
 import React, { useEffect, useState, createContext, Fragment } from 'react';
-import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
 
-import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 
-import 'primereact/resources/themes/nova-light/theme.css';
-import 'primereact/resources/primereact.min.css';
-import 'primeicons/primeicons.css';
 
-import QuizzesPage from './pages/Quizzes';
-import QuizPage from './pages/Quiz';
-import ForumPage from './pages/Forum';
-import PostPage from './pages/Post';
-import RegisterPage from './pages/Register';
-import SettingsPage from './pages/Settings';
-import UserQuizPage from './pages/UserQuiz';
-import LoginContainer from './containers/Login';
+import { Route, Switch, withRouter, Redirect } from "react-router-dom";
 
-import Header from './components/Header';
-import Footer from './components/Footer';
-import { DarkMode } from './Themes/dark';
-import { LightMode } from './Themes/light';
+import "primereact/resources/themes/nova-light/theme.css";
+import "primereact/resources/primereact.min.css";
+import "primeicons/primeicons.css";
+
+import QuizzesPage from "./pages/Quizzes";
+import QuizPage from "./pages/Quiz";
+import ForumPage from "./pages/Forum";
+import PostPage from "./pages/Post";
+import RegisterPage from "./pages/Register";
+import SettingsPage from "./pages/Settings";
+import UserQuizPage from "./pages/UserQuiz";
+import LoginContainer from "./containers/Login";
+
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import { DarkMode } from "./Themes/dark";
+import { LightMode } from "./Themes/light";
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -34,26 +36,38 @@ const GlobalStyle = createGlobalStyle`
 		height: 100%;
 		width: 100%;
 		background-color: ${props => props.theme.secondary};
-		color: ${props => props.theme.text}
+		color: ${props => props.theme.text};
 	}
 `;
 
 const Wrapper = styled.div`
+
 	width: 100%;
 	min-height: calc(100vh - 50px);
+
 `;
 
 const InnerWrapper = styled.div`
-	display: flex;
-	justify-content: center;
-	position: relative;
+  display: flex;
+  justify-content: center;
+  position: relative;
 `;
-export const UserCtx = createContext([ undefined, () => {} ]);
-export const ColorCtx = createContext([ undefined, () => {} ]);
+
+// const AllButFooter = styled.div`
+//   min-height: 100%;
+//   margin-bottom: -146px;
+//   &:after {
+//     content: "";
+//     display: block;
+// 	height: 146px;
+//   }
+// `;
+export const UserCtx = createContext([undefined, () => {}]);
+export const ColorCtx = createContext([undefined, () => {}]);
 
 const App = () => {
-	const [ darkMode, setValue ] = useState(false);
-	const [ user, setUser ] = useState(undefined);
+  const [darkMode, setValue] = useState(false);
+  const [user, setUser] = useState(undefined);
 
 	return (
 		<ColorCtx.Provider value={[ darkMode, setValue ]}>
