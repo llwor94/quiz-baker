@@ -64,6 +64,11 @@ export const InnerWrapper = styled.div`
 	padding: 8px 0;
 	margin: 0 8px;
 	width: 100%;
+
+	.body {
+		display: flex;
+		flex-grow: 1;
+	}
 `;
 
 export const BodyWrapper = styled.div`
@@ -101,7 +106,7 @@ export const FooterWrapper = styled.div`
 	justify-content: space-between;
 	font-size: 12px;
 	font-weight: 700;
-	max-width: 450px;
+	width: 421px;
 	a {
 		padding-right: 4px;
 		margin-right: 4px;
@@ -154,7 +159,7 @@ export const Topic = styled.div`
 export const CommentWrapper = styled.div`width: 100%;`;
 
 export const LeftSide = styled.div`
-	font-size: 20px;
+	font-size: ${props => (props.quiz ? '15px' : '20px')};
 	width: 40px;
 	justify-content: center;
 	align-items: center;

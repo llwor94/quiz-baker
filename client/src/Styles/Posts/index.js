@@ -17,7 +17,7 @@ export const CommentsWrapper = styled.div`
 `;
 export const InnerWrapper = styled.div`
 	position: fixed;
-	max-width: 900px;
+
 	top: 59px;
 	width: 100%;
 	background-color: ${props => props.theme.secondary};

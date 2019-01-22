@@ -62,7 +62,7 @@ const Post = props => {
 	return (
 		<Fragment>
 			<BackButton
-				style={{ position: 'absolute', top: 8, right: 550, maxWidth: '200px' }}
+				style={{ position: 'absolute', top: 8, right: 550, width: '35px' }}
 				onClick={() => props.history.goBack()}
 			/>
 			<PostWrapper>
