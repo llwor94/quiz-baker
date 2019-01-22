@@ -95,13 +95,16 @@ export const FooterWrapper = styled.div`
 		}
 	}
 	i {
-		cursor: pointer;
-		font-size: 18px;
-		padding-left: 4px;
 		color: ${props => props.theme.accentText};
 		&:hover {
 			color: ${props => props.theme.aqua};
 		}
+	}
+	svg,
+	i {
+		cursor: pointer;
+		font-size: 18px;
+		padding-left: 4px;
 	}
 `;
 

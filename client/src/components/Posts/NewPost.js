@@ -137,7 +137,7 @@ const NewPost = ({ userPage, quiz }) => {
 
 						<Button
 							label='Submit'
-							disabled={!post.title || !post.body}
+							disabled={!post.title || !post.body || (!quiz && !topic)}
 							onClick={addPost}
 						/>
 					</InnerWrapper>

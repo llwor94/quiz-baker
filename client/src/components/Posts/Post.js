@@ -121,9 +121,7 @@ const Post = ({ post, showComments, ...props }) => {
 								`${post.comment_count} comments`
 							)}
 						</CommentCount>
-						{post.comment_count > 0 && (
-							<i className='pi pi-eye' onClick={showComments} />
-						)}
+
 						<i className='pi pi-share-alt' onClick={handleCopy} />
 						{user ? (
 							<FontAwesomeIcon

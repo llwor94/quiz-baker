@@ -119,8 +119,10 @@ const Quiz = ({ quiz, ...props }) => {
 									{quiz.title}
 								</Title>
 								{quiz.time_limit_seconds && <i className='pi pi-clock' />}
+								{quiz.post_count > 0 && (
+									<i className='pi pi-comments' style={{ cursor: 'default' }} />
+								)}
 							</div>
-							<Topic>{quiz.topic}</Topic>
 						</Header>
 
 						{quiz.description && (
@@ -143,25 +145,22 @@ const Quiz = ({ quiz, ...props }) => {
 							</span>
 
 							<i className='pi pi-share-alt' onClick={handleCopy} />
-							{quiz.post_count && (
-								<i className='pi pi-comments' style={{ cursor: 'default' }} />
+							{user ? (
+								<FontAwesomeIcon
+									title='Take a bite out of that, Boogin'
+									icon={quiz.favorite ? faCookieBite : faCookie}
+									color={quiz.favorite ? '#875818' : '#b2b2b2'}
+									onClick={handleFavoriteToggle}
+								/>
+							) : (
+								<div />
 							)}
 						</UserNameWrapper>
 					</FooterWrapper>
 				</InnerWrapper>
 			</div>
 			<RightSide>
-				{user ? (
-					<FontAwesomeIcon
-						title='Take a bite out of that, Boogin'
-						icon={quiz.favorite ? faCookieBite : faCookie}
-						color={quiz.favorite ? '#875818' : '#b2b2b2'}
-						style={{ cursor: 'pointer' }}
-						onClick={handleFavoriteToggle}
-					/>
-				) : (
-					<div />
-				)}
+				<Topic>{quiz.topic}</Topic>
 				{user ? (
 					<Score noScore={quiz.score === null}>
 						{quiz.score === null ? '--' : quiz.score}/{quiz.question_count}

@@ -112,7 +112,7 @@ export const Topic = styled(FooterAccent)`
   font-size: 14px;
   color: white;
   background-color: ${props => props.theme.aqua};
-  margin-right: 10px;
+  
   display: inline-block;
 `;
 
@@ -160,13 +160,16 @@ export const UserNameWrapper = styled.div`
 		}
 	}
 	i {
-		cursor: pointer;
-		font-size: 18px;
-		padding-left: 4px;
 		color: ${props => props.theme.accentText};
 		&:hover {
 			color: ${props => props.theme.aqua};
 		}
+	}
+	svg,
+	i {
+		cursor: pointer;
+		font-size: 18px;
+		padding-left: 4px;
 	}
 `;
 
