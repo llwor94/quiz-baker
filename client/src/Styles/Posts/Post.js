@@ -56,7 +56,7 @@ export const HatWrapper = styled.img`
 	height: 40px;
 	width: 40px;
 	transform: rotate(-45deg);
-	z-index: 40;
+
 	background-color: ${props => props.theme.secondary};
 `;
 
