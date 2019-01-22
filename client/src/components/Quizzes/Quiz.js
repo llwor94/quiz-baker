@@ -166,7 +166,9 @@ const Quiz = ({ quiz, ...props }) => {
 						{quiz.score === null ? '--' : quiz.score}/{quiz.question_count}
 					</Score>
 				) : (
-					<QuestionCount>{quiz.question_count} Qs</QuestionCount>
+					<QuestionCount>
+						{quiz.question_count} <div className='q'>Q</div>
+					</QuestionCount>
 				)}
 			</RightSide>
 		</Wrapper>

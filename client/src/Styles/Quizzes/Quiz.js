@@ -203,7 +203,15 @@ export const FooterWrapper = styled.div`
 `;
 
 export const QuestionCount = styled.div`
-	border: 1px solid ${props => props.theme.gray};
+	font-size: 12px;
+	display: flex;
 	border-radius: 4px;
 	padding: 3px;
+	color: ${props => props.theme.darkPink};
+	.q {
+		font-family: 'Merienda One', cursive;
+		padding: 4px 2px;
+		font-size: 17px;
+		color: ${props => props.theme.accentText};
+	}
 `;
