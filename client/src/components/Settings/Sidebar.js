@@ -48,18 +48,19 @@ const Sidebar = () => {
 				targets: buttonRef.current,
 				translateX: () => {
 					if (buttonsHiding === false) {
-						return [ '-100%', '0%' ];
+						return [ '100%', '0%' ];
 					} else if (buttonsHiding === true) {
 						return [ '0%', '100%' ];
 					}
 				},
-				elasticity: () => {
+				opacity: () => {
 					if (buttonsHiding === false) {
-						return 300;
+						return [ '0', '1' ];
 					} else if (buttonsHiding === true) {
-						return 0;
+						return [ '1', '0' ];
 					}
 				},
+				easing: 'easeInOutExpo',
 			});
 		},
 		[ buttonsHiding ],
@@ -79,9 +80,9 @@ const Sidebar = () => {
 	return (
 		<ProfileWrapper>
 			<Transition
-				timeout={100}
+				timeout={0}
 				in={buttonsHiding}
-				// appear
+				appear
 				onEnter={() => setButtonsShowing(true)}
 				onExit={() => setButtonsShowing(false)}
 			>
