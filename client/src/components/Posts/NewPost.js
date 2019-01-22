@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, Fragment } from 'react';
 
 import { PostsCtx } from '../../pages/Forum';
 import { NewPostWrapper, InnerWrapper } from '../../Styles/Posts/NewPost';
@@ -102,19 +102,7 @@ const NewPost = ({ userPage, quiz }) => {
 	return (
 		<NewPostWrapper userPage={userPage}>
 			{newPost ? (
-				<InnerWrapper>
-					<Button
-						style={{ position: 'absolute', top: '5px', right: '5px' }}
-						icon='pi pi-times'
-						white
-						onClick={() => setNewPost(false)}
-					/>
-					<Input
-						inputRef={input}
-						value={post.title}
-						onChange={e => setPost({ ...post, title: e.target.value })}
-						label='Title'
-					/>
+				<Fragment>
 					<StyledAutoComplete
 						value={topic}
 						suggestions={searchTopics}
@@ -126,16 +114,40 @@ const NewPost = ({ userPage, quiz }) => {
 						onSelect={handleSelect}
 						dropdown={true}
 					/>
-					<EmojiTextArea
-						handleSelect={handleEmojiSelect}
-						value={post.body}
-						onChange={e => setPost({ ...post, body: e.target.value })}
+					<Button
+						style={{ position: 'absolute', top: '0px', right: '0px' }}
+						icon='pi pi-times'
+						white
+						onClick={() => setNewPost(false)}
 					/>
 
-					<Button label='Submit' disabled={!post.title || !post.body} onClick={addPost} />
-				</InnerWrapper>
+					<InnerWrapper>
+						<Input
+							inputRef={input}
+							value={post.title}
+							onChange={e => setPost({ ...post, title: e.target.value })}
+							label='Title'
+						/>
+
+						<EmojiTextArea
+							handleSelect={handleEmojiSelect}
+							value={post.body}
+							onChange={e => setPost({ ...post, body: e.target.value })}
+						/>
+
+						<Button
+							label='Submit'
+							disabled={!post.title || !post.body}
+							onClick={addPost}
+						/>
+					</InnerWrapper>
+				</Fragment>
 			) : (
-				<Button label='Create a New Post' onClick={() => setNewPost(true)} />
+				<Button
+					label='Create a New Post'
+					onClick={() => setNewPost(true)}
+					style={{ position: 'absolute', top: '0px', right: '0px' }}
+				/>
 			)}
 		</NewPostWrapper>
 	);

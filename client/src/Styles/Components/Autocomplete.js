@@ -9,23 +9,23 @@ margin-bottom: 10px;
   .p-inputtext {
     border-right: none;
 	&:focus {
-		border-color: ${props => props.theme.accentPink} !important;
+		border-color: ${props => props.theme.aqua} !important;
 	}
   }
   .p-button {
     height: 100% !important;
-    background-color: ${props => props.theme.accentPink};
-    border-color: ${props => props.theme.accentPink};
+    background-color: ${props => props.theme.aqua};
+    border-color: ${props => props.theme.aqua};
     &:enabled:hover {
-			background-color:${props => props.theme.darkPink};
-      border-color: ${props => props.theme.darkPink};
+			background-color:${props => props.theme.darkAqua};
+      border-color: ${props => props.theme.darkAqua};
 		}
 		&:enabled:focus {
 			box-shadow: 0 0 0 0.2em #ad546b;
 		}
     &:enabled:active {
-      background-color:${props => props.theme.darkPink};
-      border-color: ${props => props.theme.darkPink};
+      background-color:${props => props.theme.darkAqua};
+      border-color: ${props => props.theme.darkAqua};
     }
   }
 

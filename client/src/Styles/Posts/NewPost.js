@@ -4,7 +4,9 @@ export const NewPostWrapper = styled.div`
 	display: flex;
 	width: ${props => !props.userPage && '100%'};
 	flex-direction: column;
-	align-items: flex-end;
+	align-items: flex-start;
+	position: relative;
+	padding-bottom: 30px;
 `;
 
 export const InnerWrapper = styled.div`
@@ -16,6 +18,6 @@ export const InnerWrapper = styled.div`
 	border-color: ${props => props.theme.accent};
 	flex-direction: column;
 	padding: 10px;
-	position: relative;
+
 	background-color: ${props => props.theme.secondary};
 `;
