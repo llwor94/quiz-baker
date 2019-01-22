@@ -4,22 +4,35 @@ import server from '../../utils/server';
 import { CommentsWrapper, InnerWrapper } from '../../Styles/Posts';
 const Comments = ({ currentPost }) => {
 	const [ comments, setComments ] = useState(undefined);
+	const [ showing, setShowing ] = useState(false);
 	useEffect(
 		() => {
 			if (currentPost) {
+				setShowing(true);
 				server.get(`/posts/${currentPost}/comments`).then(({ data }) => {
 					setComments(data.sort((a, b) => b.id - a.id));
 				});
+			} else {
+				setShowing(false);
+				setComments(undefined);
 			}
 		},
 		[ currentPost ],
 	);
-	if (!comments) return <div style={{ width: '400px' }} />;
+	if (!showing) return <div style={{ flexGrow: 1 }} />;
+	if (!comments)
+		return (
+			<CommentsWrapper>
+				<InnerWrapper />
+			</CommentsWrapper>
+		);
 	else
 		return (
 			<CommentsWrapper>
 				<InnerWrapper>
-					{comments.map(comment => <Comment key={comment.id} comment={comment} />)}
+					<div className='inner'>
+						{comments.map(comment => <Comment key={comment.id} comment={comment} />)}
+					</div>
 				</InnerWrapper>
 			</CommentsWrapper>
 		);

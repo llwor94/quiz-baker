@@ -42,9 +42,11 @@ export const CurrentPost = styled(PostWrapper)`
 	border-color: ${props => props.theme.pink};
 	box-shadow: -1px 1px 0px 0 rgba(0,0,0,0.2), 0 1px 0px 0 rgba(0,0,0,0.14), 0 2px 2px -1px rgba(0,0,0,0.12);
 	border-right: none;
-	position: fixed;
+	position: sticky;
+	width: 600px;
 	z-index: 30;
 	top: 47px;
+	bottom: 1px;
 `;
 
 export const HatWrapper = styled.img`
@@ -54,6 +56,7 @@ export const HatWrapper = styled.img`
 	height: 40px;
 	width: 40px;
 	transform: rotate(-45deg);
+	z-index: 40;
 	background-color: ${props => props.theme.secondary};
 `;
 
@@ -98,6 +101,7 @@ export const FooterWrapper = styled.div`
 	justify-content: space-between;
 	font-size: 12px;
 	font-weight: 700;
+	max-width: 421px;
 	a {
 		padding-right: 4px;
 		margin-right: 4px;
