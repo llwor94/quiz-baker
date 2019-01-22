@@ -95,7 +95,7 @@ export const Label = styled.label`
 	width: 55px;
 `;
 
-const StyledEmojiArea = styled.div`
+const StyledEmojiArea = styled.span`
 	position: relative;
 	resize: none;
 	width: 100%;
@@ -107,23 +107,24 @@ const StyledEmojiArea = styled.div`
 		top: 0;
 		right: 0;
 	}
+`;
 
-	textarea {
-		padding: 0.429em;
-		font-size: 14px;
-		resize: none;
-		width: 100%;
-		height: 100%;
-		border-radius: 3px;
-		border: 1px solid #a6a6a6;
-		&:focus {
-			border-color: ${props => props.theme.pink};
-			outline: none;
-		}
+const AnotherTextArea = styled.textarea`
+	padding: 0.429em;
+	font-size: 14px;
+	resize: none;
+	width: 100%;
+	height: 100%;
+	border-radius: 3px;
+	border: 1px solid #a6a6a6;
+	&:focus {
+		border-color: ${props => props.theme.pink};
+		outline: none;
 	}
 `;
 
 const Emojis = styled.div`
+	transition: transform .3s, opacity .3s, -webkit-transform .3s;
 	.emoji-mart {
 		position: absolute;
 		top: 25px;
@@ -225,14 +226,16 @@ export const EmojiTextArea = ({ value, onChange, name, inputRef, handleSelect })
 	};
 	return (
 		<StyledEmojiArea>
-			<textarea
+			<AnotherTextArea
 				onClick={() => showEmojis(false)}
 				value={value}
 				onChange={onChange}
 				name={name}
+				placeholder='Body'
 				rows='5'
 				ref={inputRef}
 			/>
+
 			<Emojis onBlur={handleBlur} tabIndex='0'>
 				<FontAwesomeIcon
 					icon={faSmile}

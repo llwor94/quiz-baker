@@ -102,7 +102,7 @@ const NewPost = ({ userPage, quiz }) => {
 	return (
 		<NewPostWrapper userPage={userPage}>
 			{newPost ? (
-				<Fragment>
+				<div className='inner'>
 					<StyledAutoComplete
 						value={topic}
 						suggestions={searchTopics}
@@ -141,10 +141,10 @@ const NewPost = ({ userPage, quiz }) => {
 							onClick={addPost}
 						/>
 					</InnerWrapper>
-				</Fragment>
+				</div>
 			) : (
 				<Fragment>
-					<div>Hellooo</div>
+					<div />
 					<Button label='Create a New Post' onClick={() => setNewPost(true)} />
 				</Fragment>
 			)}

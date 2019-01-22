@@ -3,10 +3,19 @@ import styled from 'styled-components';
 export const NewPostWrapper = styled.div`
 	display: flex;
 	width: 100%;
-	flex-direction: column;
-	align-content: space-between;
 
-	padding-bottom: 30px;
+	justify-content: space-between;
+	position: relative;
+
+	.inner {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		.p-autocomplete .p-autocomplete-panel {
+			width: 160px;
+			min-width: 160px;
+		}
+	}
 `;
 
 export const InnerWrapper = styled.div`

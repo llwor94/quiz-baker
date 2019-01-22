@@ -5,7 +5,9 @@ export const StyledAutoComplete = styled(AutoComplete)`
 margin-bottom: 10px;
 .p-component {
   font-family: 'Raleway', sans-serif;
+  
 }
+
   .p-inputtext {
     border-right: none;
 	&:focus {
@@ -28,5 +30,6 @@ margin-bottom: 10px;
       border-color: ${props => props.theme.darkAqua};
     }
   }
+  
 
 `;
