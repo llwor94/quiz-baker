@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCookieBite, faCookie } from '@fortawesome/free-solid-svg-icons';
 import {
 	PostWrapper,
+	CurrentPost,
 	BodyWrapper,
 	Header,
 	FooterWrapper,
@@ -23,7 +24,11 @@ import {
 } from '../../Styles/Posts/Post';
 import { ProfileIcon } from '../../Styles/Components/Image';
 
-const Post = ({ post, showComments, ...props }) => {
+const Wrapper = ({ children, isCurrent, userPage }) => {
+	if (isCurrent) return <CurrentPost>{children}</CurrentPost>;
+	else return <PostWrapper userPage={userPage}>{children}</PostWrapper>;
+};
+const Post = ({ post, showComments, currentPost, ...props }) => {
 	const [ posts, setPosts ] = useContext(PostsCtx);
 	const [ user, setUser ] = useContext(UserCtx);
 	const [ darkMode, setValue ] = useContext(ColorCtx);
@@ -66,8 +71,12 @@ const Post = ({ post, showComments, ...props }) => {
 				.catch(err => console.log(err));
 		}
 	};
+
 	return (
-		<PostWrapper userPage={props.history.location.pathname === '/user/settings'}>
+		<Wrapper
+			isCurrent={post.id === currentPost}
+			userPage={props.history.location.pathname === '/user/settings'}
+		>
 			{user &&
 			user.username === post.author && <HatWrapper src={darkMode ? hatDark : hatLight} />}
 			<Growl ref={growl} />
@@ -135,9 +144,21 @@ const Post = ({ post, showComments, ...props }) => {
 							<div />
 						)}
 					</div>
+					{post.comment_count > 0 && (
+						<i
+							className={
+								currentPost && currentPost === post.id ? (
+									'pi pi-angle-right'
+								) : (
+									'pi pi-angle-up'
+								)
+							}
+							onClick={showComments}
+						/>
+					)}
 				</FooterWrapper>
 			</InnerWrapper>
-		</PostWrapper>
+		</Wrapper>
 	);
 };
 

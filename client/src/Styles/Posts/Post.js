@@ -2,8 +2,10 @@ import styled from 'styled-components';
 
 export const PostWrapper = styled.div`
 	border-radius: 4px;
+
 	border: 1px solid;
 	border-color: ${props => props.theme.accent};
+
 	margin: ${props => (props.userPage ? '8px' : '8px 0')};
 	position: relative;
 	display: flex;
@@ -31,6 +33,18 @@ export const PostWrapper = styled.div`
 	.p-growl .p-growl-item-container.p-growl-message-info .p-growl-icon-close {
 		color: white;
 	}
+`;
+
+export const CurrentPost = styled(PostWrapper)`
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+
+	border-color: ${props => props.theme.pink};
+	box-shadow: -1px 1px 0px 0 rgba(0,0,0,0.2), 0 1px 0px 0 rgba(0,0,0,0.14), 0 2px 2px -1px rgba(0,0,0,0.12);
+	border-right: none;
+	position: fixed;
+	z-index: 30;
+	top: 47px;
 `;
 
 export const HatWrapper = styled.img`

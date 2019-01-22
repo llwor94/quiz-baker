@@ -20,17 +20,18 @@ const Posts = props => {
 			})
 			.catch(error => console.log(error.response));
 	}, []);
-
+	console.log(currentPost);
 	if (!posts) return <Loading />;
 	else
 		return (
 			<Wrapper>
-				<div style={{ width: '400px' }} />
+				<div style={{ flexGrow: 1, maxWidth: '300px', marginLeft: '100px' }} />
 				<div
 					style={{
-						width: '500px',
+						maxWidth: '500px',
+						flexGrow: 1,
 						flexDirection: 'column',
-
+						marginLeft: '100px',
 						alignItems: 'center',
 					}}
 				>
@@ -41,6 +42,7 @@ const Posts = props => {
 							post={post}
 							{...props}
 							showComments={() => setCurrentPost(post.id)}
+							currentPost={currentPost}
 						/>
 					))}
 				</div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Comment from '../Post/Comment';
 import server from '../../utils/server';
-import { CommentsWrapper } from '../../Styles/Posts';
+import { CommentsWrapper, InnerWrapper } from '../../Styles/Posts';
 const Comments = ({ currentPost }) => {
 	const [ comments, setComments ] = useState(undefined);
 	useEffect(
@@ -17,11 +17,11 @@ const Comments = ({ currentPost }) => {
 	if (!comments) return <div style={{ width: '400px' }} />;
 	else
 		return (
-			<div style={{ width: '400px' }}>
-				<CommentsWrapper>
+			<CommentsWrapper>
+				<InnerWrapper>
 					{comments.map(comment => <Comment key={comment.id} comment={comment} />)}
-				</CommentsWrapper>
-			</div>
+				</InnerWrapper>
+			</CommentsWrapper>
 		);
 };
 
