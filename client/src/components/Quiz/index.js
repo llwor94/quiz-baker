@@ -29,47 +29,49 @@ const Quiz = props => {
 					style={{ position: 'absolute', top: 8, right: 520, width: '35px' }}
 					onClick={() => props.history.goBack()}
 				/>
-				<div style={{ maxWidth: '600px' }}>
-					<SplashTitle>{quiz.title}</SplashTitle>
-					<SplashHeader>
-						A <span className='topic'>{quiz.topic}</span> quiz by{' '}
-						<span className='author'>{quiz.author.username}</span>{' '}
-					</SplashHeader>
-					<SplashMidWrapper>
-						<div style={{ width: '500px' }}>
+				{/* <div style={{ maxWidth: '600px' }}> */}
+
+				<div className='inner'>
+					<div className='body'>
+						<SplashTitle>{quiz.title}</SplashTitle>
+						<SplashHeader>
+							A <span className='topic'>{quiz.topic}</span> quiz by{' '}
+							<span className='author'>{quiz.author.username}</span>{' '}
+						</SplashHeader>
+
+						<SplashMidWrapper>
+							{/* <div style={{ width: '500px' }}> */}
 							<SplashDescription>Description:</SplashDescription>
 							<div>{quiz.description}</div>
-						</div>
-						<Fork src={forkIcon} />
-					</SplashMidWrapper>
-					{quiz.time_limit_seconds && <div>This is a timed quiz.</div>}
-					<SplashFooter>
-						{' '}
-						{quiz.question_count === 1 ? (
-							<span>
-								<span>This quiz has </span>
-								<span className='questionCount'>
-									{quiz.question_count} question{' '}
-								</span>
-							</span>
-						) : (
-							<span>
-								<span>This quiz has </span>
-								<span className='questionCount'>
-									{quiz.question_count} questions{' '}
-								</span>
-							</span>
-						)}
-						{quiz.score ? (
-							<span>
-								and you got <span className='score'>{quiz.score}</span> right.
-							</span>
-						) : (
-							<span>Hungry for knowledge?</span>
-						)}
-					</SplashFooter>
-					<Button label='Take Quiz' onClick={() => setCurrentQuestion(0)} full />
+							{/* </div> */}
+						</SplashMidWrapper>
+					</div>
+					<Fork src={forkIcon} />
 				</div>
+				{quiz.time_limit_seconds && <div>This is a timed quiz.</div>}
+				<SplashFooter>
+					{' '}
+					{quiz.question_count === 1 ? (
+						<span>
+							<span>This quiz has </span>
+							<span className='questionCount'>{quiz.question_count} question </span>
+						</span>
+					) : (
+						<span>
+							<span>This quiz has </span>
+							<span className='questionCount'>{quiz.question_count} questions </span>
+						</span>
+					)}
+					{quiz.score ? (
+						<span>
+							and you got <span className='score'>{quiz.score}</span> right.
+						</span>
+					) : (
+						<span>Hungry for knowledge?</span>
+					)}
+				</SplashFooter>
+				<Button label='Take Quiz' onClick={() => setCurrentQuestion(0)} full />
+				{/* </div> */}
 			</SplashWrapper>
 		</Fragment>
 	);

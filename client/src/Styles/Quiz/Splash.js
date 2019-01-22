@@ -1,11 +1,20 @@
 import styled from 'styled-components';
 
 export const SplashWrapper = styled.div`
-	display: flex;
-	justify-content: flex-start;
+	/* display: flex;
+	justify-content: flex-start; */
 	position: relative;
+	width: 500px;
 	strong {
 		margin-bottom: 5px;
+	}
+
+	.inner {
+		display: flex;
+		justify-content: space-between;
+		.body {
+			flex-grow: 1;
+		}
 	}
 `;
 
@@ -35,17 +44,16 @@ export const SplashHeader = styled.div`
 	}
 `;
 
-export const SplashMidWrapper = styled.div`
-	display: flex;
-	justify-content: space-between;
-`;
+export const SplashMidWrapper = styled.div`/* display: flex;
+	justify-content: space-between; */`;
 
 export const SplashDescription = styled.div`
 	font-weight: 700;
 	margin-bottom: 8px;
+	padding-right: 2px;
 `;
 
-export const Fork = styled.img``;
+export const Fork = styled.img`max-height: 320px;`;
 
 export const SplashFooter = styled.div`
 	color: gray;
