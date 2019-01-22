@@ -34,7 +34,7 @@ const Sidebar = () => {
 	const [ user, setUser ] = useContext(UserCtx);
 
 	const [ buttonsHiding, setButtonsShowing ] = useState(true);
-	const buttonRef = React.createRef();
+	let buttonRef = React.createRef();
 
 	useEffect(() => {
 		if (user.img_url) {
@@ -42,27 +42,28 @@ const Sidebar = () => {
 		}
 	}, []);
 
-	useEffect(()=> {
-		buttonRef = anime({
-			targets: buttonRef.current,
-			translateX: () => {
-				if (buttonsHiding === false) {
-					return ['-100%', '0%'];
-				} else if (buttonsHiding === true) {
-					return ['0%', '100%']
-				}
-			},
-			elasticity: () => {
-				if (buttonsHiding === false) {
-					return 300;
-				} else if (buttonsHiding === true) {
-					return 0;
-				}
-			}
-		})
-
-
-	}, buttonsHiding)
+	useEffect(
+		() => {
+			buttonRef = anime({
+				targets: buttonRef.current,
+				translateX: () => {
+					if (buttonsHiding === false) {
+						return [ '-100%', '0%' ];
+					} else if (buttonsHiding === true) {
+						return [ '0%', '100%' ];
+					}
+				},
+				elasticity: () => {
+					if (buttonsHiding === false) {
+						return 300;
+					} else if (buttonsHiding === true) {
+						return 0;
+					}
+				},
+			});
+		},
+		[ buttonsHiding ],
+	);
 
 	const updateUser = () => {
 		let userData = JSON.parse(localStorage.getItem('user'));
@@ -75,21 +76,22 @@ const Sidebar = () => {
 		});
 	};
 
-
 	return (
 		<ProfileWrapper>
 			<Transition
 				timeout={100}
 				in={buttonsHiding}
 				// appear
-				onEnter={setButtonsShowing(true)}
-				onExit={setButtonsShowing(false)}
+				onEnter={() => setButtonsShowing(true)}
+				onExit={() => setButtonsShowing(false)}
 			>
 				{state => {
 					return (
-						<ProfileButtonWrapper ref={buttonRef} 
-						// style={transitionStyles[state]}
-						>{console.log(state)}
+						<ProfileButtonWrapper
+							ref={buttonRef}
+							// style={transitionStyles[state]}
+						>
+							{console.log(state)}
 							{!usernameUpdate && (
 								<UpdateImage
 									imageUpdate={imageUpdate}
@@ -112,10 +114,12 @@ const Sidebar = () => {
 
 			<div>
 				<div style={{ display: 'flex', position: 'relative' }}>
-				<ButtonCollapse onClick={() => setButtonsShowing(!buttonsHiding)}><div>···</div></ButtonCollapse>
-				<LargeImage src={user.img_url} />
+					<ButtonCollapse onClick={() => setButtonsShowing(!buttonsHiding)}>
+						<div>···</div>
+					</ButtonCollapse>
+					<LargeImage src={user.img_url} />
 				</div>
-					<h4>{user.username}</h4>
+				<h4>{user.username}</h4>
 			</div>
 		</ProfileWrapper>
 	);
