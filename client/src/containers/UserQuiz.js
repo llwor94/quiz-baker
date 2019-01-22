@@ -6,7 +6,7 @@ import Quiz from '../components/UserQuiz/Quiz';
 import Question from '../components/UserQuiz/Question';
 import { QuestionWrapper } from '../Styles/UserQuiz/Questions';
 import CreateQuestion from '../components/UserQuiz/CreateQuestion';
-import { Button } from '../Styles/Components/Button';
+import { BackButton } from '../Styles/Components/Button';
 const UserQuizContainer = props => {
 	const [ quiz, setQuiz ] = useContext(UserQuizCtx);
 	const [ questions, setQuestions ] = useContext(QuizQuestionsCtx);
@@ -34,10 +34,8 @@ const UserQuizContainer = props => {
 				}}
 			>
 				<div style={{ width: '400px', position: 'relative' }}>
-					<Button
-						style={{ position: 'absolute', top: 0, left: -68 }}
-						secondary
-						icon='pi pi-arrow-left'
+					<BackButton
+						style={{ position: 'absolute', top: '3px', right: '445px', width: '35px' }}
 						onClick={() => props.history.goBack()}
 					/>
 					<Quiz />

@@ -31,20 +31,19 @@ const CreateQuiz = props => {
 
 	return (
 		<Fragment>
-			<Button label='Bake Quiz' onClick={() => setNewQuiz(true)} />
+			<Button label='Bake Quiz' onClick={() => setNewQuiz(true)} style={{ zIndex: 50 }} />
 			{newQuiz && (
 				<ModalWrapper>
 					<Wrapper>
-						<div style={{display: 'flex', justifyContent: 'space-between'}}>
-
-						<Button
-							style={{ position: 'absolute', top: '5px', right: '5px' }}
-							icon='pi pi-times'
-							white
-							onClick={() => setNewQuiz(false)}
-						/>
-						<QuizForm quiz={quiz} setQuiz={setQuiz} />
-						<img src={ovenIcon} />
+						<div style={{ display: 'flex', justifyContent: 'space-between' }}>
+							<Button
+								style={{ position: 'absolute', top: '5px', right: '5px' }}
+								icon='pi pi-times'
+								white
+								onClick={() => setNewQuiz(false)}
+							/>
+							<QuizForm quiz={quiz} setQuiz={setQuiz} />
+							<img src={ovenIcon} />
 						</div>
 
 						<InnerWrapper>
