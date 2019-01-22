@@ -147,6 +147,7 @@ const Quiz = ({ quiz, ...props }) => {
 							<i className='pi pi-share-alt' onClick={handleCopy} />
 							{user ? (
 								<FontAwesomeIcon
+									className="cookie"
 									title='Take a bite out of that, Boogin'
 									icon={quiz.favorite ? faCookieBite : faCookie}
 									color={quiz.favorite ? '#875818' : '#b2b2b2'}

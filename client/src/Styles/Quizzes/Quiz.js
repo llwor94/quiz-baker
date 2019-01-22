@@ -200,6 +200,11 @@ export const FooterWrapper = styled.div`
 	align-items: flex-end;
 	font-size: 12px;
 	font-weight: 700;
+	.cookie {
+		&:hover{
+			color: #875818;
+		}
+	}
 `;
 
 export const QuestionCount = styled.div`
