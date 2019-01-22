@@ -18,7 +18,6 @@ export const ProfileButtonWrapper = styled.div`
 	justify-content: flex-start;
 	align-items: flex-start;
 	width: 200px;
-
 	margin-right: 10px;
 	/* transform: translateX(20px); */
 `;
