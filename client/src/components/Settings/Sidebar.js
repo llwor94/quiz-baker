@@ -82,7 +82,7 @@ const Sidebar = () => {
 			<Transition
 				timeout={0}
 				in={buttonsHiding}
-				appear
+				mountOnEnter={false}
 				onEnter={() => setButtonsShowing(true)}
 				onExit={() => setButtonsShowing(false)}
 			>
