@@ -75,7 +75,7 @@ const Settings = props => {
             }}
           >
             <NewMenu activeTab={activeTab} setActiveTab={setActiveTab} />
-            <img src={rollingPinIcon}></img>
+            <img className="rollingPin" src={rollingPinIcon}></img>
           </div>
           {activeTab === "quizzes" ? (
             <Quizzes {...props} />

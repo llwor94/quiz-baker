@@ -1,152 +1,159 @@
-import React from 'react';
-import styled from 'styled-components';
-import { TabMenu } from 'primereact/tabmenu';
+import React from "react";
+import styled from "styled-components";
+import { TabMenu } from "primereact/tabmenu";
 
 export const SettingsWrapper = styled.div`
-	display: flex;
-	width: 100%;
+  display: flex;
+  width: 100%;
 
-	max-width: 900px;
-	justify-content: flex-start;
-	align-items: flex-start;
-	margin: 70px 80px 0;
-	h2 {
-		text-align: center;
-		text-transform: capitalize;
-		font-family: "Merienda One", cursive;
-		font-size: 40px;
-		margin-right: 20px;
-	}
+  max-width: 900px;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: 70px 80px 0;
+  h2 {
+    text-align: center;
+    text-transform: capitalize;
+    font-family: "Merienda One", cursive;
+    font-size: 40px;
+    margin-right: 20px;
+  }
 
-	img{
-		transform: rotateZ(45deg);
-		position: absolute;
-		width: 50%;
+  .rollingPin {
+    transform: rotateZ(45deg);
+    position: absolute;
+    width: 50%;
     top: -90px;
     left: 190px;
-
-	}
+  }
 `;
 
 const StyledMenu = styled.div`
-	.p-component {
-		font-size: 30px;
-	}
-	.p-tabmenu .p-tabmenu-nav {
-		border-bottom-color: ${props => props.theme.darkPink};
-		display: flex;
-		justify-content: space-around;
-	}
-	.p-tabmenu .p-tabmenu-nav .p-tabmenuitem {
-		border: 1px solid white;
-		background-color: white;
-		margin-bottom: 20px;
-	}
+  .p-component {
+    font-size: 30px;
+  }
+  .p-tabmenu .p-tabmenu-nav {
+    border-bottom-color: ${props => props.theme.darkPink};
+    display: flex;
+    justify-content: space-around;
+  }
+  .p-tabmenu .p-tabmenu-nav .p-tabmenuitem {
+    border: 1px solid white;
+    background-color: white;
+    margin-bottom: 20px;
+  }
 
-	.p-tabmenu .p-tabmenu-nav .p-tabmenuitem .p-menuitem-link .p-menuitem-text {
-		font-family: "Merienda One", cursive;
-		color: ${props => props.theme.accentText};
-	}
-	.p-tabmenu .p-tabmenu-nav .p-tabmenuitem.p-highlight {
-		background-color: white;
-		border: none;
-	}
-	.p-tabmenu .p-tabmenu-nav .p-tabmenuitem.p-highlight .p-menuitem-link .p-menuitem-text {
-		color: black !important;
-	}
+  .p-tabmenu .p-tabmenu-nav .p-tabmenuitem .p-menuitem-link .p-menuitem-text {
+    font-family: "Merienda One", cursive;
+    color: ${props => props.theme.accentText};
+  }
+  .p-tabmenu .p-tabmenu-nav .p-tabmenuitem.p-highlight {
+    background-color: white;
+    border: none;
+  }
+  .p-tabmenu
+    .p-tabmenu-nav
+    .p-tabmenuitem.p-highlight
+    .p-menuitem-link
+    .p-menuitem-text {
+    color: black !important;
+  }
 `;
 
 export const Menu = ({ model }) => {
-	return (
-		<StyledMenu>
-			<TabMenu model={model} />
-		</StyledMenu>
-	);
+  return (
+    <StyledMenu>
+      <TabMenu model={model} />
+    </StyledMenu>
+  );
 };
 
 const MenuStyles = styled.div`
-	font-size: 30px;
-	border-bottom-color: ${props => props.theme.darkPink};
-	ul {
-		border-bottom: 1px solid;
-		border-bottom-color: ${props => props.theme.darkPink};
-		display: flex;
-		justify-content: space-around;
-	}
+  font-size: 30px;
+  border-bottom-color: ${props => props.theme.darkPink};
+  ul {
+    border-bottom: 1px solid;
+    border-bottom-color: ${props => props.theme.darkPink};
+    display: flex;
+    justify-content: space-around;
+  }
 `;
 
 const ListItem = styled.li`
-	background-color: white;
-	margin-bottom: 20px;
-	margin-right: 2px;
+  background-color: white;
+  margin-bottom: 20px;
+  margin-right: 2px;
 
-	transition: background-color 0.2s;
-	list-style: none;
-	float: left;
+  transition: background-color 0.2s;
+  list-style: none;
+  float: left;
 
-	padding: 0;
-	white-space: nowrap;
-	display: block;
+  padding: 0;
+  white-space: nowrap;
+  display: block;
 
-	top: 1px;
-	a {
-		float: left;
-		padding: .5em 1em;
-		text-decoration: none;
-		margin: 0 .2em 1px 0px;
-		cursor: pointer;
-		border: 1px solid white;
-		border-top-left-radius: 3px;
-		border-top-right-radius: 3px;
-		span {
-			color: ${props => (props.isActive ? props.theme.text : props.theme.accentText)};
-			font-family: "Merienda One", cursive;
-			vertical-align: middle;
-		}
-	}
+  top: 1px;
+  a {
+    float: left;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    margin: 0 0.2em 1px 0px;
+    cursor: pointer;
+    border: 1px solid white;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    span {
+      color: ${props =>
+        props.isActive ? props.theme.text : props.theme.accentText};
+      font-family: "Merienda One", cursive;
+      vertical-align: middle;
+    }
+  }
 
-	&:hover {
-		a {
-			background-color: #dbdbdb;
-			border: 1px solid #dbdbdb;
-			span {
-				color: ${props => props.theme.text};
-			}
-		}
-	}
+  &:hover {
+    a {
+      background-color: #dbdbdb;
+      border: 1px solid #dbdbdb;
+      span {
+        color: ${props => props.theme.text};
+      }
+    }
+  }
 `;
 
 export const NewMenu = ({ activeTab, setActiveTab }) => {
-	return (
-		<MenuStyles>
-			<ul>
-				<ListItem
-					isActive={activeTab === 'quizzes'}
-					onClick={() => setActiveTab('quizzes')}
-				>
-					<a>
-						<span>Your Quizzes</span>
-					</a>
-				</ListItem>
-				<ListItem isActive={activeTab === 'posts'} onClick={() => setActiveTab('posts')}>
-					<a>
-						<span>Your Posts</span>
-					</a>
-				</ListItem>
-			</ul>
-		</MenuStyles>
-	);
+  return (
+    <MenuStyles>
+      <ul>
+        <ListItem
+          isActive={activeTab === "quizzes"}
+          onClick={() => setActiveTab("quizzes")}
+        >
+          <a>
+            <span>Your Quizzes</span>
+          </a>
+        </ListItem>
+        <ListItem
+          isActive={activeTab === "posts"}
+          onClick={() => setActiveTab("posts")}
+        >
+          <a>
+            <span>Your Posts</span>
+          </a>
+        </ListItem>
+      </ul>
+    </MenuStyles>
+  );
 };
 
 export const Wrapper = styled.div`
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-evenly;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 `;
 
 export const InnerWrapper = styled.div`
-	display: flex;
-	align-items: center;
-	flex-direction: column;
-	margin-top: 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 10px;
 `;
