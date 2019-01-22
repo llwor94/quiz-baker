@@ -41,13 +41,37 @@ export const CurrentPost = styled(PostWrapper)`
 	border-bottom-right-radius: 0;
 
 	border-color: ${props => props.theme.pink};
-	box-shadow: -1px 1px 0px 0 rgba(0,0,0,0.2), 0 1px 0px 0 rgba(0,0,0,0.14), 0 2px 2px -1px rgba(0,0,0,0.12);
+	box-shadow: none;
 	border-right: none;
 	position: sticky;
-	width: 600px;
+	width: 505px;
 	z-index: 30;
 	top: 47px;
 	bottom: 1px;
+	:after, :before {
+		content:'';
+    width:40px;
+    height:750px;
+    border:1px solid ${props => props.theme.pink};
+    position:absolute;
+    right:-5px;
+    border-left:0;
+	}
+
+	:after {
+		border-top:0;
+    border-radius:0 0 5px 0;
+    border-radius:0 0 5px 0;
+    top:-751px;
+	}
+	:before{
+    border-bottom:0;
+    border-radius:0 5px 0 0;
+    border-radius:0 5px 0 0;
+    bottom:-751px;
+		
+	}
+
 `;
 
 export const HatWrapper = styled.img`
