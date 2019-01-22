@@ -9,6 +9,8 @@ import { Button } from "primereact/button";
 import Quizzes from "../components/Settings/Quizzes";
 import Posts from "../components/Settings/Posts";
 import { SettingsWrapper, Menu, NewMenu } from "../Styles/Settings/";
+import rollingPinIcon from "../assets/rolling-pin.svg";
+
 import server from "../utils/server";
 
 const Settings = props => {
@@ -66,12 +68,14 @@ const Settings = props => {
           <div
             style={{
               display: "flex",
+              flexDirection: 'column',
               justifyContent: "center",
-              position: "relative"
+              position: "relative",
+              marginBottom: "100px",
             }}
           >
-            {/* <Menu model={tabs} activeTab={activeTab} /> */}
             <NewMenu activeTab={activeTab} setActiveTab={setActiveTab} />
+            <img src={rollingPinIcon}></img>
           </div>
           {activeTab === "quizzes" ? (
             <Quizzes {...props} />

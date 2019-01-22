@@ -17,6 +17,15 @@ export const SettingsWrapper = styled.div`
 		font-size: 40px;
 		margin-right: 20px;
 	}
+
+	img{
+		transform: rotateZ(45deg);
+		position: absolute;
+		width: 50%;
+    top: -90px;
+    left: 190px;
+
+	}
 `;
 
 const StyledMenu = styled.div`
