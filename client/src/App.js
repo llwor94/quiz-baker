@@ -17,7 +17,7 @@ import UserQuizPage from './pages/UserQuiz';
 import LoginContainer from './containers/Login';
 
 import Header from './components/Header';
-
+import Footer from './components/Footer';
 import { DarkMode } from './Themes/dark';
 import { LightMode } from './Themes/light';
 
@@ -81,6 +81,7 @@ const App = () => {
 								</Switch>
 							</InnerWrapper>
 						</Wrapper>
+						<Footer />
 					</div>
 				</UserCtx.Provider>
 			</ThemeProvider>
