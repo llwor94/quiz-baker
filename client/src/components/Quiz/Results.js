@@ -85,36 +85,40 @@ const Results = () => {
 			</Wrapper>
 			<div style={{ display: 'flex' }}>
 				<i className='pi pi-share-alt' onClick={handleCopy} />
-				<FontAwesomeIcon
-					title='Take a bite out of that, Boogin'
-					icon={quiz.favorite ? faCookieBite : faCookie}
-					color={quiz.favorite ? '#875818' : '#b2b2b2'}
-					style={{ cursor: 'pointer' }}
-					onClick={handleFavoriteToggle}
-				/>
-				<i
-					className='pi pi-chevron-up'
-					style={{
-						color: quiz.user_vote === 1 ? '#DC758F' : !user ? 'gray' : 'black',
-					}}
-					onClick={() => handleVote(1)}
-				/>
-				<p
-					style={{
-						color: quiz.user_vote
-							? quiz.user_vote === 1 ? '#DC758F' : '#E3D3E4'
-							: 'black',
-					}}
-				>
-					{quiz.votes}
-				</p>
-				<i
-					className='pi pi-chevron-down'
-					style={{
-						color: quiz.user_vote === -1 ? '#E3D3E4' : !user ? 'gray' : 'black',
-					}}
-					onClick={() => handleVote(-1)}
-				/>
+				{user && (
+					<Fragment>
+						<FontAwesomeIcon
+							title='Take a bite out of that, Boogin'
+							icon={quiz.favorite ? faCookieBite : faCookie}
+							color={quiz.favorite ? '#875818' : '#b2b2b2'}
+							style={{ cursor: 'pointer' }}
+							onClick={handleFavoriteToggle}
+						/>
+						<i
+							className='pi pi-chevron-up'
+							style={{
+								color: quiz.user_vote === 1 ? '#DC758F' : !user ? 'gray' : 'black',
+							}}
+							onClick={() => handleVote(1)}
+						/>
+						<p
+							style={{
+								color: quiz.user_vote
+									? quiz.user_vote === 1 ? '#DC758F' : '#E3D3E4'
+									: 'black',
+							}}
+						>
+							{quiz.votes}
+						</p>
+						<i
+							className='pi pi-chevron-down'
+							style={{
+								color: quiz.user_vote === -1 ? '#E3D3E4' : !user ? 'gray' : 'black',
+							}}
+							onClick={() => handleVote(-1)}
+						/>{' '}
+					</Fragment>
+				)}
 			</div>
 			<NumberWrapper>
 				<h3>

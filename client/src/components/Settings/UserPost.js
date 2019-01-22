@@ -8,7 +8,7 @@ import { Button } from '../../Styles/Components/Button';
 import {
 	PostWrapper,
 	BodyWrapper,
-	Header,
+	LeftSide,
 	FooterWrapper,
 	CommentCount,
 	Title,
@@ -36,6 +36,7 @@ const UserPost = ({ post, ...props }) => {
 			})
 			.catch(error => console.log(error));
 	};
+	console.log(post);
 
 	const footer = (
 		<div>

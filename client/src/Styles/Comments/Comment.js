@@ -14,7 +14,7 @@ export const CommentArea = styled.div`
 export const Wrapper = styled.div`
 	display: flex;
 	justify-content: space-between;
-	align-items: center;
+	align-items: flex-start;
 	border-top: 1px solid;
 	border-color: ${props => props.theme.accent};
 
@@ -22,15 +22,20 @@ export const Wrapper = styled.div`
 	overflow: visible;
 	transition: background 1s ease 0s;
 	margin-top: 11px;
-	padding-top: 5px;
+	padding-top: 10px;
 	margin-bottom: 5px;
+
+	&:first-child {
+		border-top: none;
+		margin-top: 0;
+	}
 `;
 
 export const CommentHeader = styled.div`
 	display: flex;
 	font-size: 12px;
 	font-weight: 400;
-	align-items: center;
+	align-items: flex-start;
 	line-height: 16px;
 	min-height: 18px;
 	color: ${props => props.theme.link};
@@ -43,12 +48,11 @@ export const CommentHeader = styled.div`
 		flex: 0 0 auto;
 	}
 
-	p{
+	p {
 		max-width: 300px;
-		margin: 15px 0;
 	}
 
-	img{
+	img {
 		width: 40px;
 	}
 `;
@@ -74,7 +78,7 @@ export const CommentBody = styled.div`
 export const CommentWrapper = styled.div`
 	margin-bottom: 40px;
 	width: 100%;
-	padding: 10px;
+	padding: 0 10px 10px 10px;
 	border: 1px solid ${props => props.theme.lightGray};
 	border-radius: 4px;
 `;
@@ -89,11 +93,10 @@ export const RightSide = styled.div`
 	flex-direction: column;
 	align-items: flex-end;
 	justify-content: flex-end;
-	height: 56px;
-	div{
+	align-self: flex-end;
+	div {
 		font-size: 10px;
 		color: ${props => props.theme.gray};
 		margin-top: 5px;
-
 	}
 `;

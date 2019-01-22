@@ -63,7 +63,7 @@ export const LeftSide = styled.div`
 	}
 	i {
 		cursor: ${props => (props.user ? 'pointer' : 'default')};
-		color: ${props => props.theme.text};
+		color: ${props => (props.user ? props.theme.text : props.theme.lightGray)};
 	}
 `;
 

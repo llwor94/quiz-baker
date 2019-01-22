@@ -51,21 +51,23 @@ const Comments = ({ post }) => {
 	};
 	return (
 		<CommentWrapper>
-			<PostComment>
-				<ProfileIcon src={user.img_url} />
-				<EmojiInput
-					placeholder='Post a comment'
-					value={comment}
-					onChange={e => setComment(e.target.value)}
-					handleSelect={e => setComment(comment + e.native)}
-					onKeyUp={e => {
-						if (e.keyCode === 13) {
-							handlePostComment();
-						}
-					}}
-					style={{ flexGrow: 1 }}
-				/>
-			</PostComment>
+			{user && (
+				<PostComment>
+					<ProfileIcon src={user.img_url} />
+					<EmojiInput
+						placeholder='Post a comment'
+						value={comment}
+						onChange={e => setComment(e.target.value)}
+						handleSelect={e => setComment(comment + e.native)}
+						onKeyUp={e => {
+							if (e.keyCode === 13) {
+								handlePostComment();
+							}
+						}}
+						style={{ flexGrow: 1 }}
+					/>
+				</PostComment>
+			)}
 			{!comments ? (
 				<div>Loading...</div>
 			) : (
@@ -74,7 +76,7 @@ const Comments = ({ post }) => {
 						<CommentHeader>
 							{' '}
 							<ProfileIcon src={comment.author_img} />
-							<UserName>{comment.author}: </UserName>
+							<UserName>{comment.author} </UserName>
 							<p>{comment.text}</p>
 						</CommentHeader>
 						<RightSide>

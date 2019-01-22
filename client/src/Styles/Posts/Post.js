@@ -101,7 +101,7 @@ export const FooterWrapper = styled.div`
 	justify-content: space-between;
 	font-size: 12px;
 	font-weight: 700;
-	max-width: 421px;
+	max-width: 450px;
 	a {
 		padding-right: 4px;
 		margin-right: 4px;

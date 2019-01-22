@@ -9,7 +9,7 @@ import QuizPost from './QuizPost';
 const QuizPosts = ({ quiz }) => {
 	const [ quizPosts, setQuizPosts ] = useContext(QuizPostCtx);
 	const [ currentQuestion, setCurrentQuestion ] = useContext(QuestionCtx);
-
+	const [ user, setUser ] = useContext(UserCtx);
 	useEffect(() => {
 		server
 			.get(`/quizzes/${quiz.id}/posts`)
@@ -23,7 +23,7 @@ const QuizPosts = ({ quiz }) => {
 	else
 		return (
 			<div style={{ width: '500px', marginTop: '15px' }}>
-				{quiz.question_count === currentQuestion && <NewPost quiz={quiz} />}
+				{user && quiz.question_count === currentQuestion && <NewPost quiz={quiz} />}
 				{quizPosts.length ? (
 					quizPosts.map(post => <QuizPost key={post.id} post={post} />)
 				) : (
