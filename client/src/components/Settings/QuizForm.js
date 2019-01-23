@@ -3,6 +3,7 @@ import React, { useEffect, useState, Fragment } from "react";
 import server from "../../utils/server";
 import { Input, TextArea } from "../../Styles/Components/Input";
 import { StyledAutoComplete } from "../../components/Styles/Text/autoComplete";
+import {QuizFormWrapper} from '../../Styles/Settings/QuizForm';
 
 
 const QuizForm = ({ quiz, setQuiz, ...props }) => {
@@ -42,13 +43,13 @@ const QuizForm = ({ quiz, setQuiz, ...props }) => {
   };
 
   return (
-    <div style={{width: '60%'}}>
+    <QuizFormWrapper>
       <div style={{display: 'flex'}}>
 
       <div>
         <p>Title:</p>
         <Input name="title" value={quiz.title} onChange={handleChange} />
-        <p>Topic:</p>
+        <p style={{marginBottom: '10px'}}>Topic:</p>
         <StyledAutoComplete
           value={quiz.topic}
           suggestions={searchTopics}
@@ -64,7 +65,7 @@ const QuizForm = ({ quiz, setQuiz, ...props }) => {
   
       </div>
 
-      <p>Description:</p>
+      <p style={{marginBottom: '10px'}}>Description:</p>
       <TextArea
         name="description"
         rows={5}
@@ -72,7 +73,7 @@ const QuizForm = ({ quiz, setQuiz, ...props }) => {
         value={quiz.description}
         onChange={handleChange}
       />
-    </div>
+    </QuizFormWrapper>
   );
 };
 

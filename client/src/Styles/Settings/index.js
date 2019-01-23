@@ -24,6 +24,20 @@ export const SettingsWrapper = styled.div`
 		width: 50%;
 		top: -90px;
 		left: 190px;
+		z-index: 0;
+	}
+	.sidebarButton{
+		position: absolute;
+		top: 52px;
+		left: 0px;
+		background-color: ${props => props.theme.pink};
+		border-color: ${props => props.theme.pink};
+
+		&:enabled:hover{
+		background-color: ${props => props.theme.darkPink};
+		border-color: ${props => props.theme.darkPink};
+
+		}
 	}
 `;
 
