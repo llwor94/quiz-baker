@@ -1,27 +1,25 @@
-import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
+import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
 import React, { useEffect, useState, createContext, Fragment } from 'react';
 
+import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 
+import 'primereact/resources/themes/nova-light/theme.css';
+import 'primereact/resources/primereact.min.css';
+import 'primeicons/primeicons.css';
 
-import { Route, Switch, withRouter, Redirect } from "react-router-dom";
+import QuizzesPage from './pages/Quizzes';
+import QuizPage from './pages/Quiz';
+import ForumPage from './pages/Forum';
+import PostPage from './pages/Post';
+import RegisterPage from './pages/Register';
+import SettingsPage from './pages/Settings';
+import UserQuizPage from './pages/UserQuiz';
+import LoginContainer from './containers/Login';
 
-import "primereact/resources/themes/nova-light/theme.css";
-import "primereact/resources/primereact.min.css";
-import "primeicons/primeicons.css";
-
-import QuizzesPage from "./pages/Quizzes";
-import QuizPage from "./pages/Quiz";
-import ForumPage from "./pages/Forum";
-import PostPage from "./pages/Post";
-import RegisterPage from "./pages/Register";
-import SettingsPage from "./pages/Settings";
-import UserQuizPage from "./pages/UserQuiz";
-import LoginContainer from "./containers/Login";
-
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import { DarkMode } from "./Themes/dark";
-import { LightMode } from "./Themes/light";
+import Header from './components/Header';
+import Footer from './components/Footer';
+import { DarkMode } from './Themes/dark';
+import { LightMode } from './Themes/light';
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -41,16 +39,16 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const Wrapper = styled.div`
-
 	width: 100%;
 	min-height: calc(100vh - 50px);
-
+	background-color: #ffffff;
+	background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23acadae' fill-opacity='0.2' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
 `;
 
 const InnerWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  position: relative;
+	display: flex;
+	justify-content: center;
+	position: relative;
 `;
 
 // const AllButFooter = styled.div`
@@ -62,12 +60,12 @@ const InnerWrapper = styled.div`
 // 	height: 146px;
 //   }
 // `;
-export const UserCtx = createContext([undefined, () => {}]);
-export const ColorCtx = createContext([undefined, () => {}]);
+export const UserCtx = createContext([ undefined, () => {} ]);
+export const ColorCtx = createContext([ undefined, () => {} ]);
 
 const App = () => {
-  const [darkMode, setValue] = useState(false);
-  const [user, setUser] = useState(undefined);
+	const [ darkMode, setValue ] = useState(false);
+	const [ user, setUser ] = useState(undefined);
 
 	return (
 		<ColorCtx.Provider value={[ darkMode, setValue ]}>
