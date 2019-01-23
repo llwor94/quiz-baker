@@ -102,7 +102,7 @@ const Question = () => {
 						<span className='B'>B</span>
 					</Logo>
 				</Wrapper>
-				<Button onClick={checkAnswer} label='Submit' disabled={selected === null} full />
+				<Button onClick={checkAnswer} label='Submit' disabled={selected === null} full style={{margin: '20px 0 10px'}}/>
 			</div>
 		</Fragment>
 	);

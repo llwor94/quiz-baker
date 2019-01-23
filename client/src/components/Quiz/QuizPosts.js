@@ -24,11 +24,8 @@ const QuizPosts = ({ quiz }) => {
 		return (
 			<div style={{ width: '500px', marginTop: '15px' }}>
 				{user && quiz.question_count === currentQuestion && <NewPost quiz={quiz} />}
-				{quizPosts.length ? (
-					quizPosts.map(post => <QuizPost key={post.id} post={post} />)
-				) : (
-					<div>This quiz doesn't have any posts yet.</div>
-				)}
+				{quizPosts.length > 0 &&
+					quizPosts.map(post => <QuizPost key={post.id} post={post} />)}
 			</div>
 		);
 };

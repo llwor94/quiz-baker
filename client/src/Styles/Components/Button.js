@@ -8,6 +8,7 @@ const StyledButtonWrapper = styled.div`
 	display: inline-block;
 	width: ${props => props.full && '100%'};
 	margin-bottom: ${props => props.full && '10px'};
+	background-color: ${props => props.theme.secondary};
 	.p-button {
 		width: ${props => props.full && '100%'};
 		background-color: ${props =>

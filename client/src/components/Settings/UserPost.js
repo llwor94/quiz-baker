@@ -13,6 +13,7 @@ import {
 	CommentCount,
 	Title,
 	InnerWrapper,
+	Topic,
 } from '../../Styles/Posts/Post';
 import server from '../../utils/server';
 
@@ -61,7 +62,15 @@ const UserPost = ({ post, ...props }) => {
 			</Dialog>
 			<InnerWrapper>
 				<BodyWrapper onClick={() => props.history.push(`/forum/${post.id}`)}>
-					<Title>{post.title}</Title>
+					<div className='header'>
+						{' '}
+						<div className='header'>
+							<Title>{post.title}</Title>
+
+							<span className='text'>Posted {moment(post.created_at).fromNow()}</span>
+						</div>
+						{post.topic && <Topic>{post.topic}</Topic>}
+					</div>
 
 					<p>{post.body}</p>
 				</BodyWrapper>
@@ -75,9 +84,10 @@ const UserPost = ({ post, ...props }) => {
 								`${post.comment_count} comments`
 							)}
 						</CommentCount>
-
 						<span style={{ padding: '0 3px' }}>&#8226;</span>
-						<span>Posted {moment(post.created_at).fromNow()}</span>
+						<CommentCount>
+							{post.votes === 1 ? '1 vote' : `${post.votes} votes`}
+						</CommentCount>
 					</div>
 					<Button white icon='pi pi-trash' onClick={() => setModalVisable(true)} />
 				</FooterWrapper>

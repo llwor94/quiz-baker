@@ -52,7 +52,7 @@ const QuizContainer = props => {
 						alignItems: 'center',
 						position: 'relative',
 						perspective: '1000px',
-						marginTop: '70px',
+						marginTop: '85px',
 					}}
 				>
 					<LeaderBoard />

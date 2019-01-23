@@ -6,6 +6,7 @@ import { ResponseCtx } from '../../pages/Quiz';
 const Wrapper = styled.div`
 	display: flex;
 	justify-content: flex-start;
+	margin-top: 15px;
 `;
 
 const Box = styled.div`

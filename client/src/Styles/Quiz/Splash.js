@@ -4,7 +4,14 @@ export const SplashWrapper = styled.div`
 	/* display: flex;
 	justify-content: flex-start; */
 	position: relative;
-	width: 500px;
+	width: 505px;
+
+	padding: 10px;
+	border: 1px dashed #ddd;
+	box-shadow: 0 0 0 3px #fff, 0 0 0 5px #ddd, 0 0 0 10px #fff, 0 0 2px 10px #eee;
+	border-radius: 3px;
+
+	background-color: ${props => props.theme.secondary};
 	strong {
 		margin-bottom: 5px;
 	}

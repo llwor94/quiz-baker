@@ -110,6 +110,16 @@ export const BodyWrapper = styled.div`
 		color: ${props => props.theme.text};
 		word-wrap: break-word;
 	}
+
+	.header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		.text {
+			font-size: 12px;
+			padding-left: 3px;
+		}
+	}
 `;
 export const Header = styled.div`
 	font-size: 12px;
