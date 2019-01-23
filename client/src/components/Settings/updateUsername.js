@@ -47,16 +47,15 @@ const UpdateUsername = ({ usernameUpdate, setUsernameUpdate, updateUser }) => {
 	if (usernameUpdate)
 		return (
 			<ProfileButtonWrapper>
+				<Input value={username} onChange={handleChange} className='input-username' />
 				{error && <p>{error}</p>}
-				<Button
-					secondary
-					icon='pi pi-arrow-left'
-					label='back'
-					onClick={() => setUsernameUpdate(false)}
-				/>
-
-				<div>
-					<Input value={username} onChange={handleChange} />
+				<div className='update-user'>
+					<Button
+						secondary
+						icon='pi pi-arrow-left'
+						label='back'
+						onClick={() => setUsernameUpdate(false)}
+					/>
 					<Button
 						secondary
 						label='Update'

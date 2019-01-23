@@ -26,14 +26,13 @@ const UpdateImage = ({ imageUpdate, setImageUpdate, updateUser }) => {
 	if (imageUpdate)
 		return (
 			<ProfileButtonWrapper>
+				<Button secondary label='Browse...' onClick={handleUpload} full />
 				<Button
-					style={{ marginBottom: '5px' }}
 					secondary
 					icon='pi pi-arrow-left'
 					label='back'
 					onClick={() => setImageUpdate(false)}
 				/>
-				<Button secondary label='Browse...' onClick={handleUpload} />
 			</ProfileButtonWrapper>
 		);
 	else

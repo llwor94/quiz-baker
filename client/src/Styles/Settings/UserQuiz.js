@@ -44,7 +44,7 @@ export const Wrapper = styled.div`
 	border-color: ${props => props.theme.accent};
 	padding: 12px;
 	background-color: ${props => props.theme.secondary};
-	margin: 8px 0;
+	margin: 8px;
 	display: flex;
 	height: 140px;
 	margin-bottom: 10px;

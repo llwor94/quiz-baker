@@ -18,8 +18,26 @@ const Settings = props => {
 	const [ userPosts, setUserPosts ] = useContext(UserPostsCtx);
 	const [ user, setUser ] = useContext(UserCtx);
 	const [ activeTab, setActiveTab ] = useState('quizzes');
-
+	const [ windowWidth, setWindowWidth ] = useState(window.innerWidth);
 	const [ sidebarShowing, setSidebarShowing ] = useState(false);
+
+	useEffect(() => {
+		if (windowWidth > 1500) {
+			setSidebarShowing(true);
+		}
+		window.addEventListener('resize', () => setWindowWidth(window.innerWidth));
+	}, []);
+
+	useEffect(
+		() => {
+			if (windowWidth > 1500) {
+				setSidebarShowing(true);
+			} else {
+				setSidebarShowing(false);
+			}
+		},
+		[ windowWidth ],
+	);
 
 	useEffect(
 		() => {
@@ -54,9 +72,19 @@ const Settings = props => {
 	else
 		return (
 			<SettingsWrapper>
-				<div style={{ marginRight: '15px' }}>
-					<Button className={"sidebarButton"}icon='pi pi-arrow-right' onClick={() => setSidebarShowing(true)} />
-					<Sidebar visible={sidebarShowing} onHide={() => setSidebarShowing(false)}>
+				<div>
+					<Button
+						className={'sidebarButton'}
+						icon='pi pi-bars'
+						onClick={() => setSidebarShowing(true)}
+						style={{ position: 'absolute', top: '65px', left: '10px' }}
+					/>
+					<Sidebar
+						visible={sidebarShowing}
+						onHide={() => setSidebarShowing(false)}
+						modal={false}
+						showCloseIcon={windowWidth < 1500}
+					>
 						<Profile />
 					</Sidebar>
 					<div

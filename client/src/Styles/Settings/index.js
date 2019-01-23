@@ -26,18 +26,24 @@ export const SettingsWrapper = styled.div`
 		left: 190px;
 		z-index: 0;
 	}
-	.sidebarButton{
+	.sidebarButton {
 		position: absolute;
 		top: 52px;
 		left: 0px;
 		background-color: ${props => props.theme.pink};
 		border-color: ${props => props.theme.pink};
 
-		&:enabled:hover{
-		background-color: ${props => props.theme.darkPink};
-		border-color: ${props => props.theme.darkPink};
-
+		&:enabled:hover {
+			background-color: ${props => props.theme.darkPink};
+			border-color: ${props => props.theme.darkPink};
 		}
+	}
+	.p-sidebar {
+		padding: 20px 14px;
+	}
+	.p-sidebar-left {
+		top: 56px;
+		width: 230px;
 	}
 `;
 
@@ -85,7 +91,7 @@ const MenuStyles = styled.div`
 		border-bottom: 1px solid;
 		border-bottom-color: ${props => props.theme.darkPink};
 		display: flex;
-		justify-content: space-around;
+		justify-content: center;
 	}
 `;
 
@@ -164,4 +170,5 @@ export const InnerWrapper = styled.div`
 	flex-direction: column;
 	margin-top: 10px;
 	z-index: 100;
+	padding: 0 25px;
 `;
