@@ -55,7 +55,7 @@ const Settings = props => {
 		return (
 			<SettingsWrapper>
 				<div style={{ marginRight: '15px' }}>
-					<Button icon='pi pi-arrow-right' onClick={() => setSidebarShowing(true)} />
+					<Button className={"sidebarButton"}icon='pi pi-arrow-right' onClick={() => setSidebarShowing(true)} />
 					<Sidebar visible={sidebarShowing} onHide={() => setSidebarShowing(false)}>
 						<Profile />
 					</Sidebar>

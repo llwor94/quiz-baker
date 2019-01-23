@@ -77,8 +77,11 @@ const Profile = () => {
 
   return (
     <ProfileWrapper>
+      <div>
+        <LargeImage src={user.img_url} />
+      </div>
+      <h4>{user.username}</h4>
       <ProfileButtonWrapper
-        // style={transitionStyles[state]}
       >
         {!usernameUpdate && (
           <UpdateImage
@@ -97,10 +100,6 @@ const Profile = () => {
         )}
       </ProfileButtonWrapper>
 
-      <div>
-        <LargeImage src={user.img_url} />
-      </div>
-      <h4>{user.username}</h4>
     </ProfileWrapper>
   );
 };

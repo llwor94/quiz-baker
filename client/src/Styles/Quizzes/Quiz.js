@@ -205,6 +205,10 @@ export const FooterWrapper = styled.div`
 			color: #875818;
 		}
 	}
+
+	.pi-comments{
+		color: ${props => props.quizCount > 0 ? props.theme.pink: 'grey'}
+	}
 `;
 
 export const QuestionCount = styled.div`
