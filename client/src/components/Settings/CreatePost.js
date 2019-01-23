@@ -86,7 +86,7 @@ const CreatePost = () => {
 
 	return (
 		<NewPostWrapper userPage>
-			{newPost ? (
+			{newPost && (
 				<ModalWrapper>
 					<div className='modal'>
 						<Button
@@ -120,19 +120,18 @@ const CreatePost = () => {
 							/>
 
 							<Button
-								label='Submit'
+								label='Bake Post!'
 								disabled={!post.title || !post.body || !topic}
 								onClick={addPost}
 							/>
 						</InnerWrapper>
 					</div>
 				</ModalWrapper>
-			) : (
-				<Fragment>
-					<div />
-					<Button label='Create a New Post' onClick={() => setNewPost(true)} />
-				</Fragment>
 			)}
+			<Fragment>
+				<div />
+				<Button label='Bake Post' onClick={() => setNewPost(true)} />
+			</Fragment>
 		</NewPostWrapper>
 	);
 };

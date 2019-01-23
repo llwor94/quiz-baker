@@ -96,9 +96,9 @@ const MenuStyles = styled.div`
 `;
 
 const ListItem = styled.li`
-	background-color: white;
+	background-color: ${props => props.theme.secondary};
+
 	margin-bottom: 20px;
-	margin-right: 2px;
 
 	transition: background-color 0.2s;
 	list-style: none;
