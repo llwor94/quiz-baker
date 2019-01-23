@@ -33,7 +33,7 @@ const Posts = props => {
 	else
 		return (
 			<Wrapper>
-				<div style={{ flexGrow: 1 }} />
+				<div style={{ flexGrow: 1, marginLeft: '-500px' }} />
 				<div
 					style={{
 						maxWidth: '500px',
