@@ -44,9 +44,9 @@ export const CurrentPost = styled(PostWrapper)`
 	box-shadow: none;
 	border-right: none;
 	position: sticky;
-	width: 505px;
+	width: 510px;
 	z-index: 30;
-	top: 55px;
+	top: 119px;
 	bottom: 1px;
 	:after, :before {
 		content:'';
@@ -69,8 +69,8 @@ export const CurrentPost = styled(PostWrapper)`
     border-bottom:0;
     border-radius:0 5px 0 0;
     border-radius:0 5px 0 0;
-    bottom:calc(-100vh + 199px);
-		height: calc(100vh - 200px);
+    bottom:calc(-100vh + 299px);
+		height: calc(100vh - 300px);
 	}
 
 `;

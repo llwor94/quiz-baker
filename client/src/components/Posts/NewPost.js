@@ -110,9 +110,9 @@ const NewPost = ({ userPage, quiz }) => {
 	};
 
 	return (
-		<NewPostWrapper userPage={userPage}>
+		<NewPostWrapper>
 			{newPost ? (
-				<Wrapper userPage={userPage}>
+				<Wrapper>
 					<StyledAutoComplete
 						value={topic}
 						suggestions={searchTopics}

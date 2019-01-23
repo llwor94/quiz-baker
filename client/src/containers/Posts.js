@@ -39,12 +39,12 @@ const Posts = props => {
 						maxWidth: '500px',
 						flexGrow: 1,
 						flexDirection: 'column',
-
+						marginTop: '40px',
 						alignItems: 'center',
 					}}
 					onMouseLeave={e => console.log(e.target)}
 				>
-					{user && <NewPost />}
+					<div className='new-post'>{user && <NewPost />}</div>
 					{posts.map(post => (
 						<Post
 							key={post.id}
