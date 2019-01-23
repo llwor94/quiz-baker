@@ -63,7 +63,7 @@ const CreateQuiz = props => {
 							)}
 							<Button
 								label='Bake Quiz!'
-								disabled={!quiz.title || !quiz.topic}
+								disabled={!quiz.title || !quiz.topic || !quiz.description}
 								onClick={handleCreateQuiz}
 							/>
 						</InnerWrapper>

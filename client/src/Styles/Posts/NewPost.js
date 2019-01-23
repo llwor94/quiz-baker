@@ -22,7 +22,7 @@ export const NewPostWrapper = styled.div`
 		border: 1px dashed #ddd;
 		box-shadow: 0 0 0 3px #fff, 0 0 0 5px #ddd, 0 0 0 10px #fff, 0 0 2px 10px #eee;
 		border-color: ${props => props.theme.accent};
-
+		
 		display: flex;
 		flex-direction: column;
 		width: 500px;
@@ -34,9 +34,7 @@ export const NewPostWrapper = styled.div`
 		/* .p-autocomplete .p-component {
 			background-color: ${props => props.theme.secondary};
 		} */
-		.p-autocomplete {
-			padding: 10px;
-		}
+		
 	}
 `;
 

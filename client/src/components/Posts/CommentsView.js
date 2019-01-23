@@ -29,7 +29,7 @@ const Comments = ({ currentPost }) => {
 	else
 		return (
 			<CommentsWrapper>
-				<InnerWrapper>
+				<InnerWrapper comments={comments}>
 					<div className='inner'>
 						{comments.map(comment => <Comment key={comment.id} comment={comment} />)}
 					</div>

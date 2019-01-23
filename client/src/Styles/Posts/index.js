@@ -17,7 +17,7 @@ export const InnerWrapper = styled.div`
 
 	top: 59px;
 	width: 100%;
-
+	background-color: ${props => props.comments && props.theme.secondary};
 	margin: 0;
 
 	padding: 30px 60px;
