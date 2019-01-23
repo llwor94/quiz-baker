@@ -154,7 +154,7 @@ const Post = ({ post, showComments, currentPost, ...props }) => {
 								)
 							}
 							onClick={showComments}
-						/>
+						>Open Comments</i>
 					)}
 				</FooterWrapper>
 			</InnerWrapper>
