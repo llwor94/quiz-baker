@@ -4,8 +4,16 @@ export const Wrapper = styled.div`
 	width: 100%;
 	display: flex;
 	margin: 70px 0;
-
 	justify-content: stretch;
+	
+	.quizBaker{
+	filter: grayscale(24%);
+    height: 400px;
+    position: fixed;
+    right: 300px;
+    top: 325px;
+    opacity: .8;
+	}
 `;
 export const CommentsWrapper = styled.div`
 	flex-grow: 1;
@@ -26,4 +34,6 @@ export const InnerWrapper = styled.div`
 	.inner {
 		width: 400px;
 	}
+
+	
 `;
