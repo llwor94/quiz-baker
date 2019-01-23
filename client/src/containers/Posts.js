@@ -42,6 +42,7 @@ const Posts = props => {
 
 						alignItems: 'center',
 					}}
+					onMouseLeave={e => console.log(e.target)}
 				>
 					{user && <NewPost />}
 					{posts.map(post => (
