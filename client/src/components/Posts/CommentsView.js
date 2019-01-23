@@ -1,10 +1,16 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Comment from '../Post/Comment';
 import server from '../../utils/server';
+import { UserCtx } from '../../App';
+import { ProfileIcon } from '../../Styles/Components/Image';
+import { CommentWrapper, PostComment } from '../../Styles/Comments/Comment';
 import { CommentsWrapper, InnerWrapper } from '../../Styles/Posts';
+import { EmojiInput } from '../../Styles/Components/Input';
 const Comments = ({ currentPost }) => {
 	const [ comments, setComments ] = useState(undefined);
 	const [ showing, setShowing ] = useState(false);
+	const [ user, setUser ] = useContext(UserCtx);
+	const [ commentInput, setCommentInput ] = useState('');
 	useEffect(
 		() => {
 			if (currentPost) {
@@ -19,7 +25,9 @@ const Comments = ({ currentPost }) => {
 		},
 		[ currentPost ],
 	);
-	if (!showing) return <div style={{ flexGrow: 1, marginLeft: '10px'}} />;
+
+	const addComment = () => {};
+	if (!showing) return <div style={{ flexGrow: 1, marginLeft: '10px' }} />;
 	if (!comments)
 		return (
 			<CommentsWrapper>
@@ -31,6 +39,21 @@ const Comments = ({ currentPost }) => {
 			<CommentsWrapper>
 				<InnerWrapper comments={comments}>
 					<div className='inner'>
+						<PostComment>
+							<ProfileIcon src={user.img_url} />
+							<EmojiInput
+								placeholder='Post a comment'
+								value={commentInput}
+								onChange={e => setCommentInput(e.target.value)}
+								handleSelect={e => setCommentInput(commentInput + e.native)}
+								onKeyUp={e => {
+									if (e.keyCode === 13) {
+										addComment();
+									}
+								}}
+								style={{ flexGrow: 1 }}
+							/>
+						</PostComment>
 						{comments.map(comment => <Comment key={comment.id} comment={comment} />)}
 					</div>
 				</InnerWrapper>
