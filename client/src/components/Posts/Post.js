@@ -8,7 +8,7 @@ import server from '../../utils/server';
 import hatDark from '../../assets/chef-dark.svg';
 import hatLight from '../../assets/chef.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCookieBite, faCookie } from '@fortawesome/free-solid-svg-icons';
+import { faCookieBite, faCookie} from '@fortawesome/free-solid-svg-icons';
 import {
 	PostWrapper,
 	CurrentPost,
@@ -23,6 +23,9 @@ import {
 	HatWrapper,
 } from '../../Styles/Posts/Post';
 import { ProfileIcon } from '../../Styles/Components/Image';
+
+import bowlFilled from '../../assets/bowlfilled.png';
+import bowlEmpty from '../../assets/bowlempty.png';
 
 const Wrapper = ({ children, isCurrent, userPage }) => {
 	if (isCurrent) return <CurrentPost>{children}</CurrentPost>;
@@ -121,7 +124,7 @@ const Post = ({ post, showComments, currentPost, ...props }) => {
 					<p>{post.body}</p>
 				</BodyWrapper>
 
-				<FooterWrapper>
+				<FooterWrapper isCollapsed={currentPost && currentPost === post.id}>
 					<div style={{ display: 'flex', alignItems: 'center' }}>
 						<CommentCount>
 							{post.comment_count === 1 ? (
@@ -145,19 +148,19 @@ const Post = ({ post, showComments, currentPost, ...props }) => {
 						)}
 					</div>
 					{post.comment_count > 0 && (
-						<div>
+						<div className="expandComments">
 
-						<span>Expand Comments</span>
-						<i
-							className={
+						<img onClick={showComments} src={currentPost && currentPost === post.id ? bowlEmpty : bowlFilled}></img>
+						{/* <FontAwesomeIcon
+							icon={
 								currentPost && currentPost === post.id ? (
-									'pi pi-angle-right'
+									faChevronRight
 								) : (
-									'pi pi-angle-up'
+									faChevronLeft
 								)
 							}
 							onClick={showComments}
-						></i>
+						>Expand Comments</FontAwesomeIcon> */}
 						</div>
 					)}
 				</FooterWrapper>

@@ -165,6 +165,18 @@ export const FooterWrapper = styled.div`
 		font-size: 18px;
 		padding-left: 4px;
 	}
+
+	.expandComments {
+		img {
+			background-color: rgb(227, 211, 228);
+			padding: 8px;
+			border-radius: 5px;
+			height: 60px;
+			width: 60px;
+			cursor: pointer;
+			transform: ${props => props.isCollapsed ? `rotate(90deg)` : `rotate(0deg)`}
+		}
+	}
 `;
 
 export const CommentCount = styled.div`
