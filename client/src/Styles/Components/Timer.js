@@ -5,43 +5,43 @@ const countdown = keyframes`
     stroke-dashoffset: 0px;
   }
   to {
-    stroke-dashoffset: 151px;
+    stroke-dashoffset: 138;
   }
 `;
 
 const Countdown = styled.div`
-	position: absolute;
-	width: 52px;
-	height: 52px;
-`;
-const Circle = styled.div`
+	position: relative;
+	width: 60px;
+	height: 60px;
+	text-align: center;
 	circle {
-		stroke-dasharray: 151px;
-		stroke-dashoffset: 151px;
-		stroke-linecap: butt;
+		stroke-dasharray: 138 138;
+		stroke-dashoffset: 138;
+		stroke-linecap: round;
 		stroke-width: 4px;
 		stroke: ${props => props.theme.pink};
-		fill: white;
-		animation: ${countdown} ${props => props.startCount}s linear infinite;
+		fill: none;
+		animation: ${countdown} ${props => props.startCount}s linear infinite forwards;
 	}
 	svg {
-		width: 52px;
-		height: 52px;
-		transform: rotateZ(-90deg);
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 60px;
+		height: 60px;
+		transform: rotateY(-180deg) rotateZ(-90deg);
 	}
 `;
 
 const Text = styled.div`
-	position: absolute;
-	top: 17px;
-	width: 52px;
+	display: inline-block;
 
 	font-size: 14px;
 	font-weight: 600;
-	text-align: center;
+	line-height: 60px;
 `;
 
-const Timer = ({ startCount, handleTimer, question }) => {
+const Timer = ({ startCount, handleTimer, question, reset }) => {
 	const [ currentCount, setCount ] = useState(startCount);
 	const timer = () => setCount(currentCount - 1);
 
@@ -62,19 +62,18 @@ const Timer = ({ startCount, handleTimer, question }) => {
 		() => {
 			setCount(startCount);
 		},
-		[ question ],
+		[ reset ],
 	);
-
-	return (
-		<Countdown>
-			<Circle startCount={startCount}>
+	if (reset) return <Countdown />;
+	else
+		return (
+			<Countdown startCount={startCount}>
+				<Text>{currentCount}</Text>
 				<svg>
-					<circle r='24' cx='26' cy='26' />
+					<circle r='22' cx='30' cy='30' />
 				</svg>
-			</Circle>
-			<Text>{currentCount}</Text>
-		</Countdown>
-	);
+			</Countdown>
+		);
 };
 
 export default Timer;

@@ -24,21 +24,12 @@ const Question = () => {
 	const [ questionResponse, setQuestionResponse ] = useContext(ResponseCtx);
 	const [ question, setQuestion ] = useState(quiz.questions[0]);
 	const [ selected, setSelected ] = useState(null);
-	const [ timeLimit, setTimeLimit ] = useState(quiz.questionTimeLimit);
-
-	// };
-	// useEffect(() => {
-	// 	if (quiz.questionTimeLimit) {
-	// 		setTimeLimit(quiz.questionTimeLimit);
-	// 		setInterval(() => timer(timeLimit, setTimeLimit), 1000);
-	// 	}
-	// }, []);
+	const [ checking, setChecking ] = useState(false);
 
 	useEffect(
 		() => {
 			if (currentQuestion) {
 				setQuestion(quiz.questions[currentQuestion]);
-				setTimeLimit(quiz.questionTimeLimit);
 			}
 		},
 		[ currentQuestion ],
@@ -55,8 +46,8 @@ const Question = () => {
 		setCurrentQuestion(currentQuestion + 1);
 	};
 
-	console.log(timeLimit);
 	const checkAnswer = () => {
+		setChecking(true);
 		let option = selected + 1;
 		server
 			.get(`quizzes/${quiz.id}/questions/${question.id}/response`, {
@@ -71,10 +62,9 @@ const Question = () => {
 				};
 				setQuestionResponse(newQuestions);
 				setCurrentQuestion(currentQuestion + 1);
-				if (quiz.questionTimeLimit) {
-					setTimeLimit(quiz.questionTimeLimit);
-				}
+
 				setSelected(null);
+				setChecking(false);
 			})
 			.catch(err => console.log(err));
 	};
@@ -84,13 +74,7 @@ const Question = () => {
 			<div style={{ width: '500px' }}>
 				<Wrapper>
 					<QuestionWrapper>{question.question}</QuestionWrapper>
-					{quiz.questionTimeLimit && (
-						<Timer
-							startCount={quiz.questionTimeLimit}
-							handleTimer={handleTimer}
-							question={question}
-						/>
-					)}
+
 					<AnswerWrapper>
 						{question.options &&
 							question.options.map((option, i) => (
@@ -104,6 +88,14 @@ const Question = () => {
 									<Label htmlFor={i.toString()}>{option}</Label>
 								</Answer>
 							))}
+						{quiz.questionTimeLimit && (
+							<Timer
+								startCount={quiz.questionTimeLimit}
+								handleTimer={handleTimer}
+								question={question}
+								reset={checking}
+							/>
+						)}
 					</AnswerWrapper>
 					<Logo>
 						<span className='Q'>Q</span>

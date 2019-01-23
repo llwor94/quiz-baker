@@ -4,13 +4,13 @@ export const NewPostWrapper = styled.div`
 	display: flex;
 	width: 100%;
 
-	justify-content: space-between;
-	position: relative;
+	justify-content: ${props => (props.userPage ? 'center' : 'space-between')};
 
 	.inner {
 		display: flex;
 		flex-direction: column;
-		width: 100%;
+		width: 500px;
+		position: relative;
 		.p-autocomplete .p-autocomplete-panel {
 			width: 160px;
 			min-width: 160px;
