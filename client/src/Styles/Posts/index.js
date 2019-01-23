@@ -14,7 +14,7 @@ export const CommentsWrapper = styled.div`
 `;
 export const InnerWrapper = styled.div`
 	position: fixed;
-
+	overflow: scroll;
 	top: 59px;
 	width: 100%;
 	background-color: ${props => props.comments && props.theme.secondary};
