@@ -145,6 +145,9 @@ const Post = ({ post, showComments, currentPost, ...props }) => {
 						)}
 					</div>
 					{post.comment_count > 0 && (
+						<div>
+
+						<span>Expand Comments</span>
 						<i
 							className={
 								currentPost && currentPost === post.id ? (
@@ -154,7 +157,8 @@ const Post = ({ post, showComments, currentPost, ...props }) => {
 								)
 							}
 							onClick={showComments}
-						>Open Comments</i>
+						></i>
+						</div>
 					)}
 				</FooterWrapper>
 			</InnerWrapper>
