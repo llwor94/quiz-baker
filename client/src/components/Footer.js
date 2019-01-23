@@ -3,11 +3,13 @@ import styled from 'styled-components';
 
 const FooterWrapper = styled.div`
 	width: 100%;
-
+	background-color: ${props => props.theme.secondary};
 	border-top: 1px solid lightgray;
 	padding: 10px;
 	font-size: 12px;
 	max-height: 50px;
+	position: absolute;
+
 	height: 50px;
 	z-index: 1000;
 	a {

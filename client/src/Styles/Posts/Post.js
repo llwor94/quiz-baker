@@ -46,12 +46,12 @@ export const CurrentPost = styled(PostWrapper)`
 	position: sticky;
 	width: 505px;
 	z-index: 30;
-	top: 47px;
+	top: 55px;
 	bottom: 1px;
 	:after, :before {
 		content:'';
-    width:40px;
-    height:750px;
+    width:5px;
+    
     border:1px solid ${props => props.theme.pink};
     position:absolute;
     right:-5px;
@@ -62,14 +62,15 @@ export const CurrentPost = styled(PostWrapper)`
 		border-top:0;
     border-radius:0 0 5px 0;
     border-radius:0 0 5px 0;
-    top:-751px;
+    top: calc(-100vh + 54px);
+		height: calc(100vh - 55px);
 	}
 	:before{
     border-bottom:0;
     border-radius:0 5px 0 0;
     border-radius:0 5px 0 0;
-    bottom:-751px;
-		
+    bottom:calc(-100vh + 199px);
+		height: calc(100vh - 200px);
 	}
 
 `;
