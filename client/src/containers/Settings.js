@@ -72,7 +72,7 @@ const Settings = props => {
 	else
 		return (
 			<SettingsWrapper>
-				<div>
+				<div style={{ width: '100%' }}>
 					<Button
 						className={'sidebarButton'}
 						icon='pi pi-bars'
