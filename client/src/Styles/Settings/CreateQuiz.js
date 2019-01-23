@@ -3,13 +3,16 @@ export const ModalWrapper = styled.div`
 	width: 100vw;
 	height: 100vh;
 	background-color: rgba(0, 0, 0, 0.4);
-	position: absolute;
+	position: fixed;
 	left: 0;
 	top: 0;
+	bottom: 0;
+	right: 0;
 	z-index: 2000;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	overflow: hidden;
 `;
 export const Wrapper = styled.div`
 	border-radius: 4px;
@@ -40,8 +43,9 @@ export const Wrapper = styled.div`
 		display: none;
 	}
 	img{
-		width: 40%;
-		height: 40%;
+		/* width: 40%;
+		height: 40%; */
+		max-height: 400px;
 	}
 
 	button {

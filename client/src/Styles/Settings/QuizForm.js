@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 export const QuizFormWrapper = styled.div`
-    width: 60%;
+	width: 60%;
 
-    p{
-        font-family: 'Merienda One', cursive;
-    }
+	p {
+		font-family: 'Merienda One', cursive;
+	}
 `;
