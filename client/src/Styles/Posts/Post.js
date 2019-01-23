@@ -174,7 +174,7 @@ export const FooterWrapper = styled.div`
 			height: 60px;
 			width: 60px;
 			cursor: pointer;
-			transform: ${props => props.isCollapsed ? `rotate(90deg)` : `rotate(0deg)`}
+			transform: scaleX(-1) ${props => props.isCollapsed ? `rotate(-90deg)` : `rotate(0deg)`}
 		}
 	}
 `;

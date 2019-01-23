@@ -24,8 +24,10 @@ import {
 } from '../../Styles/Posts/Post';
 import { ProfileIcon } from '../../Styles/Components/Image';
 
-import bowlFilled from '../../assets/bowlfilled.png';
-import bowlEmpty from '../../assets/bowlempty.png';
+// import bowlFilled from '../../assets/bowlfilled.png';
+// import bowlEmpty from '../../assets/bowlempty.png';
+
+import pyrex from '../../assets/pyrex.png'
 
 const Wrapper = ({ children, isCurrent, userPage }) => {
 	if (isCurrent) return <CurrentPost>{children}</CurrentPost>;
@@ -150,7 +152,7 @@ const Post = ({ post, showComments, currentPost, ...props }) => {
 					{post.comment_count > 0 && (
 						<div className="expandComments">
 
-						<img onClick={showComments} src={currentPost && currentPost === post.id ? bowlEmpty : bowlFilled}></img>
+						<img onClick={showComments} src={pyrex}></img>
 						{/* <FontAwesomeIcon
 							icon={
 								currentPost && currentPost === post.id ? (
