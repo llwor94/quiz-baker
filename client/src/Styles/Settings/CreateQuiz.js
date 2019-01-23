@@ -13,6 +13,8 @@ export const ModalWrapper = styled.div`
 	justify-content: center;
 	align-items: center;
 	overflow: hidden;
+
+	
 `;
 export const Wrapper = styled.div`
 	border-radius: 4px;

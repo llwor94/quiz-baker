@@ -34,6 +34,7 @@ const CreateQuiz = props => {
 			<Button label='Bake Quiz' onClick={() => setNewQuiz(true)} style={{ zIndex: 50 }} />
 			{newQuiz && (
 				<ModalWrapper>
+
 					<Wrapper>
 						<div style={{ display: 'flex', justifyContent: 'space-between' }}>
 							<Button
