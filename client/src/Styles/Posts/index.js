@@ -5,14 +5,14 @@ export const Wrapper = styled.div`
 	display: flex;
 	margin: 70px 0;
 	justify-content: stretch;
-	
-	.quizBaker{
-	filter: grayscale(24%);
-    height: 400px;
-    position: fixed;
-    right: 300px;
-    top: 325px;
-    opacity: .8;
+
+	.quizBaker {
+		filter: grayscale(24%);
+		height: 400px;
+		position: fixed;
+		right: 300px;
+		top: 325px;
+		opacity: .8;
 	}
 `;
 export const CommentsWrapper = styled.div`
@@ -23,7 +23,9 @@ export const CommentsWrapper = styled.div`
 export const InnerWrapper = styled.div`
 	position: fixed;
 	overflow: scroll;
-	border-right: 1px solid ${props=> props.theme.pink};
+
+	border-right: 1px solid ${props => props.theme.pink};
+
 	top: 59px;
 	width: 32%;
 	background-color: ${props => props.comments && props.theme.secondary};

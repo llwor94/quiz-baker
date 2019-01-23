@@ -80,8 +80,6 @@ export const FooterWrapper = styled.div`
 	font-weight: 700;
 	justify-content: space-between;
 	a {
-		padding-right: 4px;
-		margin-right: 4px;
 		text-transform: capitalize;
 		cursor: pointer;
 		color: ${props => props.theme.accentText};

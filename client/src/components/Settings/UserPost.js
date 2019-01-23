@@ -9,12 +9,12 @@ import {
 	PostWrapper,
 	BodyWrapper,
 	LeftSide,
-	FooterWrapper,
 	CommentCount,
 	Title,
 	InnerWrapper,
 	Topic,
 } from '../../Styles/Posts/Post';
+import { FooterWrapper } from '../../Styles/Settings/UserQuiz';
 import server from '../../utils/server';
 
 const UserPost = ({ post, ...props }) => {
@@ -77,17 +77,17 @@ const UserPost = ({ post, ...props }) => {
 
 				<FooterWrapper>
 					<div style={{ display: 'flex' }}>
-						<CommentCount>
+						<a style={{ cursor: 'default', fontWeight: 'bold' }}>
 							{post.comment_count === 1 ? (
 								'1 comment'
 							) : (
 								`${post.comment_count} comments`
 							)}
-						</CommentCount>
+						</a>
 						<span style={{ padding: '0 3px' }}>&#8226;</span>
-						<CommentCount>
+						<a style={{ cursor: 'default', fontWeight: 'bold' }}>
 							{post.votes === 1 ? '1 vote' : `${post.votes} votes`}
-						</CommentCount>
+						</a>
 					</div>
 					<Button white icon='pi pi-trash' onClick={() => setModalVisable(true)} />
 				</FooterWrapper>
