@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext, Fragment } from 'react';
-
+import { ModalWrapper } from '../../Styles/Settings/CreateQuiz';
 import { PostsCtx } from '../../pages/Forum';
 import { NewPostWrapper, InnerWrapper } from '../../Styles/Posts/NewPost';
 import { Button } from '../../Styles/Components/Button';
@@ -7,6 +7,16 @@ import { Input, TextArea, EmojiTextArea } from '../../Styles/Components/Input';
 import server from '../../utils/server';
 import { QuizPostCtx } from '../../containers/Quiz';
 import { StyledAutoComplete } from '../../Styles/Components/Autocomplete';
+
+const Wrapper = ({ userPage, children }) => {
+	if (userPage)
+		return (
+			<ModalWrapper>
+				<div className='modal'>{children}</div>
+			</ModalWrapper>
+		);
+	else return <div className='inner'>{children}</div>;
+};
 
 const NewPost = ({ userPage, quiz }) => {
 	const [ posts, setPosts ] = useContext(PostsCtx);
@@ -102,7 +112,7 @@ const NewPost = ({ userPage, quiz }) => {
 	return (
 		<NewPostWrapper userPage={userPage}>
 			{newPost ? (
-				<div className='inner'>
+				<Wrapper userPage={userPage}>
 					<StyledAutoComplete
 						value={topic}
 						suggestions={searchTopics}
@@ -121,7 +131,7 @@ const NewPost = ({ userPage, quiz }) => {
 						onClick={() => setNewPost(false)}
 					/>
 
-					<InnerWrapper>
+					<InnerWrapper userPage={userPage}>
 						<Input
 							inputRef={input}
 							value={post.title}
@@ -141,7 +151,7 @@ const NewPost = ({ userPage, quiz }) => {
 							onClick={addPost}
 						/>
 					</InnerWrapper>
-				</div>
+				</Wrapper>
 			) : (
 				<Fragment>
 					<div />
