@@ -14,9 +14,10 @@ export const CommentsWrapper = styled.div`
 `;
 export const InnerWrapper = styled.div`
 	position: fixed;
-
+	overflow: scroll;
+	border-right: 1px solid ${props=> props.theme.pink};
 	top: 59px;
-	width: 100%;
+	width: 32%;
 	background-color: ${props => props.comments && props.theme.secondary};
 	margin: 0;
 

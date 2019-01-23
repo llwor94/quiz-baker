@@ -19,7 +19,7 @@ const Comments = ({ currentPost }) => {
 		},
 		[ currentPost ],
 	);
-	if (!showing) return <div style={{ flexGrow: 1, marginLeft: '10px' }} />;
+	if (!showing) return <div style={{ flexGrow: 1, marginLeft: '10px'}} />;
 	if (!comments)
 		return (
 			<CommentsWrapper>
