@@ -25,8 +25,10 @@ import {
 } from '../../Styles/Posts/Post';
 import { ProfileIcon } from '../../Styles/Components/Image';
 
-import bowlFilled from '../../assets/bowlfilled.png';
-import bowlEmpty from '../../assets/bowlempty.png';
+// import bowlFilled from '../../assets/bowlfilled.png';
+// import bowlEmpty from '../../assets/bowlempty.png';
+
+import pyrex from '../../assets/pyrex.png'
 
 const Wrapper = ({ children, isCurrent, userPage }) => {
 	if (isCurrent)
@@ -154,14 +156,10 @@ const Post = ({ post, showComments, currentPost, ...props }) => {
 						)}
 					</div>
 					{post.comment_count > 0 && (
-						<div className='expandComments'>
-							<img
-								onClick={showComments}
-								src={
-									currentPost && currentPost === post.id ? bowlEmpty : bowlFilled
-								}
-							/>
-							{/* <FontAwesomeIcon
+						<div className="expandComments">
+
+						<img onClick={showComments} src={pyrex}></img>
+						{/* <FontAwesomeIcon
 							icon={
 								currentPost && currentPost === post.id ? (
 									faChevronRight
