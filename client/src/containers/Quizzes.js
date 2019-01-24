@@ -6,6 +6,7 @@ import server from '../utils/server';
 import { QuizzesCtx } from '../pages/Quizzes';
 import { Wrapper } from '../Styles/Quizzes';
 import Quiz from '../components/Quizzes/Quiz';
+import Sort from '../components/Quizzes/Sort';
 
 const Quizzes = props => {
 	const [ quizzes, setQuizzes ] = useContext(QuizzesCtx);
@@ -36,7 +37,14 @@ const Quizzes = props => {
 	if (!quizzes) return <Loading />;
 	else
 		return (
-			<Wrapper>{quizzes.map(quiz => <Quiz key={quiz.id} quiz={quiz} {...props} />)}</Wrapper>
+			<Wrapper>
+				<div>
+					<Sort />
+				</div>
+				<div className='quizzes'>
+					{quizzes.map(quiz => <Quiz key={quiz.id} quiz={quiz} {...props} />)}
+				</div>
+			</Wrapper>
 		);
 };
 
