@@ -34,27 +34,37 @@ export const PostWrapper = styled.div`
 		color: white;
 	}
 `;
-
-export const CurrentPost = styled(PostWrapper)`
+export const CurrentWrapper = styled.div`
 	border-radius: 17px;
 	border-top-right-radius: 0;
 	border-bottom-right-radius: 0;
-
-	border-color: ${props => props.theme.pink};
+	background-color: ${props => props.theme.secondary};
+	border-color: none;
 	box-shadow: none;
 	border-right: none;
 	position: sticky;
-	width: 510px;
+	width: 511px;
 	z-index: 30;
-	top: 119px;
+	top: 55px;
 	bottom: 1px;
+	padding: 2px;
+`;
+export const CurrentPost = styled(PostWrapper)`
+	box-shadow: none;
+	border-right: none;
+		width: 500px;
+		border-color: ${props => props.theme.pink};
+		border-radius: 17px;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+	
 	:after, :before {
 		content:'';
-    width:5px;
+    width:10px;
     
     border:1px solid ${props => props.theme.pink};
     position:absolute;
-    right:-5px;
+    right:-9px;
     border-left:0;
 	}
 
@@ -62,15 +72,15 @@ export const CurrentPost = styled(PostWrapper)`
 		border-top:0;
     border-radius:0 0 5px 0;
     border-radius:0 0 5px 0;
-    top: calc(-100vh + 54px);
-		height: calc(100vh - 55px);
+    top: -11px;
+		height: 10px;
 	}
 	:before{
     border-bottom:0;
     border-radius:0 5px 0 0;
     border-radius:0 5px 0 0;
-    bottom:calc(-100vh + 299px);
-		height: calc(100vh - 300px);
+    bottom: -11px;
+		height: 10px;
 	}
 
 `;
@@ -174,7 +184,7 @@ export const FooterWrapper = styled.div`
 			height: 60px;
 			width: 60px;
 			cursor: pointer;
-			transform: ${props => props.isCollapsed ? `rotate(90deg)` : `rotate(0deg)`}
+			transform: ${props => (props.isCollapsed ? `rotate(90deg)` : `rotate(0deg)`)};
 		}
 	}
 `;
