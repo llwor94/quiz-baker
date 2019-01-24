@@ -47,7 +47,8 @@ export const CurrentWrapper = styled.div`
 	z-index: 30;
 	top: 55px;
 	bottom: 1px;
-	padding: 2px;
+	padding: 1px;
+	padding-left: 0;
 `;
 export const CurrentPost = styled(PostWrapper)`
 	box-shadow: none;
@@ -64,7 +65,7 @@ export const CurrentPost = styled(PostWrapper)`
     
     border:1px solid ${props => props.theme.pink};
     position:absolute;
-    right:-9px;
+    right:-11px;
     border-left:0;
 	}
 
