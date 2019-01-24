@@ -179,13 +179,13 @@ export const FooterWrapper = styled.div`
 
 	.expandComments {
 		img {
-			background-color: rgb(227, 211, 228);
+			/* background-color: rgb(227, 211, 228); */
 			padding: 8px;
 			border-radius: 5px;
 			height: 60px;
 			width: 60px;
 			cursor: pointer;
-			transform: ${props => (props.isCollapsed ? `rotate(90deg)` : `rotate(0deg)`)};
+			transform: scaleX(-1) ${props => (props.isCollapsed ? `rotate(-15deg)` : `rotate(0deg)`)};
 		}
 	}
 `;
