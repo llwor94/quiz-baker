@@ -227,3 +227,21 @@ export const QuestionCount = styled.div`
 		color: ${props => props.theme.accentText};
 	}
 `;
+
+export const MultiSelectWrapper = styled.div`
+	.p-checkbox {
+		display: none;
+	}
+	.p-inputtext:enabled:focus:not(.p-error) {
+		border-color: ${props => props.theme.pink};
+	}
+	.p-multiselect-panel
+		.p-multiselect-header
+		.p-multiselect-filter-container
+		.p-multiselect-filter-icon {
+		color: ${props => props.theme.aqua};
+	}
+	.p-multiselect-panel .p-multiselect-items .p-multiselect-item.p-highlight {
+		background-color: ${props => props.theme.pink};
+	}
+`;
