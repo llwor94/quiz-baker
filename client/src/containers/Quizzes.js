@@ -39,7 +39,7 @@ const Quizzes = props => {
 	else
 		return (
 			<Wrapper>
-				<div>
+				<div className='filters'>
 					<Sort />
 					<Filter />
 				</div>
