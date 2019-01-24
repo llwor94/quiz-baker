@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { QuizzesCtx } from '../../pages/Quizzes';
+import { PostsCtx } from '../../pages/Forum';
 import { MultiSelect } from 'primereact/multiselect';
 import _ from 'lodash';
 import server from '../../utils/server';
@@ -8,24 +8,23 @@ import { Topic, MultiSelectWrapper } from '../../Styles/Quizzes/Quiz';
 const Topics = () => {
 	const [ topics, setTopics ] = useState([]);
 	const [ selected, setSelected ] = useState([]);
-	const [ quizzes, setQuizzes ] = useContext(QuizzesCtx);
-	const [ allQuizzes, setAllQuizzes ] = useState(quizzes);
-
+	const [ posts, setPosts ] = useContext(PostsCtx);
+	const [ allPosts, setAllPosts ] = useState(posts);
+	console.log(allPosts, selected);
 	useEffect(() => {
 		server.get('/quizzes/topics').then(({ data }) => {
-			setTopics(data.filter(topic => quizzes.some(quiz => quiz.topic === topic.name)));
+			setTopics(data.filter(topic => posts.some(post => post.topic === topic.name)));
 		});
 	}, []);
 
 	useEffect(
 		() => {
 			if (selected.length) {
-				setQuizzes(
-					allQuizzes.filter(quiz => selected.some(topic => topic.name === quiz.topic)),
+				console.log(selected);
+				setPosts(
+					allPosts.filter(post => selected.some(topic => topic.name === post.topic)),
 				);
-			} else {
-				setQuizzes(allQuizzes);
-			}
+			} else setPosts(allPosts);
 		},
 		[ selected ],
 	);

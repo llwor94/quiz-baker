@@ -244,4 +244,12 @@ export const MultiSelectWrapper = styled.div`
 	.p-multiselect-panel .p-multiselect-items .p-multiselect-item.p-highlight {
 		background-color: ${props => props.theme.pink};
 	}
+	.p-checkbox .p-checkbox-box.p-highlight {
+		border-color: ${props => props.theme.aqua};
+		background-color: ${props => props.theme.aqua};
+	}
+	.p-checkbox .p-checkbox-box.p-highlight:not(.p-disabled):hover {
+		border-color: ${props => props.theme.darkAqua};
+		background-color: ${props => props.theme.darkAqua};
+	}
 `;
