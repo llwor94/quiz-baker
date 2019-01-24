@@ -8,7 +8,7 @@ import server from '../../utils/server';
 import hatDark from '../../assets/chef-dark.svg';
 import hatLight from '../../assets/chef.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCookieBite, faCookie} from '@fortawesome/free-solid-svg-icons';
+import { faCookieBite, faCookie } from '@fortawesome/free-solid-svg-icons';
 import {
 	PostWrapper,
 	CurrentPost,
@@ -20,6 +20,7 @@ import {
 	InnerWrapper,
 	Topic,
 	LeftSide,
+	CurrentWrapper,
 	HatWrapper,
 } from '../../Styles/Posts/Post';
 import { ProfileIcon } from '../../Styles/Components/Image';
@@ -30,7 +31,12 @@ import { ProfileIcon } from '../../Styles/Components/Image';
 import pyrex from '../../assets/pyrex.png'
 
 const Wrapper = ({ children, isCurrent, userPage }) => {
-	if (isCurrent) return <CurrentPost>{children}</CurrentPost>;
+	if (isCurrent)
+		return (
+			<CurrentWrapper>
+				<CurrentPost>{children}</CurrentPost>
+			</CurrentWrapper>
+		);
 	else return <PostWrapper userPage={userPage}>{children}</PostWrapper>;
 };
 const Post = ({ post, showComments, currentPost, ...props }) => {

@@ -8,8 +8,6 @@ import CommentsView from '../components/Posts/CommentsView';
 import NewPost from '../components/Posts/NewPost';
 import Post from '../components/Posts/Post';
 
-import quizbaker from '../assets/quizbaker.png';
-
 const Posts = props => {
 	const [ posts, setPosts ] = useContext(PostsCtx);
 	const [ user, setUser ] = useContext(UserCtx);
@@ -57,7 +55,7 @@ const Posts = props => {
 						/>
 					))}
 				</div>
-				<img className="quizBaker" src={quizbaker} />
+
 				<CommentsView currentPost={currentPost} />
 			</Wrapper>
 		);

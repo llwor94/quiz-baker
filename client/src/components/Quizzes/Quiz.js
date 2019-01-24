@@ -119,11 +119,13 @@ const Quiz = ({ quiz, ...props }) => {
 									{quiz.title}
 								</Title>
 								{quiz.time_limit_seconds && <i className='pi pi-clock' />}
-								<i
-									postCount={quiz.post_count}
-									className='pi pi-comments'
-									style={{ cursor: 'default' }}
-								/>
+								{quiz.post_count > 0 && (
+									<i
+										postCount={quiz.post_count}
+										className='pi pi-comments'
+										style={{ cursor: 'default' }}
+									/>
+								)}
 							</div>
 						</Header>
 

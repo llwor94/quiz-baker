@@ -6,6 +6,8 @@ import { ProfileIcon } from '../../Styles/Components/Image';
 import { CommentWrapper, PostComment } from '../../Styles/Comments/Comment';
 import { CommentsWrapper, InnerWrapper } from '../../Styles/Posts';
 import { EmojiInput } from '../../Styles/Components/Input';
+import quizbaker from '../../assets/quizbaker.png';
+
 const Comments = ({ currentPost }) => {
 	const [ comments, setComments ] = useState(undefined);
 	const [ showing, setShowing ] = useState(false);
@@ -27,7 +29,14 @@ const Comments = ({ currentPost }) => {
 	);
 
 	const addComment = () => {};
-	if (!showing) return <div style={{ flexGrow: 1, marginLeft: '10px' }} />;
+	if (!showing)
+		return (
+			<CommentsWrapper>
+				<div className='image'>
+					<img className='quizBaker' src={quizbaker} />
+				</div>
+			</CommentsWrapper>
+		);
 	if (!comments)
 		return (
 			<CommentsWrapper>
