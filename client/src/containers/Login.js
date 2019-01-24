@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 
 import _ from 'lodash';
 import { AuthCtx } from '../Auth';
-
+import server from '../utils/server';
 import { Wrapper, InputWrap } from '../components/Auth';
 
 const Login = props => {
@@ -30,7 +30,13 @@ const Login = props => {
 
 	const handleSubmit = e => {
 		e.preventDefault();
-		login(userInput);
+
+		server
+			.post('/auth/login', userInput)
+			.then(({ data }) => {
+				login(data);
+			})
+			.catch(err => setError('Your email or password is incorrect'));
 	};
 
 	return (

@@ -7,6 +7,7 @@ const AuthProvider = ({ children }) => {
 	const [ user, setUser ] = useState(undefined);
 
 	const login = user => {
+		console.log(user);
 		localStorage.setItem('user', JSON.stringify(user));
 		server.defaults.headers.common['Authorization'] = user.token;
 		setUser(user.user);
