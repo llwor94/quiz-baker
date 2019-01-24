@@ -8,6 +8,7 @@ import { Wrapper } from '../Styles/Quizzes';
 import Quiz from '../components/Quizzes/Quiz';
 import Sort from '../components/Quizzes/Sort';
 import Filter from '../components/Quizzes/Filter';
+import Topics from '../components/Quizzes/Topics';
 
 const Quizzes = props => {
 	const [ quizzes, setQuizzes ] = useContext(QuizzesCtx);
@@ -42,6 +43,7 @@ const Quizzes = props => {
 				<div className='filters'>
 					<Sort />
 					<Filter />
+					<Topics />
 				</div>
 				<div className='quizzes'>
 					{quizzes.map(quiz => <Quiz key={quiz.id} quiz={quiz} {...props} />)}

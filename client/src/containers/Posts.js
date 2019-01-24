@@ -7,6 +7,7 @@ import Loading from '../components/Styles/Loading';
 import CommentsView from '../components/Posts/CommentsView';
 import NewPost from '../components/Posts/NewPost';
 import Post from '../components/Posts/Post';
+import Topics from '../components/Posts/Topics';
 
 const Posts = props => {
 	const [ posts, setPosts ] = useContext(PostsCtx);
@@ -20,7 +21,7 @@ const Posts = props => {
 			})
 			.catch(error => console.log(error.response));
 	}, []);
-
+	console.log(posts);
 	const handleComments = id => {
 		if (id === currentPost) {
 			setCurrentPost(undefined);
@@ -33,7 +34,9 @@ const Posts = props => {
 	else
 		return (
 			<Wrapper>
-				<div style={{ flexGrow: 1, marginLeft: '-316px' }} />
+				<div style={{ width: '25%' }}>
+					<Topics />
+				</div>
 				<div
 					style={{
 						maxWidth: '500px',
