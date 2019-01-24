@@ -9,13 +9,12 @@ import QuizForm from './QuizForm';
 import ovenIcon from '../../assets/oven.svg';
 
 import { UserQuizzesCtx } from '../../pages/Settings';
-import { UserCtx } from '../../App';
 
 const CreateQuiz = props => {
 	const [ newQuiz, setNewQuiz ] = useState(false);
 	const [ quiz, setQuiz ] = useState({ title: '', description: '', topic: '' });
 	const [ userQuizzes, setUserQuizzes ] = useContext(UserQuizzesCtx);
-	const [ user, setUser ] = useContext(UserCtx);
+
 	const [ timeLimit, setTimeLimit ] = useState(undefined);
 
 	const handleCreateQuiz = () => {
@@ -34,7 +33,6 @@ const CreateQuiz = props => {
 			<Button label='Bake Quiz' onClick={() => setNewQuiz(true)} style={{ zIndex: 50 }} />
 			{newQuiz && (
 				<ModalWrapper>
-
 					<Wrapper>
 						<div style={{ display: 'flex', justifyContent: 'space-between' }}>
 							<Button

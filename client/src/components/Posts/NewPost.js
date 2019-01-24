@@ -113,19 +113,25 @@ const NewPost = ({ userPage, quiz }) => {
 		<NewPostWrapper>
 			{newPost ? (
 				<Wrapper>
-					<StyledAutoComplete
-						value={topic}
-						suggestions={searchTopics}
-						completeMethod={filterTopics}
-						placeholder='Topics'
-						minLength={1}
-						name='topic'
-						field='name'
-						onSelect={handleSelect}
-						dropdown={true}
-					/>
+					{!quiz && (
+						<StyledAutoComplete
+							value={topic}
+							suggestions={searchTopics}
+							completeMethod={filterTopics}
+							placeholder='Topics'
+							minLength={1}
+							name='topic'
+							field='name'
+							onSelect={handleSelect}
+							dropdown={true}
+						/>
+					)}
 					<Button
-						style={{ position: 'absolute', top: '0px', right: '0px' }}
+						style={{
+							position: 'absolute',
+							top: quiz ? '5px' : '0px',
+							right: quiz ? '5px' : '0px',
+						}}
 						icon='pi pi-times'
 						white
 						onClick={() => setNewPost(false)}

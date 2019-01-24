@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 
-import { UserCtx } from '../../App';
+import { AuthCtx } from '../../Auth';
 import { ColorCtx } from '../../App';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCookieBite, faCookie } from '@fortawesome/free-solid-svg-icons';
@@ -32,9 +32,9 @@ import { Growl } from 'primereact/growl';
 const Quiz = ({ quiz, ...props }) => {
 	const growl = React.createRef();
 	const [ quizzes, setQuizzes ] = useContext(QuizzesCtx);
-	const [ user, setUser ] = useContext(UserCtx);
+	const { user } = useContext(AuthCtx);
 	const [ darkMode, setValue ] = useContext(ColorCtx);
-
+	console.log(user);
 	const handleCopy = () => {
 		let value = `http://localhost:3000/quizzes/${quiz.id}`;
 		navigator.clipboard.writeText(value).then(() => {

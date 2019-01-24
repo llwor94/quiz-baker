@@ -3,13 +3,11 @@ import moment from 'moment';
 
 import server from '../../utils/server';
 import { PostCtx } from '../../pages/Post';
-import { UserCtx } from '../../App';
 import { CommentArea } from '../../Styles/Comments/Comment';
 import Comment from './Comment';
 
 const Comments = () => {
 	const [ post, setPost ] = useContext(PostCtx);
-	const [ user, setUser ] = useContext(UserCtx);
 
 	const deleteComment = id => {
 		server

@@ -18,12 +18,12 @@ import {
 } from '../../Styles/Posts/Post';
 import { ProfileIcon } from '../../Styles/Components/Image';
 
-import { UserCtx } from '../../App';
+import { AuthCtx } from '../../Auth';
 import { PostCtx } from '../../pages/Post';
 const Post = props => {
 	const [ modalVisable, setModalVisable ] = useState(false);
 	const [ post, setPost ] = useContext(PostCtx);
-	const [ user, setUser ] = useContext(UserCtx);
+	const { user } = useContext(AuthCtx);
 
 	const growl = React.createRef();
 	const handleCopy = id => {

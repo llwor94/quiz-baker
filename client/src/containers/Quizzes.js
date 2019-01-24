@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import Loading from '../components/Styles/Loading';
-import { UserCtx } from '../App';
+import { AuthCtx } from '../Auth';
 
 import server from '../utils/server';
 import { QuizzesCtx } from '../pages/Quizzes';
@@ -9,7 +9,7 @@ import Quiz from '../components/Quizzes/Quiz';
 
 const Quizzes = props => {
 	const [ quizzes, setQuizzes ] = useContext(QuizzesCtx);
-	const [ user, setUser ] = useContext(UserCtx);
+	const { user } = useContext(AuthCtx);
 	useEffect(() => {
 		server
 			.get('/quizzes')

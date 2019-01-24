@@ -1,7 +1,7 @@
 import React, { useEffect, useContext, Fragment } from 'react';
 import { Growl } from 'primereact/growl';
 import server from '../../utils/server';
-import { UserCtx } from '../../App';
+import { AuthCtx } from '../../Auth';
 import { ResponseCtx, QuizCtx } from '../../pages/Quiz';
 import {
 	Wrapper,
@@ -16,8 +16,8 @@ import { faCookieBite, faCookie } from '@fortawesome/free-solid-svg-icons';
 const Results = () => {
 	const [ questionResponse, setQuestionReponse ] = useContext(ResponseCtx);
 	const [ quiz, setQuiz ] = useContext(QuizCtx);
-	const [ user, setUser ] = useContext(UserCtx);
-
+	const { user } = useContext(AuthCtx);
+	console.log(user);
 	const growl = React.createRef();
 	console.log(quiz);
 	useEffect(() => {

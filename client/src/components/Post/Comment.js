@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
 import { Wrapper, CommentHeader, UserName, CommentBody } from '../../Styles/Comments/Comment';
 import { ProfileIcon } from '../../Styles/Components/Image';
-import { UserCtx } from '../../App';
+import { AuthCtx } from '../../Auth';
 import { Button } from '../../Styles/Components/Button';
 import moment from 'moment';
 
 const Comment = ({ comment, deleteComment }) => {
-	const [ user, setUser ] = useContext(UserCtx);
+	const { user } = useContext(AuthCtx);
 	return (
 		<Wrapper>
 			<div>

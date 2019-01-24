@@ -5,7 +5,7 @@ import { NewPostWrapper, InnerWrapper } from '../../Styles/Posts/NewPost';
 import { Button } from '../../Styles/Components/Button';
 import { Input, TextArea, EmojiTextArea } from '../../Styles/Components/Input';
 import server from '../../utils/server';
-import { UserCtx } from '../../App';
+import { AuthCtx } from '../../Auth';
 import { StyledAutoComplete } from '../../Styles/Components/Autocomplete';
 import { UserPostsCtx } from '../../pages/Settings';
 
@@ -13,7 +13,7 @@ const CreatePost = () => {
 	const [ newPost, setNewPost ] = useState(false);
 	const [ post, setPost ] = useState({ title: '', body: '' });
 	const [ topic, setTopic ] = useState('');
-	const [ user, setUser ] = useContext(UserCtx);
+	const { user } = useContext(AuthCtx);
 	const [ topics, setTopics ] = useState(undefined);
 	const [ searchTopics, setSearchOptions ] = useState(null);
 	const [ userPosts, setUserPosts ] = useContext(UserPostsCtx);

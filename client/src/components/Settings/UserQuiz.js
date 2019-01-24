@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext, Fragment } from 'react';
 import { Dialog } from 'primereact/dialog';
 import server from '../../utils/server';
 import { UserQuizzesCtx } from '../../pages/Settings';
-import { UserCtx } from '../../App';
+import { AuthCtx } from '../../Auth';
 import { withRouter } from 'react-router-dom';
 import { Button } from '../../Styles/Components/Button';
 import {
@@ -16,7 +16,7 @@ import {
 } from '../../Styles/Settings/UserQuiz';
 const UserQuiz = ({ quiz, ...props }) => {
 	const [ userQuizzes, setUserQuizzes ] = useContext(UserQuizzesCtx);
-	const [ user, setUser ] = useContext(UserCtx);
+	const { user } = useContext(AuthCtx);
 	console.log(quiz.quiz);
 	const [ modalVisable, setModalVisable ] = useState(false);
 

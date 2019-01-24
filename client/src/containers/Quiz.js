@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext, createContext } from 'react';
 import Loading from '../components/Styles/Loading';
 import _ from 'lodash';
-import { UserCtx } from '../App';
 
 import server from '../utils/server';
 import { QuizCtx, ResponseCtx } from '../pages/Quiz';
@@ -17,7 +16,6 @@ export const QuizPostCtx = createContext([ undefined, () => {} ]);
 
 const QuizContainer = props => {
 	const [ quiz, setQuiz ] = useContext(QuizCtx);
-	const [ user, setUser ] = useContext(UserCtx);
 
 	const [ questionResponse, setQuestionReponse ] = useContext(ResponseCtx);
 	const [ currentQuestion, setCurrentQuestion ] = useState(undefined);
@@ -39,7 +37,7 @@ const QuizContainer = props => {
 			});
 		});
 	}, []);
-
+	console.log(quiz);
 	if (!quiz) return <Loading />;
 	else
 		return (

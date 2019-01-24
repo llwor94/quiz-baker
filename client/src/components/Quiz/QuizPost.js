@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { UserCtx } from '../../App';
+import { AuthCtx } from '../../Auth';
 import moment from 'moment';
 import { QuizPostCtx, QuestionCtx } from '../../containers/Quiz';
 import server from '../../utils/server';
@@ -18,7 +18,7 @@ import PostComments from './PostComments';
 
 const Post = ({ post }) => {
 	const [ showingComments, setShowingComments ] = useState(false);
-	const [ user, setUser ] = useContext(UserCtx);
+	const { user } = useContext(AuthCtx);
 	const [ quizPosts, setQuizPosts ] = useContext(QuizPostCtx);
 	console.log(post);
 

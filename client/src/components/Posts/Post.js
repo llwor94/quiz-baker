@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from 'react';
 import { PostsCtx } from '../../pages/Forum';
 import moment from 'moment';
-import { UserCtx } from '../../App';
+import { AuthCtx } from '../../Auth';
 import { ColorCtx } from '../../App';
 import { Growl } from 'primereact/growl';
 import server from '../../utils/server';
@@ -28,7 +28,7 @@ import { ProfileIcon } from '../../Styles/Components/Image';
 // import bowlFilled from '../../assets/bowlfilled.png';
 // import bowlEmpty from '../../assets/bowlempty.png';
 
-import pyrex from '../../assets/pyrex.png'
+import pyrex from '../../assets/pyrex.png';
 
 const Wrapper = ({ children, isCurrent, userPage }) => {
 	if (isCurrent)
@@ -41,7 +41,7 @@ const Wrapper = ({ children, isCurrent, userPage }) => {
 };
 const Post = ({ post, showComments, currentPost, ...props }) => {
 	const [ posts, setPosts ] = useContext(PostsCtx);
-	const [ user, setUser ] = useContext(UserCtx);
+	const { user } = useContext(AuthCtx);
 	const [ darkMode, setValue ] = useContext(ColorCtx);
 	const growl = React.createRef();
 	const handleCopy = () => {
@@ -156,10 +156,9 @@ const Post = ({ post, showComments, currentPost, ...props }) => {
 						)}
 					</div>
 					{post.comment_count > 0 && (
-						<div className="expandComments">
-
-						<img onClick={showComments} src={pyrex}></img>
-						{/* <FontAwesomeIcon
+						<div className='expandComments'>
+							<img onClick={showComments} src={pyrex} />
+							{/* <FontAwesomeIcon
 							icon={
 								currentPost && currentPost === post.id ? (
 									faChevronRight

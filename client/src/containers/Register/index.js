@@ -1,5 +1,5 @@
 import React, { useState, Fragment, useContext } from 'react';
-import { UserCtx } from '../../App';
+import { AuthCtx } from '../../Auth';
 import ImageUpload from '../ImageUpload';
 import { HugeImage } from '../../Styles/Components/Image';
 import Button from '../../components/Styles/Button';
@@ -7,7 +7,7 @@ import RegisterForm from './RegisterForm';
 import { ModalWrapper } from '../../Styles/Settings/CreateQuiz';
 import { Wrapper, WelcomeWrapper } from '../../Styles/Register';
 const Register = props => {
-	const [ user, setUser ] = useContext(UserCtx);
+	const { user } = useContext(AuthCtx);
 	const [ finished, setFinished ] = useState(false);
 	if (!user) return <RegisterForm {...props} />;
 	else if (!finished)

@@ -2,13 +2,13 @@ import React, { useState, useContext, useEffect, Fragment } from 'react';
 import server from '../../utils/server';
 import { PostCtx } from '../../pages/Post';
 import { ProfileIcon } from '../../Styles/Components/Image';
-import { UserCtx } from '../../App';
+import { AuthCtx } from '../../Auth';
 import { CommentWrapper, PostComment } from '../../Styles/Comments/Comment';
 import { EmojiInput } from '../../Styles/Components/Input';
 const NewComment = () => {
 	const [ post, setPost ] = useContext(PostCtx);
 	const [ commentInput, setCommentInput ] = useState('');
-	const [ user, setUser ] = useContext(UserCtx);
+	const { user } = useContext(AuthCtx);
 
 	const addComment = () => {
 		server

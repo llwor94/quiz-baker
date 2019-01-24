@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { ProfileIcon } from '../../Styles/Components/Image';
-import { UserCtx } from '../../App';
+import { AuthCtx } from '../../Auth';
 import server from '../../utils/server';
 import { EmojiInput } from '../../Styles/Components/Input';
 import moment from 'moment';
@@ -14,7 +14,7 @@ import {
 	RightSide,
 } from '../../Styles/Comments/Comment';
 const Comments = ({ post }) => {
-	const [ user, setUser ] = useContext(UserCtx);
+	const { user } = useContext(AuthCtx);
 	const [ comments, setComments ] = useState(undefined);
 	const [ comment, setComment ] = useState('');
 

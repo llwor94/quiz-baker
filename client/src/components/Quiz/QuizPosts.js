@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 
-import { UserCtx } from '../../App';
+import { AuthCtx } from '../../Auth';
 import { QuizPostCtx, QuestionCtx } from '../../containers/Quiz';
 import NewPost from '../Posts/NewPost';
 import server from '../../utils/server';
@@ -9,7 +9,7 @@ import QuizPost from './QuizPost';
 const QuizPosts = ({ quiz }) => {
 	const [ quizPosts, setQuizPosts ] = useContext(QuizPostCtx);
 	const [ currentQuestion, setCurrentQuestion ] = useContext(QuestionCtx);
-	const [ user, setUser ] = useContext(UserCtx);
+	const { user } = useContext(AuthCtx);
 	useEffect(() => {
 		server
 			.get(`/quizzes/${quiz.id}/posts`)

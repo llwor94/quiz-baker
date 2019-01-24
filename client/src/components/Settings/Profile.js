@@ -8,7 +8,7 @@ import {
 	ProfileButtonWrapper,
 	ButtonCollapse,
 } from '../../Styles/Settings/Sidebar';
-import { UserCtx } from '../../App';
+import { AuthCtx } from '../../Auth';
 import { Transition } from 'react-transition-group';
 
 import anime from 'animejs';
@@ -31,7 +31,7 @@ const Profile = () => {
 	const [ imageUpdate, setImageUpdate ] = useState(false);
 	const [ usernameUpdate, setUsernameUpdate ] = useState(false);
 	const [ img_url, setImg ] = useState(null);
-	const [ user, setUser ] = useContext(UserCtx);
+	const { user, editUser } = useContext(AuthCtx);
 
 	useEffect(() => {
 		if (user.img_url) {
@@ -67,8 +67,8 @@ const Profile = () => {
 		let userData = JSON.parse(localStorage.getItem('user'));
 		server.get(`/users/${user.id}`).then(({ data }) => {
 			let newUser = { ...userData, user: data };
-			localStorage.setItem('user', JSON.stringify(newUser));
-			setUser(data);
+			editUser(newUser);
+
 			setUsernameUpdate(false);
 			setImageUpdate(false);
 		});

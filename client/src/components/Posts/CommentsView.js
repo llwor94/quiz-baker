@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Comment from '../Post/Comment';
 import server from '../../utils/server';
-import { UserCtx } from '../../App';
+import { AuthCtx } from '../../Auth';
 import { ProfileIcon } from '../../Styles/Components/Image';
 import { CommentWrapper, PostComment } from '../../Styles/Comments/Comment';
 import { CommentsWrapper, InnerWrapper } from '../../Styles/Posts';
@@ -11,7 +11,7 @@ import quizbaker from '../../assets/quizbaker.png';
 const Comments = ({ currentPost }) => {
 	const [ comments, setComments ] = useState(undefined);
 	const [ showing, setShowing ] = useState(false);
-	const [ user, setUser ] = useContext(UserCtx);
+	const { user } = useContext(AuthCtx);
 	const [ commentInput, setCommentInput ] = useState('');
 	useEffect(
 		() => {

@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { UserCtx } from '../../App';
+import { AuthCtx } from '../../Auth';
 
 import server from '../../utils/server';
 import _ from 'lodash';
@@ -27,7 +27,7 @@ const checkData = debounce(async ({ target }, setError, error) => {
 }, 500);
 
 const RegisterForm = props => {
-	const [ user, setUser ] = useContext(UserCtx);
+	const { login } = useContext(AuthCtx);
 	const [ userInput, setInputValue ] = useState({
 		username: undefined,
 		email: undefined,
@@ -60,9 +60,7 @@ const RegisterForm = props => {
 		server
 			.post('/auth/register', userInput)
 			.then(({ data }) => {
-				localStorage.setItem('user', JSON.stringify(data));
-				server.defaults.headers.common['Authorization'] = data.token;
-				setUser(data.user);
+				login(data);
 			})
 			.catch(err => console.log(err));
 	};

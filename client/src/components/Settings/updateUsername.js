@@ -3,7 +3,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import debounce from 'lodash/debounce';
 import server from '../../utils/server';
 import { Button, SettingsButton } from '../../Styles/Components/Button';
-import { UserCtx } from '../../App';
+import { AuthCtx } from '../../Auth';
 import { Input } from '../../Styles/Components/Input';
 
 import { ProfileButtonWrapper } from '../../Styles/Settings/Sidebar';
@@ -24,7 +24,7 @@ const checkData = debounce(async (username, setError) => {
 
 const UpdateUsername = ({ usernameUpdate, setUsernameUpdate, updateUser }) => {
 	const [ error, setError ] = useState(undefined);
-	const [ user, setUser ] = useContext(UserCtx);
+	const { user } = useContext(AuthCtx);
 	const [ username, setUsername ] = useState(user.username);
 
 	const handleChange = async e => {

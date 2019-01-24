@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import Profile from '../components/Settings/Profile';
 import Loading from '../components/Styles/Loading';
 import { UserQuizzesCtx, UserPostsCtx } from '../pages/Settings';
-import { UserCtx } from '../App';
+import { AuthCtx } from '../Auth';
 
 import { Sidebar } from 'primereact/sidebar';
 import { Button } from 'primereact/button';
@@ -16,7 +16,7 @@ import server from '../utils/server';
 const Settings = props => {
 	const [ userQuizzes, setUserQuizzes ] = useContext(UserQuizzesCtx);
 	const [ userPosts, setUserPosts ] = useContext(UserPostsCtx);
-	const [ user, setUser ] = useContext(UserCtx);
+	const { user } = useContext(AuthCtx);
 	const [ activeTab, setActiveTab ] = useState('quizzes');
 	const [ windowWidth, setWindowWidth ] = useState(window.innerWidth);
 	const [ sidebarShowing, setSidebarShowing ] = useState(false);
@@ -63,10 +63,6 @@ const Settings = props => {
 		},
 		[ user ],
 	);
-	const tabs = [
-		{ label: 'Your Quizzes', command: () => setActiveTab('quizzes') },
-		{ label: 'Your Posts', command: () => setActiveTab('posts') },
-	];
 
 	if (!userQuizzes || !userPosts) return <Loading />;
 	else

@@ -2,12 +2,12 @@ import React, { useState, useEffect, Fragment, useContext } from 'react';
 
 import { openUploadWidget } from '../utils/cloudinary';
 import server from '../utils/server';
-import { UserCtx } from '../App';
+import { AuthCtx } from '../Auth';
 import { HugeImage } from '../Styles/Components/Image';
 import { Button } from '../Styles/Components/Button';
 import { UploadImageWrapper } from '../Styles/Register';
 const UploadImage = ({ doneEditting }) => {
-	const [ user, setUser ] = useContext(UserCtx);
+	const { user, editUser } = useContext(AuthCtx);
 	const [ img_url, setImg ] = useState(null);
 
 	useEffect(
@@ -46,8 +46,7 @@ const UploadImage = ({ doneEditting }) => {
 						.get(`/users/${user.id}`)
 						.then(({ data }) => {
 							let newUser = { ...userData, user: data };
-							localStorage.setItem('user', JSON.stringify(newUser));
-							setUser(data);
+							editUser(newUser);
 						})
 						.then(() => doneEditting());
 				})

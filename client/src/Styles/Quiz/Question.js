@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
 	position: relative;
-	border-radius: 4px;
+	border-radius: 3px;
 	/* border: 1px solid;
 	border-color: ${props => props.theme.accent}; */
 	padding: 12px;

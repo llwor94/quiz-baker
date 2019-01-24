@@ -1,15 +1,13 @@
 import React, { useState, useEffect, useContext, Fragment } from 'react';
-import { UserCtx } from '../App';
+import { AuthCtx } from '../Auth';
 import styled from 'styled-components';
 import { Link, withRouter } from 'react-router-dom';
 import { Transition } from 'react-transition-group';
 import { InputSwitch } from 'primereact/inputswitch';
 import anime from 'animejs';
-import server from '../utils/server';
 
 import quizbaker from '../assets/quizbaker.png';
 import darkModeLogo from '../assets/logo-darkmode.png';
-import logoShadow from '../assets/logoShadow.png';
 
 const Wrapper = styled.div`
 	position: fixed;
@@ -122,20 +120,13 @@ const listenScrollEvent = (setMenuShowing, location) => {
 	}
 };
 const Header = ({ setValue, darkMode, ...props }) => {
-	const [ user, setUser ] = useContext(UserCtx);
+	const { user, logout } = useContext(AuthCtx);
 	const [ menuShowing, setMenuShowing ] = useState(
 		props.history.location.pathname === '/quizzes',
 	);
 
 	useEffect(
 		() => {
-			let data = JSON.parse(localStorage.getItem('user'));
-			console.log(data);
-			if (data) {
-				setUser(data.user);
-				server.defaults.headers.common['Authorization'] = data.token;
-			}
-
 			if (props.history.location.pathname === '/quizzes') {
 				setMenuShowing(true);
 				window.addEventListener('scroll', () =>
@@ -156,13 +147,6 @@ const Header = ({ setValue, darkMode, ...props }) => {
 		},
 		[ props.history.location.pathname ],
 	);
-
-	const logout = () => {
-		delete server.defaults.headers.common['Authorization'];
-		localStorage.removeItem('user');
-		setUser(undefined);
-		props.history.push('/quizzes');
-	};
 
 	return (
 		<Wrapper>
@@ -228,7 +212,13 @@ const Header = ({ setValue, darkMode, ...props }) => {
 									onEnter={animateThirdLinkUp}
 								>
 									<LinkWrapper>
-										<StyledLink as='a' onClick={logout}>
+										<StyledLink
+											as='a'
+											onClick={() => {
+												logout();
+												props.history.push('/quizzes');
+											}}
+										>
 											logout
 										</StyledLink>
 									</LinkWrapper>

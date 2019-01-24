@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
 
 import _ from 'lodash';
-import { UserCtx } from '../App';
-import server from '../utils/server';
+import { AuthCtx } from '../Auth';
+
 import { Wrapper, InputWrap } from '../components/Auth';
 
 const Login = props => {
-	const [ user, setUser ] = useContext(UserCtx);
+	const { user, login } = useContext(AuthCtx);
 	const [ userInput, setValue ] = useState({
 		email: undefined,
 		password: undefined,
@@ -30,14 +30,7 @@ const Login = props => {
 
 	const handleSubmit = e => {
 		e.preventDefault();
-		server
-			.post('/auth/login', userInput)
-			.then(({ data }) => {
-				localStorage.setItem('user', JSON.stringify(data));
-				server.defaults.headers.common['Authorization'] = data.token;
-				setUser(data.user);
-			})
-			.catch(err => setError('Your email or password is incorrect'));
+		login(userInput);
 	};
 
 	return (

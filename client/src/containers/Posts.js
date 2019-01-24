@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { PostsCtx } from '../pages/Forum';
-import { UserCtx } from '../App';
+import { AuthCtx } from '../Auth';
 import { Wrapper } from '../Styles/Posts';
 import server from '../utils/server';
 import Loading from '../components/Styles/Loading';
@@ -10,7 +10,7 @@ import Post from '../components/Posts/Post';
 
 const Posts = props => {
 	const [ posts, setPosts ] = useContext(PostsCtx);
-	const [ user, setUser ] = useContext(UserCtx);
+	const { user } = useContext(AuthCtx);
 	const [ currentPost, setCurrentPost ] = useState(undefined);
 	useEffect(() => {
 		server
