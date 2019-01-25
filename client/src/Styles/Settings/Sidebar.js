@@ -9,6 +9,15 @@ export const ProfileWrapper = styled.div`
 		font-size: 18px;
 		line-height: 25px;
 	}
+
+	.tab {
+		font-size: 26px;
+		span {
+			text-align: right;
+			font-family: "Merienda One", cursive;
+			color: ${props => props.theme.accentText};
+		}
+	}
 `;
 
 export const ProfileButtonWrapper = styled.div`

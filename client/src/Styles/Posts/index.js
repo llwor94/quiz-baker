@@ -5,6 +5,26 @@ export const Wrapper = styled.div`
 	display: flex;
 	margin: 70px 0;
 	justify-content: stretch;
+	@media (max-width: 1200px) {
+		justify-content: center;
+	}
+
+	.post-wrapper {
+		max-width: 500px;
+		flex-grow: 1;
+		flex-direction: column;
+		margin-top: 40px;
+		align-items: center;
+		@media (max-width: 1200px) {
+			margin-left: 25px;
+		}
+		@media (max-width: 1000px) {
+			margin-left: 0;
+		}
+		@media (max-width: 500px) {
+			width: 100%;
+		}
+	}
 `;
 export const CommentsWrapper = styled.div`
 	flex-grow: 1;

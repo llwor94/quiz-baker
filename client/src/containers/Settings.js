@@ -10,7 +10,7 @@ import Quizzes from '../components/Settings/Quizzes';
 import Posts from '../components/Settings/Posts';
 import { SettingsWrapper, Menu, NewMenu } from '../Styles/Settings/';
 import rollingPinIcon from '../assets/rolling-pin.svg';
-
+import MediaQuery from 'react-responsive';
 import server from '../utils/server';
 
 const Settings = props => {
@@ -92,7 +92,9 @@ const Settings = props => {
 							marginBottom: '100px',
 						}}
 					>
-						<NewMenu activeTab={activeTab} setActiveTab={setActiveTab} />
+						<MediaQuery minWidth={800}>
+							<NewMenu activeTab={activeTab} setActiveTab={setActiveTab} />
+						</MediaQuery>
 						<img className='rollingPin' src={rollingPinIcon} />
 					</div>
 					{activeTab === 'quizzes' ? (

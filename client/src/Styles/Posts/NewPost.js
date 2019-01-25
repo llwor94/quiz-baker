@@ -10,6 +10,8 @@ export const NewPostWrapper = styled.div`
 		display: flex;
 		flex-direction: column;
 		width: 500px;
+		
+	
 		position: relative;
 		.p-autocomplete .p-autocomplete-panel {
 			width: 160px;

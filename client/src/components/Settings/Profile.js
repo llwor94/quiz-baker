@@ -15,6 +15,7 @@ import anime from 'animejs';
 
 import UpdateImage from './UpdateImage';
 import UpdateUsername from './updateUsername';
+import MediaQuery from 'react-responsive';
 
 // const animateButtonsOut = buttons =>
 // 	anime({ targets: buttons, visibilty: 'hidden', translateX: 0 });
@@ -76,6 +77,14 @@ const Profile = () => {
 
 	return (
 		<ProfileWrapper>
+			<MediaQuery maxWidth={800}>
+				<a className='tab'>
+					<span>Your Quizzes</span>
+				</a>
+				<a className='tab'>
+					<span>Your Posts</span>
+				</a>
+			</MediaQuery>
 			<LargeImage src={user.img_url} />
 
 			<h4>{user.username}</h4>

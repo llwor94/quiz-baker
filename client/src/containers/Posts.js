@@ -8,6 +8,7 @@ import CommentsView from '../components/Posts/CommentsView';
 import NewPost from '../components/Posts/NewPost';
 import Post from '../components/Posts/Post';
 import Topics from '../components/Posts/Topics';
+import MediaQuery from 'react-responsive';
 
 const Posts = props => {
 	const [ posts, setPosts ] = useContext(PostsCtx);
@@ -34,19 +35,13 @@ const Posts = props => {
 	else
 		return (
 			<Wrapper>
-				<div style={{ width: '25%' }}>
-					<Topics />
-				</div>
-				<div
-					style={{
-						maxWidth: '500px',
-						flexGrow: 1,
-						flexDirection: 'column',
-						marginTop: '40px',
-						alignItems: 'center',
-					}}
-					onMouseLeave={e => console.log(e.target)}
-				>
+				<MediaQuery minWidth={1200}>
+					<div style={{ width: '20%' }}>
+						<Topics />
+					</div>
+				</MediaQuery>
+
+				<div className='post-wrapper' onMouseLeave={e => console.log(e.target)}>
 					<div className='new-post'>{user && <NewPost />}</div>
 					{posts.map(post => (
 						<Post
@@ -58,8 +53,9 @@ const Posts = props => {
 						/>
 					))}
 				</div>
-
-				<CommentsView currentPost={currentPost} />
+				<MediaQuery minWidth={1000}>
+					<CommentsView currentPost={currentPost} />
+				</MediaQuery>
 			</Wrapper>
 		);
 };

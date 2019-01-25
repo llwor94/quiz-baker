@@ -39,6 +39,10 @@ export const Wrapper = styled.div`
 	&:hover {
 		border-color: ${props => props.theme.pink};
 	}
+
+	@media (max-width: 450px) {
+		width: 100%;
+	}
 `;
 
 export const HatWrapper = styled.img`

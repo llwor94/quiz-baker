@@ -7,16 +7,26 @@ import { Input, TextArea, EmojiTextArea } from '../../Styles/Components/Input';
 import server from '../../utils/server';
 import { QuizPostCtx } from '../../containers/Quiz';
 import { StyledAutoComplete } from '../../Styles/Components/Autocomplete';
+import { Transition } from 'react-transition-group';
+import anime from 'animejs';
 
-const Wrapper = ({ userPage, children }) => {
+const Wrapper = ({ userPage, children, styles }) => {
 	if (userPage)
 		return (
 			<ModalWrapper>
 				<div className='modal'>{children}</div>
 			</ModalWrapper>
 		);
-	else return <div className='inner'>{children}</div>;
+	else
+		return (
+			<div className='inner' styles={styles}>
+				{children}
+			</div>
+		);
 };
+
+// const animatePostFormUp = form => anime({ targets: form, translateY: -250, opacity: 0 });
+// const animatePostFormDown = form => anime({ targets: form, translateY: 0, opacity: 1 });
 
 const NewPost = ({ userPage, quiz }) => {
 	const [ posts, setPosts ] = useContext(PostsCtx);
@@ -108,56 +118,64 @@ const NewPost = ({ userPage, quiz }) => {
 			})
 			.catch(error => console.log(error));
 	};
+	const transitionStyles = {
+		entering: { opacity: 0, transform: 'translateY(-250px)' },
+		entered: { opacity: 1, transform: 'translateY(0)' },
+	};
 
 	return (
 		<NewPostWrapper>
 			{newPost ? (
-				<Wrapper>
-					{!quiz && (
-						<StyledAutoComplete
-							value={topic}
-							suggestions={searchTopics}
-							completeMethod={filterTopics}
-							placeholder='Topics'
-							minLength={1}
-							name='topic'
-							field='name'
-							onSelect={handleSelect}
-							dropdown={true}
-						/>
+				<Transition in={newPost} appear timeout={400}>
+					{state => (
+						<Wrapper style={transitionStyles[state]}>
+							{!quiz && (
+								<StyledAutoComplete
+									value={topic}
+									suggestions={searchTopics}
+									completeMethod={filterTopics}
+									placeholder='Topics'
+									minLength={1}
+									name='topic'
+									field='name'
+									onSelect={handleSelect}
+									dropdown={true}
+								/>
+							)}
+							<Button
+								style={{
+									position: 'absolute',
+									top: quiz ? '5px' : '0px',
+									right: quiz ? '5px' : '0px',
+								}}
+								icon='pi pi-times'
+								white
+								onClick={() => setNewPost(false)}
+							/>
+
+							<InnerWrapper userPage={userPage}>
+								<Input
+									inputRef={input}
+									value={post.title}
+									onChange={e => setPost({ ...post, title: e.target.value })}
+									label='Title'
+								/>
+
+								<EmojiTextArea
+									handleSelect={handleEmojiSelect}
+									value={post.body}
+									onChange={e => setPost({ ...post, body: e.target.value })}
+								/>
+
+								<Button
+									label='Submit'
+									disabled={!post.title || !post.body || (!quiz && !topic)}
+									onClick={addPost}
+								/>
+							</InnerWrapper>
+						</Wrapper>
 					)}
-					<Button
-						style={{
-							position: 'absolute',
-							top: quiz ? '5px' : '0px',
-							right: quiz ? '5px' : '0px',
-						}}
-						icon='pi pi-times'
-						white
-						onClick={() => setNewPost(false)}
-					/>
-
-					<InnerWrapper userPage={userPage}>
-						<Input
-							inputRef={input}
-							value={post.title}
-							onChange={e => setPost({ ...post, title: e.target.value })}
-							label='Title'
-						/>
-
-						<EmojiTextArea
-							handleSelect={handleEmojiSelect}
-							value={post.body}
-							onChange={e => setPost({ ...post, body: e.target.value })}
-						/>
-
-						<Button
-							label='Submit'
-							disabled={!post.title || !post.body || (!quiz && !topic)}
-							onClick={addPost}
-						/>
-					</InnerWrapper>
-				</Wrapper>
+				</Transition>
 			) : (
 				<Fragment>
 					<div />
