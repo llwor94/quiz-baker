@@ -28,7 +28,7 @@ import MediaQuery from 'react-responsive';
 // 	exited: { visibility: 'visible' },
 // };
 
-const Profile = () => {
+const Profile = ({ activeTab, setActiveTab }) => {
 	const [ imageUpdate, setImageUpdate ] = useState(false);
 	const [ usernameUpdate, setUsernameUpdate ] = useState(false);
 	const [ img_url, setImg ] = useState(null);
@@ -78,10 +78,10 @@ const Profile = () => {
 	return (
 		<ProfileWrapper>
 			<MediaQuery maxWidth={800}>
-				<a className='tab'>
+				<a className='tab' onClick={() => setActiveTab('quizzes')}>
 					<span>Your Quizzes</span>
 				</a>
-				<a className='tab'>
+				<a className='tab' onClick={() => setActiveTab('posts')}>
 					<span>Your Posts</span>
 				</a>
 			</MediaQuery>

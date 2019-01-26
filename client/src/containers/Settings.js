@@ -81,21 +81,15 @@ const Settings = props => {
 						modal={false}
 						showCloseIcon={windowWidth < 1500}
 					>
-						<Profile />
+						<Profile setActiveTab={setActiveTab} activeTab={activeTab} />
 					</Sidebar>
-					<div
-						style={{
-							display: 'flex',
-							flexDirection: 'column',
-							justifyContent: 'center',
-							position: 'relative',
-							marginBottom: '100px',
-						}}
-					>
+					<div className='inner'>
 						<MediaQuery minWidth={800}>
 							<NewMenu activeTab={activeTab} setActiveTab={setActiveTab} />
 						</MediaQuery>
-						<img className='rollingPin' src={rollingPinIcon} />
+						<MediaQuery minWidth={950}>
+							<img className='rollingPin' src={rollingPinIcon} />
+						</MediaQuery>
 					</div>
 					{activeTab === 'quizzes' ? (
 						<Quizzes {...props} />

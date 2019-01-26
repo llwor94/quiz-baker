@@ -24,4 +24,7 @@ export const Wrapper = styled.div`
 		justify-content: center;
 		align-items: center;
 	}
+	@media (max-width: 915px) {
+		margin-top: 90px;
+	}
 `;
