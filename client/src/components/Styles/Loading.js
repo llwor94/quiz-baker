@@ -11,6 +11,7 @@ const Wrapper = styled.div`
 `;
 
 const StyledLoading = styled.div`
+	margin-top: 200px;
 	width: 100px;
 	height: 100px;
 	animation: lds-hourglass 3.7s infinite;

@@ -13,8 +13,6 @@ export const ModalWrapper = styled.div`
 	justify-content: center;
 	align-items: center;
 	overflow: hidden;
-
-	
 `;
 export const Wrapper = styled.div`
 	border-radius: 4px;
@@ -38,7 +36,7 @@ export const Wrapper = styled.div`
 	align-items: ${props => props.edit || (props.secondary && 'center')};
 	/* width: ${props => props.secondary && '500px'}; */
 	width: 60%;
-	height: 50%;
+	max-width: 760px;
 	min-height: 400px;
 	padding: 40px;
 	.p-ampm-picker {
@@ -47,7 +45,7 @@ export const Wrapper = styled.div`
 	img{
 		/* width: 40%;
 		height: 40%; */
-		max-height: 400px;
+		width: 300px;
 	}
 
 	button {
@@ -56,11 +54,13 @@ export const Wrapper = styled.div`
 	
 	textarea{
 		height: 150px;
+		margin-bottom: 0;
 	}
 `;
 
 export const InnerWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
-	padding: 10px;
+	padding: 20px 10px 10px;
+	padding-left: 0;
 `;

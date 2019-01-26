@@ -123,6 +123,7 @@ const CreatePost = () => {
 								label='Bake Post!'
 								disabled={!post.title || !post.body || !topic}
 								onClick={addPost}
+								full
 							/>
 						</InnerWrapper>
 					</div>

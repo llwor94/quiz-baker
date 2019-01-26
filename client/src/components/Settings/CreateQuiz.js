@@ -2,7 +2,7 @@ import React, { useState, useContext, Fragment } from 'react';
 import { withRouter } from 'react-router-dom';
 import server from '../../utils/server';
 import _ from 'lodash';
-import { Calendar } from 'primereact/calendar';
+
 import { Button } from '../../Styles/Components/Button';
 import { Wrapper, InnerWrapper, ModalWrapper } from '../../Styles/Settings/CreateQuiz';
 import QuizForm from './QuizForm';
@@ -12,12 +12,20 @@ import { UserQuizzesCtx } from '../../pages/Settings';
 
 const CreateQuiz = props => {
 	const [ newQuiz, setNewQuiz ] = useState(false);
-	const [ quiz, setQuiz ] = useState({ title: '', description: '', topic: '' });
+	const [ quiz, setQuiz ] = useState({
+		title: '',
+		description: '',
+		topic: '',
+		time_limit_seconds: null,
+	});
 	const [ userQuizzes, setUserQuizzes ] = useContext(UserQuizzesCtx);
 
 	const [ timeLimit, setTimeLimit ] = useState(undefined);
 
 	const handleCreateQuiz = () => {
+		if (quiz.time_limit_seconds) {
+			quiz.time_limit_seconds = quiz.time_limit_seconds * 60;
+		}
 		server
 			.post('/quizzes', quiz)
 			.then(({ data }) => {

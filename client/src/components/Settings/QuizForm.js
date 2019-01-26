@@ -1,5 +1,5 @@
 import React, { useEffect, useState, Fragment } from 'react';
-
+import { Spinner } from 'primereact/spinner';
 import server from '../../utils/server';
 import { Input, TextArea } from '../../Styles/Components/Input';
 import { StyledAutoComplete } from '../../Styles/Components/Autocomplete';
@@ -18,14 +18,16 @@ const QuizForm = ({ quiz, setQuiz, ...props }) => {
 
 	const handleChange = e => {
 		let value;
+		console.log(e);
 		if (e.target.value.name) {
 			value = e.target.value.name;
 		} else {
 			value = e.target.value;
 		}
+
 		setQuiz({ ...quiz, [e.target.name]: value });
 	};
-
+	console.log(quiz);
 	const filterTopics = e => {
 		setTimeout(() => {
 			let results;
@@ -47,6 +49,15 @@ const QuizForm = ({ quiz, setQuiz, ...props }) => {
 				<div>
 					<p>Title:</p>
 					<Input name='title' value={quiz.title} onChange={handleChange} />
+					<p>Time Limit (optional):</p>
+					<Spinner
+						name='time_limit_seconds'
+						value={quiz.time_limit_seconds}
+						step={0.25}
+						onChange={handleChange}
+						tooltip='in minutes'
+						tooltipOptions={{ position: 'bottom' }}
+					/>
 					<p style={{ marginBottom: '10px' }}>Topic:</p>
 					<StyledAutoComplete
 						value={quiz.topic}
