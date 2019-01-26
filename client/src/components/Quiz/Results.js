@@ -104,6 +104,43 @@ const Results = () => {
         {user && (
           <Fragment>
             <div className="vert">
+              <div className="vote" style={{ textAlign: "center" }}>
+                <i
+                  className="pi pi-chevron-up"
+                  style={{
+                    color:
+                      quiz.user_vote === 1
+                        ? "#DC758F"
+                        : !user
+                        ? "gray"
+                        : "black"
+                  }}
+                  onClick={() => handleVote(1)}
+                />
+                <p
+                  style={{
+                    color: quiz.user_vote
+                      ? quiz.user_vote === 1
+                        ? "#DC758F"
+                        : "#E3D3E4"
+                      : "black"
+                  }}
+                >
+                  {quiz.votes}
+                </p>
+                <i
+                  className="pi pi-chevron-down"
+                  style={{
+                    color:
+                      quiz.user_vote === -1
+                        ? "#E3D3E4"
+                        : !user
+                        ? "gray"
+                        : "black"
+                  }}
+                  onClick={() => handleVote(-1)}
+                />{" "}
+              </div>
               <i className="pi pi-share-alt" onClick={handleCopy} />
               <span>Share</span>
               <FontAwesomeIcon
@@ -114,35 +151,6 @@ const Results = () => {
                 onClick={handleFavoriteToggle}
               />
               <span>Favorite</span>
-            </div>
-            <div style={{textAlign: 'center'}}>
-              <i
-                className="pi pi-chevron-up"
-                style={{
-                  color:
-                    quiz.user_vote === 1 ? "#DC758F" : !user ? "gray" : "black"
-                }}
-                onClick={() => handleVote(1)}
-              />
-              <p
-                style={{
-                  color: quiz.user_vote
-                    ? quiz.user_vote === 1
-                      ? "#DC758F"
-                      : "#E3D3E4"
-                    : "black"
-                }}
-              >
-                {quiz.votes}
-              </p>
-              <i
-                className="pi pi-chevron-down"
-                style={{
-                  color:
-                    quiz.user_vote === -1 ? "#E3D3E4" : !user ? "gray" : "black"
-                }}
-                onClick={() => handleVote(-1)}
-              />{" "}
             </div>
           </Fragment>
         )}

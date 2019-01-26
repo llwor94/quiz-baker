@@ -82,7 +82,11 @@ export const FooterWrapper = styled.div`
     span {
       margin: auto;
       text-align: center;
-      margin: 0 10px;
+      margin: 0 10px 0 0;
     }
+  }
+
+  .vote{
+	  margin-right: 15px;
   }
 `;
