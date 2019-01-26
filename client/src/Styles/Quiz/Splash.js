@@ -23,6 +23,17 @@ export const SplashWrapper = styled.div`
 			flex-grow: 1;
 		}
 	}
+	.back-btn {
+		position: absolute;
+		top: 2px;
+		right: 527px;
+		width: 35px;
+	}
+
+	@media (max-width: 505px) {
+		width: 90%;
+		margin: 0 5px;
+	}
 `;
 
 export const SplashTitle = styled.div`

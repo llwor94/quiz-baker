@@ -96,8 +96,8 @@ const Question = () => {
 	};
 
 	return (
-		<div style={{ width: '500px' }}>
-			<Wrapper>
+		<Wrapper>
+			<div className='inner'>
 				<div className='wrapper'>
 					<QuestionWrapper>{question.question}</QuestionWrapper>
 
@@ -128,7 +128,7 @@ const Question = () => {
 					<span className='Q'>Q</span>
 					<span className='B'>B</span>
 				</Logo>
-			</Wrapper>
+			</div>
 
 			<Button
 				onClick={checkAnswer}
@@ -137,7 +137,7 @@ const Question = () => {
 				full
 				style={{ margin: '20px 0 10px' }}
 			/>
-		</div>
+		</Wrapper>
 	);
 };
 

@@ -48,7 +48,7 @@ export const Button = ({ label, onClick, disabled, icon, style, full, secondary,
 
 const animateButtonOut = button => anime({ targets: button, width: 125 });
 const animateButtonIn = button => anime({ targets: button, width: 35 });
-export const BackButton = ({ onClick, style }) => {
+export const BackButton = ({ onClick, style, className }) => {
 	const [ hovered, setHovered ] = useState(false);
 	const [ entered, setEntered ] = useState(false);
 
@@ -64,6 +64,7 @@ export const BackButton = ({ onClick, style }) => {
 			<StyledButtonWrapper
 				secondary
 				style={style}
+				className={className}
 				onMouseEnter={() => setHovered(true)}
 				onMouseLeave={() => setHovered(false)}
 			>
