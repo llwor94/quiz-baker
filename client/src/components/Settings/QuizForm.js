@@ -4,6 +4,7 @@ import server from '../../utils/server';
 import { Input, TextArea } from '../../Styles/Components/Input';
 import { StyledAutoComplete } from '../../Styles/Components/Autocomplete';
 import { QuizFormWrapper } from '../../Styles/Settings/QuizForm';
+import converter from '../../utils/timeConvert';
 
 const QuizForm = ({ quiz, setQuiz, ...props }) => {
 	const [ topics, setTopics ] = useState(undefined);
@@ -27,7 +28,7 @@ const QuizForm = ({ quiz, setQuiz, ...props }) => {
 
 		setQuiz({ ...quiz, [e.target.name]: value });
 	};
-	console.log(quiz);
+
 	const filterTopics = e => {
 		setTimeout(() => {
 			let results;
@@ -52,7 +53,7 @@ const QuizForm = ({ quiz, setQuiz, ...props }) => {
 					<p>Time Limit (optional):</p>
 					<Spinner
 						name='time_limit_seconds'
-						value={quiz.time_limit_seconds}
+						value={quiz.time_limit_seconds ? `${quiz.time_limit_seconds} minutes` : ''}
 						step={0.25}
 						onChange={handleChange}
 						tooltip='in minutes'

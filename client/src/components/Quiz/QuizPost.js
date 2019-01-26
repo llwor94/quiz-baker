@@ -15,12 +15,30 @@ import {
 } from '../../Styles/Posts/Post';
 import { ProfileIcon } from '../../Styles/Components/Image';
 import PostComments from './PostComments';
+import anime from 'animejs';
 
 const Post = ({ post }) => {
 	const [ showingComments, setShowingComments ] = useState(false);
 	const { user } = useContext(AuthCtx);
 	const [ quizPosts, setQuizPosts ] = useContext(QuizPostCtx);
 	console.log(post);
+
+	const handleComments = () => {
+		if (showingComments) {
+			anime({
+				targets: '.comments',
+
+				opacity: [ 1, 0 ],
+				height: [ '100%', 0 ],
+				duration: 1000,
+				complete: function() {
+					setShowingComments(false);
+				},
+			});
+		} else {
+			setShowingComments(true);
+		}
+	};
 
 	const handleVote = val => {
 		console.log(post.user_vote, val);
@@ -84,7 +102,7 @@ const Post = ({ post }) => {
 								onClick={() => handleVote(-1)}
 							/>
 						</LeftSide>
-						<div>
+						<div style={{ flexGrow: 1 }}>
 							<BodyWrapper quiz>
 								<Title>{post.title}</Title>
 
@@ -94,7 +112,7 @@ const Post = ({ post }) => {
 							<FooterWrapper>
 								<CommentCount
 									style={{ cursor: 'pointer' }}
-									onClick={() => setShowingComments(!showingComments)}
+									onClick={handleComments}
 								>
 									{post.comment_count === 1 ? (
 										'1 comment'
@@ -106,7 +124,7 @@ const Post = ({ post }) => {
 									className={
 										showingComments ? 'pi pi-angle-down' : 'pi pi-angle-left'
 									}
-									onClick={() => setShowingComments(!showingComments)}
+									onClick={handleComments}
 								/>
 							</FooterWrapper>
 						</div>

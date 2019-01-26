@@ -185,7 +185,13 @@ export const FooterWrapper = styled.div`
 			height: 60px;
 			width: 60px;
 			cursor: pointer;
-			transform: scaleX(-1) ${props => (props.isCollapsed ? `rotate(-15deg)` : `rotate(0deg)`)};
+			transform: scaleX(-1)
+				${props => (props.isCollapsed ? `rotate(-15deg)` : `rotate(0deg)`)};
+		}
+	}
+	.cookie {
+		&:hover {
+			color: #875818;
 		}
 	}
 `;

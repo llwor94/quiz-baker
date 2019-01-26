@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext, Fragment } from 'react';
 import { AuthCtx } from '../Auth';
 import styled from 'styled-components';
+import MediaQuery from 'react-responsive';
 import { Link, withRouter } from 'react-router-dom';
 import { Transition } from 'react-transition-group';
 import { InputSwitch } from 'primereact/inputswitch';
@@ -156,114 +157,124 @@ const Header = ({ setValue, darkMode, ...props }) => {
 						Quiz <span> Baker</span>
 					</StyledHeader>
 				</LeftHeader>
-
-				<Transition
-					in={menuShowing}
-					appear
-					onExit={animateMenuDown}
-					onEnter={animateMenuUp}
-				>
-					<InnerWrapper menu={menuShowing}>
-						<div style={{ marginRight: '40px', display: 'flex', alignItems: 'center' }}>
+				<MediaQuery minWidth={915}>
+					<Transition
+						in={menuShowing}
+						appear
+						onExit={animateMenuDown}
+						onEnter={animateMenuUp}
+					>
+						<InnerWrapper menu={menuShowing}>
+							<div
+								style={{
+									marginRight: '40px',
+									display: 'flex',
+									alignItems: 'center',
+								}}
+							>
+								<Transition
+									in={menuShowing}
+									appear
+									onExit={animateLinkDown}
+									onEnter={animateLinkUp}
+								>
+									<LinkWrapper>
+										<StyledLink to='/quizzes'>Quizzes</StyledLink>
+									</LinkWrapper>
+								</Transition>
+								<LinkWrapper>
+									<StyledLink to='/forum'>Forum</StyledLink>
+								</LinkWrapper>
+							</div>
 							<Transition
 								in={menuShowing}
 								appear
-								onExit={animateLinkDown}
-								onEnter={animateLinkUp}
+								onExit={animateLogoDown}
+								onEnter={animateLogoUp}
 							>
-								<LinkWrapper>
-									<StyledLink to='/quizzes'>Quizzes</StyledLink>
-								</LinkWrapper>
+								<Logo dark={darkMode} src={darkMode ? darkModeLogo : quizbaker} />
 							</Transition>
-							<LinkWrapper>
-								<StyledLink to='/forum'>Forum</StyledLink>
-							</LinkWrapper>
-						</div>
-						<Transition
-							in={menuShowing}
-							appear
-							onExit={animateLogoDown}
-							onEnter={animateLogoUp}
-						>
-							<Logo dark={darkMode} src={darkMode ? darkModeLogo : quizbaker} />
-						</Transition>
-						{user ? (
-							<div
-								style={{
-									marginLeft: '40px',
-									display: 'flex',
-									alignItems: 'center',
-								}}
-							>
-								<Transition
-									in={menuShowing}
-									appear
-									onExit={animateSecondLinkDown}
-									onEnter={animateSecondLinkUp}
+							{user ? (
+								<div
+									style={{
+										marginLeft: '40px',
+										display: 'flex',
+										alignItems: 'center',
+									}}
 								>
-									<LinkWrapper>
-										<StyledLink to='/user/settings'>{user.username}</StyledLink>
-									</LinkWrapper>
-								</Transition>
-								<Transition
-									in={menuShowing}
-									appear
-									onExit={animateThirdLinkDown}
-									onEnter={animateThirdLinkUp}
+									<Transition
+										in={menuShowing}
+										appear
+										onExit={animateSecondLinkDown}
+										onEnter={animateSecondLinkUp}
+									>
+										<LinkWrapper>
+											<StyledLink to='/user/settings'>
+												{user.username}
+											</StyledLink>
+										</LinkWrapper>
+									</Transition>
+									<Transition
+										in={menuShowing}
+										appear
+										onExit={animateThirdLinkDown}
+										onEnter={animateThirdLinkUp}
+									>
+										<LinkWrapper>
+											<StyledLink
+												as='a'
+												onClick={() => {
+													logout();
+													props.history.push('/quizzes');
+												}}
+											>
+												logout
+											</StyledLink>
+										</LinkWrapper>
+									</Transition>
+								</div>
+							) : (
+								<div
+									style={{
+										marginLeft: '40px',
+										display: 'flex',
+										alignItems: 'center',
+									}}
 								>
-									<LinkWrapper>
-										<StyledLink
-											as='a'
-											onClick={() => {
-												logout();
-												props.history.push('/quizzes');
-											}}
-										>
-											logout
-										</StyledLink>
-									</LinkWrapper>
-								</Transition>
-							</div>
-						) : (
-							<div
-								style={{
-									marginLeft: '40px',
-									display: 'flex',
-									alignItems: 'center',
-								}}
-							>
-								<Transition
-									in={menuShowing}
-									appear
-									onExit={animateSecondLinkDown}
-									onEnter={animateSecondLinkUp}
-								>
-									<LinkWrapper>
-										<StyledLink to='/login'>Log In</StyledLink>
-									</LinkWrapper>
-								</Transition>
-								<Transition
-									in={menuShowing}
-									appear
-									onExit={animateThirdLinkDown}
-									onEnter={animateThirdLinkUp}
-								>
-									<LinkWrapper>
-										{' '}
-										<StyledLink to='/register'>Sign Up</StyledLink>
-									</LinkWrapper>
-								</Transition>
-							</div>
-						)}
-					</InnerWrapper>
-				</Transition>
-				<InputSwitch
-					style={{ marginRight: '20px' }}
-					onLabel='Dark Mode'
-					offLabel='Light Mode'
-					checked={darkMode}
-					onChange={e => setValue(e.value)}
-				/>
+									<Transition
+										in={menuShowing}
+										appear
+										onExit={animateSecondLinkDown}
+										onEnter={animateSecondLinkUp}
+									>
+										<LinkWrapper>
+											<StyledLink to='/login'>Log In</StyledLink>
+										</LinkWrapper>
+									</Transition>
+									<Transition
+										in={menuShowing}
+										appear
+										onExit={animateThirdLinkDown}
+										onEnter={animateThirdLinkUp}
+									>
+										<LinkWrapper>
+											{' '}
+											<StyledLink to='/register'>Sign Up</StyledLink>
+										</LinkWrapper>
+									</Transition>
+								</div>
+							)}
+						</InnerWrapper>
+					</Transition>
+
+					<InputSwitch
+						style={{ marginRight: '20px' }}
+						onLabel='Dark Mode'
+						offLabel='Light Mode'
+						checked={darkMode}
+						onChange={e => setValue(e.value)}
+					/>
+				</MediaQuery>
 			</HeaderWrapper>
 		</Wrapper>
 	);
