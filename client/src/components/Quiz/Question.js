@@ -33,9 +33,9 @@ const Question = () => {
 	const [ selected, setSelected ] = useState(null);
 	const [ checking, setChecking ] = useState(false);
 
-	useEffect(() => {
-		anime({ targets: '.wrapper', opacity: 1, duration: 3000 });
-	}, []);
+	// useEffect(() => {
+	// 	anime({ targets: '.wrapper', opacity: 1, duration: 3000 });
+	// }, []);
 
 	useEffect(
 		() => {
@@ -43,8 +43,8 @@ const Question = () => {
 				anime({
 					targets: '.wrapper',
 					opacity: 0,
-					duration: 2000,
-					changeComplete: function() {
+					duration: 1500,
+					complete: function(anim) {
 						setQuestion(quiz.questions[currentQuestion]);
 					},
 				});
