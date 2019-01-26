@@ -5,6 +5,8 @@ import MediaQuery from 'react-responsive';
 import { Link, withRouter } from 'react-router-dom';
 import { Transition } from 'react-transition-group';
 import { InputSwitch } from 'primereact/inputswitch';
+import { Sidebar } from 'primereact/sidebar';
+import { Button } from 'primereact/button';
 import anime from 'animejs';
 
 import quizbaker from '../assets/quizbaker.png';
@@ -16,6 +18,31 @@ const Wrapper = styled.div`
 	z-index: 100;
 	display: flex;
 	align-items: center;
+
+	.sidebarButton {
+		background: ${props => props.theme.pink};
+		border-color: ${props => props.theme.pink};
+	}
+	.p-button:enabled:hover {
+		background: ${props => props.theme.darkPink};
+		border-color: ${props => props.theme.darkPink};
+	}
+	.sidebar {
+		top: 49px;
+		width: 130px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		height: auto;
+		right: 10px;
+		transform: translateX(110%);
+	}
+	.sidebar.p-sidebar-active {
+		transform: translateX(0);
+	}
+	.p-sidebar .p-sidebar-close {
+		display: none;
+	}
 `;
 
 const HeaderWrapper = styled.div`
@@ -125,6 +152,7 @@ const Header = ({ setValue, darkMode, ...props }) => {
 	const [ menuShowing, setMenuShowing ] = useState(
 		props.history.location.pathname === '/quizzes',
 	);
+	const [ sidebarShowing, setSidebarShowing ] = useState(false);
 
 	useEffect(
 		() => {
@@ -274,6 +302,43 @@ const Header = ({ setValue, darkMode, ...props }) => {
 						checked={darkMode}
 						onChange={e => setValue(e.value)}
 					/>
+				</MediaQuery>
+				<MediaQuery maxWidth={915}>
+					<Button
+						className='sidebarButton'
+						icon={sidebarShowing ? 'pi pi-times' : 'pi pi-bars'}
+						onClick={() => setSidebarShowing(!sidebarShowing)}
+					/>
+					<Sidebar
+						visible={sidebarShowing}
+						position='right'
+						className='sidebar'
+						onHide={() => setSidebarShowing(false)}
+						modal={false}
+					>
+						<Logo dark={darkMode} src={darkMode ? darkModeLogo : quizbaker} />
+						<StyledLink to='/quizzes'>Quizzes</StyledLink>
+						<StyledLink to='/forum'>Forum</StyledLink>
+						{user ? (
+							<Fragment>
+								<StyledLink to='/user/settings'>{user.username}</StyledLink>
+								<StyledLink
+									as='a'
+									onClick={() => {
+										logout();
+										props.history.push('/quizzes');
+									}}
+								>
+									logout
+								</StyledLink>{' '}
+							</Fragment>
+						) : (
+							<Fragment>
+								<StyledLink to='/login'>Log In</StyledLink>
+								<StyledLink to='/register'>Sign Up</StyledLink>
+							</Fragment>
+						)}
+					</Sidebar>
 				</MediaQuery>
 			</HeaderWrapper>
 		</Wrapper>
