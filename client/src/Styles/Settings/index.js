@@ -52,6 +52,8 @@ export const SettingsWrapper = styled.div`
 	}
 	.p-sidebar {
 		padding: 20px 14px;
+		background-color: ${props => props.theme.secondary};
+		border-color: ${props => props.theme.secondary};
 	}
 	.p-sidebar-left {
 		top: 56px;
