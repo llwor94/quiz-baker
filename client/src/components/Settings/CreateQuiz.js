@@ -16,7 +16,6 @@ const CreateQuiz = props => {
 		title: '',
 		description: '',
 		topic: '',
-		time_limit_seconds: null,
 	});
 	const [ userQuizzes, setUserQuizzes ] = useContext(UserQuizzesCtx);
 
@@ -26,6 +25,7 @@ const CreateQuiz = props => {
 		if (quiz.time_limit_seconds) {
 			quiz.time_limit_seconds = quiz.time_limit_seconds * 60;
 		}
+		console.log(quiz);
 		server
 			.post('/quizzes', quiz)
 			.then(({ data }) => {
