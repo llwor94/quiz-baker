@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Fragment, useContext } from 'react';
+import React, { useEffect, useState, Fragment, useContext, useRef } from 'react';
 import server from '../../utils/server';
 import _ from 'lodash';
 import { Growl } from 'primereact/growl';
@@ -17,6 +17,13 @@ import {
 	Logo,
 } from '../../Styles/Quiz/Question';
 import Timer from '../../Styles/Components/Timer';
+import anime from 'animejs';
+import { Transition } from 'react-transition-group';
+
+const fadingInStart = question => anime({ targets: question, opacity: 0 });
+const fadingIn = question => anime({ targets: question, opacity: 0.5 });
+const fadedIn = question => anime({ targets: question, opacity: 1 });
+const fadingOut = question => anime({ targets: question, opacity: 0.5 });
 
 const Question = () => {
 	const [ quiz, setQuiz ] = useContext(QuizCtx);
@@ -26,13 +33,31 @@ const Question = () => {
 	const [ selected, setSelected ] = useState(null);
 	const [ checking, setChecking ] = useState(false);
 
+	useEffect(() => {
+		anime({ targets: '.wrapper', opacity: 1, duration: 3000 });
+	}, []);
+
 	useEffect(
 		() => {
 			if (currentQuestion) {
-				setQuestion(quiz.questions[currentQuestion]);
+				anime({
+					targets: '.wrapper',
+					opacity: 0,
+					duration: 2000,
+					changeComplete: function() {
+						setQuestion(quiz.questions[currentQuestion]);
+					},
+				});
 			}
 		},
 		[ currentQuestion ],
+	);
+
+	useEffect(
+		() => {
+			anime({ targets: '.wrapper', opacity: 1, duration: 2000 });
+		},
+		[ question ],
 	);
 
 	const handleTimer = () => {
@@ -48,6 +73,7 @@ const Question = () => {
 
 	const checkAnswer = () => {
 		setChecking(true);
+
 		let option = selected + 1;
 		server
 			.get(`quizzes/${quiz.id}/questions/${question.id}/response`, {
@@ -70,9 +96,9 @@ const Question = () => {
 	};
 
 	return (
-		<Fragment>
-			<div style={{ width: '500px' }}>
-				<Wrapper>
+		<div style={{ width: '500px' }}>
+			<Wrapper>
+				<div className='wrapper'>
 					<QuestionWrapper>{question.question}</QuestionWrapper>
 
 					<AnswerWrapper>
@@ -97,14 +123,21 @@ const Question = () => {
 							/>
 						)}
 					</AnswerWrapper>
-					<Logo>
-						<span className='Q'>Q</span>
-						<span className='B'>B</span>
-					</Logo>
-				</Wrapper>
-				<Button onClick={checkAnswer} label='Submit' disabled={selected === null} full style={{margin: '20px 0 10px'}}/>
-			</div>
-		</Fragment>
+				</div>
+				<Logo>
+					<span className='Q'>Q</span>
+					<span className='B'>B</span>
+				</Logo>
+			</Wrapper>
+
+			<Button
+				onClick={checkAnswer}
+				label='Submit'
+				disabled={selected === null}
+				full
+				style={{ margin: '20px 0 10px' }}
+			/>
+		</div>
 	);
 };
 
