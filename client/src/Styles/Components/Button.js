@@ -22,16 +22,16 @@ const StyledButtonWrapper = styled.div`
 		&:enabled:hover {
 			background-color: ${props =>
 				props.secondary
-					? props.theme.aqua
+					? props.theme.darkAqua
 					: props.white ? props.theme.gray : props.theme.darkPink};
 			border-color: ${props =>
 				props.secondary
-					? props.theme.aqua
+					? props.theme.darkAqua
 					: props.white ? props.theme.gray : props.theme.darkPink};
 		}
 		&:enabled:focus {
 			box-shadow: 0 0 0 0.2em
-				${props => (props.secondary ? props.theme.aqua : props.theme.darkPink)};
+				${props => (props.secondary ? props.theme.darkAqua : props.theme.darkPink)};
 		}
 	}
 `;
