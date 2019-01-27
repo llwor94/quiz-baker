@@ -18,6 +18,18 @@ export const SettingsWrapper = styled.div`
 		margin-right: 20px;
 	}
 
+	.inner {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		position: relative;
+		margin-bottom: 100px;
+
+		@media (max-width: 950px) {
+			margin-bottom: 0;
+		}
+	}
+
 	.rollingPin {
 		transform: rotateZ(45deg);
 		position: absolute;
@@ -40,6 +52,8 @@ export const SettingsWrapper = styled.div`
 	}
 	.p-sidebar {
 		padding: 20px 14px;
+		background-color: ${props => props.theme.secondary};
+		border-color: ${props => props.theme.secondary};
 	}
 	.p-sidebar-left {
 		top: 56px;

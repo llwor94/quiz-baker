@@ -12,10 +12,14 @@ export const ProfileWrapper = styled.div`
 
 	.tab {
 		font-size: 26px;
+		cursor: pointer;
 		span {
 			text-align: right;
 			font-family: "Merienda One", cursive;
 			color: ${props => props.theme.accentText};
+			&:hover {
+				color: ${props => props.theme.text};
+			}
 		}
 	}
 `;

@@ -2,13 +2,16 @@ import React, { useState, useEffect, useContext } from 'react';
 import Comment from '../Post/Comment';
 import server from '../../utils/server';
 import { AuthCtx } from '../../Auth';
+import { ColorCtx } from '../../App';
 import { ProfileIcon } from '../../Styles/Components/Image';
 import { CommentWrapper, PostComment } from '../../Styles/Comments/Comment';
 import { CommentsWrapper, InnerWrapper } from '../../Styles/Posts';
 import { EmojiInput } from '../../Styles/Components/Input';
 import quizbaker from '../../assets/quizbaker.png';
+import darkModeLogo from '../../assets/logo-darkmode.png';
 
 const Comments = ({ currentPost }) => {
+	const [ darkMode, setDarkMode ] = useContext(ColorCtx);
 	const [ comments, setComments ] = useState(undefined);
 	const [ showing, setShowing ] = useState(false);
 	const { user } = useContext(AuthCtx);
@@ -33,7 +36,7 @@ const Comments = ({ currentPost }) => {
 		return (
 			<CommentsWrapper>
 				<div className='image'>
-					<img className='quizBaker' src={quizbaker} />
+					<img className='quizBaker' src={darkMode ? darkModeLogo : quizbaker} />
 				</div>
 			</CommentsWrapper>
 		);

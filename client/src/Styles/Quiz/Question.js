@@ -14,7 +14,8 @@ export const Wrapper = styled.div`
 	margin-bottom: 10px;
 
 	border: 1px dashed #ddd;
-	box-shadow: 0 0 0 3px #fff, 0 0 0 5px #ddd, 0 0 0 10px #fff, 0 0 2px 10px #eee;
+	box-shadow: 0 0 0 3px ${props => props.theme.secondary}, 0 0 0 5px #ddd, 0 0 0 10px ${props =>
+	props.theme.secondary}, 0 0 2px 10px #eee;
 
 	.wrapper {
 		opacity: 0;

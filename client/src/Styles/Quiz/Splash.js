@@ -8,7 +8,8 @@ export const SplashWrapper = styled.div`
 
 	padding: 10px;
 	border: 1px dashed #ddd;
-	box-shadow: 0 0 0 3px #fff, 0 0 0 5px #ddd, 0 0 0 10px #fff, 0 0 2px 10px #eee;
+	box-shadow: 0 0 0 3px ${props => props.theme.secondary}, 0 0 0 5px #ddd,
+		0 0 0 10px ${props => props.theme.secondary}, 0 0 2px 10px #eee;
 	border-radius: 3px;
 
 	background-color: ${props => props.theme.secondary};
