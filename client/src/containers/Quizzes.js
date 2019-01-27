@@ -41,8 +41,11 @@ const Quizzes = props => {
 		return (
 			<Wrapper>
 				<div className='filters'>
+				<div>
+
 					<Sort />
 					<Filter />
+				</div>
 					<Topics />
 				</div>
 				<div className='quizzes'>

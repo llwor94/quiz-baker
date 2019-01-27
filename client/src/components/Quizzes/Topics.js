@@ -38,7 +38,7 @@ const Topics = () => {
 
 	return (
 		<MultiSelectWrapper>
-			<MultiSelect
+			<MultiSelect className="topics"
 				optionLabel='name'
 				value={selected}
 				options={topics}

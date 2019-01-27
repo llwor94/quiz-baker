@@ -257,4 +257,7 @@ export const MultiSelectWrapper = styled.div`
 		border-color: ${props => props.theme.darkAqua};
 		background-color: ${props => props.theme.darkAqua};
 	}
+	.topics {
+		margin-left: 4px;
+	}
 `;
