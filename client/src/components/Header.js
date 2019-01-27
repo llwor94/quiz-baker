@@ -1,9 +1,12 @@
 import React, { useState, useEffect, useContext, Fragment } from 'react';
 import { AuthCtx } from '../Auth';
 import styled from 'styled-components';
+import MediaQuery from 'react-responsive';
 import { Link, withRouter } from 'react-router-dom';
 import { Transition } from 'react-transition-group';
 import { InputSwitch } from 'primereact/inputswitch';
+import { Sidebar } from 'primereact/sidebar';
+import { Button } from 'primereact/button';
 import anime from 'animejs';
 
 import quizbaker from '../assets/quizbaker.png';
@@ -15,6 +18,31 @@ const Wrapper = styled.div`
 	z-index: 100;
 	display: flex;
 	align-items: center;
+
+	.sidebarButton {
+		background: ${props => props.theme.pink};
+		border-color: ${props => props.theme.pink};
+	}
+	.p-button:enabled:hover {
+		background: ${props => props.theme.darkPink};
+		border-color: ${props => props.theme.darkPink};
+	}
+	.sidebar {
+		top: 49px;
+		width: 130px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		height: auto;
+		right: 10px;
+		transform: translateX(110%);
+	}
+	.sidebar.p-sidebar-active {
+		transform: translateX(0);
+	}
+	.p-sidebar .p-sidebar-close {
+		display: none;
+	}
 `;
 
 const HeaderWrapper = styled.div`
@@ -124,6 +152,7 @@ const Header = ({ setValue, darkMode, ...props }) => {
 	const [ menuShowing, setMenuShowing ] = useState(
 		props.history.location.pathname === '/quizzes',
 	);
+	const [ sidebarShowing, setSidebarShowing ] = useState(false);
 
 	useEffect(
 		() => {
@@ -156,114 +185,161 @@ const Header = ({ setValue, darkMode, ...props }) => {
 						Quiz <span> Baker</span>
 					</StyledHeader>
 				</LeftHeader>
-
-				<Transition
-					in={menuShowing}
-					appear
-					onExit={animateMenuDown}
-					onEnter={animateMenuUp}
-				>
-					<InnerWrapper menu={menuShowing}>
-						<div style={{ marginRight: '40px', display: 'flex', alignItems: 'center' }}>
+				<MediaQuery minWidth={915}>
+					<Transition
+						in={menuShowing}
+						appear
+						onExit={animateMenuDown}
+						onEnter={animateMenuUp}
+					>
+						<InnerWrapper menu={menuShowing}>
+							<div
+								style={{
+									marginRight: '40px',
+									display: 'flex',
+									alignItems: 'center',
+								}}
+							>
+								<Transition
+									in={menuShowing}
+									appear
+									onExit={animateLinkDown}
+									onEnter={animateLinkUp}
+								>
+									<LinkWrapper>
+										<StyledLink to='/quizzes'>Quizzes</StyledLink>
+									</LinkWrapper>
+								</Transition>
+								<LinkWrapper>
+									<StyledLink to='/forum'>Forum</StyledLink>
+								</LinkWrapper>
+							</div>
 							<Transition
 								in={menuShowing}
 								appear
-								onExit={animateLinkDown}
-								onEnter={animateLinkUp}
+								onExit={animateLogoDown}
+								onEnter={animateLogoUp}
 							>
-								<LinkWrapper>
-									<StyledLink to='/quizzes'>Quizzes</StyledLink>
-								</LinkWrapper>
+								<Logo dark={darkMode} src={darkMode ? darkModeLogo : quizbaker} />
 							</Transition>
-							<LinkWrapper>
-								<StyledLink to='/forum'>Forum</StyledLink>
-							</LinkWrapper>
-						</div>
-						<Transition
-							in={menuShowing}
-							appear
-							onExit={animateLogoDown}
-							onEnter={animateLogoUp}
-						>
-							<Logo dark={darkMode} src={darkMode ? darkModeLogo : quizbaker} />
-						</Transition>
+							{user ? (
+								<div
+									style={{
+										marginLeft: '40px',
+										display: 'flex',
+										alignItems: 'center',
+									}}
+								>
+									<Transition
+										in={menuShowing}
+										appear
+										onExit={animateSecondLinkDown}
+										onEnter={animateSecondLinkUp}
+									>
+										<LinkWrapper>
+											<StyledLink to='/user/settings'>
+												{user.username}
+											</StyledLink>
+										</LinkWrapper>
+									</Transition>
+									<Transition
+										in={menuShowing}
+										appear
+										onExit={animateThirdLinkDown}
+										onEnter={animateThirdLinkUp}
+									>
+										<LinkWrapper>
+											<StyledLink
+												as='a'
+												onClick={() => {
+													logout();
+													props.history.push('/quizzes');
+												}}
+											>
+												logout
+											</StyledLink>
+										</LinkWrapper>
+									</Transition>
+								</div>
+							) : (
+								<div
+									style={{
+										marginLeft: '40px',
+										display: 'flex',
+										alignItems: 'center',
+									}}
+								>
+									<Transition
+										in={menuShowing}
+										appear
+										onExit={animateSecondLinkDown}
+										onEnter={animateSecondLinkUp}
+									>
+										<LinkWrapper>
+											<StyledLink to='/login'>Log In</StyledLink>
+										</LinkWrapper>
+									</Transition>
+									<Transition
+										in={menuShowing}
+										appear
+										onExit={animateThirdLinkDown}
+										onEnter={animateThirdLinkUp}
+									>
+										<LinkWrapper>
+											{' '}
+											<StyledLink to='/register'>Sign Up</StyledLink>
+										</LinkWrapper>
+									</Transition>
+								</div>
+							)}
+						</InnerWrapper>
+					</Transition>
+
+					<InputSwitch
+						style={{ marginRight: '20px' }}
+						onLabel='Dark Mode'
+						offLabel='Light Mode'
+						checked={darkMode}
+						onChange={e => setValue(e.value)}
+					/>
+				</MediaQuery>
+				<MediaQuery maxWidth={915}>
+					<Button
+						className='sidebarButton'
+						icon={sidebarShowing ? 'pi pi-times' : 'pi pi-bars'}
+						onClick={() => setSidebarShowing(!sidebarShowing)}
+					/>
+					<Sidebar
+						visible={sidebarShowing}
+						position='right'
+						className='sidebar'
+						onHide={() => setSidebarShowing(false)}
+						modal={false}
+					>
+						<Logo dark={darkMode} src={darkMode ? darkModeLogo : quizbaker} />
+						<StyledLink to='/quizzes'>Quizzes</StyledLink>
+						<StyledLink to='/forum'>Forum</StyledLink>
 						{user ? (
-							<div
-								style={{
-									marginLeft: '40px',
-									display: 'flex',
-									alignItems: 'center',
-								}}
-							>
-								<Transition
-									in={menuShowing}
-									appear
-									onExit={animateSecondLinkDown}
-									onEnter={animateSecondLinkUp}
+							<Fragment>
+								<StyledLink to='/user/settings'>{user.username}</StyledLink>
+								<StyledLink
+									as='a'
+									onClick={() => {
+										logout();
+										props.history.push('/quizzes');
+									}}
 								>
-									<LinkWrapper>
-										<StyledLink to='/user/settings'>{user.username}</StyledLink>
-									</LinkWrapper>
-								</Transition>
-								<Transition
-									in={menuShowing}
-									appear
-									onExit={animateThirdLinkDown}
-									onEnter={animateThirdLinkUp}
-								>
-									<LinkWrapper>
-										<StyledLink
-											as='a'
-											onClick={() => {
-												logout();
-												props.history.push('/quizzes');
-											}}
-										>
-											logout
-										</StyledLink>
-									</LinkWrapper>
-								</Transition>
-							</div>
+									logout
+								</StyledLink>{' '}
+							</Fragment>
 						) : (
-							<div
-								style={{
-									marginLeft: '40px',
-									display: 'flex',
-									alignItems: 'center',
-								}}
-							>
-								<Transition
-									in={menuShowing}
-									appear
-									onExit={animateSecondLinkDown}
-									onEnter={animateSecondLinkUp}
-								>
-									<LinkWrapper>
-										<StyledLink to='/login'>Log In</StyledLink>
-									</LinkWrapper>
-								</Transition>
-								<Transition
-									in={menuShowing}
-									appear
-									onExit={animateThirdLinkDown}
-									onEnter={animateThirdLinkUp}
-								>
-									<LinkWrapper>
-										{' '}
-										<StyledLink to='/register'>Sign Up</StyledLink>
-									</LinkWrapper>
-								</Transition>
-							</div>
+							<Fragment>
+								<StyledLink to='/login'>Log In</StyledLink>
+								<StyledLink to='/register'>Sign Up</StyledLink>
+							</Fragment>
 						)}
-					</InnerWrapper>
-				</Transition>
-				<InputSwitch
-					style={{ marginRight: '20px' }}
-					onLabel='Dark Mode'
-					offLabel='Light Mode'
-					checked={darkMode}
-					onChange={e => setValue(e.value)}
-				/>
+					</Sidebar>
+				</MediaQuery>
 			</HeaderWrapper>
 		</Wrapper>
 	);

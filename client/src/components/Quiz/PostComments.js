@@ -13,6 +13,7 @@ import {
 	PostComment,
 	RightSide,
 } from '../../Styles/Comments/Comment';
+import anime from 'animejs';
 const Comments = ({ post }) => {
 	const { user } = useContext(AuthCtx);
 	const [ comments, setComments ] = useState(undefined);
@@ -27,6 +28,12 @@ const Comments = ({ post }) => {
 			.catch(err => console.log(err));
 	}, []);
 
+	useEffect(
+		() => {
+			anime({ targets: '.comment', translateY: [ -200, 0 ], opacity: [ 0, 1 ], delay: 100 });
+		},
+		[ comments ],
+	);
 	const handlePostComment = () => {
 		console.log(comment);
 		server
@@ -50,7 +57,7 @@ const Comments = ({ post }) => {
 			.catch(error => console.log(error));
 	};
 	return (
-		<CommentWrapper>
+		<CommentWrapper className='comments'>
 			{user && (
 				<PostComment>
 					<ProfileIcon src={user.img_url} />
@@ -72,7 +79,7 @@ const Comments = ({ post }) => {
 				<div>Loading...</div>
 			) : (
 				comments.map(comment => (
-					<Wrapper key={comment.id}>
+					<Wrapper key={comment.id} className='comment'>
 						<CommentHeader>
 							{' '}
 							<ProfileIcon src={comment.author_img} />

@@ -5,7 +5,7 @@ import { Growl } from 'primereact/growl';
 import { Button, BackButton } from '../../Styles/Components/Button';
 import { QuestionCtx } from '../../containers/Quiz';
 import { QuizCtx } from '../../pages/Quiz';
-
+import MediaQuery from 'react-responsive';
 import {
 	SplashWrapper,
 	SplashTitle,
@@ -34,57 +34,49 @@ const Quiz = props => {
 			onEnter={animateOut}
 			onEntered={() => setCurrentQuestion(0)}
 		>
-			{state => (
-				<SplashWrapper>
-					<BackButton
-						style={{ position: 'absolute', top: 2, right: 527, width: '35px' }}
-						onClick={() => props.history.goBack()}
-					/>
+			<SplashWrapper>
+				<MediaQuery minWidth={800}>
+					<BackButton className='back-btn' onClick={() => props.history.goBack()} />
+				</MediaQuery>
+				<div className='inner'>
+					<div className='body'>
+						<SplashTitle>{quiz.title}</SplashTitle>
+						<SplashHeader>
+							A <span className='topic'>{quiz.topic}</span> quiz by{' '}
+							<span className='author'>{quiz.author.username}</span>{' '}
+						</SplashHeader>
 
-					<div className='inner'>
-						<div className='body'>
-							<SplashTitle>{quiz.title}</SplashTitle>
-							<SplashHeader>
-								A <span className='topic'>{quiz.topic}</span> quiz by{' '}
-								<span className='author'>{quiz.author.username}</span>{' '}
-							</SplashHeader>
-
-							<SplashMidWrapper>
-								<SplashDescription>Description:</SplashDescription>
-								<div>{quiz.description}</div>
-							</SplashMidWrapper>
-						</div>
-						<Fork src={forkIcon} />
+						<SplashMidWrapper>
+							<SplashDescription>Description:</SplashDescription>
+							<div>{quiz.description}</div>
+						</SplashMidWrapper>
 					</div>
-					{quiz.time_limit_seconds && <div>This is a timed quiz.</div>}
-					<SplashFooter>
-						{' '}
-						{quiz.question_count === 1 ? (
-							<span>
-								<span>This quiz has </span>
-								<span className='questionCount'>
-									{quiz.question_count} question{' '}
-								</span>
-							</span>
-						) : (
-							<span>
-								<span>This quiz has </span>
-								<span className='questionCount'>
-									{quiz.question_count} questions{' '}
-								</span>
-							</span>
-						)}
-						{quiz.score ? (
-							<span>
-								and you got <span className='score'>{quiz.score}</span> right.
-							</span>
-						) : (
-							<span>Hungry for knowledge?</span>
-						)}
-					</SplashFooter>
-					<Button label='Take Quiz' onClick={() => setStartOut(true)} full />
-				</SplashWrapper>
-			)}
+					<Fork src={forkIcon} />
+				</div>
+				{quiz.time_limit_seconds && <div>This is a timed quiz.</div>}
+				<SplashFooter>
+					{' '}
+					{quiz.question_count === 1 ? (
+						<span>
+							<span>This quiz has </span>
+							<span className='questionCount'>{quiz.question_count} question </span>
+						</span>
+					) : (
+						<span>
+							<span>This quiz has </span>
+							<span className='questionCount'>{quiz.question_count} questions </span>
+						</span>
+					)}
+					{quiz.score ? (
+						<span>
+							and you got <span className='score'>{quiz.score}</span> right.
+						</span>
+					) : (
+						<span>Hungry for knowledge?</span>
+					)}
+				</SplashFooter>
+				<Button label='Take Quiz' onClick={() => setStartOut(true)} full />
+			</SplashWrapper>
 		</Transition>
 	);
 };

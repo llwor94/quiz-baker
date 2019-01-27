@@ -81,11 +81,13 @@ export const CommentWrapper = styled.div`
 	padding: 0 10px 10px 10px;
 	border: 1px solid ${props => props.theme.lightGray};
 	border-radius: 4px;
+	background: ${props => props.theme.secondary};
 `;
 
 export const PostComment = styled.div`
 	display: flex;
 	align-items: center;
+	margin-top: 5px;
 `;
 
 export const RightSide = styled.div`

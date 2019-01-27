@@ -10,6 +10,7 @@ import QuestionTracker from '../components/Quiz/QuestionTracker';
 import Results from '../components/Quiz/Results';
 import LeaderBoard from '../components/Quiz/LeaderBoard';
 import QuizPosts from '../components/Quiz/QuizPosts';
+import { Wrapper } from '../Styles/Quiz';
 
 export const QuestionCtx = createContext([ undefined, () => {} ]);
 export const QuizPostCtx = createContext([ undefined, () => {} ]);
@@ -42,17 +43,7 @@ const QuizContainer = props => {
 	else
 		return (
 			<QuestionCtx.Provider value={[ currentQuestion, setCurrentQuestion ]}>
-				<div
-					style={{
-						width: '70%',
-						display: 'flex',
-						flexDirection: 'column',
-						alignItems: 'center',
-						position: 'relative',
-						perspective: '1000px',
-						marginTop: '85px',
-					}}
-				>
+				<Wrapper>
 					<LeaderBoard />
 					{currentQuestion === undefined ? (
 						<Quiz {...props} />
@@ -64,8 +55,7 @@ const QuizContainer = props => {
 					<QuizPostCtx.Provider value={[ quizPosts, setQuizPosts ]}>
 						<QuizPosts quiz={quiz} />
 					</QuizPostCtx.Provider>
-					<QuestionTracker />
-				</div>
+				</Wrapper>
 			</QuestionCtx.Provider>
 		);
 };
