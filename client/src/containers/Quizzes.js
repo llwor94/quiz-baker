@@ -41,12 +41,11 @@ const Quizzes = props => {
 		return (
 			<Wrapper>
 				<div className='filters'>
-
 					<Sort />
-				<div style={{display: 'flex'}}>
-					<Filter />
-					<Topics />
-				</div>
+					<div style={{ display: 'flex' }}>
+						<Filter />
+						<Topics />
+					</div>
 				</div>
 				<div className='quizzes'>
 					{quizzes.map(quiz => <Quiz key={quiz.id} quiz={quiz} {...props} />)}

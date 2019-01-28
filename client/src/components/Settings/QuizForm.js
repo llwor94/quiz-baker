@@ -51,6 +51,7 @@ const QuizForm = ({ quiz, setQuiz, ...props }) => {
 					<p>Title:</p>
 					<Input name='title' value={quiz.title} onChange={handleChange} />
 					<p>Time Limit (optional):</p>
+
 					<Spinner
 						name='time_limit_seconds'
 						value={quiz.time_limit_seconds ? `${quiz.time_limit_seconds} minutes` : ''}

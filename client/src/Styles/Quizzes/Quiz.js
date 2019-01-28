@@ -234,6 +234,9 @@ export const QuestionCount = styled.div`
 `;
 
 export const MultiSelectWrapper = styled.div`
+	.p-multiselect {
+		height: 100%;
+	}
 	.p-checkbox {
 		display: none;
 	}
