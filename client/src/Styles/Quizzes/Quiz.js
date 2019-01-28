@@ -37,6 +37,8 @@ export const Wrapper = styled.div`
 	.p-growl .p-growl-item-container.p-growl-message-info .p-growl-icon-close {
 		color: white;
 	}
+
+
 	&:hover {
 		border-color: ${props => props.theme.pink};
 	}
@@ -235,7 +237,9 @@ export const QuestionCount = styled.div`
 
 export const MultiSelectWrapper = styled.div`
 	.p-multiselect {
-		height: 100%;
+		height: 43px;
+	display: flex;
+	align-items: center;
 	}
 	.p-checkbox {
 		display: none;
@@ -263,4 +267,6 @@ export const MultiSelectWrapper = styled.div`
 	.topics {
 		margin-left: 4px;
 	}
+
+
 `;

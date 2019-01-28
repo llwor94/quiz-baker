@@ -9,6 +9,8 @@ export const Wrapper = styled.div`
 		margin-bottom: 20px;
 		.p-dropdown {
 			border-color: ${props => props.theme.accent};
+			display: flex;
+			align-items: center;
 		}
 		.p-dropdown:not(.p-disabled):focus {
 			border-color: ${props => props.theme.pink};
