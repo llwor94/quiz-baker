@@ -52,7 +52,7 @@ const QuizContainer = props => {
 					) : (
 						<Question />
 					)}
-					<QuestionTracker />
+    <QuestionTracker />
 					<QuizPostCtx.Provider value={[ quizPosts, setQuizPosts ]}>
 						<QuizPosts quiz={quiz} />
 					</QuizPostCtx.Provider>

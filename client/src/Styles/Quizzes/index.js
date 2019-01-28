@@ -3,7 +3,10 @@ export const Wrapper = styled.div`
 	max-width: 1000px;
 	margin: 190px auto 0;
 	.filters {
+		display: flex;
+		justify-content: space-between;
 		padding: 0 30px;
+		margin-bottom: 20px;
 		.p-dropdown {
 			border-color: ${props => props.theme.accent};
 		}
