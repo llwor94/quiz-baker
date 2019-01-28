@@ -6,6 +6,7 @@ export const Wrapper = styled.div`
 		display: flex;
 		justify-content: space-between;
 		padding: 0 30px;
+		margin-bottom: 20px;
 		.p-dropdown {
 			border-color: ${props => props.theme.accent};
 		}
