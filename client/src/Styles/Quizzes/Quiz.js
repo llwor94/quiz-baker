@@ -235,6 +235,7 @@ export const QuestionCount = styled.div`
 `;
 
 export const MultiSelectWrapper = styled.div`
+  width: 50%;
   .p-multiselect {
     height: 43px;
     display: flex;
