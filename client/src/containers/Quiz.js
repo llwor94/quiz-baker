@@ -38,7 +38,7 @@ const QuizContainer = props => {
 		return (
 			<QuestionCtx.Provider value={[ currentQuestion, setCurrentQuestion ]}>
 				<Wrapper>
-					<LeaderBoard />
+					<LeaderBoard results={currentQuestion === quiz.question_count} />
 					{currentQuestion === undefined ? (
 						<Quiz {...props} />
 					) : currentQuestion === quiz.question_count ? (

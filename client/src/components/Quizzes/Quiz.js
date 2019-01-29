@@ -98,7 +98,9 @@ const Quiz = ({ quiz, ...props }) => {
 					/>
 					<p
 						style={{
-							color: quiz.user_vote && (quiz.user_vote === 1 ? '#DC758F' : '#E3D3E4'),
+							color:
+								quiz.user_vote !== 0 &&
+								(quiz.user_vote === 1 ? '#DC758F' : '#E3D3E4'),
 						}}
 					>
 						{quiz.votes}
