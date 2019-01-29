@@ -43,8 +43,8 @@ const Quizzes = props => {
 				<div className='filters'>
 					<Sort />
 					<div style={{ display: 'flex' }}>
-						<Filter />
 						<Topics />
+						<Filter />
 					</div>
 				</div>
 				<div className='quizzes'>
