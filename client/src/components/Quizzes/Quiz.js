@@ -54,7 +54,7 @@ const Quiz = ({ quiz, ...props }) => {
 			})
 			.catch(err => console.log(err));
 	};
-	console.log(quizzes);
+	console.log(quiz);
 
 	const handleVote = val => {
 		console.log(quiz.user_vote, val);
@@ -118,7 +118,7 @@ const Quiz = ({ quiz, ...props }) => {
 								<Title onClick={() => props.history.push(`quizzes/${quiz.id}`)}>
 									{quiz.title}
 								</Title>
-								{quiz.time_limit_seconds && <i className='pi pi-clock' />}
+								{quiz.question_time_limit && <i className='pi pi-clock' />}
 								{quiz.post_count > 0 && (
 									<i
 										postCount={quiz.post_count}

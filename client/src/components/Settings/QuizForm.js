@@ -1,14 +1,20 @@
 import React, { useEffect, useState, Fragment } from 'react';
-import { Spinner } from 'primereact/spinner';
+import { Dropdown } from 'primereact/dropdown';
 import server from '../../utils/server';
 import { Input, TextArea } from '../../Styles/Components/Input';
 import { StyledAutoComplete } from '../../Styles/Components/Autocomplete';
 import { QuizFormWrapper } from '../../Styles/Settings/QuizForm';
-import converter from '../../utils/timeConvert';
 
 const QuizForm = ({ quiz, setQuiz, ...props }) => {
 	const [ topics, setTopics ] = useState(undefined);
 	const [ searchTopics, setSearchOptions ] = useState(null);
+
+	const options = [
+		{ label: '15 sec', value: 15 },
+		{ label: '30 sec', value: 30 },
+		{ label: '45 sec', value: 45 },
+		{ label: '1 min', value: 60 },
+	];
 
 	useEffect(() => {
 		server.get('/quizzes/topics').then(({ data }) => {
@@ -28,7 +34,7 @@ const QuizForm = ({ quiz, setQuiz, ...props }) => {
 
 		setQuiz({ ...quiz, [e.target.name]: value });
 	};
-
+	console.log(quiz);
 	const filterTopics = e => {
 		setTimeout(() => {
 			let results;
@@ -50,15 +56,12 @@ const QuizForm = ({ quiz, setQuiz, ...props }) => {
 				<div>
 					<p>Title:</p>
 					<Input name='title' value={quiz.title} onChange={handleChange} />
-					<p>Time Limit (optional):</p>
-
-					<Spinner
-						name='time_limit_seconds'
-						value={quiz.time_limit_seconds ? `${quiz.time_limit_seconds} minutes` : ''}
-						step={0.25}
+					<p>Question Time Limit (optional):</p>
+					<Dropdown
+						name='question_time_limit'
+						value={quiz.question_time_limit}
+						options={options}
 						onChange={handleChange}
-						tooltip='in minutes'
-						tooltipOptions={{ position: 'bottom' }}
 					/>
 					<p style={{ marginBottom: '10px' }}>Topic:</p>
 					<StyledAutoComplete

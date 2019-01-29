@@ -114,9 +114,9 @@ const Question = () => {
 									<Label htmlFor={i.toString()}>{option}</Label>
 								</Answer>
 							))}
-						{quiz.questionTimeLimit && (
+						{quiz.question_time_limit && (
 							<Timer
-								startCount={quiz.questionTimeLimit}
+								startCount={quiz.question_time_limit}
 								handleTimer={handleTimer}
 								question={question}
 								reset={checking}
