@@ -178,10 +178,13 @@ export const FooterWrapper = styled.div`
 	}
 
 	.expandComments {
+		background-color: #e3d3e4;
+		border-radius: 5px;
 		img {
 			/* background-color: rgb(227, 211, 228); */
+
 			padding: 8px;
-			border-radius: 5px;
+
 			height: 60px;
 			width: 60px;
 			cursor: pointer;
