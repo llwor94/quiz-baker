@@ -12,38 +12,19 @@ const Quiz = () => {
 	const [ newQuiz, setNewQuiz ] = useState(undefined);
 	const [ timeLimit, setTimeLimit ] = useState(undefined);
 	useEffect(() => {
-		// setNewQuiz(_.pick(quiz, [ 'title', 'description', 'topic' ]));
-		let editQuiz = _.pick(quiz, [ 'title', 'description', 'topic' ]);
-		setNewQuiz({ ...editQuiz, time_limit_seconds: quiz.time_limit_seconds / 60 });
-		if (quiz.time_limit_seconds) {
-			let time = converter(quiz.time_limit_seconds);
-			setTimeLimit(time);
-		}
+		setNewQuiz(_.pick(quiz, [ 'title', 'description', 'topic', 'question_time_limit' ]));
 	}, []);
-
-	useEffect(
-		() => {
-			if (quiz.time_limit_seconds) {
-				let time = converter(quiz.time_limit_seconds);
-				setTimeLimit(time);
-			}
-		},
-		[ quiz ],
-	);
 
 	const handleQuizEdit = () => {
 		if (!edit) setEdit(true);
 		else if (
 			!_.isEqual(
 				newQuiz,
-				_.pick(quiz, [ 'title', 'description', 'topic', 'time_limit_seconds' ]),
+				_.pick(quiz, [ 'title', 'description', 'topic', 'question_time_limit' ]),
 			)
 		) {
 			console.log(newQuiz);
-			if (newQuiz.time_limit_seconds) {
-				newQuiz.time_limit_seconds = parseFloat(newQuiz.time_limit_seconds) * 60;
-			}
-			console.log(newQuiz);
+
 			server
 				.patch(`quizzes/${quiz.id}/edit`, newQuiz)
 				.then(response => {
@@ -75,8 +56,11 @@ const Quiz = () => {
 						<div style={{ display: 'flex', alignItems: 'center' }}>
 							<Title>{quiz.title}</Title>
 							<Topic>{quiz.topic}</Topic>
-							{quiz.time_limit_seconds && <p>{timeLimit} minutes</p>}
 						</div>
+						{quiz.question_time_limit && (
+							<p>{quiz.question_time_limit} seconds per question.</p>
+						)}
+
 						{quiz.description && <p>{quiz.description}</p>}
 					</Fragment>
 				)}

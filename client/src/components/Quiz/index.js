@@ -53,7 +53,7 @@ const Quiz = props => {
 					</div>
 					<Fork src={forkIcon} />
 				</div>
-				{quiz.time_limit_seconds && <div>This is a timed quiz.</div>}
+				{quiz.question_time_limit && <div>This is a timed quiz.</div>}
 				<SplashFooter>
 					{' '}
 					{quiz.question_count === 1 ? (
