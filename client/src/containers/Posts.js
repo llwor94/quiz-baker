@@ -22,7 +22,7 @@ const Posts = props => {
 			})
 			.catch(error => console.log(error.response));
 	}, []);
-	console.log(posts);
+
 	const handleComments = id => {
 		if (id === currentPost) {
 			setCurrentPost(undefined);
@@ -41,7 +41,7 @@ const Posts = props => {
 					</div>
 				</MediaQuery>
 
-				<div className='post-wrapper' onMouseLeave={e => console.log(e.target)}>
+				<div className='post-wrapper'>
 					<div className='new-post'>{user && <NewPost />}</div>
 					{posts.map(post => (
 						<Post
@@ -54,7 +54,7 @@ const Posts = props => {
 					))}
 				</div>
 				<MediaQuery minWidth={1000}>
-					<CommentsView currentPost={currentPost} />
+					<CommentsView currentPost={currentPost} setCurrentPost={setCurrentPost} />
 				</MediaQuery>
 			</Wrapper>
 		);

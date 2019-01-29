@@ -10,7 +10,7 @@ const Topics = () => {
 	const [ selected, setSelected ] = useState([]);
 	const [ posts, setPosts ] = useContext(PostsCtx);
 	const [ allPosts, setAllPosts ] = useState(posts);
-	console.log(allPosts, selected);
+
 	useEffect(() => {
 		server.get('/quizzes/topics').then(({ data }) => {
 			setTopics(data.filter(topic => posts.some(post => post.topic === topic.name)));

@@ -45,7 +45,7 @@ const Leaderboard = ({ results }) => {
 			{userScores.length ? (
 				userScores.map((userScore, index) => (
 					<UserWrapper key={userScore.username}>
-						{index === 0 && userScore.score > userScores[1].score ? (
+						{index === 0 && (userScores[1] && userScore.score > userScores[1].score) ? (
 							<div className='firstPlace'>
 								{' '}
 								<User>
