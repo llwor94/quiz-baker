@@ -13,6 +13,7 @@ export const CommentArea = styled.div`
 
 export const Wrapper = styled.div`
 	display: flex;
+	flex-direction: column;
 	justify-content: space-between;
 	align-items: flex-start;
 	border-top: 1px solid;
@@ -25,6 +26,11 @@ export const Wrapper = styled.div`
 	padding-top: 10px;
 	margin-bottom: 5px;
 
+	span{
+		color: ${props => props.theme.link};
+		font-size: 12px;
+	}
+
 	&:first-child {
 		border-top: none;
 		margin-top: 0;
@@ -33,27 +39,20 @@ export const Wrapper = styled.div`
 
 export const CommentHeader = styled.div`
 	display: flex;
+	width: 100%;
 	font-size: 12px;
 	font-weight: 400;
-	align-items: flex-start;
 	line-height: 16px;
 	min-height: 18px;
-	color: ${props => props.theme.link};
 
-	span {
-		font-size: 12px;
-		font-weight: 400;
-		line-height: 16px;
-
-		flex: 0 0 auto;
+	img{
+		min-width: 40px;
+		height: 40px;
 	}
 
-	p {
-		max-width: 300px;
-	}
-
-	img {
-		width: 40px;
+	.pi-trash {
+		color: white;
+		/* font-size: 18px; */
 	}
 `;
 
@@ -63,7 +62,6 @@ export const UserName = styled.a`
 	line-height: 16px;
 	color: ${props => props.theme.accentRed};
 	padding-left: 3px;
-	margin-right: 10px;
 `;
 
 export const CommentBody = styled.div`

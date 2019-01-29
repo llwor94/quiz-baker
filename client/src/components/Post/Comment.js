@@ -14,19 +14,11 @@ const Comment = ({ comment, deleteComment }) => {
   const { user } = useContext(AuthCtx);
   return (
     <Wrapper>
-      <div>
-        <CommentHeader>
-          <ProfileIcon src={comment.author_img} />
-          <div>
-            Posted by <UserName>{comment.author}</UserName>
-            <span style={{ padding: "0 3px" }}>&#8226;</span>
-            <span>{moment(comment.created_at).fromNow()}</span>
-          </div>
-        </CommentHeader>
+      <CommentHeader>
+        <ProfileIcon src={comment.author_img} />
         <CommentBody>
           <p>{comment.text}</p>
         </CommentBody>
-      </div>
       {user && user.username === comment.author && (
         <Button
           icon="pi pi-trash"
@@ -34,6 +26,12 @@ const Comment = ({ comment, deleteComment }) => {
           onClick={() => deleteComment(comment.id)}
         />
       )}
+      </CommentHeader>
+      <div>
+        <UserName>{comment.author}</UserName>
+        <span style={{ padding: "0 3px" }}>&#8226;</span>
+        <span>{moment(comment.created_at).fromNow()}</span>
+      </div>
     </Wrapper>
   );
 };
