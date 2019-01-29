@@ -50,8 +50,22 @@ export const CommentHeader = styled.div`
 		height: 40px;
 	}
 
+	.p-button{
+		background-color: white;
+		border-color: white;
+
+		&:hover{
+			background-color: white;
+			border-color: ${props => props.theme.accentPink};
+		}
+		&:enabled:hover{
+			background-color: white;
+			border-color: ${props => props.theme.accentPink};
+		}
+	}
+
 	.pi-trash {
-		color: white;
+		color: gray;
 		/* font-size: 18px; */
 	}
 `;
@@ -71,6 +85,9 @@ export const CommentBody = styled.div`
 	font-weight: 400;
 	line-height: 21px;
 	overflow: auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 `;
 
 export const CommentWrapper = styled.div`

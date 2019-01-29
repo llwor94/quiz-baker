@@ -36,7 +36,7 @@ const Posts = props => {
 		return (
 			<Wrapper>
 				<MediaQuery minWidth={1200}>
-					<div style={{ width: '20%' }}>
+					<div style={{ width: '20%', display: 'flex', justifyContent: 'center' }}>
 						<Topics />
 					</div>
 				</MediaQuery>

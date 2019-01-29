@@ -235,6 +235,40 @@ export const QuestionCount = styled.div`
 `;
 
 export const MultiSelectWrapper = styled.div`
+
+  width: 50%;
+  .p-multiselect {
+    height: 43px;
+    display: flex;
+    align-items: center;
+  }
+  .p-checkbox {
+    display: none;
+  }
+  .p-inputtext:enabled:focus:not(.p-error) {
+    border-color: ${props => props.theme.pink};
+  }
+  .p-multiselect-panel
+    .p-multiselect-header
+    .p-multiselect-filter-container
+    .p-multiselect-filter-icon {
+    color: ${props => props.theme.aqua};
+  }
+  .p-multiselect-panel .p-multiselect-items .p-multiselect-item.p-highlight {
+    background-color: ${props => props.theme.pink};
+  }
+  .p-checkbox .p-checkbox-box.p-highlight {
+    border-color: ${props => props.theme.aqua};
+    background-color: ${props => props.theme.aqua};
+  }
+  .p-checkbox .p-checkbox-box.p-highlight:not(.p-disabled):hover {
+    border-color: ${props => props.theme.darkAqua};
+    background-color: ${props => props.theme.darkAqua};
+  }
+  .topics {
+    margin-left: 4px;
+  }
+
 	.p-multiselect {
 		height: 43px;
 		display: flex;
@@ -311,4 +345,5 @@ export const MultiSelectWrapper = styled.div`
 	.topics {
 		margin-left: 4px;
 	}
+
 `;

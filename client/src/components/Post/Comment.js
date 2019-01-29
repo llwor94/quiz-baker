@@ -17,21 +17,25 @@ const Comment = ({ comment, deleteComment }) => {
       <CommentHeader>
         <ProfileIcon src={comment.author_img} />
         <CommentBody>
-          <p>{comment.text}</p>
-        </CommentBody>
-      {user && user.username === comment.author && (
-        <Button
-          icon="pi pi-trash"
-          white
-          onClick={() => deleteComment(comment.id)}
-        />
-      )}
-      </CommentHeader>
-      <div>
-        <UserName>{comment.author}</UserName>
-        <span style={{ padding: "0 3px" }}>&#8226;</span>
+        <div>
+
+          <p>
+            <UserName>
+              <strong>{comment.author}</strong> said:{" "}
+            </UserName>
+            {comment.text}
+          </p>
+        </div>
         <span>{moment(comment.created_at).fromNow()}</span>
-      </div>
+        </CommentBody>
+        {user && user.username === comment.author && (
+          <Button
+            icon="pi pi-trash"
+            white
+            onClick={() => deleteComment(comment.id)}
+          />
+        )}
+      </CommentHeader>
     </Wrapper>
   );
 };
