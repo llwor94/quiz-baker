@@ -176,6 +176,7 @@ export const Wrapper = styled.div`
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-evenly;
+	margin-top: 30px;
 `;
 
 export const InnerWrapper = styled.div`
