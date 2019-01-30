@@ -7,6 +7,7 @@ export const InnerWrapper = styled.div`
 	display: flex;
 	justify-content: space-between;
 	flex-direction: column;
+	
 `;
 
 export const Header = styled.div`
@@ -40,16 +41,16 @@ export const DescriptionWrapper = styled.div`
 export const Wrapper = styled.div`
 	border-radius: 4px;
 	width: 400px;
-	border: 1px solid;
-	border-color: ${props => props.theme.accent};
+	border: 1px dashed #ddd;
+  box-shadow: 0 0 0 3px ${props => props.theme.secondary}, 0 0 0 5px #ddd,
+    0 0 0 10px ${props => props.theme.secondary}, 0 0 2px 10px #eee;
+
 	padding: 12px;
 	background-color: ${props => props.theme.secondary};
 	margin: 8px;
 	display: flex;
 	height: 140px;
 	margin-bottom: 10px;
-	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
-		0 2px 1px -1px rgba(0, 0, 0, 0.12);
 	&:hover {
 		border-color: ${props => props.theme.pink};
 	}

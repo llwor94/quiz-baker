@@ -19,8 +19,7 @@ export const Wrapper = styled.div`
   box-shadow: 0 0 0 3px ${props => props.theme.secondary}, 0 0 0 5px #ddd,
     0 0 0 10px ${props => props.theme.secondary}, 0 0 2px 10px #eee;
 
-  /* box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
-		0 2px 1px -1px rgba(0, 0, 0, 0.12); */
+
   .p-growl.p-growl-topright {
     opacity: 1 !important;
   }
