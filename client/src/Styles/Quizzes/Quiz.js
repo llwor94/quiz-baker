@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-<<<<<<< HEAD
   border-radius: 4px;
   /* border: 1px solid; */
   border-color: ${props => props.theme.accent};
@@ -37,44 +36,6 @@ export const Wrapper = styled.div`
   .p-growl .p-growl-item-container.p-growl-message-info .p-growl-icon-close {
     color: white;
   }
-=======
-	border-radius: 4px;
-	/* border: 1px solid; */
-	border-color: ${props => props.theme.accent};
-	padding: 12px;
-	background-color: ${props => props.theme.secondary};
-	margin-bottom: 10px;
-	color: #333;
-	display: flex;
-	position: relative;
-	justify-content: space-between;
-	height: 200px;
-	width: 450px;
-	margin: 13px;
-
-	border: 1px dashed #ddd;
-	box-shadow: 0 0 0 3px ${props => props.theme.secondary}, 0 0 0 5px #ddd,
-		0 0 0 10px ${props => props.theme.secondary}, 0 0 2px 10px #eee;
-
-	/* box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
-		0 2px 1px -1px rgba(0, 0, 0, 0.12); */
-	.p-growl.p-growl-topright {
-		opacity: 1 !important;
-	}
-	.p-growl .p-growl-item-container.p-growl-message-info {
-		background-color: ${props => props.theme.pink};
-		opacity: 1 !important;
-		font-family: "Raleway", sans-serif !important;
-		border-radius: 4px;
-		color: white;
-	}
-	.p-growl .p-growl-item-container.p-growl-message-info .p-growl-image {
-		display: none;
-	}
-	.p-growl .p-growl-item-container.p-growl-message-info .p-growl-icon-close {
-		color: white;
-	}
->>>>>>> 3aa3670f41073f7569764b85eeddeb17ee77d5b1
 
 	&:hover {
 		border-color: ${props => props.theme.pink};
