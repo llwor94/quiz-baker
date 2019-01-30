@@ -70,7 +70,8 @@ const HeaderWrapper = styled.div`
 
 const InnerWrapper = styled.div`
 	display: flex;
-	border-bottom: ${props => props.menu && '1px solid lightgray'};
+	border-bottom: ${props => props.menu && '1px solid'};
+	border-bottom-color: ${props => props.menu && props.theme.lightGray};
 	width: ${props => (props.menu ? '100%' : '700px')};
 	position: absolute;
 	justify-content: center;

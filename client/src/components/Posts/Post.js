@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import { PostsCtx } from '../../pages/Forum';
 import moment from 'moment';
 import { AuthCtx } from '../../Auth';
@@ -32,7 +32,6 @@ import { ProfileIcon } from '../../Styles/Components/Image';
 
 import spoonfull from '../../assets/spoonfull.png';
 import spoonpour from '../../assets/spoonpour.png';
-
 const Wrapper = ({ children, isCurrent, userPage }) => {
 	if (isCurrent)
 		return (
@@ -42,11 +41,13 @@ const Wrapper = ({ children, isCurrent, userPage }) => {
 		);
 	else return <PostWrapper userPage={userPage}>{children}</PostWrapper>;
 };
+
 const Post = ({ post, showComments, currentPost, ...props }) => {
 	const [ posts, setPosts ] = useContext(PostsCtx);
 	const { user } = useContext(AuthCtx);
 	const [ darkMode, setValue ] = useContext(ColorCtx);
 	const growl = React.createRef();
+	let current = React.createRef();
 	const handleCopy = () => {
 		let value = `http://localhost:3000/forum/${post.id}`;
 		navigator.clipboard.writeText(value).then(() => {

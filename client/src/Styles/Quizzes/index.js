@@ -8,9 +8,34 @@ export const Wrapper = styled.div`
 		padding: 0 30px;
 		margin-bottom: 20px;
 		.p-dropdown {
-			border-color: ${props => props.theme.accent};
+			border-color: ${props => props.theme.main};
+			background: ${props => props.theme.secondary};
 			display: flex;
 			align-items: center;
+			.p-inputtext {
+				background: ${props => props.theme.secondary};
+				color: ${props => props.theme.text};
+			}
+		}
+		.p-dropdown .p-dropdown-panel {
+			background-color: ${props => props.theme.secondary};
+			border-color: ${props => props.theme.secondary};
+		}
+		.p-dropdown-panel .p-dropdown-items .p-dropdown-item {
+			color: ${props => props.theme.text};
+		}
+		.p-dropdown-panel
+			.p-dropdown-items
+			.p-dropdown-item:not(.p-highlight):not(.p-disabled):hover {
+			background-color: ${props => props.theme.main};
+			color: ${props => props.theme.text};
+		}
+		.p-dropdown .p-dropdown-trigger {
+			background: ${props => props.theme.secondary};
+			color: ${props => props.theme.accent};
+		}
+		.p-dropdown:not(.p-disabled):hover {
+			border-color: ${props => props.theme.accent};
 		}
 		.p-dropdown:not(.p-disabled):focus {
 			border-color: ${props => props.theme.pink};
