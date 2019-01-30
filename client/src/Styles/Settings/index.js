@@ -30,7 +30,7 @@ export const SettingsWrapper = styled.div`
 		}
 	}
 
-	.rollingPin {
+	svg {
 		transform: rotateZ(45deg);
 		position: absolute;
 		width: 50%;
@@ -56,7 +56,7 @@ export const SettingsWrapper = styled.div`
 		border-color: ${props => props.theme.secondary};
 	}
 	.p-sidebar-left {
-		top: 56px;
+		top: 55px;
 		width: 230px;
 	}
 `;

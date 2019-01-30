@@ -9,7 +9,7 @@ import { Button } from 'primereact/button';
 import Quizzes from '../components/Settings/Quizzes';
 import Posts from '../components/Settings/Posts';
 import { SettingsWrapper, Menu, NewMenu } from '../Styles/Settings/';
-import rollingPinIcon from '../assets/rolling-pin.svg';
+import RollingPinIcon from '../assets/rolling-pin';
 import MediaQuery from 'react-responsive';
 import server from '../utils/server';
 
@@ -88,7 +88,7 @@ const Settings = props => {
 							<NewMenu activeTab={activeTab} setActiveTab={setActiveTab} />
 						</MediaQuery>
 						<MediaQuery minWidth={950}>
-							<img className='rollingPin' src={rollingPinIcon} />
+							<RollingPinIcon className='rollingPin' />
 						</MediaQuery>
 					</div>
 					{activeTab === 'quizzes' ? (

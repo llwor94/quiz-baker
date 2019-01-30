@@ -11,7 +11,7 @@ const FooterWrapper = styled.div`
 	position: absolute;
 
 	height: 50px;
-	z-index: 1003;
+	z-index: 1045;
 	a {
 		color: ${props => props.theme.pink};
 		&:hover {

@@ -6,7 +6,7 @@ import _ from 'lodash';
 import { Button } from '../../Styles/Components/Button';
 import { Wrapper, InnerWrapper, ModalWrapper } from '../../Styles/Settings/CreateQuiz';
 import QuizForm from './QuizForm';
-import ovenIcon from '../../assets/oven.svg';
+import OvenIcon from '../../assets/oven';
 
 import { UserQuizzesCtx } from '../../pages/Settings';
 
@@ -45,7 +45,7 @@ const CreateQuiz = props => {
 								onClick={() => setNewQuiz(false)}
 							/>
 							<QuizForm quiz={quiz} setQuiz={setQuiz} />
-							<img src={ovenIcon} />
+							<OvenIcon />
 						</div>
 
 						<InnerWrapper>

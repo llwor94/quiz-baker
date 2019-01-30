@@ -42,11 +42,12 @@ export const Wrapper = styled.div`
 	.p-ampm-picker {
 		display: none;
 	}
-	img{
+	
 		/* width: 40%;
 		height: 40%; */
-		width: 300px;
-	}
+		
+		svg {width: 300px; fill: ${props => props.theme.text}}
+	
 
 	button {
 		width: 100%;
