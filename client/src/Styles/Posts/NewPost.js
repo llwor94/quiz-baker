@@ -17,6 +17,7 @@ export const NewPostWrapper = styled.div`
 			width: 160px;
 			min-width: 160px;
 		}
+		
 	}
 
 	.modal {

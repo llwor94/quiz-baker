@@ -9,6 +9,7 @@ export const DarkMode = {
 	pink: '#dc758f',
 	darkPink: '#ad546b',
 	accentRed: '#873D48',
+	placeholder: '#898989',
 	aqua: '#00ba96',
 	darkAqua: '#009175',
 	gray: '#878A8C',

@@ -1,41 +1,40 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  border-radius: 4px;
-  /* border: 1px solid; */
-  border-color: ${props => props.theme.accent};
-  padding: 12px;
-  background-color: ${props => props.theme.secondary};
-  margin-bottom: 10px;
-  color: #333;
-  display: flex;
-  position: relative;
-  justify-content: space-between;
-  height: 200px;
-  width: 450px;
-  margin: 13px;
+	border-radius: 4px;
+	/* border: 1px solid; */
+	border-color: ${props => props.theme.accent};
+	padding: 12px;
+	background-color: ${props => props.theme.secondary};
+	margin-bottom: 10px;
+	color: #333;
+	display: flex;
+	position: relative;
+	justify-content: space-between;
+	height: 200px;
+	width: 450px;
+	margin: 13px;
 
-  border: 1px dashed #ddd;
-  box-shadow: 0 0 0 3px ${props => props.theme.secondary}, 0 0 0 5px #ddd,
-    0 0 0 10px ${props => props.theme.secondary}, 0 0 2px 10px #eee;
+	border: 1px dashed #ddd;
+	box-shadow: 0 0 0 3px ${props => props.theme.secondary}, 0 0 0 5px #ddd,
+		0 0 0 10px ${props => props.theme.secondary}, 0 0 2px 10px #eee;
 
-
-  .p-growl.p-growl-topright {
-    opacity: 1 !important;
-  }
-  .p-growl .p-growl-item-container.p-growl-message-info {
-    background-color: ${props => props.theme.pink};
-    opacity: 1 !important;
-    font-family: "Raleway", sans-serif !important;
-    border-radius: 4px;
-    color: white;
-  }
-  .p-growl .p-growl-item-container.p-growl-message-info .p-growl-image {
-    display: none;
-  }
-  .p-growl .p-growl-item-container.p-growl-message-info .p-growl-icon-close {
-    color: white;
-  }
+	.p-growl.p-growl-topright {
+		opacity: 1 !important;
+	}
+	.p-growl .p-growl-item-container.p-growl-message-info {
+		background-color: ${props => props.theme.pink};
+		opacity: 1 !important;
+		font-family: "Raleway", sans-serif !important;
+		border-radius: 4px;
+		color: white;
+	}
+	.p-growl .p-growl-item-container.p-growl-message-info .p-growl-image {
+		display: none;
+	}
+	.p-growl .p-growl-item-container.p-growl-message-info .p-growl-icon-close {
+		color: white;
+	}
 
 	&:hover {
 		border-color: ${props => props.theme.pink};
@@ -271,7 +270,14 @@ export const MultiSelectWrapper = styled.div`
 			left: initial !important;
 		}
 	}
-
+	.p-inputtext {
+		background-color: ${props => props.theme.main};
+		border-color: ${props => props.theme.accent};
+		color: ${props => props.theme.text};
+	}
+	.p-inputtext:enabled:hover:not(.p-error) {
+		border-color: ${props => props.theme.accent};
+	}
 	.p-multiselect {
 		height: 43px;
 		display: flex;

@@ -14,7 +14,7 @@ const StyledButtonWrapper = styled.div`
 		background-color: ${props =>
 			props.secondary
 				? props.theme.aqua
-				: props.white ? props.theme.lightGray : props.theme.pink};
+				: props.white ? props.theme.accent : props.theme.pink};
 		border-color: ${props =>
 			props.secondary
 				? props.theme.aqua

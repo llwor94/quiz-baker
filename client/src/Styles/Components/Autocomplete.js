@@ -10,8 +10,16 @@ margin-bottom: 10px;
 
   .p-inputtext {
     border-right: none;
+    background-color: ${props => props.theme.secondary};
+		border-color: ${props => props.theme.accent};
+		color: ${props => props.theme.text};
 	&:focus {
 		border-color: ${props => props.theme.aqua} !important;
+	}
+  &::placeholder {
+		font-family: 'Raleway', sans-serif;
+		color: ${props => props.theme.placeholder};
+		font-size: 16px;
 	}
   }
   .p-button {

@@ -21,9 +21,9 @@ export const StyledInput = styled.input`
 	resize: none;
 	font-size: 14px;
 	color: #333333;
-	background: #ffffff;
+	background: ${props => props.theme.main};
 	padding: 0.429em;
-	border: 1px solid #a6a6a6;
+	border: 1px solid ${props => props.theme.accent};
 	border-left: ${props => props.radio && 'none'};
 	&:focus {
 		border-color: ${props => props.theme.pink};
@@ -31,7 +31,7 @@ export const StyledInput = styled.input`
 
 	&::placeholder {
 		font-family: 'Raleway', sans-serif;
-		color: #898989;
+		color: ${props => props.theme.placeholder};
 		font-size: 16px;
 	}
 `;
@@ -62,9 +62,9 @@ const StyledTextArea = styled.textarea`
 	font-size: 14px;
 	margin-bottom: 10px;
 	color: #333333;
-	background: #ffffff;
+	background-color: ${props => props.theme.main};
 	padding: 0.429em;
-	border: 1px solid #a6a6a6;
+	border: 1px solid ${props => props.theme.accent};
 	&:focus {
 		border-color: ${props => props.theme.pink};
 	}
@@ -88,9 +88,9 @@ export const Label = styled.label`
 
 	font-size: 16px;
 	color: #333333;
-	background: #ffffff;
+	background: ${props => props.theme.secondary};
 	padding: 0.429em;
-	border: 1px solid #a6a6a6;
+	border: 1px solid ${props => props.theme.accent};
 	border-left: none;
 	width: 55px;
 `;
@@ -115,8 +115,9 @@ const AnotherTextArea = styled.textarea`
 	resize: none;
 	width: 100%;
 	height: 100%;
+	background: ${props => props.theme.main};
 	border-radius: 3px;
-	border: 1px solid #a6a6a6;
+	border: 1px solid ${props => props.theme.accent};
 	&:focus {
 		border-color: ${props => props.theme.pink};
 		outline: none;

@@ -1,7 +1,7 @@
 export const LightMode = {
 	main: '#f5f8fa',
 	secondary: '#fff',
-	accent: '#657786;',
+	accent: '#a6a6a6;',
 	link: 'rgb(120, 124, 126)',
 	text: 'rgb(34, 34, 34)',
 	header: '#ad546b',
@@ -9,6 +9,7 @@ export const LightMode = {
 	darkAqua: '#009175',
 	accentText: '#878A8C',
 	accentPink: '#dc758f',
+	placeholder: '#898989',
 	pink: '#dc758f',
 	darkPink: '#ad546b',
 	accentRed: '#873D48',
