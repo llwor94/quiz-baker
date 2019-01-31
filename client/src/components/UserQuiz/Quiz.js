@@ -61,7 +61,7 @@ const Quiz = () => {
 							<p>{quiz.question_time_limit} seconds per question.</p>
 						)}
 
-						{quiz.description && <p>{quiz.description}</p>}
+						{quiz.description && <p className="description">{quiz.description}</p>}
 					</Fragment>
 				)}
 			</InnerWrapper>

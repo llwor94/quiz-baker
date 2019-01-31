@@ -33,7 +33,8 @@ const Question = ({ question }) => {
 						<li
 							key={i}
 							style={{
-								color: question.answer === i + 1 ? 'green' : 'black',
+								color: question.answer === i + 1 ? 'white' : 'black',
+								backgroundColor: question.answer === i + 1 ? '#00ba96' : 'white',
 								fontWeight: question.answer === i + 1 && 'bold',
 							}}
 						>

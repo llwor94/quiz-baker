@@ -3,7 +3,7 @@ import _ from 'lodash';
 import server from '../../utils/server';
 import { EditWrapper, InputTitleWrapper } from '../../Styles/UserQuiz/Questions';
 import { Button } from '../../Styles/Components/Button';
-import { Input } from '../../Styles/Components/Input';
+import { AddQuestionTextArea } from '../../Styles/Components/Input';
 import { ToggleButton } from 'primereact/togglebutton';
 import { MultipleChoice, TrueFalse } from './InputOptions';
 import { UserQuizCtx } from '../../pages/UserQuiz';
@@ -71,7 +71,7 @@ const EditQuestion = ({ question, handleEdit, setEdit }) => {
 				onChange={e => setMultipleChoice(e.value)}
 			/>
 			<InputTitleWrapper>
-				<Input
+				<AddQuestionTextArea
 					value={questionTitle}
 					onChange={e => setQuestionTitle(e.target.value)}
 					//label='Question Title'
