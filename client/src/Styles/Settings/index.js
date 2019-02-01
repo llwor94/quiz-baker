@@ -130,7 +130,7 @@ const ListItem = styled.li`
 		text-decoration: none;
 		margin: 0 0.2em 1px 0px;
 		cursor: pointer;
-		border: 1px solid white;
+		border: 1px solid ${props => props.theme.accent};
 		border-top-left-radius: 3px;
 		border-top-right-radius: 3px;
 		span {
@@ -142,8 +142,8 @@ const ListItem = styled.li`
 
 	&:hover {
 		a {
-			background-color: #dbdbdb;
-			border: 1px solid #dbdbdb;
+			background-color: ${props => props.theme.accent};
+			border: 1px solid ${props => props.theme.accent};
 			span {
 				color: ${props => props.theme.text};
 			}

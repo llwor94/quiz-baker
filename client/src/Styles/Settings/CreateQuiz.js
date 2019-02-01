@@ -17,10 +17,13 @@ export const ModalWrapper = styled.div`
 export const Wrapper = styled.div`
 	border-radius: 4px;
 	/* border: 1px solid; */
-	border: 1px dashed #ddd;
-	box-shadow: 0 0 0 3px #fff, 0 0 0 5px #ddd, 0 0 0 10px #fff, 0 0 2px 10px #eee;
+	border: 1px dashed ${props => props.theme.accent};
+	box-shadow: 0 0 0 3px ${props => props.theme.secondary},
+		0 0 0 5px ${props => props.theme.accent}, 0 0 0 10px ${props => props.theme.secondary},
+		0 0 2px 10px #eee;
 
-	border-color: ${props => props.theme.accent};
+
+
 	padding: 5px;
 	position: absolute;
 	background-color: ${props => props.theme.secondary};

@@ -44,7 +44,7 @@ const CreateQuiz = props => {
 								white
 								onClick={() => setNewQuiz(false)}
 							/>
-							<QuizForm quiz={quiz} setQuiz={setQuiz} />
+							<QuizForm quiz={quiz} setQuiz={setQuiz} create={true} />
 							<OvenIcon />
 						</div>
 

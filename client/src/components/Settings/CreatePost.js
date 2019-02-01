@@ -90,7 +90,7 @@ const CreatePost = () => {
 				<ModalWrapper>
 					<div className='modal'>
 						<Button
-							style={{ position: 'absolute', top: '0px', right: '0px' }}
+							style={{ position: 'absolute', top: '5px', right: '5px' }}
 							icon='pi pi-times'
 							white
 							onClick={() => setNewPost(false)}

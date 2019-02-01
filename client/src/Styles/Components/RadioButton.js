@@ -11,6 +11,9 @@ const StyledRadio = styled(StyledRadioButton)`
   border: ${props => props.theme.darkPink} !important;
   }
 }
+.p-inputgroup .p-inputgroup-addon {
+  background-color: ${props => props.theme.main}
+}
 `;
 
 const RadioButton = ({ id, value, onChange, checked }) => (

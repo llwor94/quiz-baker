@@ -64,12 +64,13 @@ const StyledTextArea = styled.textarea`
 	resize: none;
 	font-size: 14px;
 	margin-bottom: 10px;
-	color: #333333;
+	color: ${props => props.theme.text};
 	background-color: ${props => props.theme.secondary};
 	padding: 0.429em;
 	border: 1px solid ${props => props.theme.accent};
 	&:focus {
 		border-color: ${props => props.theme.pink};
+		outline: none;
 	}
 `;
 
@@ -78,6 +79,7 @@ export const AddQuestionTextArea = styled.textarea`
 	height: 115px;
 	outline: 1px solid ${props => props.theme.accentPink};
 	border: none;
+	background-color: ${props => props.theme.secondary};
 	resize: none;
 	font-size: 18px;
 	padding: 5px;
@@ -104,7 +106,7 @@ export const Label = styled.label`
 	border-bottom-left-radius: 0;
 
 	font-size: 16px;
-	color: #333333;
+	color: ${props => props.theme.placeholder};
 	background: ${props => props.theme.secondary};
 	padding: 0.429em;
 	border: 1px solid ${props => props.theme.accent};

@@ -10,6 +10,10 @@ const Wrapper = styled.div`
 	justify-content: space-between;
 	align-items: center;
 	padding-bottom: 10px;
+	.p-radiobutton .p-radiobutton-box {
+		background-color: ${props => props.theme.secondary};
+		border-color: ${props => props.theme.main}
+	}
 	.p-radiobutton .p-radiobutton-box.p-highlight {
 		background-color: ${props => props.theme.pink};
 		border-color: ${props => props.theme.pink};
@@ -20,9 +24,18 @@ const Wrapper = styled.div`
 		background-color: ${props => (props.mc ? props.theme.darkPink : props.theme.darkAqua)};
 		border-color: ${props => (props.mc ? props.theme.darkPink : props.theme.darkAqua)};
 	}
+	.p-radiobutton .p-radiobutton-box.p-highlight .p-radiobutton-icon  {
+		background-color: ${props => props.theme.secondary}
+	}
 `;
 
-const InputWrapper = styled.div`padding: 5px 0;`;
+const InputWrapper = styled.div`
+	padding: 5px 0;
+	.p-inputgroup-addon {
+		background-color: ${props => props.theme.accent} !important;
+		border-color: ${props => props.theme.accent} !important;
+	}
+`;
 
 export const MultipleChoice = ({
 	correctOption,

@@ -51,7 +51,7 @@ const QuizForm = ({ quiz, setQuiz, ...props }) => {
 	};
 
 	return (
-		<QuizFormWrapper>
+		<QuizFormWrapper create={props.create}>
 			<div style={{ display: 'flex' }}>
 				<div>
 					<p>Title:</p>
