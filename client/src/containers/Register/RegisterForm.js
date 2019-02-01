@@ -1,9 +1,10 @@
 import React, { useState, useContext } from 'react';
-import { AuthCtx } from '../../Auth';
-
-import server from '../../utils/server';
 import _ from 'lodash';
 import debounce from 'lodash/debounce';
+
+import server from '../../utils/server';
+
+import { AuthCtx } from '../../Auth';
 
 import { Wrapper, InputWrap } from '../../components/Auth';
 

@@ -1,17 +1,20 @@
 import React, { useEffect, useState, useContext } from 'react';
-import Profile from '../components/Settings/Profile';
-import Loading from '../components/Loading';
+import MediaQuery from 'react-responsive';
+import { Sidebar } from 'primereact/sidebar';
+import { Button } from 'primereact/button';
+
+import server from '../utils/server';
+
 import { UserQuizzesCtx, UserPostsCtx } from '../pages/Settings';
 import { AuthCtx } from '../Auth';
 
-import { Sidebar } from 'primereact/sidebar';
-import { Button } from 'primereact/button';
+import Profile from '../components/Settings/Profile';
 import Quizzes from '../components/Settings/Quizzes';
 import Posts from '../components/Settings/Posts';
+import Loading from '../components/Loading';
+
 import { SettingsWrapper, NewMenu } from '../Styles/Settings/';
 import RollingPinIcon from '../assets/rolling-pin';
-import MediaQuery from 'react-responsive';
-import server from '../utils/server';
 
 const Settings = props => {
 	const [ userQuizzes, setUserQuizzes ] = useContext(UserQuizzesCtx);

@@ -1,8 +1,10 @@
-import React, { useState, useEffect, Fragment, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
 import { openUploadWidget } from '../utils/cloudinary';
 import server from '../utils/server';
+
 import { AuthCtx } from '../Auth';
+
 import { HugeImage } from '../Styles/Components/Image';
 import { Button } from '../Styles/Components/Button';
 
@@ -30,7 +32,6 @@ const UploadImage = ({ doneEditting }) => {
 		};
 		openUploadWidget(uploadOptions, (error, result) => {
 			if (result.event === 'success') {
-				console.log(result.info);
 				setImg(result.info.secure_url);
 			}
 		});

@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useContext, Fragment } from 'react';
 
+import server from '../utils/server';
+
 import { PostCtx } from '../pages/Post';
 import { AuthCtx } from '../Auth';
-import server from '../utils/server';
+
 import Loading from '../components/Loading';
 import Post from '../components/Post';
 import NewComment from '../components/Post/NewComment';
@@ -11,9 +13,9 @@ import Comments from '../components/Post/Comments';
 const PostContainer = props => {
 	const [ post, setPost ] = useContext(PostCtx);
 	const { user } = useContext(AuthCtx);
+
 	useEffect(() => {
 		server.get(`/posts/${props.match.params.id}`).then(({ data }) => {
-			console.log(data);
 			setPost(data);
 		});
 	}, []);

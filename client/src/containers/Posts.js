@@ -1,19 +1,24 @@
 import React, { useState, useEffect, useContext } from 'react';
+import MediaQuery from 'react-responsive';
+
+import server from '../utils/server';
+
 import { PostsCtx } from '../pages/Forum';
 import { AuthCtx } from '../Auth';
-import { Wrapper } from '../Styles/Posts';
-import server from '../utils/server';
+
 import Loading from '../components/Loading';
 import CommentsView from '../components/Posts/CommentsView';
 import NewPost from '../components/Posts/NewPost';
 import Post from '../components/Posts/Post';
 import Topics from '../components/Posts/Topics';
-import MediaQuery from 'react-responsive';
+
+import { Wrapper } from '../Styles/Posts';
 
 const Posts = props => {
 	const [ posts, setPosts ] = useContext(PostsCtx);
 	const { user } = useContext(AuthCtx);
 	const [ currentPost, setCurrentPost ] = useState(undefined);
+
 	useEffect(() => {
 		server
 			.get('/posts')
@@ -30,7 +35,7 @@ const Posts = props => {
 			setCurrentPost(id);
 		}
 	};
-	console.log(currentPost);
+
 	if (!posts) return <Loading />;
 	else
 		return (

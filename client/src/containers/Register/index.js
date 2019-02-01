@@ -1,14 +1,19 @@
-import React, { useState, Fragment, useContext } from 'react';
+import React, { useState, useContext } from 'react';
+
 import { AuthCtx } from '../../Auth';
+
 import ImageUpload from '../ImageUpload';
+import RegisterForm from './RegisterForm';
+
 import { HugeImage } from '../../Styles/Components/Image';
 import { Button } from '../../Styles/Components/Button';
-import RegisterForm from './RegisterForm';
 import { ModalWrapper } from '../../Styles/Settings/CreateQuiz';
 import { Wrapper, WelcomeWrapper } from '../../Styles/Register';
+
 const Register = props => {
 	const { user } = useContext(AuthCtx);
 	const [ finished, setFinished ] = useState(false);
+
 	if (!user) return <RegisterForm {...props} />;
 	else if (!finished)
 		return (
