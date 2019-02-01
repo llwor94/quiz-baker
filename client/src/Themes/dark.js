@@ -13,7 +13,8 @@ export const DarkMode = {
 	darkAqua: '#009175',
 	accentRed: '#D2909A',
 	get fancyBorder() {
-		return `border: 1px dashed ${this.accent}; box-shadow: 0 0 0 3px ${this.secondary},
+		return `border-radius: 4px; border: 1px dashed ${this.accent}; box-shadow: 0 0 0 3px ${this
+			.secondary},
 		0 0 0 5px ${this.accent}, 0 0 0 10px ${this.secondary},
 		0 0 2px 10px #eee;`;
 	},

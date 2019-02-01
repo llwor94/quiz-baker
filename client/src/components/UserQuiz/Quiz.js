@@ -39,7 +39,7 @@ const Quiz = () => {
 	};
 
 	return (
-		<Wrapper secondary edit={edit}>
+		<Wrapper edit={edit}>
 			<InnerWrapper>
 				<Button
 					style={{ position: 'absolute', top: '5px', right: '5px' }}

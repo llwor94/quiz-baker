@@ -3,14 +3,11 @@ export const Wrapper = styled.div`
 	max-width: 1000px;
 	margin: 190px auto 0;
 	@media (max-width: 950px) {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
+		${props => props.theme.flex('column', undefined, 'center')};
 	}
 
 	.filters {
-		display: flex;
-		justify-content: space-between;
+		${props => props.theme.flex(undefined, 'space-between')};
 		padding: 0 30px;
 		margin-bottom: 20px;
 		@media (max-width: 950px) {
@@ -19,8 +16,7 @@ export const Wrapper = styled.div`
 		.p-dropdown {
 			border-color: ${props => props.theme.accent};
 			background: ${props => props.theme.secondary};
-			display: flex;
-			align-items: center;
+			${props => props.theme.flex(undefined, undefined, 'center')};
 			.p-inputtext {
 				background: ${props => props.theme.secondary};
 				color: ${props => props.theme.text};
@@ -58,10 +54,8 @@ export const Wrapper = styled.div`
 	}
 	.quizzes {
 		width: 100%;
-		display: flex;
 		flex-wrap: wrap;
-		justify-content: center;
-		align-items: center;
+		${props => props.theme.flex(undefined, 'center', 'center')};
 	}
 	@media (max-width: 915px) {
 		margin-top: 90px;
