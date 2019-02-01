@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
+import styled, { createGlobalStyle, ThemeProvider, withTheme } from 'styled-components';
 import React, { useEffect, useState, createContext, useContext, Fragment } from 'react';
 import { hot } from 'react-hot-loader';
 import { Route, Switch, Redirect } from 'react-router-dom';
@@ -23,23 +23,27 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import { DarkMode } from './Themes/dark';
 import { LightMode } from './Themes/light';
-
+import { mixins } from './Styles/mixins';
 const GlobalStyle = createGlobalStyle`
   * {
     margin: 0;
     padding: 0;
 		box-sizing: border-box;
 		font-family: 'Raleway', sans-serif;
-		
   }
 	
 
-	html, body{
+	html, body {
 		height: 100%;
 		width: 100%;
 		background-color: ${props => props.theme.secondary};
+		font-size: 12px;
+		
+		p, a {
 		color: ${props => props.theme.text};
 	}
+	}
+	
 `;
 
 const Wrapper = styled.div`
@@ -74,7 +78,7 @@ const App = () => {
 	else
 		return (
 			<ColorCtx.Provider value={[ darkMode, setValue ]}>
-				<ThemeProvider theme={darkMode ? DarkMode : LightMode}>
+				<ThemeProvider theme={{ ...(darkMode ? DarkMode : LightMode), ...mixins }}>
 					<Fragment>
 						<GlobalStyle />
 						<Header setValue={setValue} darkMode={darkMode} />
@@ -108,4 +112,4 @@ const App = () => {
 		);
 };
 
-export default hot(module)(App);
+export default App;

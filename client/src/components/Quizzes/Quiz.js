@@ -34,7 +34,7 @@ const Quiz = ({ quiz, ...props }) => {
 	const [ quizzes, setQuizzes ] = useContext(QuizzesCtx);
 	const { user } = useContext(AuthCtx);
 	const [ darkMode, setValue ] = useContext(ColorCtx);
-	console.log(user);
+
 	const handleCopy = () => {
 		let value = `http://localhost:3000/quizzes/${quiz.id}`;
 		navigator.clipboard.writeText(value).then(() => {
@@ -54,7 +54,6 @@ const Quiz = ({ quiz, ...props }) => {
 			})
 			.catch(err => console.log(err));
 	};
-	console.log(quiz);
 
 	const handleVote = val => {
 		console.log(quiz.user_vote, val);

@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 
 export const InnerWrapper = styled.div`
-	display: flex;
-	flex-direction: column;
-
+	${props => props.theme.flex('column')};
 	a {
 		font-weight: 700;
 		color: ${props => props.theme.text};
@@ -17,10 +15,10 @@ export const InnerWrapper = styled.div`
 
 export const Wrapper = styled.div`
 	border-radius: 4px;
-	border: 1px dashed ${props => props.theme.accent};
+	/* border: 1px dashed ${props => props.theme.accent};
 	box-shadow: 0 0 0 3px ${props => props.theme.secondary},
 		0 0 0 5px ${props => props.theme.accent}, 0 0 0 10px ${props => props.theme.secondary},
-		0 0 2px 10px #eee;
+		0 0 2px 10px #eee; */
 
 	padding: 12px;
 	background-color: ${props => props.theme.secondary};
