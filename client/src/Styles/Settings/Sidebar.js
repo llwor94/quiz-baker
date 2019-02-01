@@ -8,6 +8,7 @@ export const ProfileWrapper = styled.div`
 	h4 {
 		font-size: 18px;
 		line-height: 25px;
+		color: ${props => props.theme.text};
 	}
 
 	.tab {
