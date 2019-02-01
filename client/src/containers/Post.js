@@ -3,7 +3,7 @@ import React, { useState, useEffect, useContext, Fragment } from 'react';
 import { PostCtx } from '../pages/Post';
 import { AuthCtx } from '../Auth';
 import server from '../utils/server';
-import Loading from '../components/Styles/Loading';
+import Loading from '../components/Loading';
 import Post from '../components/Post';
 import NewComment from '../components/Post/NewComment';
 import Comments from '../components/Post/Comments';

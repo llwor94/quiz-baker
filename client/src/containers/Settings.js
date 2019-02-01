@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import Profile from '../components/Settings/Profile';
-import Loading from '../components/Styles/Loading';
+import Loading from '../components/Loading';
 import { UserQuizzesCtx, UserPostsCtx } from '../pages/Settings';
 import { AuthCtx } from '../Auth';
 

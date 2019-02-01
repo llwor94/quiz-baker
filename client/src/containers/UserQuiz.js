@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext, Fragment } from 'react';
 import server from '../utils/server';
 import { UserQuizCtx, QuizQuestionsCtx } from '../pages/UserQuiz';
-import Loading from '../components/Styles/Loading';
+import Loading from '../components/Loading';
 import Quiz from '../components/UserQuiz/Quiz';
 import Question from '../components/UserQuiz/Question';
 import { QuestionWrapper } from '../Styles/UserQuiz/Questions';

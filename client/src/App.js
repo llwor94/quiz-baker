@@ -18,7 +18,7 @@ import SettingsPage from './pages/Settings';
 import UserQuizPage from './pages/UserQuiz';
 import LoginContainer from './containers/Login';
 
-import Loading from './components/Styles/Loading';
+import Loading from './components/Loading';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import { DarkMode } from './Themes/dark';

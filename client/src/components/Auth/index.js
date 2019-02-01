@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { Input } from '../../Styles/Components/Input';
 
-import Button from '../Styles/Button';
+import { Button } from '../../Styles/Components/Button';
 import { Link } from 'react-router-dom';
 
 import { LogoWrapper } from '../../Styles/Register/Logo';

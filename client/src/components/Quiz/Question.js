@@ -2,7 +2,7 @@ import React, { useEffect, useState, Fragment, useContext, useRef } from 'react'
 import server from '../../utils/server';
 import _ from 'lodash';
 import { Growl } from 'primereact/growl';
-import Loading from '../Styles/Loading';
+import Loading from '../Loading';
 import { Button } from '../../Styles/Components/Button';
 import { QuestionCtx } from '../../containers/Quiz';
 import { QuizCtx, ResponseCtx } from '../../pages/Quiz';

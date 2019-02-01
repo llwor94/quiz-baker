@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext, createContext } from 'react';
-import Loading from '../components/Styles/Loading';
+import Loading from '../components/Loading';
 import _ from 'lodash';
 
 import server from '../utils/server';

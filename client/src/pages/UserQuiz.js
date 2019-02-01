@@ -1,7 +1,7 @@
 import React, { useEffect, useState, createContext, useContext } from 'react';
 import UserQuizContainer from '../containers/UserQuiz';
 import { AuthCtx } from '../Auth';
-import Loading from '../components/Styles/Loading';
+import Loading from '../components/Loading';
 export const UserQuizCtx = createContext([ undefined, () => {} ]);
 export const QuizQuestionsCtx = createContext([ undefined, () => {} ]);
 const UserQuiz = props => {

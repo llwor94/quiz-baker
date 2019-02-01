@@ -2,7 +2,7 @@ import React, { useState, Fragment, useContext } from 'react';
 import { AuthCtx } from '../../Auth';
 import ImageUpload from '../ImageUpload';
 import { HugeImage } from '../../Styles/Components/Image';
-import Button from '../../components/Styles/Button';
+import { Button } from '../../Styles/Components/Button';
 import RegisterForm from './RegisterForm';
 import { ModalWrapper } from '../../Styles/Settings/CreateQuiz';
 import { Wrapper, WelcomeWrapper } from '../../Styles/Register';

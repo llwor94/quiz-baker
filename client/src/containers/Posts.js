@@ -3,7 +3,7 @@ import { PostsCtx } from '../pages/Forum';
 import { AuthCtx } from '../Auth';
 import { Wrapper } from '../Styles/Posts';
 import server from '../utils/server';
-import Loading from '../components/Styles/Loading';
+import Loading from '../components/Loading';
 import CommentsView from '../components/Posts/CommentsView';
 import NewPost from '../components/Posts/NewPost';
 import Post from '../components/Posts/Post';

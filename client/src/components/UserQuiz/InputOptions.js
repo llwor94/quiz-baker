@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import RadioButton from '../Styles/RadioButton';
+import RadioButton from '../../Styles/Components/RadioButton';
 import { StyledInput, Label } from '../../Styles/Components/Input';
 
 const Wrapper = styled.div`

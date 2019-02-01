@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import Loading from '../components/Styles/Loading';
+import Loading from '../components/Loading';
 import { AuthCtx } from '../Auth';
 
 import server from '../utils/server';
