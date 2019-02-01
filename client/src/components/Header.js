@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext, Fragment } from 'react';
-import { AuthCtx } from '../Auth';
 import styled from 'styled-components';
 import MediaQuery from 'react-responsive';
 import { Link, withRouter } from 'react-router-dom';
@@ -9,31 +8,27 @@ import { Sidebar } from 'primereact/sidebar';
 import { Button } from 'primereact/button';
 import anime from 'animejs';
 
+import { AuthCtx } from '../Auth';
+
 import quizbaker from '../assets/quizbaker.png';
 import darkModeLogo from '../assets/logo-darkmode.png';
 
 const Wrapper = styled.div`
 	position: fixed;
 	width: 100%;
-	z-index: 100;
-	display: flex;
-	align-items: center;
+	${props => props.theme.flex(undefined, undefined, 'center')};
 	z-index: 1052;
 
 	.sidebarButton {
-		background: ${props => props.theme.pink};
-		border-color: ${props => props.theme.pink};
+		${props => props.theme.backgroundBorder(props.theme.pink)};
 	}
 	.p-button:enabled:hover {
-		background: ${props => props.theme.darkPink};
-		border-color: ${props => props.theme.darkPink};
+		${props => props.theme.backgroundBorder(props.theme.darkPink)};
 	}
 	.sidebar {
 		top: 49px;
 		width: 130px;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
+		${props => props.theme.flex('column', undefined, 'center')};
 		height: auto;
 		right: 10px;
 		transform: translateX(110%);
@@ -49,10 +44,8 @@ const Wrapper = styled.div`
 const HeaderWrapper = styled.div`
 	height: 55px;
 	position: relative;
-	display: flex;
+	${props => props.theme.flex(undefined, 'space-between', 'center')};
 	width: 100%;
-	align-items: center;
-	justify-content: space-between;
 	background-color: ${props => props.theme.secondary};
 	padding: 0 10px;
 	top: 0;
@@ -70,12 +63,11 @@ const HeaderWrapper = styled.div`
 `;
 
 const InnerWrapper = styled.div`
-	display: flex;
+	${props => props.theme.flex(undefined, 'center')};
 	border-bottom: ${props => props.menu && '1px solid'};
 	border-bottom-color: ${props => props.menu && props.theme.accent};
 	width: ${props => (props.menu ? '100%' : '700px')};
 	position: absolute;
-	justify-content: center;
 	left: 0;
 	right: 0;
 	margin: 0 auto;
@@ -126,8 +118,7 @@ const StyledLink = styled(Link)`
 
 const Logo = styled.img`
 	z-index: 1000;
-	width: 45px;
-	height: 45px;
+	${props => props.theme.square(45)};
 	background-color: ${props => props.dark && props.theme.secondary};
 `;
 

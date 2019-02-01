@@ -12,8 +12,7 @@ const Wrapper = styled.div`
 
 const StyledLoading = styled.div`
 	margin-top: 200px;
-	width: 100px;
-	height: 100px;
+	${props => props.theme.square(100)};
 	animation: lds-hourglass 3.7s infinite;
 	margin-bottom: 300px;
 	svg {
