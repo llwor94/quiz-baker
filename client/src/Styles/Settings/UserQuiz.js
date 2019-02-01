@@ -81,8 +81,11 @@ export const FooterWrapper = styled.div`
 	justify-content: space-between;
 	a {
 		text-transform: capitalize;
-		cursor: pointer;
+
 		color: ${props => props.theme.accentText};
+		&:hover {
+			color: ${props => props.theme.accentText};
+		}
 	}
 `;
 
