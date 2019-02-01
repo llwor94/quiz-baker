@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import LoadingCroissant from '../../assets/loadingCroissant.svg';
+import LoadingIcon from '../../assets/loadingIcon';
 
 const Wrapper = styled.div`
 	width: 100%;
@@ -16,6 +16,9 @@ const StyledLoading = styled.div`
 	height: 100px;
 	animation: lds-hourglass 3.7s infinite;
 	margin-bottom: 300px;
+	svg {
+		fill: ${props => props.theme.text};
+	}
 	@keyframes lds-hourglass {
 		0% {
 			transform: rotate(0);
@@ -34,7 +37,7 @@ const StyledLoading = styled.div`
 const Loading = () => (
 	<Wrapper>
 		<StyledLoading>
-			<img src={LoadingCroissant} />
+			<LoadingIcon />
 		</StyledLoading>
 	</Wrapper>
 );
