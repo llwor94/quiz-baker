@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
+
 import { QuestionCtx } from '../../containers/Quiz';
 import { ResponseCtx } from '../../pages/Quiz';
 
@@ -10,10 +11,11 @@ const Wrapper = styled.div`
 `;
 
 const Box = styled.div`
-	width: 20px;
-	height: 20px;
+	${props => props.theme.square(20)};
 	background-color: ${props =>
-		props.correct === null ? props.theme.secondary : props.correct ? '#00ba96' : '#873D48'};
+		props.correct === null
+			? props.theme.secondary
+			: props.correct ? props.theme.aqua : props.theme.accentRed};
 	margin: 4px;
 	border-radius: 4px;
 	border: ${props => (props.currentQuestion ? '3px solid' : '1px solid')};

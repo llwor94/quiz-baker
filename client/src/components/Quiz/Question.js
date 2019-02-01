@@ -1,14 +1,15 @@
-import React, { useEffect, useState, Fragment, useContext, useRef } from 'react';
-import server from '../../utils/server';
+import React, { useEffect, useState, useContext } from 'react';
 import _ from 'lodash';
-import { Growl } from 'primereact/growl';
-import Loading from '../Loading';
-import { Button } from '../../Styles/Components/Button';
+import anime from 'animejs';
+import { RadioButton } from 'primereact/radiobutton';
+
+import server from '../../utils/server';
+
 import { QuestionCtx } from '../../containers/Quiz';
 import { QuizCtx, ResponseCtx } from '../../pages/Quiz';
-import { RadioButton } from 'primereact/radiobutton';
+
+import { Button } from '../../Styles/Components/Button';
 import {
-	MainWrapper,
 	Wrapper,
 	AnswerWrapper,
 	Answer,
@@ -17,13 +18,6 @@ import {
 	Logo,
 } from '../../Styles/Quiz/Question';
 import Timer from '../../Styles/Components/Timer';
-import anime from 'animejs';
-import { Transition } from 'react-transition-group';
-
-const fadingInStart = question => anime({ targets: question, opacity: 0 });
-const fadingIn = question => anime({ targets: question, opacity: 0.5 });
-const fadedIn = question => anime({ targets: question, opacity: 1 });
-const fadingOut = question => anime({ targets: question, opacity: 0.5 });
 
 const Question = () => {
 	const [ quiz, setQuiz ] = useContext(QuizCtx);
@@ -32,10 +26,6 @@ const Question = () => {
 	const [ question, setQuestion ] = useState(quiz.questions[0]);
 	const [ selected, setSelected ] = useState(null);
 	const [ checking, setChecking ] = useState(false);
-
-	// useEffect(() => {
-	// 	anime({ targets: '.wrapper', opacity: 1, duration: 3000 });
-	// }, []);
 
 	useEffect(
 		() => {

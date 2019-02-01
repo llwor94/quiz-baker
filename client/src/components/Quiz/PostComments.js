@@ -1,9 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { ProfileIcon } from '../../Styles/Components/Image';
-import { AuthCtx } from '../../Auth';
-import server from '../../utils/server';
-import { EmojiInput } from '../../Styles/Components/Input';
 import moment from 'moment';
+import anime from 'animejs';
+
+import server from '../../utils/server';
+
+import { AuthCtx } from '../../Auth';
+
+import { EmojiInput } from '../../Styles/Components/Input';
+import { ProfileIcon } from '../../Styles/Components/Image';
 import { Button } from '../../Styles/Components/Button';
 import {
 	Wrapper,
@@ -13,7 +17,7 @@ import {
 	PostComment,
 	RightSide,
 } from '../../Styles/Comments/Comment';
-import anime from 'animejs';
+
 const Comments = ({ post }) => {
 	const { user } = useContext(AuthCtx);
 	const [ comments, setComments ] = useState(undefined);
@@ -35,7 +39,6 @@ const Comments = ({ post }) => {
 		[ comments ],
 	);
 	const handlePostComment = () => {
-		console.log(comment);
 		server
 			.post(`/posts/${post.id}/comments`, { text: comment })
 			.then(response => {

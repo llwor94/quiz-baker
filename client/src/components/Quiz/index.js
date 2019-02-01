@@ -1,11 +1,13 @@
-import React, { useEffect, useState, Fragment, useContext } from 'react';
-import server from '../../utils/server';
+import React, { useState, useContext } from 'react';
 import _ from 'lodash';
+import anime from 'animejs';
+import { Transition } from 'react-transition-group';
+import MediaQuery from 'react-responsive';
 
-import { Button, BackButton } from '../../Styles/Components/Button';
 import { QuestionCtx } from '../../containers/Quiz';
 import { QuizCtx } from '../../pages/Quiz';
-import MediaQuery from 'react-responsive';
+
+import { Button, BackButton } from '../../Styles/Components/Button';
 import {
 	SplashWrapper,
 	SplashTitle,
@@ -13,9 +15,7 @@ import {
 	SplashDescription,
 	SplashFooter,
 } from '../../Styles/Quiz/Splash';
-import Question from './Question';
-import anime from 'animejs';
-import { Transition } from 'react-transition-group';
+
 import ForkIcon from '../../assets/fork';
 
 const animateOut = wrapper => anime({ targets: wrapper, translateY: -200, opacity: 0 });

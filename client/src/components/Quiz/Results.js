@@ -1,8 +1,12 @@
 import React, { useEffect, useContext, Fragment } from 'react';
-import { Growl } from '../../Styles/Components/Growl';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCookieBite, faCookie } from '@fortawesome/free-solid-svg-icons';
+
 import server from '../../utils/server';
+
 import { AuthCtx } from '../../Auth';
 import { ResponseCtx, QuizCtx } from '../../pages/Quiz';
+
 import {
 	Wrapper,
 	ResultWrapper,
@@ -11,16 +15,15 @@ import {
 	NumberWrapper,
 	FooterWrapper,
 } from '../../Styles/Quiz/Results';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCookieBite, faCookie } from '@fortawesome/free-solid-svg-icons';
+import { Growl } from '../../Styles/Components/Growl';
 
 const Results = () => {
 	const [ questionResponse, setQuestionReponse ] = useContext(ResponseCtx);
 	const [ quiz, setQuiz ] = useContext(QuizCtx);
 	const { user } = useContext(AuthCtx);
-	console.log(user);
+
 	const growl = React.createRef();
-	console.log(quiz);
+
 	useEffect(() => {
 		let score = questionResponse.filter(result => result.correct).length;
 		if (score > quiz.score) {
@@ -50,7 +53,6 @@ const Results = () => {
 	};
 
 	const handleVote = val => {
-		console.log(quiz.user_vote, val);
 		if (user) {
 			let user_vote;
 			if (val === quiz.user_vote) {
@@ -58,7 +60,6 @@ const Results = () => {
 			} else {
 				user_vote = val;
 			}
-			console.log(user_vote);
 			server
 				.patch(`quizzes/${quiz.id}`, { vote: user_vote })
 				.then(({ data }) => {

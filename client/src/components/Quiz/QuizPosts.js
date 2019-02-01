@@ -1,9 +1,11 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
+
+import server from '../../utils/server';
 
 import { AuthCtx } from '../../Auth';
 import { QuizPostCtx, QuestionCtx } from '../../containers/Quiz';
+
 import NewPost from '../Posts/NewPost';
-import server from '../../utils/server';
 import QuizPost from './QuizPost';
 
 const QuizPosts = ({ quiz }) => {
@@ -18,7 +20,7 @@ const QuizPosts = ({ quiz }) => {
 			})
 			.catch(err => console.log(err));
 	}, []);
-	console.log(quizPosts);
+
 	if (!quizPosts) return <div>Loading..</div>;
 	else
 		return (
