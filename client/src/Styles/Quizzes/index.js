@@ -23,8 +23,7 @@ export const Wrapper = styled.div`
 			}
 		}
 		.p-dropdown .p-dropdown-panel {
-			background-color: ${props => props.theme.secondary};
-			border-color: ${props => props.theme.secondary};
+			${props => props.theme.backgroundBorder(props.theme.secondary)};
 		}
 		.p-dropdown-panel .p-dropdown-items .p-dropdown-item {
 			color: ${props => props.theme.text};
@@ -54,8 +53,8 @@ export const Wrapper = styled.div`
 	}
 	.quizzes {
 		width: 100%;
-		flex-wrap: wrap;
 		${props => props.theme.flex(undefined, 'center', 'center')};
+		flex-wrap: wrap;
 	}
 	@media (max-width: 915px) {
 		margin-top: 90px;

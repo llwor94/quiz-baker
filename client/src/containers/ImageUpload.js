@@ -5,7 +5,7 @@ import server from '../utils/server';
 import { AuthCtx } from '../Auth';
 import { HugeImage } from '../Styles/Components/Image';
 import { Button } from '../Styles/Components/Button';
-import { UploadImageWrapper } from '../Styles/Register';
+
 const UploadImage = ({ doneEditting }) => {
 	const { user, editUser } = useContext(AuthCtx);
 	const [ img_url, setImg ] = useState(null);
@@ -55,7 +55,7 @@ const UploadImage = ({ doneEditting }) => {
 	};
 
 	return (
-		<UploadImageWrapper>
+		<div>
 			<HugeImage src={img_url} />
 
 			<div>
@@ -68,7 +68,7 @@ const UploadImage = ({ doneEditting }) => {
 					style={{ float: 'right' }}
 				/>
 			</div>
-		</UploadImageWrapper>
+		</div>
 	);
 };
 

@@ -194,12 +194,10 @@ export const MultiSelectWrapper = styled.div`
 		background-color: ${props => props.theme.pink};
 	}
 	.p-checkbox .p-checkbox-box.p-highlight {
-		border-color: ${props => props.theme.aqua};
-		background-color: ${props => props.theme.aqua};
+		${props => props.theme.backgroundBorder(props.theme.aqua)};
 	}
 	.p-checkbox .p-checkbox-box.p-highlight:not(.p-disabled):hover {
-		border-color: ${props => props.theme.darkAqua};
-		background-color: ${props => props.theme.darkAqua};
+		${props => props.theme.backgroundBorder(props.theme.darkAqua)};
 	}
 
 	.p-inputtext {
@@ -234,8 +232,7 @@ export const MultiSelectWrapper = styled.div`
 		border-color: ${props => props.theme.pink};
 	}
 	.p-multiselect-panel {
-		background-color: ${props => props.theme.secondary};
-		border-color: ${props => props.theme.secondary};
+		${props => props.theme.backgroundBorder(props.theme.secondary)};
 	}
 
 	.p-multiselect-panel .p-multiselect-items .p-multiselect-item {
@@ -253,8 +250,7 @@ export const MultiSelectWrapper = styled.div`
 	}
 
 	.p-multiselect-panel .p-multiselect-header {
-		background-color: ${props => props.theme.secondary};
-		border-color: ${props => props.theme.secondary};
+		${props => props.theme.backgroundBorder(props.theme.secondary)};
 	}
 	.p-multiselect-panel
 		.p-multiselect-header
@@ -279,14 +275,9 @@ export const MultiSelectWrapper = styled.div`
 	}
 
 	.p-checkbox .p-checkbox-box.p-highlight {
-		border-color: ${props => props.theme.aqua};
-		background-color: ${props => props.theme.aqua};
+		${props => props.theme.backgroundBorder(props.theme.aqua)};
 	}
 	.p-checkbox .p-checkbox-box.p-highlight:not(.p-disabled):hover {
-		border-color: ${props => props.theme.darkAqua};
-		background-color: ${props => props.theme.darkAqua};
+		${props => props.theme.backgroundBorder(props.theme.darkAqua)};
 	}
-	/* .topics {
-		margin-left: 4px;
-	} */
 `;

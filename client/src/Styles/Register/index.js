@@ -10,8 +10,6 @@ export const Wrapper = styled.div`
 	}
 `;
 
-export const UploadImageWrapper = styled.div``;
-
 export const WelcomeWrapper = styled.div`
 	margin-top: 100px;
 	text-align: center;
