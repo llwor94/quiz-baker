@@ -14,9 +14,10 @@ export const Wrapper = styled.div`
 	margin-bottom: 10px;
 
 	border: 1px dashed #ddd;
-	box-shadow: 0 0 0 3px ${props => props.theme.secondary}, 0 0 0 5px #ddd, 0 0 0 10px ${props =>
-	props.theme.secondary}, 0 0 2px 10px #eee;
-
+	border: 1px dashed ${props => props.theme.accent};
+	box-shadow: 0 0 0 3px ${props => props.theme.secondary},
+		0 0 0 5px ${props => props.theme.accent}, 0 0 0 10px ${props => props.theme.secondary},
+		0 0 2px 10px #eee;
 	.wrapper {
 		opacity: 0;
 	}
@@ -50,6 +51,13 @@ export const Answer = styled.div`
 	margin-left: 70px;
 	&:not(:last-child) {
 		padding-bottom: 10px;
+	}
+	.p-radiobutton .p-radiobutton-box {
+		background-color: ${props => props.theme.secondary};
+		border-color: ${props => props.theme.accent};
+	}
+	.p-radiobutton .p-radiobutton-box.p-highlight .p-radiobutton-icon {
+		background-color: ${props => props.theme.secondary};
 	}
 
 	.p-radiobutton .p-radiobutton-box.p-highlight {

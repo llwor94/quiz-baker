@@ -3,7 +3,7 @@ import React, { useEffect, useState, useContext, Fragment } from 'react';
 import moment from 'moment';
 
 import server from '../../utils/server';
-import { Growl } from 'primereact/growl';
+import { Growl } from '../../Styles/Components/Growl';
 import { Dialog } from 'primereact/dialog';
 import { Button, BackButton } from '../../Styles/Components/Button';
 import {

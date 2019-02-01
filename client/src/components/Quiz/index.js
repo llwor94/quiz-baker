@@ -1,7 +1,7 @@
 import React, { useEffect, useState, Fragment, useContext } from 'react';
 import server from '../../utils/server';
 import _ from 'lodash';
-import { Growl } from 'primereact/growl';
+
 import { Button, BackButton } from '../../Styles/Components/Button';
 import { QuestionCtx } from '../../containers/Quiz';
 import { QuizCtx } from '../../pages/Quiz';
@@ -53,7 +53,13 @@ const Quiz = props => {
 					</div>
 					<ForkIcon />
 				</div>
-				{quiz.question_time_limit && <div>This is a timed quiz.</div>}
+				{quiz.question_time_limit ? (
+					<div className='timed'>
+						This is a timed quiz. <i className='pi pi-clock' />
+					</div>
+				) : (
+					<div className='notTimed' />
+				)}
 				<SplashFooter>
 					{' '}
 					{quiz.question_count === 1 ? (

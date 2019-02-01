@@ -20,23 +20,6 @@ export const Wrapper = styled.div`
 		0 0 0 5px ${props => props.theme.accent}, 0 0 0 10px ${props => props.theme.secondary},
 		0 0 2px 10px #eee;
 
-	.p-growl.p-growl-topright {
-		opacity: 1 !important;
-	}
-	.p-growl .p-growl-item-container.p-growl-message-info {
-		background-color: ${props => props.theme.pink};
-		opacity: 1 !important;
-		font-family: "Raleway", sans-serif !important;
-		border-radius: 4px;
-		color: white;
-	}
-	.p-growl .p-growl-item-container.p-growl-message-info .p-growl-image {
-		display: none;
-	}
-	.p-growl .p-growl-item-container.p-growl-message-info .p-growl-icon-close {
-		color: white;
-	}
-
 	&:hover {
 		border-color: ${props => props.theme.pink};
 	}

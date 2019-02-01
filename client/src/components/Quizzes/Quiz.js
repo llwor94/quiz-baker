@@ -27,7 +27,7 @@ import {
 import hatIcon from '../../assets/chef.svg';
 import hatDark from '../../assets/chef-dark.svg';
 import { ProfileIcon } from '../../Styles/Components/Image';
-import { Growl } from 'primereact/growl';
+import { Growl } from '../../Styles/Components/Growl';
 
 const Quiz = ({ quiz, ...props }) => {
 	const growl = React.createRef();

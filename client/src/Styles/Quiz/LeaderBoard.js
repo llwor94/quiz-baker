@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
 	padding: 12px;
 	background-color: ${props => props.theme.secondary};
 	margin-bottom: 10px;
-	
+
 	position: absolute;
 	top: 11px;
 	left: -8%;
@@ -23,11 +23,11 @@ export const UserWrapper = styled.div`
 	width: 200px;
 	margin: 10px 0;
 
-	.firstPlace, .otherPlaces{
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-
+	.firstPlace,
+	.otherPlaces {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
 	}
 `;
 

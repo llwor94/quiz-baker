@@ -3,7 +3,7 @@ import { PostsCtx } from '../../pages/Forum';
 import moment from 'moment';
 import { AuthCtx } from '../../Auth';
 import { ColorCtx } from '../../App';
-import { Growl } from 'primereact/growl';
+import { Growl } from '../../Styles/Components/Growl';
 import server from '../../utils/server';
 import hatDark from '../../assets/chef-dark.svg';
 import hatLight from '../../assets/chef.svg';

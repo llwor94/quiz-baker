@@ -20,19 +20,6 @@ export const PostWrapper = styled.div`
 	&:hover {
 		border-color: ${props => props.theme.pink};
 	}
-	.p-growl .p-growl-item-container.p-growl-message-info {
-		background-color: ${props => props.theme.aqua};
-		font-family: "Raleway", sans-serif !important;
-		border-radius: 4px;
-		color: white;
-		opacity: 0.75;
-	}
-	.p-growl .p-growl-item-container.p-growl-message-info .p-growl-image {
-		display: none;
-	}
-	.p-growl .p-growl-item-container.p-growl-message-info .p-growl-icon-close {
-		color: white;
-	}
 `;
 export const CurrentWrapper = styled.div`
 	border-radius: 17px;

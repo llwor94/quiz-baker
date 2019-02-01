@@ -23,10 +23,11 @@ export const SplashWrapper = styled.div`
 		justify-content: space-between;
 		svg {
 			height: 295px;
+			width: 177px;
 			fill: ${props => props.theme.text};
 		}
 		.body {
-			flex-grow: 1;
+			max-width: 320px;
 		}
 	}
 	.back-btn {
@@ -35,7 +36,14 @@ export const SplashWrapper = styled.div`
 		right: 527px;
 		width: 35px;
 	}
-
+	.timed {
+		i {
+			color: ${props => props.theme.darkPink};
+		}
+	}
+	.notTimed {
+		height: 23px;
+	}
 	@media (max-width: 505px) {
 		width: 90%;
 		margin: 0 5px;
@@ -64,7 +72,7 @@ export const SplashHeader = styled.div`
 	}
 
 	.author {
-		color: ${props => props.theme.header};
+		color: ${props => props.theme.darkPink};
 	}
 `;
 
