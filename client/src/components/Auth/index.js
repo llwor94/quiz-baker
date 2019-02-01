@@ -1,23 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
-
-import { Input } from '../../Styles/Components/Input';
-
-import { Button } from '../../Styles/Components/Button';
 import { Link } from 'react-router-dom';
 
+import { Input } from '../../Styles/Components/Input';
+import { Button } from '../../Styles/Components/Button';
 import { LogoWrapper } from '../../Styles/Register/Logo';
 
 import hatIcon from '../../assets/chef.svg';
 
 const FormWrapper = styled.div`
 	max-width: 550px;
-
 	margin: 0 auto;
 	margin-top: 100px;
-	display: flex;
-	justify-content: center;
-	flex-direction: column;
+	${props => props.theme.flex('column', 'center')};
 
 	h1 {
 		margin: 40px 0 10px;
@@ -29,18 +24,14 @@ const FormWrapper = styled.div`
 	}
 
 	form {
-		display: flex;
-		justify-content: center;
-		flex-direction: column;
+		${props => props.theme.flex('column', 'center')};
 		padding: 30px;
 		padding-top: 40px;
 	}
 `;
 
 const Redirect = styled.div`
-	display: flex;
-	justify-content: center;
-
+	${props => props.theme.flex(undefined, 'center')};
 	span {
 		padding-right: 4px;
 		color: ${props => props.theme.text};
@@ -55,13 +46,11 @@ const Redirect = styled.div`
 `;
 
 const RegisterWrapper = styled.div`
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	${props => props.theme.center};
 	position: relative;
 `;
 
-export const Wrapper = ({ type, handleSubmit, submitDisabled, error, children, location }) => {
+export const Wrapper = ({ type, handleSubmit, submitDisabled, error, children }) => {
 	return (
 		<FormWrapper>
 			<h1>{type}</h1>
@@ -98,13 +87,9 @@ export const Wrapper = ({ type, handleSubmit, submitDisabled, error, children, l
 };
 
 const InputWrapper = styled.div`
-	display: flex;
 	padding: 5px 0;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+	${props => props.theme.flex('column', 'center', 'center')};
 	p {
-		font-size: 12px;
 		color: ${props => props.theme.accentRed};
 	}
 `;
