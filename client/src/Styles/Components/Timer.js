@@ -11,8 +11,7 @@ const countdown = keyframes`
 
 const Countdown = styled.div`
 	position: relative;
-	width: 60px;
-	height: 60px;
+	${props => props.theme.square(60)};
 	text-align: center;
 	circle {
 		stroke-dasharray: 138 138;
@@ -27,8 +26,7 @@ const Countdown = styled.div`
 		position: absolute;
 		top: 0;
 		right: 0;
-		width: 60px;
-		height: 60px;
+		${props => props.theme.square(60)};
 		transform: rotateY(-180deg) rotateZ(-90deg);
 	}
 `;

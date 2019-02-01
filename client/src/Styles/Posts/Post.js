@@ -1,16 +1,11 @@
 import styled from 'styled-components';
 
 export const PostWrapper = styled.div`
+	${props => props.theme.flex(undefined, 'space-between', 'center')};
 	border-radius: 4px;
-
-	border: 1px solid;
-	border-color: ${props => props.theme.accent};
-
+	border: 1px solid ${props => props.theme.accent};
 	margin: ${props => (props.userPage ? '8px' : '8px 0')};
 	position: relative;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
 	width: ${props => (props.userPage ? '400px' : '100%')};
 	background-color: ${props => props.theme.secondary};
 	padding: 8px;
@@ -50,7 +45,6 @@ export const CurrentPost = styled(PostWrapper)`
   :before {
     content: "";
     width: 10px;
-
     border: 1px solid ${props => props.theme.pink};
     position: absolute;
     right: -11px;
@@ -77,10 +71,8 @@ export const HatWrapper = styled.img`
 	position: absolute;
 	top: -20px;
 	left: -20px;
-	height: 40px;
-	width: 40px;
+	${props => props.theme.square(40)};
 	transform: rotate(-45deg);
-
 	background-color: ${props => props.theme.secondary};
 `;
 
@@ -110,22 +102,16 @@ export const BodyWrapper = styled.div`
 	}
 
 	.header {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
+		${props => props.theme.flex(undefined, 'space-between', 'center')};
 		.text {
-			font-size: 12px;
 			padding-left: 3px;
 		}
 	}
 `;
 export const Header = styled.div`
-	font-size: 12px;
 	font-weight: 400;
 	line-height: 16px;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+	${props => props.theme.flex(undefined, 'space-between', 'center')};
 	margin-bottom: 8px;
 	color: ${props => props.theme.link};
 	a {
@@ -135,10 +121,7 @@ export const Header = styled.div`
 `;
 
 export const FooterWrapper = styled.div`
-	display: flex;
-	align-items: flex-end;
-	justify-content: space-between;
-	font-size: 12px;
+	${props => props.theme.flex(undefined, 'space-between', 'flex-end')};
 	font-weight: 700;
 	max-width: 421px;
 	a {
@@ -185,12 +168,8 @@ export const FooterWrapper = styled.div`
 		}
 
 		img {
-			/* background-color: rgb(227, 211, 228); */
-
 			padding: 8px;
-
-			height: 60px;
-			width: 60px;
+			${props => props.theme.square(60)};
 			cursor: pointer;
 			transform: scaleX(-1)
 				${props => (props.isCollapsed ? `rotate(-15deg)` : `rotate(0deg)`)};
@@ -213,7 +192,6 @@ export const Title = styled.div`
 	font-size: 18px;
 	font-weight: 500;
 	line-height: 22px;
-
 	color: ${props => props.theme.text};
 `;
 
@@ -233,16 +211,9 @@ export const CommentWrapper = styled.div`width: 100%;`;
 export const LeftSide = styled.div`
 	font-size: ${props => (props.quiz ? '15px' : '20px')};
 	width: 40px;
-	justify-content: center;
-	align-items: center;
-	display: flex;
-	flex-direction: column;
+	${props => props.theme.flex('column', 'center', 'center')};
 	background-color: transparent;
-	color: ${props => props.theme.text};
 	margin: 0 10px 0 0;
-	p {
-		color: ${props => props.theme.text};
-	}
 	i {
 		cursor: ${props => (props.user ? 'pointer' : 'default')};
 	}

@@ -11,23 +11,19 @@ const StyledButtonWrapper = styled.div`
 	background-color: ${props => props.theme.secondary};
 	.p-button {
 		width: ${props => props.full && '100%'};
-		background-color: ${props =>
-			props.secondary
-				? props.theme.aqua
-				: props.white ? props.theme.accent : props.theme.pink};
-		border-color: ${props =>
-			props.secondary
-				? props.theme.aqua
-				: props.white ? props.theme.accent : props.theme.pink};
+		${props =>
+			props.theme.backgroundBorder(
+				props.secondary
+					? props.theme.aqua
+					: props.white ? props.theme.accent : props.theme.pink,
+			)};
 		&:enabled:hover {
-			background-color: ${props =>
-				props.secondary
-					? props.theme.darkAqua
-					: props.white ? props.theme.darkAccent : props.theme.darkPink};
-			border-color: ${props =>
-				props.secondary
-					? props.theme.darkAqua
-					: props.white ? props.theme.darkAccent : props.theme.darkPink};
+			${props =>
+				props.theme.backgroundBorder(
+					props.secondary
+						? props.theme.darkAqua
+						: props.white ? props.theme.darkAccent : props.theme.darkPink,
+				)};
 		}
 		&:enabled:focus {
 			box-shadow: 0 0 0 0.2em

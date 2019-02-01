@@ -2,27 +2,23 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
 	width: 100%;
-	display: flex;
+	${props => props.theme.flex(undefined, 'stretch')};
 	margin: 70px 0;
-	justify-content: stretch;
 	@media (max-width: 1200px) {
 		justify-content: center;
 	}
 	.posts {
 		flex-grow: 1;
 		max-width: 500px;
-		display: flex;
-		justify-content: flex-end;
+		${props => props.theme.flex(undefined, 'flex-end')};
 		@media (min-width: 1500px) {
 			max-width: 600px;
 		}
 	}
 	.post-wrapper {
 		max-width: 500px;
-
-		flex-direction: column;
+		${props => props.theme.flex('column', undefined, 'center')};
 		margin-top: 40px;
-		align-items: center;
 		@media (max-width: 1200px) {
 			margin-left: 25px;
 		}
@@ -50,10 +46,6 @@ export const CommentsWrapper = styled.div`
 		.quizBaker {
 			filter: grayscale(24%);
 			height: 400px;
-
-			/* position: fixed;
-		right: 300px;
-		top: 325px; */
 			opacity: .8;
 		}
 	}
@@ -69,8 +61,7 @@ export const InnerWrapper = styled.div`
 	width: 32%;
 	background-color: ${props => props.comments && props.theme.secondary};
 	margin: 0;
-	display: flex;
-	justify-content: center;
+	${props => props.theme.flex(undefined, 'center')};
 	padding: 30px 60px;
 
 	.inner {

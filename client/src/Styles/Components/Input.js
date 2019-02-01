@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Picker } from 'emoji-mart';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSmile } from '@fortawesome/free-solid-svg-icons';
 import Smiley from '../../assets/smiley';
 const InputWrapper = styled.span`
 	margin: 10px 0;
@@ -60,7 +58,6 @@ export const Input = ({ value, onChange, label, name, type, disabled, style, inp
 const StyledTextArea = styled.textarea`
 	outline: none;
 	border-radius: 3px;
-
 	resize: none;
 	font-size: 14px;
 	margin-bottom: 10px;
@@ -104,7 +101,6 @@ export const Label = styled.label`
 	border-radius: 3px;
 	border-top-left-radius: 0;
 	border-bottom-left-radius: 0;
-
 	font-size: 16px;
 	color: ${props => props.theme.placeholder};
 	background: ${props => props.theme.secondary};
@@ -192,17 +188,14 @@ const Emojis = styled.div`
 	.emoji-mart-bar {
 		border: 0 solid #d9d9d9;
 		.emoji-mart-anchors {
-			display: flex;
-			flex-direction: row;
-			justify-content: space-between;
+			${props => props.theme.flex(undefined, 'space-between')};
 			padding: 0 6px;
 
 			line-height: 0;
 			svg,
 			.emoji-mart-anchors img {
 				fill: ${props => props.theme.placeholder};
-				height: 18px;
-				width: 18px;
+				${props => props.theme.square(18)};
 			}
 			.emoji-mart-anchor {
 				position: relative;
@@ -223,7 +216,6 @@ const Emojis = styled.div`
 			will-change: transform;
 			.emoji-mart-category-label {
 				z-index: 2;
-
 				position: -webkit-sticky;
 				position: sticky;
 				background: ${props => props.theme.secondary};
@@ -292,7 +284,6 @@ export const EmojiTextArea = ({ value, onChange, name, inputRef, handleSelect })
 
 const StyledEmojiInput = styled.div`
 	position: relative;
-	/* //height: 100%; */
 	input {
 		width: 100%;
 		height: 100%;
@@ -337,7 +328,7 @@ export const EmojiInput = ({
 				<EmojiPicker onClick={() => showEmojis(true)}>
 					<Smiley />
 				</EmojiPicker>
-				{emojis && <Picker style={{ width: '231px' }} />}
+				{emojis && <Picker style={{ width: '231px' }} onSelect={handleSelect} />}
 			</Emojis>
 		</StyledEmojiInput>
 	);
