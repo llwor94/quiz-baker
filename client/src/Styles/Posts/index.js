@@ -8,10 +8,18 @@ export const Wrapper = styled.div`
 	@media (max-width: 1200px) {
 		justify-content: center;
 	}
-
+	.posts {
+		flex-grow: 1;
+		max-width: 500px;
+		display: flex;
+		justify-content: center;
+		@media (min-width: 1200px) {
+			max-width: 600px;
+		}
+	}
 	.post-wrapper {
 		max-width: 500px;
-		flex-grow: 1;
+
 		flex-direction: column;
 		margin-top: 40px;
 		align-items: center;
@@ -31,9 +39,10 @@ export const CommentsWrapper = styled.div`
 	position: relative;
 	margin-left: 10px;
 	height: calc(100vh - 100px);
+	max-width: 500px;
 	.image {
 		position: fixed;
-		top: 59px;
+		top: 56px;
 		width: 32%;
 		padding: 60px;
 		padding-top: 150px;
@@ -55,12 +64,13 @@ export const InnerWrapper = styled.div`
 	height: calc(100vh - 50px);
 	border-right: 1px solid ${props => props.theme.pink};
 	border-left: 1px solid ${props => props.theme.pink};
-	top: 59px;
+	top: 56px;
 	min-width: 500px;
 	width: 32%;
 	background-color: ${props => props.comments && props.theme.secondary};
 	margin: 0;
-
+	display: flex;
+	justify-content: center;
 	padding: 30px 60px;
 
 	.inner {

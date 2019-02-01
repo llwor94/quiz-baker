@@ -40,18 +40,19 @@ const Posts = props => {
 						<Topics />
 					</div>
 				</MediaQuery>
-
-				<div className='post-wrapper'>
-					<div className='new-post'>{user && <NewPost />}</div>
-					{posts.map(post => (
-						<Post
-							key={post.id}
-							post={post}
-							{...props}
-							showComments={() => handleComments(post.id)}
-							currentPost={currentPost}
-						/>
-					))}
+				<div className='posts'>
+					<div className='post-wrapper'>
+						<div className='new-post'>{user && <NewPost />}</div>
+						{posts.map(post => (
+							<Post
+								key={post.id}
+								post={post}
+								{...props}
+								showComments={() => handleComments(post.id)}
+								currentPost={currentPost}
+							/>
+						))}
+					</div>
 				</div>
 				<MediaQuery minWidth={1000}>
 					<CommentsView currentPost={currentPost} setCurrentPost={setCurrentPost} />

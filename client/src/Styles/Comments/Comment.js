@@ -26,7 +26,7 @@ export const Wrapper = styled.div`
 	padding-top: 10px;
 	margin-bottom: 5px;
 
-	span{
+	span {
 		color: ${props => props.theme.link};
 		font-size: 12px;
 	}
@@ -45,27 +45,28 @@ export const CommentHeader = styled.div`
 	line-height: 16px;
 	min-height: 18px;
 
-	img{
+	img {
 		min-width: 40px;
 		height: 40px;
 	}
 
-	.p-button{
-		background-color: white;
-		border-color: white;
+	.p-button {
+		background-color: ${props => props.theme.secondary};
+		border-color: ${props => props.theme.secondary};
 
-		&:hover{
-			background-color: white;
+		&:hover {
+			background-color: ${props => props.theme.secondary};
 			border-color: ${props => props.theme.accentPink};
 		}
-		&:enabled:hover{
-			background-color: white;
+		&:enabled:hover {
+			background-color: ${props => props.theme.secondary};
 			border-color: ${props => props.theme.accentPink};
 		}
 	}
 
 	.pi-trash {
-		color: gray;
+		color: ${props => props.theme.accent};
+		font-size: 14px;
 		/* font-size: 18px; */
 	}
 `;

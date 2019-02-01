@@ -47,6 +47,17 @@ const Comments = ({ currentPost, setCurrentPost }) => {
 			})
 			.catch(error => console.log(error));
 	};
+
+	const deleteComment = id => {
+		server
+			.delete(`posts/${currentPost}/comments/${id}`)
+			.then(({ data }) => {
+				server.get(`/posts/${currentPost}/comments`).then(({ data }) => {
+					setComments(data.sort((a, b) => b.id - a.id));
+				});
+			})
+			.catch(error => console.log(error));
+	};
 	if (!showing)
 		return (
 			<CommentsWrapper>
@@ -81,7 +92,13 @@ const Comments = ({ currentPost, setCurrentPost }) => {
 								style={{ flexGrow: 1 }}
 							/>
 						</PostComment>
-						{comments.map(comment => <Comment key={comment.id} comment={comment} />)}
+						{comments.map(comment => (
+							<Comment
+								key={comment.id}
+								comment={comment}
+								deleteComment={deleteComment}
+							/>
+						))}
 					</div>
 				</InnerWrapper>
 			</CommentsWrapper>
