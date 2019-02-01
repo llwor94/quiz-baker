@@ -10,9 +10,7 @@ import {
 	SplashWrapper,
 	SplashTitle,
 	SplashHeader,
-	SplashMidWrapper,
 	SplashDescription,
-	Fork,
 	SplashFooter,
 } from '../../Styles/Quiz/Splash';
 import Question from './Question';
@@ -46,10 +44,10 @@ const Quiz = props => {
 							<span className='author'>{quiz.author.username}</span>{' '}
 						</SplashHeader>
 
-						<SplashMidWrapper>
+						<div>
 							<SplashDescription>Description:</SplashDescription>
-							<div>{quiz.description}</div>
-						</SplashMidWrapper>
+							<span>{quiz.description}</span>
+						</div>
 					</div>
 					<ForkIcon />
 				</div>

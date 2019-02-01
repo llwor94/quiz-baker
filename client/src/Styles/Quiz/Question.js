@@ -1,34 +1,22 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-
 	width: 500px;
-	.inner{
-	position: relative;
-	border-radius: 3px;
-	
-	/* border: 1px solid;
-	border-color: ${props => props.theme.accent}; */
-	padding: 12px;
-	background-color: ${props => props.theme.secondary};
-	margin-bottom: 10px;
+	.inner {
+		position: relative;
+		padding: 12px;
+		background-color: ${props => props.theme.secondary};
+		margin-bottom: 10px;
+		${props => props.theme.fancyBorder};
 
-	border: 1px dashed #ddd;
-	border: 1px dashed ${props => props.theme.accent};
-	box-shadow: 0 0 0 3px ${props => props.theme.secondary},
-		0 0 0 5px ${props => props.theme.accent}, 0 0 0 10px ${props => props.theme.secondary},
-		0 0 2px 10px #eee;
-	.wrapper {
-		opacity: 0;
-	}
-	
+		.wrapper {
+			opacity: 0;
+		}
 	}
 	@media (max-width: 505px) {
 		width: 90%;
 		margin: 0 5px;
 	}
-	/* box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
-		0 2px 1px -1px rgba(0, 0, 0, 0.12); */
 `;
 
 export const QuestionWrapper = styled.div`
@@ -41,9 +29,7 @@ export const QuestionWrapper = styled.div`
 export const AnswerWrapper = styled.div`
 	margin-top: 15px;
 	height: 80%;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
+	${props => props.theme.flex('column', 'center')};
 `;
 
 export const Answer = styled.div`
@@ -61,12 +47,8 @@ export const Answer = styled.div`
 	}
 
 	.p-radiobutton .p-radiobutton-box.p-highlight {
-		background-color: #dc758f;
-		border: #dc758f;
-
-		&:not(.p-disabled):hover {
-			background-color: #ad546b;
-			border: #ad546b;
+		${props => props.theme.backgroundBorder(props.theme.pink)} &:not(.p-disabled) :hover {
+			${props => props.theme.backgroundBorder(props.theme.darkPink)};
 		}
 	}
 `;
