@@ -1,10 +1,12 @@
-import React, { useState, useContext, Fragment } from 'react';
-import moment from 'moment';
+import React, { useContext } from 'react';
 
 import server from '../../utils/server';
+
 import { PostCtx } from '../../pages/Post';
-import { CommentArea } from '../../Styles/Comments/Comment';
+
 import Comment from './Comment';
+
+import { CommentArea } from '../../Styles/Comments/Comment';
 
 const Comments = () => {
 	const [ post, setPost ] = useContext(PostCtx);
