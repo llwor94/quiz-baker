@@ -23,11 +23,11 @@ const StyledButtonWrapper = styled.div`
 			background-color: ${props =>
 				props.secondary
 					? props.theme.darkAqua
-					: props.white ? props.theme.gray : props.theme.darkPink};
+					: props.white ? props.theme.darkAccent : props.theme.darkPink};
 			border-color: ${props =>
 				props.secondary
 					? props.theme.darkAqua
-					: props.white ? props.theme.gray : props.theme.darkPink};
+					: props.white ? props.theme.darkAccent : props.theme.darkPink};
 		}
 		&:enabled:focus {
 			box-shadow: 0 0 0 0.2em

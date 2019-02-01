@@ -5,7 +5,7 @@ import { Button } from '../../Styles/Components/Button';
 import { Wrapper, InnerWrapper, Title, Topic } from '../../Styles/UserQuiz/Quiz';
 import { UserQuizCtx } from '../../pages/UserQuiz';
 import QuizForm from '../Settings/QuizForm';
-import converter from '../../utils/timeConvert';
+
 const Quiz = () => {
 	const [ quiz, setQuiz ] = useContext(UserQuizCtx);
 	const [ edit, setEdit ] = useState(false);
@@ -61,7 +61,7 @@ const Quiz = () => {
 							<p>{quiz.question_time_limit} seconds per question.</p>
 						)}
 
-						{quiz.description && <p className="description">{quiz.description}</p>}
+						{quiz.description && <p className='description'>{quiz.description}</p>}
 					</Fragment>
 				)}
 			</InnerWrapper>

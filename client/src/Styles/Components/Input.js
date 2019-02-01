@@ -77,7 +77,7 @@ const StyledTextArea = styled.textarea`
 export const AddQuestionTextArea = styled.textarea`
 	width: 300px;
 	height: 115px;
-	outline: 1px solid ${props => props.theme.accentPink};
+	outline: 1px solid ${props => props.theme.pink};
 	border: none;
 	background-color: ${props => props.theme.secondary};
 	resize: none;
@@ -85,7 +85,7 @@ export const AddQuestionTextArea = styled.textarea`
 	padding: 5px;
 	color: gray;
 	&:focus {
-		outline: 1px solid ${props => props.theme.accentPink};
+		outline: 1px solid ${props => props.theme.pink};
 	}
 `;
 

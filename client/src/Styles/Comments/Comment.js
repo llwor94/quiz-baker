@@ -56,11 +56,11 @@ export const CommentHeader = styled.div`
 
 		&:hover {
 			background-color: ${props => props.theme.secondary};
-			border-color: ${props => props.theme.accentPink};
+			border-color: ${props => props.theme.pink};
 		}
 		&:enabled:hover {
 			background-color: ${props => props.theme.secondary};
-			border-color: ${props => props.theme.accentPink};
+			border-color: ${props => props.theme.pink};
 		}
 	}
 
@@ -95,7 +95,7 @@ export const CommentWrapper = styled.div`
 	margin-bottom: 40px;
 	width: 100%;
 	padding: 0 10px 10px 10px;
-	border: 1px solid ${props => props.theme.lightGray};
+	border: 1px solid ${props => props.theme.accent};
 	border-radius: 4px;
 	background: ${props => props.theme.secondary};
 `;
@@ -114,7 +114,7 @@ export const RightSide = styled.div`
 	align-self: flex-end;
 	div {
 		font-size: 10px;
-		color: ${props => props.theme.gray};
+		color: ${props => props.theme.accent};
 		margin-top: 5px;
 	}
 `;
