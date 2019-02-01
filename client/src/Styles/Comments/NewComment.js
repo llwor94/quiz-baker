@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
 export const NewCommentArea = styled.div`
-	display: flex;
-	flex-direction: column;
+	${props => props.theme.flex('column')};
 	border-radius: 4px;
 	border: 1px solid;
 	border-color: ${props => props.theme.accent};
