@@ -1,14 +1,15 @@
-import React, { useEffect, useContext, useState } from 'react';
-import { PostsCtx } from '../../pages/Forum';
+import React, { useContext } from 'react';
 import moment from 'moment';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCookieBite, faCookie } from '@fortawesome/free-solid-svg-icons';
+
+import server from '../../utils/server';
+
+import { PostsCtx } from '../../pages/Forum';
 import { AuthCtx } from '../../Auth';
 import { ColorCtx } from '../../App';
 import { Growl } from '../../Styles/Components/Growl';
-import server from '../../utils/server';
-import hatDark from '../../assets/chef-dark.svg';
-import hatLight from '../../assets/chef.svg';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCookieBite, faCookie } from '@fortawesome/free-solid-svg-icons';
+
 import {
 	PostWrapper,
 	CurrentPost,
@@ -25,13 +26,11 @@ import {
 } from '../../Styles/Posts/Post';
 import { ProfileIcon } from '../../Styles/Components/Image';
 
-// import bowlFilled from '../../assets/bowlfilled.png';
-// import bowlEmpty from '../../assets/bowlempty.png';
-
-// import pyrex from '../../assets/pyrex.png';
-
 import spoonfull from '../../assets/spoonfull.png';
 import spoonpour from '../../assets/spoonpour.png';
+import hatDark from '../../assets/chef-dark.svg';
+import hatLight from '../../assets/chef.svg';
+
 const Wrapper = ({ children, isCurrent, userPage }) => {
 	if (isCurrent)
 		return (
@@ -47,7 +46,7 @@ const Post = ({ post, showComments, currentPost, ...props }) => {
 	const { user } = useContext(AuthCtx);
 	const [ darkMode, setValue ] = useContext(ColorCtx);
 	const growl = React.createRef();
-	let current = React.createRef();
+
 	const handleCopy = () => {
 		let value = `http://localhost:3000/forum/${post.id}`;
 		navigator.clipboard.writeText(value).then(() => {
@@ -166,16 +165,6 @@ const Post = ({ post, showComments, currentPost, ...props }) => {
 							) : (
 								<img onClick={showComments} src={spoonfull} />
 							)}
-							{/* <FontAwesomeIcon
-							icon={
-								currentPost && currentPost === post.id ? (
-									faChevronRight
-								) : (
-									faChevronLeft
-								)
-							}
-							onClick={showComments}
-						>Expand Comments</FontAwesomeIcon> */}
 						</div>
 					)}
 				</FooterWrapper>

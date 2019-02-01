@@ -1,14 +1,16 @@
 import React, { useState, useEffect, useContext, Fragment } from 'react';
-import { ModalWrapper } from '../../Styles/Settings/CreateQuiz';
+import { Transition } from 'react-transition-group';
+
+import server from '../../utils/server';
+
 import { PostsCtx } from '../../pages/Forum';
+import { QuizPostCtx } from '../../containers/Quiz';
+
+import { ModalWrapper } from '../../Styles/Settings/CreateQuiz';
 import { NewPostWrapper, InnerWrapper } from '../../Styles/Posts/NewPost';
 import { Button } from '../../Styles/Components/Button';
-import { Input, TextArea, EmojiTextArea } from '../../Styles/Components/Input';
-import server from '../../utils/server';
-import { QuizPostCtx } from '../../containers/Quiz';
+import { Input, EmojiTextArea } from '../../Styles/Components/Input';
 import { StyledAutoComplete } from '../../Styles/Components/Autocomplete';
-import { Transition } from 'react-transition-group';
-import anime from 'animejs';
 
 const Wrapper = ({ userPage, children, styles }) => {
 	if (userPage)
@@ -24,9 +26,6 @@ const Wrapper = ({ userPage, children, styles }) => {
 			</div>
 		);
 };
-
-// const animatePostFormUp = form => anime({ targets: form, translateY: -250, opacity: 0 });
-// const animatePostFormDown = form => anime({ targets: form, translateY: 0, opacity: 1 });
 
 const NewPost = ({ userPage, quiz }) => {
 	const [ posts, setPosts ] = useContext(PostsCtx);
@@ -78,12 +77,10 @@ const NewPost = ({ userPage, quiz }) => {
 	};
 
 	const handleSelect = e => {
-		console.log(e.value.id);
 		setTopic(e.value.name);
 	};
 
 	const handleEmojiSelect = e => {
-		console.log(e);
 		setPost({ ...post, body: post.body + e.native });
 	};
 	const addPost = () => {
@@ -92,7 +89,6 @@ const NewPost = ({ userPage, quiz }) => {
 		} else {
 			post.topic = topic;
 		}
-		console.log(post);
 		server
 			.post('/posts', post)
 			.then(() => {

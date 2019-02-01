@@ -1,8 +1,11 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { PostsCtx } from '../../pages/Forum';
-import { MultiSelect } from 'primereact/multiselect';
 import _ from 'lodash';
+import { MultiSelect } from 'primereact/multiselect';
+
 import server from '../../utils/server';
+
+import { PostsCtx } from '../../pages/Forum';
+
 import { Topic, MultiSelectWrapper } from '../../Styles/Quizzes/Quiz';
 
 const Topics = () => {
@@ -22,7 +25,6 @@ const Topics = () => {
 	useEffect(
 		() => {
 			if (selected.length) {
-				console.log(selected);
 				setPosts(
 					allPosts.filter(post => selected.some(topic => topic.name === post.topic)),
 				);
