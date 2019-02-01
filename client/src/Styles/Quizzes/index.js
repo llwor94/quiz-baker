@@ -2,11 +2,20 @@ import styled from 'styled-components';
 export const Wrapper = styled.div`
 	max-width: 1000px;
 	margin: 190px auto 0;
+	@media (max-width: 950px) {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
 	.filters {
 		display: flex;
 		justify-content: space-between;
 		padding: 0 30px;
 		margin-bottom: 20px;
+		@media (max-width: 950px) {
+			width: 500px;
+		}
 		.p-dropdown {
 			border-color: ${props => props.theme.accent};
 			background: ${props => props.theme.secondary};

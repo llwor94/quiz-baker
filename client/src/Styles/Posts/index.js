@@ -12,8 +12,8 @@ export const Wrapper = styled.div`
 		flex-grow: 1;
 		max-width: 500px;
 		display: flex;
-		justify-content: center;
-		@media (min-width: 1200px) {
+		justify-content: flex-end;
+		@media (min-width: 1500px) {
 			max-width: 600px;
 		}
 	}

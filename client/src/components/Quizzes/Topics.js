@@ -32,7 +32,7 @@ const Topics = () => {
 
 	const selectedTemplate = value => {
 		if (value) {
-			return <Topic style={{ margin: '0 2px', padding: '2 5px' }}>{value.name}</Topic>;
+			return <Topic style={{ margin: '0 2px' }}>{value.name}</Topic>;
 		} else return <div>Topics</div>;
 	};
 

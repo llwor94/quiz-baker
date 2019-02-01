@@ -13,7 +13,9 @@ const Topics = () => {
 
 	useEffect(() => {
 		server.get('/quizzes/topics').then(({ data }) => {
-			setTopics(data.filter(topic => posts.some(post => post.topic === topic.name)));
+			let topics = data.filter(topic => posts.some(post => post.topic === topic.name));
+			setTopics(topics);
+			setSelected(topics);
 		});
 	}, []);
 

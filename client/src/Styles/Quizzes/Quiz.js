@@ -217,11 +217,13 @@ export const QuestionCount = styled.div`
 `;
 
 export const MultiSelectWrapper = styled.div`
-	width: 50%;
 	.p-multiselect {
 		height: 43px;
 		display: flex;
 		align-items: center;
+		background: ${props => props.theme.secondary};
+		border-color: ${props => props.theme.accent};
+		min-width: 120px;
 	}
 	.p-checkbox {
 		display: none;
@@ -246,14 +248,14 @@ export const MultiSelectWrapper = styled.div`
 		border-color: ${props => props.theme.darkAqua};
 		background-color: ${props => props.theme.darkAqua};
 	}
-	.topics {
+	/* .topics {
 		margin-left: 4px;
 		min-width: 100px;
 		.p-multiselect-panel .p-hidden .p-input-overlay .p-input-overlay-visible[style] {
 			right: 0 !important;
 			left: initial !important;
 		}
-	}
+	} */
 	.p-inputtext {
 		background-color: ${props => props.theme.main};
 		border-color: ${props => props.theme.accent};
@@ -262,13 +264,7 @@ export const MultiSelectWrapper = styled.div`
 	.p-inputtext:enabled:hover:not(.p-error) {
 		border-color: ${props => props.theme.accent};
 	}
-	.p-multiselect {
-		height: 43px;
-		display: flex;
-		align-items: center;
-		background: ${props => props.theme.secondary};
-		border-color: ${props => props.theme.accent};
-	}
+
 	.p-multiselect .p-multiselect-trigger {
 		background: ${props => props.theme.secondary};
 		color: ${props => props.theme.accent};
@@ -298,6 +294,9 @@ export const MultiSelectWrapper = styled.div`
 
 	.p-multiselect-panel .p-multiselect-items .p-multiselect-item {
 		color: ${props => props.theme.text};
+	}
+	.p-multiselect-panel .p-multiselect-header .p-multiselect-filter-container {
+		width: 80%;
 	}
 
 	.p-multiselect-panel
@@ -341,7 +340,7 @@ export const MultiSelectWrapper = styled.div`
 		border-color: ${props => props.theme.darkAqua};
 		background-color: ${props => props.theme.darkAqua};
 	}
-	.topics {
+	/* .topics {
 		margin-left: 4px;
-	}
+	} */
 `;
