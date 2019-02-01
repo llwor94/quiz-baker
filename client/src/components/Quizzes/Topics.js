@@ -1,8 +1,11 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { QuizzesCtx } from '../../pages/Quizzes';
-import { MultiSelect } from 'primereact/multiselect';
 import _ from 'lodash';
+import { MultiSelect } from 'primereact/multiselect';
+
 import server from '../../utils/server';
+
+import { QuizzesCtx } from '../../pages/Quizzes';
+
 import { Topic, MultiSelectWrapper } from '../../Styles/Quizzes/Quiz';
 
 const Topics = () => {

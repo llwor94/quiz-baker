@@ -1,11 +1,11 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useContext } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCookieBite, faCookie } from '@fortawesome/free-solid-svg-icons';
+
+import server from '../../utils/server';
 
 import { AuthCtx } from '../../Auth';
 import { ColorCtx } from '../../App';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCookieBite, faCookie } from '@fortawesome/free-solid-svg-icons';
-import { userImage } from '../../utils/imgArray';
-import server from '../../utils/server';
 import { QuizzesCtx } from '../../pages/Quizzes';
 
 import {
@@ -24,10 +24,11 @@ import {
 	QuestionCount,
 	FooterWrapper,
 } from '../../Styles/Quizzes/Quiz';
-import hatIcon from '../../assets/chef.svg';
-import hatDark from '../../assets/chef-dark.svg';
 import { ProfileIcon } from '../../Styles/Components/Image';
 import { Growl } from '../../Styles/Components/Growl';
+
+import hatIcon from '../../assets/chef.svg';
+import hatDark from '../../assets/chef-dark.svg';
 
 const Quiz = ({ quiz, ...props }) => {
 	const growl = React.createRef();
@@ -56,7 +57,6 @@ const Quiz = ({ quiz, ...props }) => {
 	};
 
 	const handleVote = val => {
-		console.log(quiz.user_vote, val);
 		if (user) {
 			let user_vote;
 			if (val === quiz.user_vote) {
@@ -64,7 +64,6 @@ const Quiz = ({ quiz, ...props }) => {
 			} else {
 				user_vote = val;
 			}
-			console.log(user_vote);
 			server
 				.patch(`quizzes/${quiz.id}`, { vote: user_vote })
 				.then(({ data }) => {
