@@ -1,16 +1,19 @@
 import React, { useEffect, useContext, useState, Fragment } from 'react';
 import _ from 'lodash';
+
 import server from '../../utils/server';
+import { UserQuizCtx } from '../../pages/UserQuiz';
+
+import QuizForm from '../Settings/QuizForm';
+
 import { Button } from '../../Styles/Components/Button';
 import { Wrapper, InnerWrapper, Title, Topic } from '../../Styles/UserQuiz/Quiz';
-import { UserQuizCtx } from '../../pages/UserQuiz';
-import QuizForm from '../Settings/QuizForm';
 
 const Quiz = () => {
 	const [ quiz, setQuiz ] = useContext(UserQuizCtx);
 	const [ edit, setEdit ] = useState(false);
 	const [ newQuiz, setNewQuiz ] = useState(undefined);
-	const [ timeLimit, setTimeLimit ] = useState(undefined);
+
 	useEffect(() => {
 		setNewQuiz(_.pick(quiz, [ 'title', 'description', 'topic', 'question_time_limit' ]));
 	}, []);
@@ -23,8 +26,6 @@ const Quiz = () => {
 				_.pick(quiz, [ 'title', 'description', 'topic', 'question_time_limit' ]),
 			)
 		) {
-			console.log(newQuiz);
-
 			server
 				.patch(`quizzes/${quiz.id}/edit`, newQuiz)
 				.then(response => {

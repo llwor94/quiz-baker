@@ -1,10 +1,13 @@
-import React, { useState, useContext, useEffect, Fragment } from 'react';
+import React, { useState, useContext } from 'react';
+
 import server from '../../utils/server';
 
 import { UserQuizCtx, QuizQuestionsCtx } from '../../pages/UserQuiz';
+
+import EditQuestion from './EditQuestion';
+
 import { Wrapper, Title, AnswerOption } from '../../Styles/UserQuiz/Questions';
 import { Button } from '../../Styles/Components/Button';
-import EditQuestion from './EditQuestion';
 
 const Question = ({ question }) => {
 	const [ questions, setQuestions ] = useContext(QuizQuestionsCtx);

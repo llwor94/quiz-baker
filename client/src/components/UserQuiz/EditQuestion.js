@@ -1,12 +1,16 @@
-import React, { useState, useContext, useEffect, Fragment } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import _ from 'lodash';
+import { ToggleButton } from 'primereact/togglebutton';
+
 import server from '../../utils/server';
+
+import { UserQuizCtx } from '../../pages/UserQuiz';
+
+import { MultipleChoice, TrueFalse } from './InputOptions';
+
 import { EditWrapper, InputTitleWrapper } from '../../Styles/UserQuiz/Questions';
 import { Button } from '../../Styles/Components/Button';
 import { AddQuestionTextArea } from '../../Styles/Components/Input';
-import { ToggleButton } from 'primereact/togglebutton';
-import { MultipleChoice, TrueFalse } from './InputOptions';
-import { UserQuizCtx } from '../../pages/UserQuiz';
 
 const EditQuestion = ({ question, handleEdit, setEdit }) => {
 	const [ quiz, setQuiz ] = useContext(UserQuizCtx);
