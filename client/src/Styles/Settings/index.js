@@ -1,14 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { TabMenu } from 'primereact/tabmenu';
 
 export const SettingsWrapper = styled.div`
-	display: flex;
-	width: 100%;
-
+	${props => props.theme.flex(undefined, 'flex-start', 'flex-start')} width: 100%;
 	max-width: 900px;
-	justify-content: flex-start;
-	align-items: flex-start;
 	margin: 70px 80px 0;
 	h2 {
 		text-align: center;
@@ -19,9 +14,7 @@ export const SettingsWrapper = styled.div`
 	}
 
 	.inner {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
+		${props => props.theme.flex('column', 'center')};
 		position: relative;
 		margin-bottom: 100px;
 
@@ -43,60 +36,21 @@ export const SettingsWrapper = styled.div`
 		position: absolute;
 		top: 52px;
 		left: 0px;
-		background-color: ${props => props.theme.pink};
-		border-color: ${props => props.theme.pink};
+		${props => props.theme.backgroundBorder(props.theme.pink)};
 
 		&:enabled:hover {
-			background-color: ${props => props.theme.darkPink};
-			border-color: ${props => props.theme.darkPink};
+			${props => props.theme.backgroundBorder(props.theme.darkPink)};
 		}
 	}
 	.p-sidebar {
 		padding: 20px 14px;
-		background-color: ${props => props.theme.secondary};
-		border-color: ${props => props.theme.secondary};
+		${props => props.theme.backgroundBorder(props.theme.secondary)};
 	}
 	.p-sidebar-left {
 		top: 55px;
 		width: 230px;
 	}
 `;
-
-const StyledMenu = styled.div`
-	.p-component {
-		font-size: 30px;
-	}
-	.p-tabmenu .p-tabmenu-nav {
-		border-bottom-color: ${props => props.theme.darkPink};
-		display: flex;
-		justify-content: space-around;
-	}
-	.p-tabmenu .p-tabmenu-nav .p-tabmenuitem {
-		border: 1px solid white;
-		background-color: white;
-		margin-bottom: 20px;
-	}
-
-	.p-tabmenu .p-tabmenu-nav .p-tabmenuitem .p-menuitem-link .p-menuitem-text {
-		font-family: "Merienda One", cursive;
-		color: ${props => props.theme.accentText};
-	}
-	.p-tabmenu .p-tabmenu-nav .p-tabmenuitem.p-highlight {
-		background-color: white;
-		border: none;
-	}
-	.p-tabmenu .p-tabmenu-nav .p-tabmenuitem.p-highlight .p-menuitem-link .p-menuitem-text {
-		color: black !important;
-	}
-`;
-
-export const Menu = ({ model }) => {
-	return (
-		<StyledMenu>
-			<TabMenu model={model} />
-		</StyledMenu>
-	);
-};
 
 const MenuStyles = styled.div`
 	font-size: 30px;
@@ -105,24 +59,19 @@ const MenuStyles = styled.div`
 	ul {
 		border-bottom: 1px solid;
 		border-bottom-color: ${props => props.theme.darkPink};
-		display: flex;
-		justify-content: center;
+		${props => props.theme.flex(undefined, 'center')};
 	}
 `;
 
 const ListItem = styled.li`
 	background-color: ${props => props.theme.secondary};
-
 	margin-bottom: 20px;
-
 	transition: background-color 0.2s;
 	list-style: none;
 	float: left;
-
 	padding: 0;
 	white-space: nowrap;
 	display: block;
-
 	top: 1px;
 	a {
 		float: left;
@@ -142,8 +91,8 @@ const ListItem = styled.li`
 
 	&:hover {
 		a {
-			background-color: ${props => props.theme.accent};
-			border: 1px solid ${props => props.theme.accent};
+			border: 1px solid;
+			${props => props.theme.backgroundBorder(props.theme.accent)};
 			span {
 				color: ${props => props.theme.text};
 			}
@@ -174,17 +123,12 @@ export const NewMenu = ({ activeTab, setActiveTab }) => {
 };
 
 export const Wrapper = styled.div`
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-evenly;
+	${props => props.theme.flex(undefined, 'space-evenly')} flex-wrap: wrap;
 	margin-top: 30px;
 `;
 
 export const InnerWrapper = styled.div`
-	display: flex;
-	align-items: center;
-	flex-direction: column;
-	margin-top: 10px;
+	${props => props.theme.flex('column', undefined, 'center')} margin-top: 10px;
 	z-index: 100;
 	padding: 0 25px;
 `;

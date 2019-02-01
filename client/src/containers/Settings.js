@@ -8,7 +8,7 @@ import { Sidebar } from 'primereact/sidebar';
 import { Button } from 'primereact/button';
 import Quizzes from '../components/Settings/Quizzes';
 import Posts from '../components/Settings/Posts';
-import { SettingsWrapper, Menu, NewMenu } from '../Styles/Settings/';
+import { SettingsWrapper, NewMenu } from '../Styles/Settings/';
 import RollingPinIcon from '../assets/rolling-pin';
 import MediaQuery from 'react-responsive';
 import server from '../utils/server';

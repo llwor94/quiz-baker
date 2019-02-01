@@ -4,22 +4,17 @@ export const InnerWrapper = styled.div`
 	flex-grow: 1;
 	position: relative;
 	margin: 8px;
-	display: flex;
-	justify-content: space-between;
-	flex-direction: column;
+	${props => props.theme.flex('column', 'space-between')};
 `;
 
 export const Header = styled.div`
-	font-size: 12px;
 	font-weight: 400;
 	line-height: 16px;
-	display: flex;
-	align-items: center;
+	${props => props.theme.flex(undefined, undefined, 'center')};
 	color: ${props => props.theme.link};
 	margin-bottom: 5px;
 	a {
 		font-weight: 700;
-		color: ${props => props.theme.text};
 	}
 `;
 
@@ -33,17 +28,12 @@ export const DescriptionWrapper = styled.div`
 		line-height: 21px;
 		word-wrap: break-word;
 		word-break: break-word;
-		color: ${props => props.theme.text};
 	}
 `;
 
 export const Wrapper = styled.div`
-	border-radius: 4px;
 	width: 400px;
-	border: 1px dashed ${props => props.theme.accent};
-	box-shadow: 0 0 0 3px ${props => props.theme.secondary},
-		0 0 0 5px ${props => props.theme.accent}, 0 0 0 10px ${props => props.theme.secondary},
-		0 0 2px 10px #eee;
+	${props => props.theme.fancyBorder};
 	padding: 12px;
 	background-color: ${props => props.theme.secondary};
 	margin: 8px;
@@ -74,14 +64,10 @@ export const Wrapper = styled.div`
 `;
 
 export const FooterWrapper = styled.div`
-	display: flex;
-	align-items: flex-end;
-	font-size: 12px;
+	${props => props.theme.flex(undefined, 'space-between', 'flex-end')};
 	font-weight: 700;
-	justify-content: space-between;
 	a {
 		text-transform: capitalize;
-
 		color: ${props => props.theme.accentText};
 		&:hover {
 			color: ${props => props.theme.accentText};
@@ -94,7 +80,6 @@ export const Title = styled.a`
 	font-weight: 700;
 	margin-right: 10px;
 	margin-bottom: 5px;
-	color: ${props => props.theme.text};
 	cursor: pointer;
 	&:hover {
 		color: ${props => props.theme.darkPink};

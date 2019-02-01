@@ -5,19 +5,19 @@ export const QuizFormWrapper = styled.div`
 
 	p {
 		font-family: 'Merienda One', cursive;
+		font-size: 20px;
 	}
 	.p-button {
-		background-color: ${props => props.theme.aqua};
-		border-color: ${props => props.theme.aqua};
+		${props => props.theme.backgroundBorder(props.theme.aqua)};
 	}
 	.p-button:enabled:hover {
-		background-color: ${props => props.theme.darkAqua};
-		border-color: ${props => props.theme.darkAqua};
+		${props => props.theme.backgroundBorder(props.theme.darkAqua)};
 	}
 	.p-inputtext:enabled:focus:not(.p-error) {
 		border-color: ${props => props.theme.aqua};
 	}
 	.p-dropdown {
+		margin: 10px 0;
 		border-color: ${props => props.theme.accent};
 		background-color: ${props => props.theme.secondary};
 		.p-inputtext {
@@ -39,8 +39,7 @@ export const QuizFormWrapper = styled.div`
 		color: ${props => props.theme.accent};
 	}
 	.p-dropdown .p-dropdown-panel {
-		background-color: ${props => props.theme.secondary};
-		border-color: ${props => props.theme.secondary};
+		${props => props.theme.backgroundBorder(props.theme.secondary)};
 	}
 	.p-dropdown-panel .p-dropdown-items .p-dropdown-item {
 		color: ${props => props.theme.text};

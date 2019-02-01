@@ -37,7 +37,7 @@ const CreateQuiz = props => {
 			{newQuiz && (
 				<ModalWrapper>
 					<Wrapper>
-						<div style={{ display: 'flex', justifyContent: 'space-between' }}>
+						<div className='wrap'>
 							<Button
 								style={{ position: 'absolute', top: '5px', right: '5px' }}
 								icon='pi pi-times'

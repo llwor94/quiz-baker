@@ -1,11 +1,7 @@
 import styled from 'styled-components';
 
 export const ProfileWrapper = styled.div`
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-
-	h4 {
+	${props => props.theme.flex('column', undefined, 'center')} h4 {
 		font-size: 18px;
 		line-height: 25px;
 		color: ${props => props.theme.text};
@@ -26,14 +22,10 @@ export const ProfileWrapper = styled.div`
 `;
 
 export const ProfileButtonWrapper = styled.div`
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	align-items: flex-start;
+	${props => props.theme.flex('column', 'flex-start', 'flex-start')};
 	width: 200px;
 	.update-user {
-		display: flex;
-		justify-content: space-between;
+		${props => props.theme.flex(undefined, 'space-between')};
 		width: 100%;
 		margin-top: 10px;
 	}
@@ -43,7 +35,6 @@ export const ProfileButtonWrapper = styled.div`
 			width: 100%;
 		}
 	}
-	/* transform: translateX(20px); */
 `;
 
 export const ButtonCollapse = styled.div`

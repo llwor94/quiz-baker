@@ -9,4 +9,13 @@ export const mixins = {
     height: ${size}px;
     width: ${size}px;
   `,
+	center: `
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  `,
+	backgroundBorder: color => `
+    background-color: ${color};
+    border-color: ${color};
+  `,
 };
