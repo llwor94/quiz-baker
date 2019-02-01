@@ -120,6 +120,7 @@ export const BodyWrapper = styled.div`
 		mask-image: ${props => !props.post && 'linear-gradient(180deg, #000 60%, transparent)'};
 		color: ${props => props.theme.text};
 		word-wrap: break-word;
+		width: 90%;
 	}
 
 	.header {
