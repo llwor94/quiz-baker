@@ -15,9 +15,10 @@ export const Wrapper = styled.div`
 	width: 450px;
 	margin: 13px;
 
-	border: 1px dashed #ddd;
-	box-shadow: 0 0 0 3px ${props => props.theme.secondary}, 0 0 0 5px #ddd,
-		0 0 0 10px ${props => props.theme.secondary}, 0 0 2px 10px #eee;
+	border: 1px dashed ${props => props.theme.accent};
+	box-shadow: 0 0 0 3px ${props => props.theme.secondary},
+		0 0 0 5px ${props => props.theme.accent}, 0 0 0 10px ${props => props.theme.secondary},
+		0 0 2px 10px #eee;
 
 	.p-growl.p-growl-topright {
 		opacity: 1 !important;
@@ -105,7 +106,7 @@ export const Title = styled.a`
 	color: ${props => props.theme.text};
 	cursor: pointer;
 	&:hover {
-		color: ${props => props.theme.header};
+		color: ${props => props.theme.darkPink};
 	}
 `;
 
@@ -150,7 +151,7 @@ export const UserNameWrapper = styled.div`
 	align-items: center;
 	font-size: 12px;
 	font-weight: 400;
-
+	color: ${props => props.theme.link};
 	margin-right: 20px;
 
 	a {

@@ -1,7 +1,7 @@
 export const DarkMode = {
 	main: '#10171e',
 	secondary: '#182430',
-	accent: '#38444d',
+	accent: '#848484',
 	link: 'rgb(129, 131, 132)',
 	text: 'rgb(215, 218, 220)',
 	accentText: 'rgb(135, 138, 140)',

@@ -7,7 +7,17 @@ margin-bottom: 10px;
   font-family: 'Raleway', sans-serif;
   
 }
-
+.p-autocomplete-panel {
+  background-color: ${props => props.theme.secondary};
+			border-color: ${props => props.theme.secondary};
+}
+.p-autocomplete-panel .p-autocomplete-items .p-autocomplete-list-item {
+  color: ${props => props.theme.text}
+}
+.p-autocomplete-panel .p-autocomplete-items .p-autocomplete-list-item:hover {
+  background-color: ${props => props.theme.aqua};
+  color: white;
+}
   .p-inputtext {
     border-right: none;
     background-color: ${props => props.theme.secondary};
@@ -19,7 +29,7 @@ margin-bottom: 10px;
   &::placeholder {
 		font-family: 'Raleway', sans-serif;
 		color: ${props => props.theme.placeholder};
-		font-size: 16px;
+		font-size: 14px;
 	}
   }
   .p-button {

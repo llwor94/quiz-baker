@@ -1,7 +1,8 @@
 export const LightMode = {
 	main: '#f5f8fa',
 	secondary: '#fff',
-	accent: '#a6a6a6;',
+	// accent: '#a6a6a6;',
+	accent: '#ddd',
 	link: 'rgb(120, 124, 126)',
 	text: 'rgb(34, 34, 34)',
 	header: '#ad546b',
