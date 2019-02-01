@@ -1,11 +1,12 @@
-import React, { useEffect, useState, useContext } from 'react';
-
+import React, { useState, useContext } from 'react';
 import debounce from 'lodash/debounce';
-import server from '../../utils/server';
-import { Button, SettingsButton } from '../../Styles/Components/Button';
-import { AuthCtx } from '../../Auth';
-import { Input } from '../../Styles/Components/Input';
 
+import server from '../../utils/server';
+
+import { AuthCtx } from '../../Auth';
+
+import { Button, SettingsButton } from '../../Styles/Components/Button';
+import { Input } from '../../Styles/Components/Input';
 import { ProfileButtonWrapper } from '../../Styles/Settings/Sidebar';
 
 const checkData = debounce(async (username, setError) => {

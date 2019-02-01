@@ -1,14 +1,14 @@
 import React, { useState, useContext, Fragment } from 'react';
 import { withRouter } from 'react-router-dom';
-import server from '../../utils/server';
 import _ from 'lodash';
+
+import server from '../../utils/server';
+
+import QuizForm from './QuizForm';
 
 import { Button } from '../../Styles/Components/Button';
 import { Wrapper, InnerWrapper, ModalWrapper } from '../../Styles/Settings/CreateQuiz';
-import QuizForm from './QuizForm';
 import OvenIcon from '../../assets/oven';
-
-import { UserQuizzesCtx } from '../../pages/Settings';
 
 const CreateQuiz = props => {
 	const [ newQuiz, setNewQuiz ] = useState(false);
@@ -17,19 +17,15 @@ const CreateQuiz = props => {
 		description: '',
 		topic: '',
 	});
-	const [ userQuizzes, setUserQuizzes ] = useContext(UserQuizzesCtx);
 
 	const handleCreateQuiz = () => {
-		console.log(quiz);
 		server
 			.post('/quizzes', quiz)
 			.then(({ data }) => {
-				console.log(data);
 				props.history.push(`/user/quizzes/${data[0]}`);
 			})
 			.catch(error => console.log(error));
 	};
-	console.log(newQuiz);
 
 	return (
 		<Fragment>

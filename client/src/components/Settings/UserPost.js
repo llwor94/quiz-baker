@@ -1,21 +1,15 @@
-import React, { useEffect, useContext, useState } from 'react';
-import { UserPostsCtx } from '../../pages/Settings';
+import React, { useContext, useState } from 'react';
 import moment from 'moment';
-import { AuthCtx } from '../../Auth';
 import { Dialog } from 'primereact/dialog';
-import { Growl } from 'primereact/growl';
-import { Button } from '../../Styles/Components/Button';
-import {
-	PostWrapper,
-	BodyWrapper,
-	LeftSide,
-	CommentCount,
-	Title,
-	InnerWrapper,
-	Topic,
-} from '../../Styles/Posts/Post';
-import { FooterWrapper } from '../../Styles/Settings/UserQuiz';
+
 import server from '../../utils/server';
+
+import { AuthCtx } from '../../Auth';
+
+import { UserPostsCtx } from '../../pages/Settings';
+import { Button } from '../../Styles/Components/Button';
+import { PostWrapper, BodyWrapper, Title, InnerWrapper, Topic } from '../../Styles/Posts/Post';
+import { FooterWrapper } from '../../Styles/Settings/UserQuiz';
 
 const UserPost = ({ post, ...props }) => {
 	const [ userPosts, setUserPosts ] = useContext(UserPostsCtx);
@@ -37,7 +31,6 @@ const UserPost = ({ post, ...props }) => {
 			})
 			.catch(error => console.log(error));
 	};
-	console.log(post);
 
 	const footer = (
 		<div>

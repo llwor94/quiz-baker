@@ -1,6 +1,8 @@
-import React, { useEffect, useState, Fragment } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Dropdown } from 'primereact/dropdown';
+
 import server from '../../utils/server';
+
 import { Input, TextArea } from '../../Styles/Components/Input';
 import { StyledAutoComplete } from '../../Styles/Components/Autocomplete';
 import { QuizFormWrapper } from '../../Styles/Settings/QuizForm';
@@ -25,16 +27,14 @@ const QuizForm = ({ quiz, setQuiz, ...props }) => {
 
 	const handleChange = e => {
 		let value;
-		console.log(e);
 		if (e.target.value.name) {
 			value = e.target.value.name;
 		} else {
 			value = e.target.value;
 		}
-
 		setQuiz({ ...quiz, [e.target.name]: value });
 	};
-	console.log(quiz);
+
 	const filterTopics = e => {
 		setTimeout(() => {
 			let results;

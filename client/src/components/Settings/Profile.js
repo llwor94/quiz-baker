@@ -1,34 +1,17 @@
 import React, { useEffect, useState, useContext } from 'react';
+import MediaQuery from 'react-responsive';
 
 import server from '../../utils/server';
-import { LargeImage } from '../../Styles/Components/Image';
-import { Button, SettingsButton } from '../../Styles/Components/Button';
-import {
-	ProfileWrapper,
-	ProfileButtonWrapper,
-	ButtonCollapse,
-} from '../../Styles/Settings/Sidebar';
-import { AuthCtx } from '../../Auth';
-import { Transition } from 'react-transition-group';
 
-import anime from 'animejs';
+import { AuthCtx } from '../../Auth';
 
 import UpdateImage from './UpdateImage';
 import UpdateUsername from './updateUsername';
-import MediaQuery from 'react-responsive';
 
-// const animateButtonsOut = buttons =>
-// 	anime({ targets: buttons, visibilty: 'hidden', translateX: 0 });
+import { LargeImage } from '../../Styles/Components/Image';
+import { ProfileWrapper, ProfileButtonWrapper } from '../../Styles/Settings/Sidebar';
 
-// const animateButtonsIn = buttons => anime({ targets: buttons, translateX: 220 });
-// const transitionStyles = {
-// 	entering: { visibility: 'hidden' },
-// 	entered: { visibility: 'hidden' },
-// 	exiting: { visibility: 'hidden' },
-// 	exited: { visibility: 'visible' },
-// };
-
-const Profile = ({ activeTab, setActiveTab }) => {
+const Profile = ({ setActiveTab }) => {
 	const [ imageUpdate, setImageUpdate ] = useState(false);
 	const [ usernameUpdate, setUsernameUpdate ] = useState(false);
 	const [ img_url, setImg ] = useState(null);
@@ -39,30 +22,6 @@ const Profile = ({ activeTab, setActiveTab }) => {
 			setImg(user.img_url);
 		}
 	}, []);
-
-	// useEffect(
-	// 	() => {
-	// 		buttonRef = anime({
-	// 			targets: buttonRef.current,
-	// 			translateX: () => {
-	// 				if (buttonsHiding === false) {
-	// 					return [ '100%', '0%' ];
-	// 				} else if (buttonsHiding === true) {
-	// 					return [ '0%', '100%' ];
-	// 				}
-	// 			},
-	// 			opacity: () => {
-	// 				if (buttonsHiding === false) {
-	// 					return [ '0', '1' ];
-	// 				} else if (buttonsHiding === true) {
-	// 					return [ '1', '0' ];
-	// 				}
-	// 			},
-	// 			easing: 'easeInOutExpo',
-	// 		});
-	// 	},
-	// 	[ buttonsHiding ],
-	// );
 
 	const updateUser = () => {
 		let userData = JSON.parse(localStorage.getItem('user'));
