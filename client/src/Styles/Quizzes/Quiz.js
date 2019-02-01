@@ -284,7 +284,7 @@ export const MultiSelectWrapper = styled.div`
 		display: flex;
 		align-items: center;
 		background: ${props => props.theme.secondary};
-		border-color: ${props => props.theme.main};
+		border-color: ${props => props.theme.accent};
 	}
 	.p-multiselect .p-multiselect-trigger {
 		background: ${props => props.theme.secondary};

@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
 		padding: 0 30px;
 		margin-bottom: 20px;
 		.p-dropdown {
-			border-color: ${props => props.theme.main};
+			border-color: ${props => props.theme.accent};
 			background: ${props => props.theme.secondary};
 			display: flex;
 			align-items: center;

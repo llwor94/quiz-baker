@@ -7,9 +7,10 @@ export const SplashWrapper = styled.div`
 	width: 505px;
 
 	padding: 10px;
-	border: 1px dashed #ddd;
-	box-shadow: 0 0 0 3px ${props => props.theme.secondary}, 0 0 0 5px #ddd,
-		0 0 0 10px ${props => props.theme.secondary}, 0 0 2px 10px #eee;
+	border: 1px dashed ${props => props.theme.accent};
+	box-shadow: 0 0 0 3px ${props => props.theme.secondary},
+		0 0 0 5px ${props => props.theme.accent}, 0 0 0 10px ${props => props.theme.secondary},
+		0 0 2px 10px #eee;
 	border-radius: 3px;
 
 	background-color: ${props => props.theme.secondary};
@@ -20,6 +21,10 @@ export const SplashWrapper = styled.div`
 	.inner {
 		display: flex;
 		justify-content: space-between;
+		svg {
+			height: 295px;
+			fill: ${props => props.theme.text};
+		}
 		.body {
 			flex-grow: 1;
 		}

@@ -18,7 +18,7 @@ import {
 import Question from './Question';
 import anime from 'animejs';
 import { Transition } from 'react-transition-group';
-import forkIcon from '../../assets/fork.svg';
+import ForkIcon from '../../assets/fork';
 
 const animateOut = wrapper => anime({ targets: wrapper, translateY: -200, opacity: 0 });
 
@@ -51,7 +51,7 @@ const Quiz = props => {
 							<div>{quiz.description}</div>
 						</SplashMidWrapper>
 					</div>
-					<Fork src={forkIcon} />
+					<ForkIcon />
 				</div>
 				{quiz.question_time_limit && <div>This is a timed quiz.</div>}
 				<SplashFooter>
