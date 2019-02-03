@@ -29,6 +29,9 @@ export const Wrapper = styled.div`
 			width: 100%;
 		}
 	}
+	.new-post {
+		width: 100%;
+	}
 `;
 export const CommentsWrapper = styled.div`
 	flex-grow: 1;

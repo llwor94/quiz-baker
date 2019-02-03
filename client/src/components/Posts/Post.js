@@ -1,5 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useContext, Fragment } from 'react';
 import moment from 'moment';
+import MediaQuery from 'react-responsive';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCookieBite, faCookie } from '@fortawesome/free-solid-svg-icons';
 
@@ -34,9 +35,16 @@ import hatLight from 'assets/chef.svg';
 const Wrapper = ({ children, isCurrent, userPage }) => {
 	if (isCurrent)
 		return (
-			<CurrentWrapper>
-				<CurrentPost>{children}</CurrentPost>
-			</CurrentWrapper>
+			<Fragment>
+				<MediaQuery minWidth={1000}>
+					<CurrentWrapper>
+						<CurrentPost>{children}</CurrentPost>
+					</CurrentWrapper>
+				</MediaQuery>
+				<MediaQuery maxWidth={999}>
+					<PostWrapper userPage={userPage}>{children}</PostWrapper>
+				</MediaQuery>
+			</Fragment>
 		);
 	else return <PostWrapper userPage={userPage}>{children}</PostWrapper>;
 };
@@ -158,15 +166,17 @@ const Post = ({ post, showComments, currentPost, ...props }) => {
 							<div />
 						)}
 					</div>
-					{post.comment_count > 0 && (
-						<div className='expandComments'>
-							{currentPost && currentPost === post.id ? (
-								<img onClick={showComments} src={spoonpour} />
-							) : (
-								<img onClick={showComments} src={spoonfull} />
-							)}
-						</div>
-					)}
+					<MediaQuery minWidth={1000}>
+						{post.comment_count > 0 && (
+							<div className='expandComments'>
+								{currentPost && currentPost === post.id ? (
+									<img onClick={showComments} src={spoonpour} />
+								) : (
+									<img onClick={showComments} src={spoonfull} />
+								)}
+							</div>
+						)}
+					</MediaQuery>
 				</FooterWrapper>
 			</InnerWrapper>
 		</Wrapper>

@@ -25,7 +25,7 @@ export const CurrentWrapper = styled.div`
 	box-shadow: none;
 	border-right: none;
 	position: sticky;
-	width: 511px;
+	width: 522px;
 	z-index: 30;
 	top: 55px;
 	bottom: 1px;
@@ -35,7 +35,7 @@ export const CurrentWrapper = styled.div`
 export const CurrentPost = styled(PostWrapper)`
   box-shadow: none;
   border-right: none;
-  width: 500px;
+  width: 506px;
   border-color: ${props => props.theme.pink};
   border-radius: 17px;
   border-top-right-radius: 0;
@@ -44,10 +44,10 @@ export const CurrentPost = styled(PostWrapper)`
   :after,
   :before {
     content: "";
-    width: 10px;
+    width: 15px;
     border: 1px solid ${props => props.theme.pink};
     position: absolute;
-    right: -11px;
+    right: -16px;
     border-left: 0;
   }
 
