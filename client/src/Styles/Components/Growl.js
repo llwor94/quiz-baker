@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Growl as ImportedGrowl } from 'primereact/growl';
 
 export const Growl = styled(ImportedGrowl)`
-  
+  top: 50px;
 .p-growl-topright {
 		opacity: 1 !important;
     top: 50px;

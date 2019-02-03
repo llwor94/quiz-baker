@@ -19,6 +19,7 @@ import {
 	FooterWrapper,
 } from 'styles/Quiz/Results';
 import { Growl } from 'styles/Components/Growl';
+import { animateIn, animateOut } from 'styles/animations';
 
 const Results = props => {
 	const [ questionResponse, setQuestionReponse ] = useContext(ResponseCtx);
@@ -72,28 +73,6 @@ const Results = props => {
 				})
 				.catch(err => console.log(err));
 		}
-	};
-
-	const animateIn = e => {
-		let name = e.target.getAttribute('name');
-		anime({
-			targets: `.icon-wrapper .${name}`,
-			color: props.theme.aqua,
-			easing: 'easeInQuad',
-			scale: 1.1,
-			duration: 50,
-		});
-	};
-
-	const animateOut = e => {
-		let name = e.target.getAttribute('name');
-		anime({
-			targets: `.icon-wrapper .${name}`,
-			color: props.theme.link,
-			easing: 'easeOutQuad',
-			scale: 1,
-			duration: 100,
-		});
 	};
 
 	const animateFavoriteIn = e => {
@@ -207,8 +186,8 @@ const Results = props => {
 									className='pi pi-share-alt share'
 									name='share'
 									onClick={handleCopy}
-									onMouseEnter={animateIn}
-									onMouseLeave={animateOut}
+									onMouseEnter={e => animateIn(e, props.theme.aqua)}
+									onMouseLeave={e => animateOut(e, props.theme.link)}
 								/>
 								<span name='share' className='share'>
 									Share
@@ -218,8 +197,8 @@ const Results = props => {
 								<i
 									className='pi pi-comment comment-icon'
 									name='comment-icon'
-									onMouseEnter={animateIn}
-									onMouseLeave={animateOut}
+									onMouseEnter={e => animateIn(e, props.theme.aqua)}
+									onMouseLeave={e => animateOut(e, props.theme.link)}
 									onClick={() => props.setNewComment(true)}
 								/>
 								<span className='icon-label comment-icon'>Comment</span>

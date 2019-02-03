@@ -159,8 +159,7 @@ const NewPost = ({ userPage, quiz, newComment, setNewComment }) => {
 								icon='pi pi-times'
 								white
 								onClick={() => {
-									setNewPost(false);
-									setNewComment(false);
+									quiz ? setNewComment(false) : setNewPost(false);
 								}}
 							/>
 
