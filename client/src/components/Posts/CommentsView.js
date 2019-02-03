@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
-
+import anime from 'animejs';
 import server from 'server';
 
 import { AuthCtx } from 'auth';
 
 import Comment from '../Post/Comment';
+import Loading from '../Loading';
 
 import { ProfileIcon } from 'styles/Components/Image';
 import { PostComment } from 'styles/Comments/Comment';
@@ -31,6 +32,20 @@ const Comments = ({ currentPost }) => {
 			}
 		},
 		[ currentPost ],
+	);
+
+	useEffect(
+		() => {
+			if (comments) {
+				anime({
+					targets: '.comment',
+					translateY: 0,
+					opacity: 1,
+					delay: anime.stagger(50, { easing: 'easeOutQuad' }),
+				});
+			}
+		},
+		[ comments ],
 	);
 
 	const addComment = () => {
@@ -63,12 +78,6 @@ const Comments = ({ currentPost }) => {
 				</div>
 			</CommentsWrapper>
 		);
-	if (!comments)
-		return (
-			<CommentsWrapper>
-				<InnerWrapper />
-			</CommentsWrapper>
-		);
 	else
 		return (
 			<CommentsWrapper>
@@ -89,13 +98,18 @@ const Comments = ({ currentPost }) => {
 								style={{ flexGrow: 1 }}
 							/>
 						</PostComment>
-						{comments.map(comment => (
-							<Comment
-								key={comment.id}
-								comment={comment}
-								deleteComment={deleteComment}
-							/>
-						))}
+
+						{comments ? (
+							comments.map(comment => (
+								<Comment
+									key={comment.id}
+									comment={comment}
+									deleteComment={deleteComment}
+								/>
+							))
+						) : (
+							<Loading />
+						)}
 					</div>
 				</InnerWrapper>
 			</CommentsWrapper>

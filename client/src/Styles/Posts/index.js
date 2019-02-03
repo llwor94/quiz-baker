@@ -70,5 +70,9 @@ export const InnerWrapper = styled.div`
 	.inner {
 		width: 400px;
 		padding-bottom: 50px;
+		/* .comment {
+			transform: translateY(-60px);
+			opacity: 0;
+		} */
 	}
 `;
