@@ -7,7 +7,7 @@ import server from '../../utils/server';
 
 import { PostsCtx } from '../../pages/Forum';
 import { AuthCtx } from '../../Auth';
-import { ColorCtx } from '../../App';
+import { ThemeCtx } from '../../Theme';
 import { Growl } from '../../Styles/Components/Growl';
 
 import {
@@ -44,7 +44,7 @@ const Wrapper = ({ children, isCurrent, userPage }) => {
 const Post = ({ post, showComments, currentPost, ...props }) => {
 	const [ posts, setPosts ] = useContext(PostsCtx);
 	const { user } = useContext(AuthCtx);
-	const [ darkMode, setValue ] = useContext(ColorCtx);
+	const [ darkMode, setValue ] = useContext(ThemeCtx);
 	const growl = React.createRef();
 
 	const handleCopy = () => {

@@ -7,8 +7,8 @@ export const Wrapper = styled.div`
 	background-color: ${props => props.theme.secondary};
 	margin-bottom: 10px;
 	position: absolute;
-	top: 11px;
-	left: -8%;
+	top: 40px;
+	left: -130px;
 
 	@media (max-width: 977px) {
 		display: none;

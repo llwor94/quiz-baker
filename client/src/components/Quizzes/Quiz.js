@@ -5,7 +5,7 @@ import { faCookieBite, faCookie } from '@fortawesome/free-solid-svg-icons';
 import server from '../../utils/server';
 
 import { AuthCtx } from '../../Auth';
-import { ColorCtx } from '../../App';
+import { ThemeCtx } from '../../Theme';
 import { QuizzesCtx } from '../../pages/Quizzes';
 
 import {
@@ -34,7 +34,7 @@ const Quiz = ({ quiz, ...props }) => {
 	const growl = React.createRef();
 	const [ quizzes, setQuizzes ] = useContext(QuizzesCtx);
 	const { user } = useContext(AuthCtx);
-	const [ darkMode, setValue ] = useContext(ColorCtx);
+	const [ darkMode, setValue ] = useContext(ThemeCtx);
 
 	const handleCopy = () => {
 		let value = `http://localhost:3000/quizzes/${quiz.id}`;

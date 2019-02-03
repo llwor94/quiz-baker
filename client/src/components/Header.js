@@ -9,6 +9,7 @@ import { Button } from 'primereact/button';
 import anime from 'animejs';
 
 import { AuthCtx } from '../Auth';
+import { ThemeCtx } from '../Theme';
 
 import quizbaker from '../assets/quizbaker.png';
 import darkModeLogo from '../assets/logo-darkmode.png';
@@ -140,8 +141,10 @@ const listenScrollEvent = (setMenuShowing, location) => {
 		setMenuShowing(false);
 	}
 };
-const Header = ({ setValue, darkMode, ...props }) => {
+const Header = props => {
 	const { user, logout } = useContext(AuthCtx);
+	const [ darkMode, setValue ] = useContext(ThemeCtx);
+
 	const [ menuShowing, setMenuShowing ] = useState(
 		props.history.location.pathname === '/quizzes',
 	);

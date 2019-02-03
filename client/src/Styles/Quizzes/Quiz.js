@@ -62,6 +62,7 @@ export const Title = styled.a`
 	padding: 0 5px 0 0;
 	margin-bottom: 5px;
 	cursor: pointer;
+	color: ${props => props.theme.text};
 	&:hover {
 		color: ${props => props.theme.darkPink};
 	}
