@@ -1,14 +1,14 @@
-import React, { useState, useEffect, useContext, Fragment } from 'react';
+import React, { useEffect, useContext } from 'react';
 
-import server from '../utils/server';
+import server from 'server';
 
-import { PostCtx } from '../pages/Post';
-import { AuthCtx } from '../Auth';
+import { PostCtx } from 'pages/Post';
+import { AuthCtx } from 'auth';
 
-import Loading from '../components/Loading';
-import Post from '../components/Post';
-import NewComment from '../components/Post/NewComment';
-import Comments from '../components/Post/Comments';
+import Loading from 'components/Loading';
+import Post from 'components/Post';
+import NewComment from 'components/Post/NewComment';
+import Comments from 'components/Post/Comments';
 
 const PostContainer = props => {
 	const [ post, setPost ] = useContext(PostCtx);

@@ -1,17 +1,17 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 
-import server from '../utils/server';
+import server from 'server';
 
-import { AuthCtx } from '../Auth';
-import { QuizzesCtx } from '../pages/Quizzes';
+import { AuthCtx } from 'auth';
+import { QuizzesCtx } from 'pages/Quizzes';
 
-import Loading from '../components/Loading';
-import Quiz from '../components/Quizzes/Quiz';
-import Sort from '../components/Quizzes/Sort';
-import Filter from '../components/Quizzes/Filter';
-import Topics from '../components/Quizzes/Topics';
+import Loading from 'components/Loading';
+import Quiz from 'components/Quizzes/Quiz';
+import Sort from 'components/Quizzes/Sort';
+import Filter from 'components/Quizzes/Filter';
+import Topics from 'components/Quizzes/Topics';
 
-import { Wrapper } from '../Styles/Quizzes';
+import { Wrapper } from 'styles/Quizzes';
 
 const Quizzes = props => {
 	const [ quizzes, setQuizzes ] = useContext(QuizzesCtx);

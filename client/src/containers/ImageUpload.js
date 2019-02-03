@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
 
 import { openUploadWidget } from '../utils/cloudinary';
-import server from '../utils/server';
+import server from 'server';
 
-import { AuthCtx } from '../Auth';
+import { AuthCtx } from 'auth';
 
-import { HugeImage } from '../Styles/Components/Image';
-import { Button } from '../Styles/Components/Button';
+import { HugeImage } from 'styles/Components/Image';
+import { Button } from 'styles/Components/Button';
 
 const UploadImage = ({ doneEditting }) => {
 	const { user, editUser } = useContext(AuthCtx);

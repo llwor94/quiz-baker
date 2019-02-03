@@ -1,14 +1,14 @@
 import React, { useState, useContext } from 'react';
 
-import { AuthCtx } from '../../Auth';
+import { AuthCtx } from 'auth';
 
 import ImageUpload from '../ImageUpload';
 import RegisterForm from './RegisterForm';
 
-import { HugeImage } from '../../Styles/Components/Image';
-import { Button } from '../../Styles/Components/Button';
-import { ModalWrapper } from '../../Styles/Settings/CreateQuiz';
-import { Wrapper, WelcomeWrapper } from '../../Styles/Register';
+import { HugeImage } from 'styles/Components/Image';
+import { Button } from 'styles/Components/Button';
+import { ModalWrapper } from 'styles/Settings/CreateQuiz';
+import { Wrapper, WelcomeWrapper } from 'styles/Register';
 
 const Register = props => {
 	const { user } = useContext(AuthCtx);

@@ -1,18 +1,18 @@
 import React, { useState, useEffect, useContext } from 'react';
 import MediaQuery from 'react-responsive';
 
-import server from '../utils/server';
+import server from 'server';
 
-import { PostsCtx } from '../pages/Forum';
-import { AuthCtx } from '../Auth';
+import { PostsCtx } from 'pages/Forum';
+import { AuthCtx } from 'auth';
 
-import Loading from '../components/Loading';
-import CommentsView from '../components/Posts/CommentsView';
-import NewPost from '../components/Posts/NewPost';
-import Post from '../components/Posts/Post';
-import Topics from '../components/Posts/Topics';
+import Loading from 'components/Loading';
+import CommentsView from 'components/Posts/CommentsView';
+import NewPost from 'components/Posts/NewPost';
+import Post from 'components/Posts/Post';
+import Topics from 'components/Posts/Topics';
 
-import { Wrapper } from '../Styles/Posts';
+import { Wrapper } from 'styles/Posts';
 
 const Posts = props => {
 	const [ posts, setPosts ] = useContext(PostsCtx);
