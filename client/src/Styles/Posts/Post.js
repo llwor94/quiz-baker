@@ -79,8 +79,12 @@ export const HatWrapper = styled.img`
 
 export const InnerWrapper = styled.div`
 	padding: 8px 0;
-	margin: 0 8px;
-	width: 100%;
+    margin: 0 8px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
 	.body {
 		display: flex;
@@ -96,11 +100,17 @@ export const BodyWrapper = styled.div`
 	p {
 		font-size: 14px;
 		font-weight: 400;
-		line-height: 21px;
+		line-height: 19px;
 		mask-image: ${props => !props.post && 'linear-gradient(180deg, #000 60%, transparent)'};
 		color: ${props => props.theme.text};
 		word-wrap: break-word;
 		width: 90%;
+		max-height: 100px;
+		margin: 15px 0;
+	}
+
+	span{
+		color: ${props => props.theme.pink};
 	}
 
 	.header {
@@ -195,13 +205,14 @@ export const Title = styled.div`
 	font-weight: 500;
 	line-height: 22px;
 	color: ${props => props.theme.text};
+	word-break: break-word;
 `;
 
 export const Topic = styled.div`
 	font-size: 14px;
 	color: white;
 	background-color: ${props => props.theme.aqua};
-	margin-right: 10px;
+	margin: 15px 10px 0 0;
 	display: inline-block;
 	font-weight: 500;
 	padding: 5px;
