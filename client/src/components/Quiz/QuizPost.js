@@ -29,12 +29,11 @@ const Post = ({ post }) => {
 	const handleComments = () => {
 		if (showingComments) {
 			anime({
-				targets: '.comments',
-
-				opacity: [ 1, 0 ],
-				height: [ '100%', 0 ],
-				duration: 1000,
-				complete: function() {
+				targets: '.comment',
+				opacity: 0,
+				translateY: -60,
+				delay: anime.stagger(10, { easing: 'easeOutQuad' }),
+				complete: () => {
 					setShowingComments(false);
 				},
 			});

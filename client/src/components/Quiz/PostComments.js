@@ -34,7 +34,12 @@ const Comments = ({ post }) => {
 
 	useEffect(
 		() => {
-			anime({ targets: '.comment', translateY: [ -200, 0 ], opacity: [ 0, 1 ], delay: 100 });
+			anime({
+				targets: '.comment',
+				translateY: 0,
+				opacity: 1,
+				delay: anime.stagger(20, { easing: 'easeOutQuad' }),
+			});
 		},
 		[ comments ],
 	);
@@ -82,7 +87,11 @@ const Comments = ({ post }) => {
 				<div>Loading...</div>
 			) : (
 				comments.map(comment => (
-					<Wrapper key={comment.id} className='comment'>
+					<Wrapper
+						key={comment.id}
+						className='comment'
+						style={{ opacity: 0, transform: 'translateY(-60px)' }}
+					>
 						<CommentHeader>
 							{' '}
 							<ProfileIcon src={comment.author_img} />

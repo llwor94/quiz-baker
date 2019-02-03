@@ -49,7 +49,7 @@ const QuizContainer = props => {
 					) : (
 						<Question />
 					)}
-					<QuestionTracker />
+					{currentQuestion !== quiz.question_count && <QuestionTracker />}
 					<QuizPostCtx.Provider value={[ quizPosts, setQuizPosts ]}>
 						<QuizPosts quiz={quiz} />
 					</QuizPostCtx.Provider>

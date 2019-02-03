@@ -16,7 +16,7 @@ export const Wrapper = styled.div`
 	border-color: ${props => props.theme.accent};
 	width: 100%;
 	overflow: visible;
-	transition: background 1s ease 0s;
+
 	margin-top: 11px;
 	padding-top: 10px;
 	margin-bottom: 5px;

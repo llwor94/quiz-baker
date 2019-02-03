@@ -7,6 +7,8 @@ import server from 'server';
 import { AuthCtx } from 'auth';
 import { ResponseCtx, QuizCtx } from 'pages/Quiz';
 
+import QuestionTracker from './QuizPosts';
+
 import {
 	Wrapper,
 	ResultWrapper,
@@ -101,6 +103,7 @@ const Results = () => {
 					%
 				</h3>
 			</NumberWrapper>
+			<QuestionTracker />
 			<FooterWrapper>
 				{user && (
 					<Fragment>

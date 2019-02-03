@@ -4,11 +4,12 @@ import server from 'server';
 
 import { AuthCtx } from 'auth';
 import { QuizPostCtx, QuestionCtx } from 'containers/Quiz';
-
+import { QuizCtx } from 'pages/Quiz';
 import NewPost from '../Posts/NewPost';
 import QuizPost from './QuizPost';
 
-const QuizPosts = ({ quiz }) => {
+const QuizPosts = () => {
+	const [ quiz, setQuiz ] = useContext(QuizCtx);
 	const [ quizPosts, setQuizPosts ] = useContext(QuizPostCtx);
 	const [ currentQuestion, setCurrentQuestion ] = useContext(QuestionCtx);
 	const { user } = useContext(AuthCtx);
