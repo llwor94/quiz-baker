@@ -1,13 +1,13 @@
 import React, { useEffect, useContext, useState, Fragment } from 'react';
 import _ from 'lodash';
 
-import server from '../../utils/server';
-import { UserQuizCtx } from '../../pages/UserQuiz';
+import server from 'server';
+import { UserQuizCtx } from 'pages/UserQuiz';
 
 import QuizForm from '../Settings/QuizForm';
 
-import { Button } from '../../Styles/Components/Button';
-import { Wrapper, InnerWrapper, Title, Topic } from '../../Styles/UserQuiz/Quiz';
+import { Button } from 'styles/Components/Button';
+import { Wrapper, InnerWrapper, Title, Topic } from 'styles/UserQuiz/Quiz';
 
 const Quiz = () => {
 	const [ quiz, setQuiz ] = useContext(UserQuizCtx);

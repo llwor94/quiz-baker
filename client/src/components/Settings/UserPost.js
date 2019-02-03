@@ -2,14 +2,14 @@ import React, { useContext, useState } from 'react';
 import moment from 'moment';
 import { Dialog } from 'primereact/dialog';
 
-import server from '../../utils/server';
+import server from 'server';
 
-import { AuthCtx } from '../../Auth';
+import { AuthCtx } from 'auth';
 
-import { UserPostsCtx } from '../../pages/Settings';
-import { Button } from '../../Styles/Components/Button';
-import { PostWrapper, BodyWrapper, Title, InnerWrapper, Topic } from '../../Styles/Posts/Post';
-import { FooterWrapper } from '../../Styles/Settings/UserQuiz';
+import { UserPostsCtx } from 'pages/Settings';
+import { Button } from 'styles/Components/Button';
+import { PostWrapper, BodyWrapper, Title, InnerWrapper, Topic } from 'styles/Posts/Post';
+import { FooterWrapper } from 'styles/Settings/UserQuiz';
 
 const UserPost = ({ post, ...props }) => {
 	const [ userPosts, setUserPosts ] = useContext(UserPostsCtx);

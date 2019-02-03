@@ -2,11 +2,11 @@ import React, { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCookieBite, faCookie } from '@fortawesome/free-solid-svg-icons';
 
-import server from '../../utils/server';
+import server from 'server';
 
-import { AuthCtx } from '../../Auth';
-import { ThemeCtx } from '../../Theme';
-import { QuizzesCtx } from '../../pages/Quizzes';
+import { AuthCtx } from 'auth';
+import { ThemeCtx } from 'theme';
+import { QuizzesCtx } from 'pages/Quizzes';
 
 import {
 	Wrapper,
@@ -23,12 +23,12 @@ import {
 	RightSide,
 	QuestionCount,
 	FooterWrapper,
-} from '../../Styles/Quizzes/Quiz';
-import { ProfileIcon } from '../../Styles/Components/Image';
-import { Growl } from '../../Styles/Components/Growl';
+} from 'styles/Quizzes/Quiz';
+import { ProfileIcon } from 'styles/Components/Image';
+import { Growl } from 'styles/Components/Growl';
 
-import hatIcon from '../../assets/chef.svg';
-import hatDark from '../../assets/chef-dark.svg';
+import hatIcon from 'assets/chef.svg';
+import hatDark from 'assets/chef-dark.svg';
 
 const Quiz = ({ quiz, ...props }) => {
 	const growl = React.createRef();

@@ -2,10 +2,10 @@ import React, { useState, useContext } from 'react';
 import moment from 'moment';
 import anime from 'animejs';
 
-import server from '../../utils/server';
+import server from 'server';
 
-import { AuthCtx } from '../../Auth';
-import { QuizPostCtx } from '../../containers/Quiz';
+import { AuthCtx } from 'auth';
+import { QuizPostCtx } from 'containers/Quiz';
 
 import PostComments from './PostComments';
 
@@ -18,8 +18,8 @@ import {
 	Title,
 	InnerWrapper,
 	LeftSide,
-} from '../../Styles/Posts/Post';
-import { ProfileIcon } from '../../Styles/Components/Image';
+} from 'styles/Posts/Post';
+import { ProfileIcon } from 'styles/Components/Image';
 
 const Post = ({ post }) => {
 	const [ showingComments, setShowingComments ] = useState(false);

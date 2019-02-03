@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
 
-import server from '../../utils/server';
+import server from 'server';
 
-import { PostCtx } from '../../pages/Post';
+import { PostCtx } from 'pages/Post';
 
 import Comment from './Comment';
 
-import { CommentArea } from '../../Styles/Comments/Comment';
+import { CommentArea } from 'styles/Comments/Comment';
 
 const Comments = () => {
 	const [ post, setPost ] = useContext(PostCtx);

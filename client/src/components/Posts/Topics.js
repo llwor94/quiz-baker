@@ -2,11 +2,11 @@ import React, { useEffect, useState, useContext } from 'react';
 import _ from 'lodash';
 import { MultiSelect } from 'primereact/multiselect';
 
-import server from '../../utils/server';
+import server from 'server';
 
-import { PostsCtx } from '../../pages/Forum';
+import { PostsCtx } from 'pages/Forum';
 
-import { Topic, MultiSelectWrapper } from '../../Styles/Quizzes/Quiz';
+import { Topic, MultiSelectWrapper } from 'styles/Quizzes/Quiz';
 
 const Topics = () => {
 	const [ topics, setTopics ] = useState([]);

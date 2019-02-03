@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useContext, Fragment } from 'react';
 
-import server from '../../utils/server';
+import server from 'server';
 
-import { AuthCtx } from '../../Auth';
-import { UserPostsCtx } from '../../pages/Settings';
+import { AuthCtx } from 'auth';
+import { UserPostsCtx } from 'pages/Settings';
 
-import { ModalWrapper } from '../../Styles/Settings/CreateQuiz';
-import { NewPostWrapper, InnerWrapper } from '../../Styles/Posts/NewPost';
-import { Button } from '../../Styles/Components/Button';
-import { Input, EmojiTextArea } from '../../Styles/Components/Input';
-import { StyledAutoComplete } from '../../Styles/Components/Autocomplete';
+import { ModalWrapper } from 'styles/Settings/CreateQuiz';
+import { NewPostWrapper, InnerWrapper } from 'styles/Posts/NewPost';
+import { Button } from 'styles/Components/Button';
+import { Input, EmojiTextArea } from 'styles/Components/Input';
+import { StyledAutoComplete } from 'styles/Components/Autocomplete';
 
 const CreatePost = () => {
 	const [ newPost, setNewPost ] = useState(false);

@@ -1,9 +1,9 @@
 import React, { useEffect, useContext } from 'react';
 
-import server from '../../utils/server';
+import server from 'server';
 
-import { AuthCtx } from '../../Auth';
-import { QuizPostCtx, QuestionCtx } from '../../containers/Quiz';
+import { AuthCtx } from 'auth';
+import { QuizPostCtx, QuestionCtx } from 'containers/Quiz';
 
 import NewPost from '../Posts/NewPost';
 import QuizPost from './QuizPost';

@@ -2,13 +2,13 @@ import React, { useState, useEffect, useContext } from 'react';
 import moment from 'moment';
 import anime from 'animejs';
 
-import server from '../../utils/server';
+import server from 'server';
 
-import { AuthCtx } from '../../Auth';
+import { AuthCtx } from 'auth';
 
-import { EmojiInput } from '../../Styles/Components/Input';
-import { ProfileIcon } from '../../Styles/Components/Image';
-import { Button } from '../../Styles/Components/Button';
+import { EmojiInput } from 'styles/Components/Input';
+import { ProfileIcon } from 'styles/Components/Image';
+import { Button } from 'styles/Components/Button';
 import {
 	Wrapper,
 	CommentHeader,
@@ -16,7 +16,7 @@ import {
 	CommentWrapper,
 	PostComment,
 	RightSide,
-} from '../../Styles/Comments/Comment';
+} from 'styles/Comments/Comment';
 
 const Comments = ({ post }) => {
 	const { user } = useContext(AuthCtx);

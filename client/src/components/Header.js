@@ -8,11 +8,11 @@ import { Sidebar } from 'primereact/sidebar';
 import { Button } from 'primereact/button';
 import anime from 'animejs';
 
-import { AuthCtx } from '../Auth';
-import { ThemeCtx } from '../Theme';
+import { AuthCtx } from 'auth';
+import { ThemeCtx } from 'theme';
 
-import quizbaker from '../assets/quizbaker.png';
-import darkModeLogo from '../assets/logo-darkmode.png';
+import quizbaker from 'assets/quizbaker.png';
+import darkModeLogo from 'assets/logo-darkmode.png';
 
 const Wrapper = styled.div`
 	position: fixed;

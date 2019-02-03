@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 
-import { QuestionCtx } from '../../containers/Quiz';
-import { ResponseCtx } from '../../pages/Quiz';
+import { QuestionCtx } from 'containers/Quiz';
+import { ResponseCtx } from 'pages/Quiz';
 
 const Wrapper = styled.div`
 	display: flex;

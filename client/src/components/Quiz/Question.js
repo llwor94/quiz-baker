@@ -3,21 +3,14 @@ import _ from 'lodash';
 import anime from 'animejs';
 import { RadioButton } from 'primereact/radiobutton';
 
-import server from '../../utils/server';
+import server from 'server';
 
-import { QuestionCtx } from '../../containers/Quiz';
-import { QuizCtx, ResponseCtx } from '../../pages/Quiz';
+import { QuestionCtx } from 'containers/Quiz';
+import { QuizCtx, ResponseCtx } from 'pages/Quiz';
 
-import { Button } from '../../Styles/Components/Button';
-import {
-	Wrapper,
-	AnswerWrapper,
-	Answer,
-	Label,
-	QuestionWrapper,
-	Logo,
-} from '../../Styles/Quiz/Question';
-import Timer from '../../Styles/Components/Timer';
+import { Button } from 'styles/Components/Button';
+import { Wrapper, AnswerWrapper, Answer, Label, QuestionWrapper, Logo } from 'styles/Quiz/Question';
+import Timer from 'styles/Components/Timer';
 
 const Question = () => {
 	const [ quiz, setQuiz ] = useContext(QuizCtx);

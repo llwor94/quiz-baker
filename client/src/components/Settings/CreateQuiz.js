@@ -1,14 +1,14 @@
-import React, { useState, useContext, Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 import { withRouter } from 'react-router-dom';
 import _ from 'lodash';
 
-import server from '../../utils/server';
+import server from 'server';
 
 import QuizForm from './QuizForm';
 
-import { Button } from '../../Styles/Components/Button';
-import { Wrapper, InnerWrapper, ModalWrapper } from '../../Styles/Settings/CreateQuiz';
-import OvenIcon from '../../assets/oven';
+import { Button } from 'styles/Components/Button';
+import { Wrapper, InnerWrapper, ModalWrapper } from 'styles/Settings/CreateQuiz';
+import OvenIcon from 'assets/oven';
 
 const CreateQuiz = props => {
 	const [ newQuiz, setNewQuiz ] = useState(false);

@@ -3,12 +3,12 @@ import moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCookieBite, faCookie } from '@fortawesome/free-solid-svg-icons';
 
-import server from '../../utils/server';
+import server from 'server';
 
-import { PostsCtx } from '../../pages/Forum';
-import { AuthCtx } from '../../Auth';
-import { ThemeCtx } from '../../Theme';
-import { Growl } from '../../Styles/Components/Growl';
+import { PostsCtx } from 'pages/Forum';
+import { AuthCtx } from 'auth';
+import { ThemeCtx } from 'theme';
+import { Growl } from 'styles/Components/Growl';
 
 import {
 	PostWrapper,
@@ -23,13 +23,13 @@ import {
 	LeftSide,
 	CurrentWrapper,
 	HatWrapper,
-} from '../../Styles/Posts/Post';
-import { ProfileIcon } from '../../Styles/Components/Image';
+} from 'styles/Posts/Post';
+import { ProfileIcon } from 'styles/Components/Image';
 
-import spoonfull from '../../assets/spoonfull.png';
-import spoonpour from '../../assets/spoonpour.png';
-import hatDark from '../../assets/chef-dark.svg';
-import hatLight from '../../assets/chef.svg';
+import spoonfull from 'assets/spoonfull.png';
+import spoonpour from 'assets/spoonpour.png';
+import hatDark from 'assets/chef-dark.svg';
+import hatLight from 'assets/chef.svg';
 
 const Wrapper = ({ children, isCurrent, userPage }) => {
 	if (isCurrent)

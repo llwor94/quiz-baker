@@ -1,15 +1,15 @@
 import React, { useEffect, useState, useContext } from 'react';
 import MediaQuery from 'react-responsive';
 
-import server from '../../utils/server';
+import server from 'server';
 
-import { AuthCtx } from '../../Auth';
+import { AuthCtx } from 'auth';
 
 import UpdateImage from './UpdateImage';
 import UpdateUsername from './updateUsername';
 
-import { LargeImage } from '../../Styles/Components/Image';
-import { ProfileWrapper, ProfileButtonWrapper } from '../../Styles/Settings/Sidebar';
+import { LargeImage } from 'styles/Components/Image';
+import { ProfileWrapper, ProfileButtonWrapper } from 'styles/Settings/Sidebar';
 
 const Profile = ({ setActiveTab }) => {
 	const [ imageUpdate, setImageUpdate ] = useState(false);

@@ -1,11 +1,12 @@
 import React from 'react';
 
+import server from 'server';
+
 import { openUploadWidget } from '../../utils/cloudinary';
 
-import { Button, SettingsButton } from '../../Styles/Components/Button';
-import { ProfileButtonWrapper } from '../../Styles/Settings/Sidebar';
+import { Button, SettingsButton } from 'styles/Components/Button';
+import { ProfileButtonWrapper } from 'styles/Settings/Sidebar';
 
-import server from '../../utils/server';
 const UpdateImage = ({ imageUpdate, setImageUpdate, updateUser }) => {
 	const handleUpload = () => {
 		const uploadOptions = {

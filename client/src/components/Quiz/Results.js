@@ -2,10 +2,10 @@ import React, { useEffect, useContext, Fragment } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCookieBite, faCookie } from '@fortawesome/free-solid-svg-icons';
 
-import server from '../../utils/server';
+import server from 'server';
 
-import { AuthCtx } from '../../Auth';
-import { ResponseCtx, QuizCtx } from '../../pages/Quiz';
+import { AuthCtx } from 'auth';
+import { ResponseCtx, QuizCtx } from 'pages/Quiz';
 
 import {
 	Wrapper,
@@ -14,8 +14,8 @@ import {
 	InnerWrapper,
 	NumberWrapper,
 	FooterWrapper,
-} from '../../Styles/Quiz/Results';
-import { Growl } from '../../Styles/Components/Growl';
+} from 'styles/Quiz/Results';
+import { Growl } from 'styles/Components/Growl';
 
 const Results = () => {
 	const [ questionResponse, setQuestionReponse ] = useContext(ResponseCtx);

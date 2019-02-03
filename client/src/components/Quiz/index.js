@@ -4,19 +4,19 @@ import anime from 'animejs';
 import { Transition } from 'react-transition-group';
 import MediaQuery from 'react-responsive';
 
-import { QuestionCtx } from '../../containers/Quiz';
-import { QuizCtx } from '../../pages/Quiz';
+import { QuestionCtx } from 'containers/Quiz';
+import { QuizCtx } from 'pages/Quiz';
 
-import { Button, BackButton } from '../../Styles/Components/Button';
+import { Button, BackButton } from 'styles/Components/Button';
 import {
 	SplashWrapper,
 	SplashTitle,
 	SplashHeader,
 	SplashDescription,
 	SplashFooter,
-} from '../../Styles/Quiz/Splash';
+} from 'styles/Quiz/Splash';
 
-import ForkIcon from '../../assets/fork';
+import ForkIcon from 'assets/fork';
 
 const animateOut = wrapper => anime({ targets: wrapper, translateY: -200, opacity: 0 });
 

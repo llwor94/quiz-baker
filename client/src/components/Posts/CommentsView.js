@@ -1,17 +1,17 @@
 import React, { useState, useEffect, useContext } from 'react';
 
-import server from '../../utils/server';
+import server from 'server';
 
-import { AuthCtx } from '../../Auth';
+import { AuthCtx } from 'auth';
 
 import Comment from '../Post/Comment';
 
-import { ProfileIcon } from '../../Styles/Components/Image';
-import { PostComment } from '../../Styles/Comments/Comment';
-import { CommentsWrapper, InnerWrapper } from '../../Styles/Posts';
-import { EmojiInput } from '../../Styles/Components/Input';
+import { ProfileIcon } from 'styles/Components/Image';
+import { PostComment } from 'styles/Comments/Comment';
+import { CommentsWrapper, InnerWrapper } from 'styles/Posts';
+import { EmojiInput } from 'styles/Components/Input';
 
-import darkModeLogo from '../../assets/logo-darkmode.png';
+import darkModeLogo from 'assets/logo-darkmode.png';
 
 const Comments = ({ currentPost }) => {
 	const [ comments, setComments ] = useState(undefined);

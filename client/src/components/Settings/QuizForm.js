@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Dropdown } from 'primereact/dropdown';
 
-import server from '../../utils/server';
+import server from 'server';
 
-import { Input, TextArea } from '../../Styles/Components/Input';
-import { StyledAutoComplete } from '../../Styles/Components/Autocomplete';
-import { QuizFormWrapper } from '../../Styles/Settings/QuizForm';
+import { Input, TextArea } from 'styles/Components/Input';
+import { StyledAutoComplete } from 'styles/Components/Autocomplete';
+import { QuizFormWrapper } from 'styles/Settings/QuizForm';
 
 const QuizForm = ({ quiz, setQuiz, ...props }) => {
 	const [ topics, setTopics ] = useState(undefined);

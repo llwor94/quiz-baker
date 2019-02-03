@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 
-import { UserPostsCtx } from '../../pages/Settings';
+import { UserPostsCtx } from 'pages/Settings';
 
 import CreatePost from './CreatePost';
 import UserPost from './UserPost';
 
-import { Wrapper, InnerWrapper } from '../../Styles/Settings';
+import { Wrapper, InnerWrapper } from 'styles/Settings';
 
 const Posts = props => {
 	const [ userPosts, setUserPosts ] = useContext(UserPostsCtx);

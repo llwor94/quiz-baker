@@ -1,13 +1,13 @@
 import React, { useState, useContext } from 'react';
 
-import server from '../../utils/server';
+import server from 'server';
 
-import { PostCtx } from '../../pages/Post';
-import { AuthCtx } from '../../Auth';
+import { PostCtx } from 'pages/Post';
+import { AuthCtx } from 'auth';
 
-import { ProfileIcon } from '../../Styles/Components/Image';
-import { PostComment } from '../../Styles/Comments/Comment';
-import { EmojiInput } from '../../Styles/Components/Input';
+import { ProfileIcon } from 'styles/Components/Image';
+import { PostComment } from 'styles/Comments/Comment';
+import { EmojiInput } from 'styles/Components/Input';
 
 const NewComment = () => {
 	const [ post, setPost ] = useContext(PostCtx);

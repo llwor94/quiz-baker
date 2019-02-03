@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import RadioButton from '../../Styles/Components/RadioButton';
-import { StyledInput, Label } from '../../Styles/Components/Input';
+import RadioButton from 'styles/Components/RadioButton';
+import { StyledInput, Label } from 'styles/Components/Input';
 
 const Wrapper = styled.div`
 	${props => props.theme.flex('column', 'space-between', 'center')};

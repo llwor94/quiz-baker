@@ -2,11 +2,11 @@ import React, { useEffect, useState, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAward } from '@fortawesome/free-solid-svg-icons';
 
-import server from '../../utils/server';
+import server from 'server';
 
-import { QuizCtx } from '../../pages/Quiz';
-import { ProfileIcon } from '../../Styles/Components/Image';
-import { Wrapper, UserWrapper, User } from '../../Styles/Quiz/LeaderBoard';
+import { QuizCtx } from 'pages/Quiz';
+import { ProfileIcon } from 'styles/Components/Image';
+import { Wrapper, UserWrapper, User } from 'styles/Quiz/LeaderBoard';
 
 const Leaderboard = ({ results }) => {
 	const [ userScores, setUserScores ] = useState([]);
