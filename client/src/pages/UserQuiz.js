@@ -1,8 +1,8 @@
 import React, { useState, createContext, useContext } from 'react';
 
-import UserQuizContainer from '../containers/UserQuiz';
-import { AuthCtx } from '../Auth';
-import Loading from '../components/Loading';
+import UserQuizContainer from 'containers/UserQuiz';
+import { AuthCtx } from 'auth';
+import Loading from 'components/Loading';
 
 export const UserQuizCtx = createContext([ undefined, () => {} ]);
 export const QuizQuestionsCtx = createContext([ undefined, () => {} ]);

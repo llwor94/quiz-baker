@@ -17,10 +17,10 @@ import UserQuizPage from './pages/UserQuiz';
 import LoginContainer from './containers/Login';
 
 import Loading from './components/Loading';
-import Header from './components/Header';
-import Footer from './components/Footer';
+import Header from 'components/Header';
+import Footer from 'components/Footer';
 
-import { Wrapper, InnerWrapper } from './Theme';
+import { Wrapper, InnerWrapper } from 'theme';
 
 const App = () => {
 	const { user, login, logout } = useContext(AuthCtx);

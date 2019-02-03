@@ -1,6 +1,6 @@
 import React, { useState, createContext } from 'react';
 
-import QuizContainer from '../containers/Quiz';
+import QuizContainer from 'containers/Quiz';
 
 export const QuizCtx = createContext([ undefined, () => {} ]);
 export const ResponseCtx = createContext([ undefined, () => {} ]);

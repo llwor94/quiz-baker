@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import { BrowserRouter as Router } from 'react-router-dom';
-import AuthProvider from './Auth';
-import ColorProvider from './Theme';
+import AuthProvider from 'auth';
+import ColorProvider from 'theme';
 
 import App from './App';
 

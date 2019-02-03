@@ -2,7 +2,7 @@ import React, { useState, createContext, Fragment } from 'react';
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { DarkMode } from './Themes/dark';
 import { LightMode } from './Themes/light';
-import { mixins } from './Styles/mixins';
+import { mixins } from 'styles/mixins';
 
 const GlobalStyle = createGlobalStyle`
   * {
