@@ -8,6 +8,7 @@ export const Wrapper = styled.div`
 	margin-bottom: 10px;
 	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
 		0 2px 1px -1px rgba(0, 0, 0, 0.12);
+	border-radius: 4px;
 `;
 
 export const SideColor = styled.div`
@@ -21,6 +22,7 @@ export const SideColor = styled.div`
 export const ResultWrapper = styled.div`
 	display: flex;
 	border: 1px solid ${props => props.theme.accent};
+	background-color: ${props => props.theme.secondary};
 `;
 
 export const InnerWrapper = styled.div`
@@ -45,25 +47,32 @@ export const NumberWrapper = styled.div`
 
 export const FooterWrapper = styled.div`
 	${props => props.theme.flex(undefined, undefined, 'center')};
+	.icon-wrapper {
+		${props => props.theme.flex(undefined, undefined, 'center')};
+		
+	}
 	svg {
-		margin: 0 10px;
-		&:hover {
+		margin: 0 5px;
+		color: ${props => props.theme.link};
+		/* &:hover {
 			color: #875818;
-		}
+		} */
 	}
 	p {
-		font-size: 30px;
+		font-size: 14px;
+		
 	}
 	i {
 		font-size: 30px;
 		cursor: pointer;
+		color: ${props => props.theme.link};
 	}
 
-	.pi-share-alt {
+	/* .pi-share-alt {
 		&:hover {
 			color: ${props => props.theme.aqua};
-		}
-	}
+		} */
+	
 
 	.vert {
 		${props => props.theme.flex(undefined, undefined, 'center')};
@@ -76,6 +85,11 @@ export const FooterWrapper = styled.div`
 	}
 
 	.vote {
-		margin-right: 15px;
+		margin-right: 10px;
+		/* ${props => props.theme.flex(undefined, undefined, 'center')}; */
+		i {
+		
+			padding: 0 10px;
+		}
 	}
 `;

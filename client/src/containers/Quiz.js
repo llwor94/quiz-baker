@@ -24,6 +24,7 @@ const QuizContainer = props => {
 	const [ questionResponse, setQuestionReponse ] = useContext(ResponseCtx);
 	const [ currentQuestion, setCurrentQuestion ] = useState(undefined);
 	const [ quizPosts, setQuizPosts ] = useState(undefined);
+	const [ newComment, setNewComment ] = useState(false);
 
 	useEffect(() => {
 		server.get(`/quizzes/${props.match.params.id}`).then(({ data }) => {
@@ -45,13 +46,17 @@ const QuizContainer = props => {
 					{currentQuestion === undefined ? (
 						<Quiz {...props} />
 					) : currentQuestion === quiz.question_count ? (
-						<Results />
+						<Results setNewComment={setNewComment} />
 					) : (
 						<Question />
 					)}
 					{currentQuestion !== quiz.question_count && <QuestionTracker />}
 					<QuizPostCtx.Provider value={[ quizPosts, setQuizPosts ]}>
-						<QuizPosts quiz={quiz} />
+						<QuizPosts
+							quiz={quiz}
+							setNewComment={setNewComment}
+							newComment={newComment}
+						/>
 					</QuizPostCtx.Provider>
 				</Wrapper>
 			</QuestionCtx.Provider>

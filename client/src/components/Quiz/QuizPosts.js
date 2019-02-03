@@ -8,7 +8,7 @@ import { QuizCtx } from 'pages/Quiz';
 import NewPost from '../Posts/NewPost';
 import QuizPost from './QuizPost';
 
-const QuizPosts = () => {
+const QuizPosts = ({ setNewComment, newComment }) => {
 	const [ quiz, setQuiz ] = useContext(QuizCtx);
 	const [ quizPosts, setQuizPosts ] = useContext(QuizPostCtx);
 	const [ currentQuestion, setCurrentQuestion ] = useContext(QuestionCtx);
@@ -26,7 +26,10 @@ const QuizPosts = () => {
 	else
 		return (
 			<div style={{ width: '500px', marginTop: '15px' }}>
-				{user && quiz.question_count === currentQuestion && <NewPost quiz={quiz} />}
+				{user &&
+				newComment && (
+					<NewPost quiz={quiz} setNewComment={setNewComment} newComment={newComment} />
+				)}
 				{quizPosts.length > 0 &&
 					quizPosts.map(post => <QuizPost key={post.id} post={post} />)}
 			</div>
