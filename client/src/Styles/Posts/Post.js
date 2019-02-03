@@ -40,6 +40,7 @@ export const CurrentPost = styled(PostWrapper)`
   border-radius: 17px;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
+	padding-left: 13px;
 
   :after,
   :before {
