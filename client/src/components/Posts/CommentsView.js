@@ -41,7 +41,7 @@ const Comments = ({ currentPost }) => {
 					targets: '.comment',
 					translateY: 0,
 					opacity: 1,
-					delay: anime.stagger(50, { easing: 'easeOutQuad' }),
+					delay: anime.stagger(20),
 				});
 			}
 		},
