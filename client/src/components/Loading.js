@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import LoadingIcon from 'assets/loadingIcon';
+import LoadingIcon from '../assets/loadingIcon';
 
 const Wrapper = styled.div`
 	width: 100%;
