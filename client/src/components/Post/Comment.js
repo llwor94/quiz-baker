@@ -10,7 +10,7 @@ import { Button } from 'styles/Components/Button';
 const Comment = ({ comment, deleteComment }) => {
 	const { user } = useContext(AuthCtx);
 	return (
-		<Wrapper>
+		<Wrapper className='comment' style={{ opacity: 0, transform: 'translateY(-60px)' }}>
 			<CommentHeader>
 				<ProfileIcon src={comment.author_img} />
 				<CommentBody>
