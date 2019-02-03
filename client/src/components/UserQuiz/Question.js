@@ -1,10 +1,13 @@
-import React, { useState, useContext, useEffect, Fragment } from 'react';
-import server from '../../utils/server';
+import React, { useState, useContext } from 'react';
 
-import { UserQuizCtx, QuizQuestionsCtx } from '../../pages/UserQuiz';
-import { Wrapper, Title } from '../../Styles/UserQuiz/Questions';
-import { Button } from '../../Styles/Components/Button';
+import server from 'server';
+
+import { UserQuizCtx, QuizQuestionsCtx } from 'pages/UserQuiz';
+
 import EditQuestion from './EditQuestion';
+
+import { Wrapper, Title, AnswerOption } from 'styles/UserQuiz/Questions';
+import { Button } from 'styles/Components/Button';
 
 const Question = ({ question }) => {
 	const [ questions, setQuestions ] = useContext(QuizQuestionsCtx);
@@ -30,16 +33,9 @@ const Question = ({ question }) => {
 				</div>
 				<ul style={{ paddingLeft: '40px' }}>
 					{question.options.map((option, i) => (
-						<li
-							key={i}
-							style={{
-								color: question.answer === i + 1 ? 'white' : 'black',
-								backgroundColor: question.answer === i + 1 ? '#00ba97' : 'white',
-								fontWeight: question.answer === i + 1 && 'bold',
-							}}
-						>
+						<AnswerOption key={i} correct={question.answer === i + 1}>
 							{option}
-						</li>
+						</AnswerOption>
 					))}
 				</ul>
 			</Wrapper>

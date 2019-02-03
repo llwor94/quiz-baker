@@ -8,8 +8,11 @@ const StyledRadio = styled(StyledRadioButton)`
   border: ${props => props.theme.pink} !important;
   &:hover {
     background-color: ${props => props.theme.darkPink} !important;
-  border: ${props => props.theme.darkPink} !important;
+    border: ${props => props.theme.darkPink} !important;
   }
+}
+.p-inputgroup .p-inputgroup-addon {
+  background-color: ${props => props.theme.main}
 }
 `;
 

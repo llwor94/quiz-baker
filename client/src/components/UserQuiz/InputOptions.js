@@ -1,35 +1,41 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import RadioButton from '../Styles/RadioButton';
-import { StyledInput, Label } from '../../Styles/Components/Input';
+import RadioButton from 'styles/Components/RadioButton';
+import { StyledInput, Label } from 'styles/Components/Input';
 
 const Wrapper = styled.div`
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	align-items: center;
+	${props => props.theme.flex('column', 'space-between', 'center')};
 	padding-bottom: 10px;
+	.p-radiobutton .p-radiobutton-box {
+		background-color: ${props => props.theme.secondary};
+		border-color: ${props => props.theme.main};
+	}
 	.p-radiobutton .p-radiobutton-box.p-highlight {
-		background-color: ${props => props.theme.pink};
-		border-color: ${props => props.theme.pink};
-		/* background-color: ${props => (props.mc ? props.theme.pink : props.theme.aqua)};
-		border-color: ${props => (props.mc ? props.theme.pink : props.theme.aqua)}; */
+		${props => props.theme.backgroundBorder(props.theme.pink)};
 	}
 	.p-radiobutton .p-radiobutton-box.p-highlight:not(.p-disabled):hover {
-		background-color: ${props => (props.mc ? props.theme.darkPink : props.theme.darkAqua)};
-		border-color: ${props => (props.mc ? props.theme.darkPink : props.theme.darkAqua)};
+		${props =>
+			props.theme.backgroundBorder(props.mc ? props.theme.darkPink : props.theme.darkAqua)};
+	}
+	.p-radiobutton .p-radiobutton-box.p-highlight .p-radiobutton-icon {
+		background-color: ${props => props.theme.secondary};
 	}
 `;
 
-const InputWrapper = styled.div`padding: 5px 0;`;
+const InputWrapper = styled.div`
+	padding: 5px 0;
+	.p-inputgroup-addon {
+		background-color: ${props => props.theme.accent} !important;
+		border-color: ${props => props.theme.accent} !important;
+	}
+`;
 
 export const MultipleChoice = ({
 	correctOption,
 	handleCorrectChange,
 	options,
 	handleOptionChange,
-	...props
 }) => {
 	return (
 		<Wrapper mc>
@@ -104,7 +110,7 @@ export const MultipleChoice = ({
 	);
 };
 
-export const TrueFalse = ({ handleCorrectChange, correctOption, ...props }) => {
+export const TrueFalse = ({ handleCorrectChange, correctOption }) => {
 	return (
 		<Wrapper>
 			<InputWrapper className='p-inputgroup'>

@@ -1,6 +1,6 @@
-import React, { useEffect, useState, createContext } from 'react';
+import React, { useState, createContext } from 'react';
 
-import SettingsContainer from '../containers/Settings';
+import SettingsContainer from 'containers/Settings';
 
 export const UserQuizzesCtx = createContext([ undefined, () => {} ]);
 export const UserPostsCtx = createContext([ undefined, () => {} ]);

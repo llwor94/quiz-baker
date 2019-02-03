@@ -1,11 +1,12 @@
 import React, { useEffect, useState, useContext } from 'react';
-import server from '../../utils/server';
-import { QuizCtx } from '../../pages/Quiz';
-import { ProfileIcon } from '../../Styles/Components/Image';
-import { Wrapper, UserWrapper, User } from '../../Styles/Quiz/LeaderBoard';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAward } from '@fortawesome/free-solid-svg-icons';
+
+import server from 'server';
+
+import { QuizCtx } from 'pages/Quiz';
+import { ProfileIcon } from 'styles/Components/Image';
+import { Wrapper, UserWrapper, User } from 'styles/Quiz/LeaderBoard';
 
 const Leaderboard = ({ results }) => {
 	const [ userScores, setUserScores ] = useState([]);
@@ -20,7 +21,7 @@ const Leaderboard = ({ results }) => {
 			})
 			.catch(err => console.log(err));
 	}, []);
-	console.log(userScores);
+
 	useEffect(
 		() => {
 			if (results) {

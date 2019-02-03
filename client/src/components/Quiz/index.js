@@ -1,24 +1,22 @@
-import React, { useEffect, useState, Fragment, useContext } from 'react';
-import server from '../../utils/server';
+import React, { useState, useContext } from 'react';
 import _ from 'lodash';
-import { Growl } from 'primereact/growl';
-import { Button, BackButton } from '../../Styles/Components/Button';
-import { QuestionCtx } from '../../containers/Quiz';
-import { QuizCtx } from '../../pages/Quiz';
+import anime from 'animejs';
+import { Transition } from 'react-transition-group';
 import MediaQuery from 'react-responsive';
+
+import { QuestionCtx } from 'containers/Quiz';
+import { QuizCtx } from 'pages/Quiz';
+
+import { Button, BackButton } from 'styles/Components/Button';
 import {
 	SplashWrapper,
 	SplashTitle,
 	SplashHeader,
-	SplashMidWrapper,
 	SplashDescription,
-	Fork,
 	SplashFooter,
-} from '../../Styles/Quiz/Splash';
-import Question from './Question';
-import anime from 'animejs';
-import { Transition } from 'react-transition-group';
-import forkIcon from '../../assets/fork.svg';
+} from 'styles/Quiz/Splash';
+
+import ForkIcon from 'assets/fork';
 
 const animateOut = wrapper => anime({ targets: wrapper, translateY: -200, opacity: 0 });
 
@@ -46,14 +44,20 @@ const Quiz = props => {
 							<span className='author'>{quiz.author.username}</span>{' '}
 						</SplashHeader>
 
-						<SplashMidWrapper>
+						<div>
 							<SplashDescription>Description:</SplashDescription>
-							<div>{quiz.description}</div>
-						</SplashMidWrapper>
+							<span>{quiz.description}</span>
+						</div>
 					</div>
-					<Fork src={forkIcon} />
+					<ForkIcon />
 				</div>
-				{quiz.question_time_limit && <div>This is a timed quiz.</div>}
+				{quiz.question_time_limit ? (
+					<div className='timed'>
+						This is a timed quiz. <i className='pi pi-clock' />
+					</div>
+				) : (
+					<div className='notTimed' />
+				)}
 				<SplashFooter>
 					{' '}
 					{quiz.question_count === 1 ? (

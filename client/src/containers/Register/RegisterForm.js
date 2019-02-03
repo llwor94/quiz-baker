@@ -1,11 +1,12 @@
 import React, { useState, useContext } from 'react';
-import { AuthCtx } from '../../Auth';
-
-import server from '../../utils/server';
 import _ from 'lodash';
 import debounce from 'lodash/debounce';
 
-import { Wrapper, InputWrap } from '../../components/Auth';
+import server from 'server';
+
+import { AuthCtx } from 'auth';
+
+import { Wrapper, InputWrap } from 'components/Auth';
 
 const checkData = debounce(async ({ target }, setError, error) => {
 	if (target.value) {

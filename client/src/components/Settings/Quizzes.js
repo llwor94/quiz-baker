@@ -1,8 +1,11 @@
-import React, { useEffect, useState, useContext, Fragment } from 'react';
+import React, { useContext } from 'react';
+
+import { UserQuizzesCtx } from 'pages/Settings';
+
 import CreateQuiz from './CreateQuiz';
-import { UserQuizzesCtx } from '../../pages/Settings';
-import { Wrapper, InnerWrapper } from '../../Styles/Settings';
 import UserQuiz from './UserQuiz';
+
+import { Wrapper, InnerWrapper } from 'styles/Settings';
 
 const Quizzes = props => {
 	const [ userQuizzes, setUserQuizzes ] = useContext(UserQuizzesCtx);

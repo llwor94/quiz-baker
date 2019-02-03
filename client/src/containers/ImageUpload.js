@@ -1,11 +1,13 @@
-import React, { useState, useEffect, Fragment, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
 import { openUploadWidget } from '../utils/cloudinary';
-import server from '../utils/server';
-import { AuthCtx } from '../Auth';
-import { HugeImage } from '../Styles/Components/Image';
-import { Button } from '../Styles/Components/Button';
-import { UploadImageWrapper } from '../Styles/Register';
+import server from 'server';
+
+import { AuthCtx } from 'auth';
+
+import { HugeImage } from 'styles/Components/Image';
+import { Button } from 'styles/Components/Button';
+
 const UploadImage = ({ doneEditting }) => {
 	const { user, editUser } = useContext(AuthCtx);
 	const [ img_url, setImg ] = useState(null);
@@ -30,7 +32,6 @@ const UploadImage = ({ doneEditting }) => {
 		};
 		openUploadWidget(uploadOptions, (error, result) => {
 			if (result.event === 'success') {
-				console.log(result.info);
 				setImg(result.info.secure_url);
 			}
 		});
@@ -55,7 +56,7 @@ const UploadImage = ({ doneEditting }) => {
 	};
 
 	return (
-		<UploadImageWrapper>
+		<div>
 			<HugeImage src={img_url} />
 
 			<div>
@@ -68,7 +69,7 @@ const UploadImage = ({ doneEditting }) => {
 					style={{ float: 'right' }}
 				/>
 			</div>
-		</UploadImageWrapper>
+		</div>
 	);
 };
 

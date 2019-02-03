@@ -1,14 +1,16 @@
-import React, { useEffect, useContext, useState } from 'react';
-import { PostsCtx } from '../../pages/Forum';
+import React, { useContext, Fragment } from 'react';
 import moment from 'moment';
-import { AuthCtx } from '../../Auth';
-import { ColorCtx } from '../../App';
-import { Growl } from 'primereact/growl';
-import server from '../../utils/server';
-import hatDark from '../../assets/chef-dark.svg';
-import hatLight from '../../assets/chef.svg';
+import MediaQuery from 'react-responsive';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCookieBite, faCookie } from '@fortawesome/free-solid-svg-icons';
+
+import server from 'server';
+
+import { PostsCtx } from 'pages/Forum';
+import { AuthCtx } from 'auth';
+import { ThemeCtx } from 'theme';
+import { Growl } from 'styles/Components/Growl';
+
 import {
 	PostWrapper,
 	CurrentPost,
@@ -22,22 +24,27 @@ import {
 	LeftSide,
 	CurrentWrapper,
 	HatWrapper,
-} from '../../Styles/Posts/Post';
-import { ProfileIcon } from '../../Styles/Components/Image';
+} from 'styles/Posts/Post';
+import { ProfileIcon } from 'styles/Components/Image';
 
-// import bowlFilled from '../../assets/bowlfilled.png';
-// import bowlEmpty from '../../assets/bowlempty.png';
+import spoonfull from 'assets/spoonfull.png';
+import spoonpour from 'assets/spoonpour.png';
+import hatDark from 'assets/chef-dark.svg';
+import hatLight from 'assets/chef.svg';
 
-// import pyrex from '../../assets/pyrex.png';
-
-import spoonfull from '../../assets/spoonfull.png';
-import spoonpour from '../../assets/spoonpour.png';
 const Wrapper = ({ children, isCurrent, userPage }) => {
 	if (isCurrent)
 		return (
-			<CurrentWrapper>
-				<CurrentPost>{children}</CurrentPost>
-			</CurrentWrapper>
+			<Fragment>
+				<MediaQuery minWidth={1000}>
+					<CurrentWrapper>
+						<CurrentPost>{children}</CurrentPost>
+					</CurrentWrapper>
+				</MediaQuery>
+				<MediaQuery maxWidth={999}>
+					<PostWrapper userPage={userPage}>{children}</PostWrapper>
+				</MediaQuery>
+			</Fragment>
 		);
 	else return <PostWrapper userPage={userPage}>{children}</PostWrapper>;
 };
@@ -45,9 +52,9 @@ const Wrapper = ({ children, isCurrent, userPage }) => {
 const Post = ({ post, showComments, currentPost, ...props }) => {
 	const [ posts, setPosts ] = useContext(PostsCtx);
 	const { user } = useContext(AuthCtx);
-	const [ darkMode, setValue ] = useContext(ColorCtx);
+	const [ darkMode, setValue ] = useContext(ThemeCtx);
 	const growl = React.createRef();
-	let current = React.createRef();
+
 	const handleCopy = () => {
 		let value = `http://localhost:3000/forum/${post.id}`;
 		navigator.clipboard.writeText(value).then(() => {
@@ -159,25 +166,17 @@ const Post = ({ post, showComments, currentPost, ...props }) => {
 							<div />
 						)}
 					</div>
-					{post.comment_count > 0 && (
-						<div className='expandComments'>
-							{currentPost && currentPost === post.id ? (
-								<img onClick={showComments} src={spoonpour} />
-							) : (
-								<img onClick={showComments} src={spoonfull} />
-							)}
-							{/* <FontAwesomeIcon
-							icon={
-								currentPost && currentPost === post.id ? (
-									faChevronRight
+					<MediaQuery minWidth={1000}>
+						{post.comment_count > 0 && (
+							<div className='expandComments'>
+								{currentPost && currentPost === post.id ? (
+									<img onClick={showComments} src={spoonpour} />
 								) : (
-									faChevronLeft
-								)
-							}
-							onClick={showComments}
-						>Expand Comments</FontAwesomeIcon> */}
-						</div>
-					)}
+									<img onClick={showComments} src={spoonfull} />
+								)}
+							</div>
+						)}
+					</MediaQuery>
 				</FooterWrapper>
 			</InnerWrapper>
 		</Wrapper>

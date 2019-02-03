@@ -1,12 +1,17 @@
-import React, { useEffect, useState, useContext, Fragment } from 'react';
-import server from '../utils/server';
-import { UserQuizCtx, QuizQuestionsCtx } from '../pages/UserQuiz';
-import Loading from '../components/Styles/Loading';
-import Quiz from '../components/UserQuiz/Quiz';
-import Question from '../components/UserQuiz/Question';
-import { QuestionWrapper } from '../Styles/UserQuiz/Questions';
-import CreateQuestion from '../components/UserQuiz/CreateQuestion';
-import { BackButton } from '../Styles/Components/Button';
+import React, { useEffect, useContext } from 'react';
+
+import server from 'server';
+
+import { UserQuizCtx, QuizQuestionsCtx } from 'pages/UserQuiz';
+
+import Loading from 'components/Loading';
+import Quiz from 'components/UserQuiz/Quiz';
+import Question from 'components/UserQuiz/Question';
+import CreateQuestion from 'components/UserQuiz/CreateQuestion';
+
+import { QuestionWrapper } from 'styles/UserQuiz/Questions';
+import { BackButton } from 'styles/Components/Button';
+
 const UserQuizContainer = props => {
 	const [ quiz, setQuiz ] = useContext(UserQuizCtx);
 	const [ questions, setQuestions ] = useContext(QuizQuestionsCtx);

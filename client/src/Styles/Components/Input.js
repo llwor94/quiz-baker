@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Picker } from 'emoji-mart';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSmile } from '@fortawesome/free-solid-svg-icons';
+import Smiley from '../../assets/smiley';
 const InputWrapper = styled.span`
 	margin: 10px 0;
 	display: inline-block !important;
@@ -10,6 +9,8 @@ const InputWrapper = styled.span`
 	label {
 		top: ${props => props.isInput && '-.75em'} !important;
 		font-size: ${props => props.isInput && '12px'} !important;
+		font-size: 14px;
+		color: ${props => props.theme.placeholder};
 	}
 `;
 
@@ -20,7 +21,7 @@ export const StyledInput = styled.input`
 	border-bottom-left-radius: ${props => props.radio && 0};
 	resize: none;
 	font-size: 14px;
-	color: #333333;
+	color: ${props => props.theme.text};
 	background: ${props => props.theme.secondary};
 	padding: 0.429em;
 	border: 1px solid ${props => props.theme.accent};
@@ -32,7 +33,7 @@ export const StyledInput = styled.input`
 	&::placeholder {
 		font-family: "Raleway", sans-serif;
 		color: ${props => props.theme.placeholder};
-		font-size: 16px;
+		font-size: 14px;
 	}
 `;
 
@@ -57,30 +58,31 @@ export const Input = ({ value, onChange, label, name, type, disabled, style, inp
 const StyledTextArea = styled.textarea`
 	outline: none;
 	border-radius: 3px;
-
 	resize: none;
 	font-size: 14px;
 	margin-bottom: 10px;
-	color: #333333;
+	color: ${props => props.theme.text};
 	background-color: ${props => props.theme.secondary};
 	padding: 0.429em;
 	border: 1px solid ${props => props.theme.accent};
 	&:focus {
 		border-color: ${props => props.theme.pink};
+		outline: none;
 	}
 `;
 
 export const AddQuestionTextArea = styled.textarea`
 	width: 300px;
 	height: 115px;
-	outline: 1px solid ${props => props.theme.accentPink};
+	outline: 1px solid ${props => props.theme.pink};
 	border: none;
+	background-color: ${props => props.theme.secondary};
 	resize: none;
 	font-size: 18px;
 	padding: 5px;
 	color: gray;
 	&:focus {
-		outline: 1px solid ${props => props.theme.accentPink};
+		outline: 1px solid ${props => props.theme.pink};
 	}
 `;
 
@@ -99,9 +101,8 @@ export const Label = styled.label`
 	border-radius: 3px;
 	border-top-left-radius: 0;
 	border-bottom-left-radius: 0;
-
 	font-size: 16px;
-	color: #333333;
+	color: ${props => props.theme.placeholder};
 	background: ${props => props.theme.secondary};
 	padding: 0.429em;
 	border: 1px solid ${props => props.theme.accent};
@@ -129,12 +130,18 @@ const AnotherTextArea = styled.textarea`
 	resize: none;
 	width: 100%;
 	height: 100%;
+	color: ${props => props.theme.text};
 	background: ${props => props.theme.secondary};
 	border-radius: 3px;
 	border: 1px solid ${props => props.theme.accent};
 	&:focus {
 		border-color: ${props => props.theme.pink};
 		outline: none;
+	}
+	&::placeholder {
+		font-family: "Raleway", sans-serif;
+		color: ${props => props.theme.placeholder};
+		font-size: 14px;
 	}
 `;
 
@@ -144,9 +151,9 @@ const Emojis = styled.div`
 		position: absolute;
 		top: 25px;
 		right: -207px;
-		border: 1px solid #d9d9d9;
+		border: 1px solid ${props => props.theme.accent};
 		border-radius: 5px;
-		background: #fff;
+		background: ${props => props.theme.secondary};
 		z-index: 10000;
 		padding-bottom: 5px;
 
@@ -160,8 +167,9 @@ const Emojis = styled.div`
 				width: 100%;
 				padding: 5px 25px 6px 10px;
 				border-radius: 5px;
-				border: 1px solid #d9d9d9;
+				border: 1px solid ${props => props.theme.accent};
 				outline: 0;
+				background: ${props => props.theme.main};
 			}
 			.emoji-mart-search-icon {
 				position: absolute;
@@ -171,23 +179,23 @@ const Emojis = styled.div`
 				padding: 0;
 				border: none;
 				background: none;
+				svg {
+					fill: ${props => props.theme.aqua};
+				}
 			}
 		}
 	}
 	.emoji-mart-bar {
 		border: 0 solid #d9d9d9;
 		.emoji-mart-anchors {
-			display: flex;
-			flex-direction: row;
-			justify-content: space-between;
+			${props => props.theme.flex(undefined, 'space-between')};
 			padding: 0 6px;
-			color: #858585 !important;
+
 			line-height: 0;
 			svg,
 			.emoji-mart-anchors img {
-				fill: currentColor;
-				height: 18px;
-				width: 18px;
+				fill: ${props => props.theme.placeholder};
+				${props => props.theme.square(18)};
 			}
 			.emoji-mart-anchor {
 				position: relative;
@@ -208,11 +216,12 @@ const Emojis = styled.div`
 			will-change: transform;
 			.emoji-mart-category-label {
 				z-index: 2;
-
 				position: -webkit-sticky;
 				position: sticky;
-				background: white;
-				padding: 2px;
+				background: ${props => props.theme.secondary};
+				color: ${props => props.theme.placeholder};
+				padding: 4px 2px;
+				font-size: 14px;
 				top: 0;
 				.emoji-mart-category-label span {
 					display: block;
@@ -225,6 +234,17 @@ const Emojis = styled.div`
 	}
 	.emoji-mart-preview {
 		display: none;
+	}
+`;
+
+const EmojiPicker = styled.div`
+	svg {
+		width: 22px;
+		position: absolute;
+		top: 4px;
+		right: 5px;
+		cursor: pointer;
+		fill: ${props => props.theme.placeholder};
 	}
 `;
 
@@ -252,17 +272,10 @@ export const EmojiTextArea = ({ value, onChange, name, inputRef, handleSelect })
 			/>
 
 			<Emojis onBlur={handleBlur} tabIndex='0'>
-				<FontAwesomeIcon
-					icon={faSmile}
-					onClick={() => showEmojis(true)}
-					style={{
-						color: 'lightgray',
-						position: 'absolute',
-						top: 5,
-						right: 5,
-						cursor: 'pointer',
-					}}
-				/>
+				<EmojiPicker onClick={() => showEmojis(true)}>
+					<Smiley />
+				</EmojiPicker>
+
 				{emojis && <Picker style={{ width: '231px' }} onSelect={handleSelect} />}
 			</Emojis>
 		</StyledEmojiArea>
@@ -271,11 +284,10 @@ export const EmojiTextArea = ({ value, onChange, name, inputRef, handleSelect })
 
 const StyledEmojiInput = styled.div`
 	position: relative;
-	/* //height: 100%; */
 	input {
 		width: 100%;
 		height: 100%;
-
+		color: ${props => props.theme.text};
 		&:focus {
 			border-color: ${props => props.theme.pink};
 		}
@@ -313,18 +325,10 @@ export const EmojiInput = ({
 				placeholder={placeholder}
 			/>
 			<Emojis onBlur={handleBlur} tabIndex='0'>
-				<FontAwesomeIcon
-					icon={faSmile}
-					onClick={() => showEmojis(true)}
-					style={{
-						color: 'lightgray',
-						position: 'absolute',
-						top: 5,
-						right: 5,
-						cursor: 'pointer',
-					}}
-				/>
-				{emojis && <Picker style={{ width: '231px' }} />}
+				<EmojiPicker onClick={() => showEmojis(true)}>
+					<Smiley />
+				</EmojiPicker>
+				{emojis && <Picker style={{ width: '231px' }} onSelect={handleSelect} />}
 			</Emojis>
 		</StyledEmojiInput>
 	);

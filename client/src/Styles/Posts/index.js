@@ -2,19 +2,23 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
 	width: 100%;
-	display: flex;
+	${props => props.theme.flex(undefined, 'stretch')};
 	margin: 70px 0;
-	justify-content: stretch;
 	@media (max-width: 1200px) {
 		justify-content: center;
 	}
-
+	.posts {
+		flex-grow: 1;
+		max-width: 500px;
+		${props => props.theme.flex(undefined, 'flex-end')};
+		@media (min-width: 1500px) {
+			max-width: 600px;
+		}
+	}
 	.post-wrapper {
 		max-width: 500px;
-		flex-grow: 1;
-		flex-direction: column;
+		${props => props.theme.flex('column', undefined, 'center')};
 		margin-top: 40px;
-		align-items: center;
 		@media (max-width: 1200px) {
 			margin-left: 25px;
 		}
@@ -25,15 +29,19 @@ export const Wrapper = styled.div`
 			width: 100%;
 		}
 	}
+	.new-post {
+		width: 100%;
+	}
 `;
 export const CommentsWrapper = styled.div`
 	flex-grow: 1;
 	position: relative;
 	margin-left: 10px;
 	height: calc(100vh - 100px);
+	max-width: 500px;
 	.image {
 		position: fixed;
-		top: 59px;
+		top: 56px;
 		width: 32%;
 		padding: 60px;
 		padding-top: 150px;
@@ -41,10 +49,6 @@ export const CommentsWrapper = styled.div`
 		.quizBaker {
 			filter: grayscale(24%);
 			height: 400px;
-
-			/* position: fixed;
-		right: 300px;
-		top: 325px; */
 			opacity: .8;
 		}
 	}
@@ -55,12 +59,12 @@ export const InnerWrapper = styled.div`
 	height: calc(100vh - 50px);
 	border-right: 1px solid ${props => props.theme.pink};
 	border-left: 1px solid ${props => props.theme.pink};
-	top: 59px;
+	top: 56px;
 	min-width: 500px;
 	width: 32%;
 	background-color: ${props => props.comments && props.theme.secondary};
 	margin: 0;
-
+	${props => props.theme.flex(undefined, 'center')};
 	padding: 30px 60px;
 
 	.inner {

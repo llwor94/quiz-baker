@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
-import RegisterContainer from '../containers/Register';
+import RegisterContainer from 'containers/Register';
 
 const Register = props => {
 	return <RegisterContainer {...props} />;

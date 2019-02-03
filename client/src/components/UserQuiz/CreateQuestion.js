@@ -1,13 +1,16 @@
 import React, { useState, useContext, useEffect, Fragment } from 'react';
 import _ from 'lodash';
-import server from '../../utils/server';
-import { EditWrapper, InputTitleWrapper } from '../../Styles/UserQuiz/Questions';
-import { Button } from '../../Styles/Components/Button';
-import { AddQuestionTextArea } from '../../Styles/Components/Input';
 import { ToggleButton } from 'primereact/togglebutton';
+
+import server from 'server';
+
+import { UserQuizCtx, QuizQuestionsCtx } from 'pages/UserQuiz';
+
 import { MultipleChoice, TrueFalse } from './InputOptions';
 
-import { UserQuizCtx, QuizQuestionsCtx } from '../../pages/UserQuiz';
+import { EditWrapper, InputTitleWrapper } from 'styles/UserQuiz/Questions';
+import { Button } from 'styles/Components/Button';
+import { AddQuestionTextArea } from 'styles/Components/Input';
 
 const CreateQuestion = () => {
 	const [ quiz, setQuiz ] = useContext(UserQuizCtx);
@@ -15,7 +18,7 @@ const CreateQuestion = () => {
 	const [ multipleChoice, setMultipleChoice ] = useState(true);
 	const [ questionTitle, setQuestionTitle ] = useState(undefined);
 	const [ newQuestion, setNewQuestion ] = useState(false);
-	
+
 	const [ options, setOptions ] = useState({
 		option1: '',
 		option2: '',
@@ -82,7 +85,7 @@ const CreateQuestion = () => {
 						label='Question Title'
 					/>
 				</InputTitleWrapper>
-				
+
 				{multipleChoice ? (
 					<MultipleChoice
 						correctOption={correctOption}

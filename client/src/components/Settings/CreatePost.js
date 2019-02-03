@@ -1,13 +1,15 @@
 import React, { useState, useEffect, useContext, Fragment } from 'react';
-import { ModalWrapper } from '../../Styles/Settings/CreateQuiz';
-import { PostsCtx } from '../../pages/Forum';
-import { NewPostWrapper, InnerWrapper } from '../../Styles/Posts/NewPost';
-import { Button } from '../../Styles/Components/Button';
-import { Input, TextArea, EmojiTextArea } from '../../Styles/Components/Input';
-import server from '../../utils/server';
-import { AuthCtx } from '../../Auth';
-import { StyledAutoComplete } from '../../Styles/Components/Autocomplete';
-import { UserPostsCtx } from '../../pages/Settings';
+
+import server from 'server';
+
+import { AuthCtx } from 'auth';
+import { UserPostsCtx } from 'pages/Settings';
+
+import { ModalWrapper } from 'styles/Settings/CreateQuiz';
+import { NewPostWrapper, InnerWrapper } from 'styles/Posts/NewPost';
+import { Button } from 'styles/Components/Button';
+import { Input, EmojiTextArea } from 'styles/Components/Input';
+import { StyledAutoComplete } from 'styles/Components/Autocomplete';
 
 const CreatePost = () => {
 	const [ newPost, setNewPost ] = useState(false);
@@ -17,6 +19,7 @@ const CreatePost = () => {
 	const [ topics, setTopics ] = useState(undefined);
 	const [ searchTopics, setSearchOptions ] = useState(null);
 	const [ userPosts, setUserPosts ] = useContext(UserPostsCtx);
+
 	useEffect(() => {
 		server.get('/quizzes/topics').then(({ data }) => {
 			setTopics(data);
@@ -50,19 +53,15 @@ const CreatePost = () => {
 	};
 
 	const handleSelect = e => {
-		console.log(e.value.id);
 		setTopic(e.value.name);
 	};
 
 	const handleEmojiSelect = e => {
-		console.log(e);
 		setPost({ ...post, body: post.body + e.native });
 	};
 
 	const addPost = () => {
 		post.topic = topic;
-
-		console.log(post);
 		server
 			.post('/posts', post)
 			.then(() => {
@@ -90,7 +89,7 @@ const CreatePost = () => {
 				<ModalWrapper>
 					<div className='modal'>
 						<Button
-							style={{ position: 'absolute', top: '0px', right: '0px' }}
+							style={{ position: 'absolute', top: '5px', right: '5px' }}
 							icon='pi pi-times'
 							white
 							onClick={() => setNewPost(false)}

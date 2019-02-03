@@ -2,24 +2,28 @@ import styled from 'styled-components';
 export const Wrapper = styled.div`
 	max-width: 1000px;
 	margin: 190px auto 0;
+	@media (max-width: 950px) {
+		${props => props.theme.flex('column', undefined, 'center')};
+	}
+
 	.filters {
-		display: flex;
-		justify-content: space-between;
+		${props => props.theme.flex(undefined, 'space-between')};
 		padding: 0 30px;
 		margin-bottom: 20px;
+		@media (max-width: 950px) {
+			width: 500px;
+		}
 		.p-dropdown {
-			border-color: ${props => props.theme.main};
+			border-color: ${props => props.theme.accent};
 			background: ${props => props.theme.secondary};
-			display: flex;
-			align-items: center;
+			${props => props.theme.flex(undefined, undefined, 'center')};
 			.p-inputtext {
 				background: ${props => props.theme.secondary};
 				color: ${props => props.theme.text};
 			}
 		}
 		.p-dropdown .p-dropdown-panel {
-			background-color: ${props => props.theme.secondary};
-			border-color: ${props => props.theme.secondary};
+			${props => props.theme.backgroundBorder(props.theme.secondary)};
 		}
 		.p-dropdown-panel .p-dropdown-items .p-dropdown-item {
 			color: ${props => props.theme.text};
@@ -49,10 +53,8 @@ export const Wrapper = styled.div`
 	}
 	.quizzes {
 		width: 100%;
-		display: flex;
+		${props => props.theme.flex(undefined, 'center', 'center')};
 		flex-wrap: wrap;
-		justify-content: center;
-		align-items: center;
 	}
 	@media (max-width: 915px) {
 		margin-top: 90px;

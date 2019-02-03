@@ -1,16 +1,19 @@
 import React, { useEffect, useState, useContext, createContext } from 'react';
-import Loading from '../components/Styles/Loading';
 import _ from 'lodash';
 
-import server from '../utils/server';
-import { QuizCtx, ResponseCtx } from '../pages/Quiz';
-import Quiz from '../components/Quiz';
-import Question from '../components/Quiz/Question';
-import QuestionTracker from '../components/Quiz/QuestionTracker';
-import Results from '../components/Quiz/Results';
-import LeaderBoard from '../components/Quiz/LeaderBoard';
-import QuizPosts from '../components/Quiz/QuizPosts';
-import { Wrapper } from '../Styles/Quiz';
+import server from 'server';
+
+import { QuizCtx, ResponseCtx } from 'pages/Quiz';
+
+import Loading from 'components/Loading';
+import Quiz from 'components/Quiz';
+import Question from 'components/Quiz/Question';
+import QuestionTracker from 'components/Quiz/QuestionTracker';
+import Results from 'components/Quiz/Results';
+import LeaderBoard from 'components/Quiz/LeaderBoard';
+import QuizPosts from 'components/Quiz/QuizPosts';
+
+import { Wrapper } from 'styles/Quiz';
 
 export const QuestionCtx = createContext([ undefined, () => {} ]);
 export const QuizPostCtx = createContext([ undefined, () => {} ]);
@@ -32,7 +35,7 @@ const QuizContainer = props => {
 			});
 		});
 	}, []);
-	console.log(quiz);
+
 	if (!quiz) return <Loading />;
 	else
 		return (

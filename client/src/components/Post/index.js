@@ -1,11 +1,14 @@
-import React, { useEffect, useState, useContext, Fragment } from 'react';
-
+import React, { useState, useContext, Fragment } from 'react';
 import moment from 'moment';
-
-import server from '../../utils/server';
-import { Growl } from 'primereact/growl';
 import { Dialog } from 'primereact/dialog';
-import { Button, BackButton } from '../../Styles/Components/Button';
+
+import server from 'server';
+
+import { AuthCtx } from 'auth';
+import { PostCtx } from 'pages/Post';
+
+import { Growl } from 'styles/Components/Growl';
+import { Button, BackButton } from 'styles/Components/Button';
 import {
 	PostWrapper,
 	BodyWrapper,
@@ -15,11 +18,9 @@ import {
 	Title,
 	InnerWrapper,
 	Topic,
-} from '../../Styles/Posts/Post';
-import { ProfileIcon } from '../../Styles/Components/Image';
+} from 'styles/Posts/Post';
+import { ProfileIcon } from 'styles/Components/Image';
 
-import { AuthCtx } from '../../Auth';
-import { PostCtx } from '../../pages/Post';
 const Post = props => {
 	const [ modalVisable, setModalVisable ] = useState(false);
 	const [ post, setPost ] = useContext(PostCtx);

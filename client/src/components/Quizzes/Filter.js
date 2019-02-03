@@ -1,7 +1,9 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { QuizzesCtx } from '../../pages/Quizzes';
-import { AuthCtx } from '../../Auth';
 import { Dropdown } from 'primereact/dropdown';
+
+import { AuthCtx } from 'auth';
+
+import { QuizzesCtx } from 'pages/Quizzes';
 
 const Filter = () => {
 	const [ filterOption, setFilterOption ] = useState('ALL');

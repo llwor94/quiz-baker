@@ -1,27 +1,27 @@
 import styled from 'styled-components';
 
 export const SplashWrapper = styled.div`
-	/* display: flex;
-	justify-content: flex-start; */
 	position: relative;
 	width: 505px;
-
 	padding: 10px;
-	border: 1px dashed #ddd;
-	box-shadow: 0 0 0 3px ${props => props.theme.secondary}, 0 0 0 5px #ddd,
-		0 0 0 10px ${props => props.theme.secondary}, 0 0 2px 10px #eee;
-	border-radius: 3px;
-
+	${props => props.theme.fancyBorder};
 	background-color: ${props => props.theme.secondary};
 	strong {
 		margin-bottom: 5px;
 	}
+	span {
+		font-size: 14px;
+	}
 
 	.inner {
-		display: flex;
-		justify-content: space-between;
+		${props => props.theme.flex(undefined, 'space-between')};
+		svg {
+			height: 295px;
+			width: 177px;
+			fill: ${props => props.theme.text};
+		}
 		.body {
-			flex-grow: 1;
+			max-width: 320px;
 		}
 	}
 	.back-btn {
@@ -30,7 +30,15 @@ export const SplashWrapper = styled.div`
 		right: 527px;
 		width: 35px;
 	}
-
+	.timed {
+		font-size: 14px;
+		i {
+			color: ${props => props.theme.darkPink};
+		}
+	}
+	.notTimed {
+		height: 23px;
+	}
 	@media (max-width: 505px) {
 		width: 90%;
 		margin: 0 5px;
@@ -59,15 +67,13 @@ export const SplashHeader = styled.div`
 	}
 
 	.author {
-		color: ${props => props.theme.header};
+		color: ${props => props.theme.darkPink};
 	}
 `;
 
-export const SplashMidWrapper = styled.div`/* display: flex;
-	justify-content: space-between; */`;
-
 export const SplashDescription = styled.div`
 	font-weight: 700;
+	font-size: 16px;
 	margin-bottom: 8px;
 	padding-right: 2px;
 `;

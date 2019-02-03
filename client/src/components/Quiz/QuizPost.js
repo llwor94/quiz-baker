@@ -1,8 +1,14 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { AuthCtx } from '../../Auth';
+import React, { useState, useContext } from 'react';
 import moment from 'moment';
-import { QuizPostCtx, QuestionCtx } from '../../containers/Quiz';
-import server from '../../utils/server';
+import anime from 'animejs';
+
+import server from 'server';
+
+import { AuthCtx } from 'auth';
+import { QuizPostCtx } from 'containers/Quiz';
+
+import PostComments from './PostComments';
+
 import {
 	PostWrapper,
 	BodyWrapper,
@@ -12,16 +18,13 @@ import {
 	Title,
 	InnerWrapper,
 	LeftSide,
-} from '../../Styles/Posts/Post';
-import { ProfileIcon } from '../../Styles/Components/Image';
-import PostComments from './PostComments';
-import anime from 'animejs';
+} from 'styles/Posts/Post';
+import { ProfileIcon } from 'styles/Components/Image';
 
 const Post = ({ post }) => {
 	const [ showingComments, setShowingComments ] = useState(false);
 	const { user } = useContext(AuthCtx);
 	const [ quizPosts, setQuizPosts ] = useContext(QuizPostCtx);
-	console.log(post);
 
 	const handleComments = () => {
 		if (showingComments) {
@@ -41,7 +44,6 @@ const Post = ({ post }) => {
 	};
 
 	const handleVote = val => {
-		console.log(post.user_vote, val);
 		if (user) {
 			let user_vote;
 			if (val === post.user_vote) {
@@ -49,7 +51,6 @@ const Post = ({ post }) => {
 			} else {
 				user_vote = val;
 			}
-			console.log(user_vote);
 			server
 				.patch(`posts/${post.id}/vote`, { vote: user_vote })
 				.then(({ data }) => {

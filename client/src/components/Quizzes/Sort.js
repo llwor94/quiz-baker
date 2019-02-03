@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { QuizzesCtx } from '../../pages/Quizzes';
 import { Dropdown } from 'primereact/dropdown';
+
+import { QuizzesCtx } from 'pages/Quizzes';
 
 const Sort = () => {
 	const [ quizzes, setQuizzes ] = useContext(QuizzesCtx);

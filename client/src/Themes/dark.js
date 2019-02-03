@@ -1,17 +1,21 @@
 export const DarkMode = {
 	main: '#10171e',
 	secondary: '#182430',
-	accent: '#38444d',
-	link: 'rgb(129, 131, 132)',
-	text: 'rgb(215, 218, 220)',
-	accentText: 'rgb(135, 138, 140)',
-	accentPink: '#dc758f',
+	accent: '#848484',
+	darkAccent: '#E1E0E0',
+	link: '#E1E0E0',
+	text: '#d7dadc',
+	accentText: '#878A8C',
+	placeholder: '#898989',
 	pink: '#dc758f',
 	darkPink: '#ad546b',
-	accentRed: '#873D48',
-	placeholder: '#898989',
 	aqua: '#00ba96',
 	darkAqua: '#009175',
-	gray: '#878A8C',
-	lightGray: '#ACADAE',
+	accentRed: '#D2909A',
+	get fancyBorder() {
+		return `border-radius: 4px; border: 1px dashed ${this.accent}; box-shadow: 0 0 0 3px ${this
+			.secondary},
+		0 0 0 5px ${this.accent}, 0 0 0 10px ${this.secondary},
+		0 0 2px 10px #eee;`;
+	},
 };

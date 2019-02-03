@@ -1,14 +1,17 @@
-import React, { useEffect, useState, useContext } from 'react';
-import Loading from '../components/Styles/Loading';
-import { AuthCtx } from '../Auth';
+import React, { useEffect, useContext } from 'react';
 
-import server from '../utils/server';
-import { QuizzesCtx } from '../pages/Quizzes';
-import { Wrapper } from '../Styles/Quizzes';
-import Quiz from '../components/Quizzes/Quiz';
-import Sort from '../components/Quizzes/Sort';
-import Filter from '../components/Quizzes/Filter';
-import Topics from '../components/Quizzes/Topics';
+import server from 'server';
+
+import { AuthCtx } from 'auth';
+import { QuizzesCtx } from 'pages/Quizzes';
+
+import Loading from 'components/Loading';
+import Quiz from 'components/Quizzes/Quiz';
+import Sort from 'components/Quizzes/Sort';
+import Filter from 'components/Quizzes/Filter';
+import Topics from 'components/Quizzes/Topics';
+
+import { Wrapper } from 'styles/Quizzes';
 
 const Quizzes = props => {
 	const [ quizzes, setQuizzes ] = useContext(QuizzesCtx);
@@ -35,7 +38,7 @@ const Quizzes = props => {
 		},
 		[ user ],
 	);
-	console.log(quizzes);
+
 	if (!quizzes) return <Loading />;
 	else
 		return (

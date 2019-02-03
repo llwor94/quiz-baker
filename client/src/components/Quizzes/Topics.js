@@ -1,9 +1,12 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { QuizzesCtx } from '../../pages/Quizzes';
-import { MultiSelect } from 'primereact/multiselect';
 import _ from 'lodash';
-import server from '../../utils/server';
-import { Topic, MultiSelectWrapper } from '../../Styles/Quizzes/Quiz';
+import { MultiSelect } from 'primereact/multiselect';
+
+import server from 'server';
+
+import { QuizzesCtx } from 'pages/Quizzes';
+
+import { Topic, MultiSelectWrapper } from 'styles/Quizzes/Quiz';
 
 const Topics = () => {
 	const [ topics, setTopics ] = useState([]);
@@ -32,7 +35,7 @@ const Topics = () => {
 
 	const selectedTemplate = value => {
 		if (value) {
-			return <Topic style={{ margin: '0 2px', padding: '2 5px' }}>{value.name}</Topic>;
+			return <Topic style={{ margin: '0 2px' }}>{value.name}</Topic>;
 		} else return <div>Topics</div>;
 	};
 

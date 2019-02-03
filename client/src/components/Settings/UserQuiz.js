@@ -1,10 +1,13 @@
-import React, { useState, useEffect, useContext, Fragment } from 'react';
+import React, { useState, useContext } from 'react';
 import { Dialog } from 'primereact/dialog';
-import server from '../../utils/server';
-import { UserQuizzesCtx } from '../../pages/Settings';
-import { AuthCtx } from '../../Auth';
 import { withRouter } from 'react-router-dom';
-import { Button } from '../../Styles/Components/Button';
+
+import server from 'server';
+
+import { UserQuizzesCtx } from 'pages/Settings';
+import { AuthCtx } from 'auth';
+
+import { Button } from 'styles/Components/Button';
 import {
 	Wrapper,
 	InnerWrapper,
@@ -13,11 +16,11 @@ import {
 	FooterWrapper,
 	Title,
 	Topic,
-} from '../../Styles/Settings/UserQuiz';
+} from 'styles/Settings/UserQuiz';
+
 const UserQuiz = ({ quiz, ...props }) => {
 	const [ userQuizzes, setUserQuizzes ] = useContext(UserQuizzesCtx);
 	const { user } = useContext(AuthCtx);
-	console.log(quiz.quiz);
 	const [ modalVisable, setModalVisable ] = useState(false);
 
 	const deleteQuiz = e => {

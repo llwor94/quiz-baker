@@ -1,4 +1,4 @@
-import React, { useEffect, useState, createContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const FooterWrapper = styled.div`
@@ -9,7 +9,6 @@ const FooterWrapper = styled.div`
 	font-size: 12px;
 	max-height: 50px;
 	position: absolute;
-
 	height: 50px;
 	z-index: 1045;
 	a {

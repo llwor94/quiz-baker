@@ -1,14 +1,14 @@
-import React, { useState, useContext, Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 import { withRouter } from 'react-router-dom';
-import server from '../../utils/server';
 import _ from 'lodash';
 
-import { Button } from '../../Styles/Components/Button';
-import { Wrapper, InnerWrapper, ModalWrapper } from '../../Styles/Settings/CreateQuiz';
-import QuizForm from './QuizForm';
-import OvenIcon from '../../assets/oven';
+import server from 'server';
 
-import { UserQuizzesCtx } from '../../pages/Settings';
+import QuizForm from './QuizForm';
+
+import { Button } from 'styles/Components/Button';
+import { Wrapper, InnerWrapper, ModalWrapper } from 'styles/Settings/CreateQuiz';
+import OvenIcon from 'assets/oven';
 
 const CreateQuiz = props => {
 	const [ newQuiz, setNewQuiz ] = useState(false);
@@ -17,19 +17,15 @@ const CreateQuiz = props => {
 		description: '',
 		topic: '',
 	});
-	const [ userQuizzes, setUserQuizzes ] = useContext(UserQuizzesCtx);
 
 	const handleCreateQuiz = () => {
-		console.log(quiz);
 		server
 			.post('/quizzes', quiz)
 			.then(({ data }) => {
-				console.log(data);
 				props.history.push(`/user/quizzes/${data[0]}`);
 			})
 			.catch(error => console.log(error));
 	};
-	console.log(newQuiz);
 
 	return (
 		<Fragment>
@@ -37,14 +33,14 @@ const CreateQuiz = props => {
 			{newQuiz && (
 				<ModalWrapper>
 					<Wrapper>
-						<div style={{ display: 'flex', justifyContent: 'space-between' }}>
+						<div className='wrap'>
 							<Button
 								style={{ position: 'absolute', top: '5px', right: '5px' }}
 								icon='pi pi-times'
 								white
 								onClick={() => setNewQuiz(false)}
 							/>
-							<QuizForm quiz={quiz} setQuiz={setQuiz} />
+							<QuizForm quiz={quiz} setQuiz={setQuiz} create={true} />
 							<OvenIcon />
 						</div>
 

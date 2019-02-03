@@ -1,9 +1,11 @@
-import React, { useEffect, useState, Fragment } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Dropdown } from 'primereact/dropdown';
-import server from '../../utils/server';
-import { Input, TextArea } from '../../Styles/Components/Input';
-import { StyledAutoComplete } from '../../Styles/Components/Autocomplete';
-import { QuizFormWrapper } from '../../Styles/Settings/QuizForm';
+
+import server from 'server';
+
+import { Input, TextArea } from 'styles/Components/Input';
+import { StyledAutoComplete } from 'styles/Components/Autocomplete';
+import { QuizFormWrapper } from 'styles/Settings/QuizForm';
 
 const QuizForm = ({ quiz, setQuiz, ...props }) => {
 	const [ topics, setTopics ] = useState(undefined);
@@ -25,16 +27,14 @@ const QuizForm = ({ quiz, setQuiz, ...props }) => {
 
 	const handleChange = e => {
 		let value;
-		console.log(e);
 		if (e.target.value.name) {
 			value = e.target.value.name;
 		} else {
 			value = e.target.value;
 		}
-
 		setQuiz({ ...quiz, [e.target.name]: value });
 	};
-	console.log(quiz);
+
 	const filterTopics = e => {
 		setTimeout(() => {
 			let results;
@@ -51,7 +51,7 @@ const QuizForm = ({ quiz, setQuiz, ...props }) => {
 	};
 
 	return (
-		<QuizFormWrapper>
+		<QuizFormWrapper create={props.create}>
 			<div style={{ display: 'flex' }}>
 				<div>
 					<p>Title:</p>

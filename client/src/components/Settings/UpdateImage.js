@@ -1,9 +1,12 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { openUploadWidget } from '../../utils/cloudinary';
-import { Button, SettingsButton } from '../../Styles/Components/Button';
-import { ProfileButtonWrapper } from '../../Styles/Settings/Sidebar';
+import React from 'react';
 
-import server from '../../utils/server';
+import server from 'server';
+
+import { openUploadWidget } from '../../utils/cloudinary';
+
+import { Button, SettingsButton } from 'styles/Components/Button';
+import { ProfileButtonWrapper } from 'styles/Settings/Sidebar';
+
 const UpdateImage = ({ imageUpdate, setImageUpdate, updateUser }) => {
 	const handleUpload = () => {
 		const uploadOptions = {
@@ -16,7 +19,6 @@ const UpdateImage = ({ imageUpdate, setImageUpdate, updateUser }) => {
 		};
 		openUploadWidget(uploadOptions, (error, result) => {
 			if (result.event === 'success') {
-				console.log(result.info);
 				server.patch('/auth/update', { newImg: result.info.secure_url }).then(response => {
 					updateUser();
 				});

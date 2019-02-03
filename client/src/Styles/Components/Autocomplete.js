@@ -7,7 +7,16 @@ margin-bottom: 10px;
   font-family: 'Raleway', sans-serif;
   
 }
-
+.p-autocomplete-panel {
+  ${props => props.theme.backgroundBorder(props.theme.secondary)};
+}
+.p-autocomplete-panel .p-autocomplete-items .p-autocomplete-list-item {
+  color: ${props => props.theme.text}
+}
+.p-autocomplete-panel .p-autocomplete-items .p-autocomplete-list-item:hover {
+  background-color: ${props => props.theme.aqua};
+  color: white;
+}
   .p-inputtext {
     border-right: none;
     background-color: ${props => props.theme.secondary};
@@ -19,23 +28,21 @@ margin-bottom: 10px;
   &::placeholder {
 		font-family: 'Raleway', sans-serif;
 		color: ${props => props.theme.placeholder};
-		font-size: 16px;
+		font-size: 14px;
 	}
   }
   .p-button {
     height: 100% !important;
-    background-color: ${props => props.theme.aqua};
-    border-color: ${props => props.theme.aqua};
+    ${props => props.theme.backgroundBorder(props.theme.aqua)};
+    
     &:enabled:hover {
-			background-color:${props => props.theme.darkAqua};
-      border-color: ${props => props.theme.darkAqua};
+      ${props => props.theme.backgroundBorder(props.theme.darkAqua)};
 		}
 		&:enabled:focus {
 			box-shadow: 0 0 0 0.2em #ad546b;
 		}
     &:enabled:active {
-      background-color:${props => props.theme.darkAqua};
-      border-color: ${props => props.theme.darkAqua};
+      ${props => props.theme.backgroundBorder(props.theme.darkAqua)};
     }
   }
   

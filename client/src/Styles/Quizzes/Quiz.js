@@ -1,41 +1,14 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-	border-radius: 4px;
-	/* border: 1px solid; */
-	border-color: ${props => props.theme.accent};
 	padding: 12px;
 	background-color: ${props => props.theme.secondary};
-	margin-bottom: 10px;
-	color: #333;
-	display: flex;
 	position: relative;
-	justify-content: space-between;
 	height: 200px;
 	width: 450px;
 	margin: 13px;
-
-	border: 1px dashed #ddd;
-	box-shadow: 0 0 0 3px ${props => props.theme.secondary}, 0 0 0 5px #ddd,
-		0 0 0 10px ${props => props.theme.secondary}, 0 0 2px 10px #eee;
-
-	.p-growl.p-growl-topright {
-		opacity: 1 !important;
-	}
-	.p-growl .p-growl-item-container.p-growl-message-info {
-		background-color: ${props => props.theme.pink};
-		opacity: 1 !important;
-		font-family: "Raleway", sans-serif !important;
-		border-radius: 4px;
-		color: white;
-	}
-	.p-growl .p-growl-item-container.p-growl-message-info .p-growl-image {
-		display: none;
-	}
-	.p-growl .p-growl-item-container.p-growl-message-info .p-growl-icon-close {
-		color: white;
-	}
-
+	${props => props.theme.flex('row', 'space-between')};
+	${props => props.theme.fancyBorder};
 	&:hover {
 		border-color: ${props => props.theme.pink};
 	}
@@ -49,46 +22,32 @@ export const HatWrapper = styled.img`
 	position: absolute;
 	top: -20px;
 	left: -20px;
-	height: 40px;
-	width: 40px;
 	transform: rotate(-45deg);
 	background-color: ${props => props.theme.secondary};
+	${props => props.theme.square(40)};
 `;
 
 export const LeftSide = styled.div`
 	font-size: 20px;
 	width: 40px;
-	justify-content: center;
-	align-items: center;
-	display: flex;
-	flex-direction: column;
 	background-color: transparent;
 	color: ${props => props.theme.text};
 	margin: 0 10px 0 0;
-	p {
-		color: ${props => props.theme.text};
-	}
+	${props => props.theme.flex('column', 'center', 'center')};
 	i {
 		cursor: ${props => (props.user ? 'pointer' : 'default')};
-		color: ${props => (props.user ? props.theme.text : props.theme.lightGray)};
+		color: ${props => (props.user ? props.theme.text : props.theme.accent)};
 	}
 `;
 
-export const InnerWrapper = styled.div`
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-`;
+export const InnerWrapper = styled.div`${props => props.theme.flex('column', 'space-between')};`;
 
 export const Header = styled.div`
 	font-weight: 400;
 	margin-bottom: 8px;
 	color: ${props => props.theme.link};
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
+	${props => props.theme.flex('column', undefined, 'flex-start')};
 	p {
-		font-size: 12px;
 		margin-top: 6px;
 	}
 	span {
@@ -102,10 +61,10 @@ export const Title = styled.a`
 	font-weight: 700;
 	padding: 0 5px 0 0;
 	margin-bottom: 5px;
-	color: ${props => props.theme.text};
 	cursor: pointer;
+	color: ${props => props.theme.text};
 	&:hover {
-		color: ${props => props.theme.header};
+		color: ${props => props.theme.darkPink};
 	}
 `;
 
@@ -126,14 +85,12 @@ export const Topic = styled(FooterAccent)`
 export const Score = styled(FooterAccent)`
   font-size: 20px;
   padding: 0;
-  color: ${props => (props.noScore ? 'grey' : props.theme.text)};
+  color: ${props => props.noScore && props.theme.accent};
   margin-bottom: 10px;
 `;
 
 export const DescriptionWrapper = styled.div`
 	overflow: hidden;
-	word-wrap: break-word;
-	word-break: break-word;
 	max-width: 300px;
 	p {
 		font-size: 14px;
@@ -141,25 +98,20 @@ export const DescriptionWrapper = styled.div`
 		line-height: 21px;
 		word-wrap: break-word;
 		word-break: break-word;
-		color: ${props => props.theme.text};
 	}
 `;
 
 export const UserNameWrapper = styled.div`
-	display: flex;
-	align-items: center;
-	font-size: 12px;
 	font-weight: 400;
-
+	color: ${props => props.theme.link};
 	margin-right: 20px;
-
+	${props => props.theme.flex(undefined, undefined, 'center')};
 	a {
 		padding-right: 4px;
 		padding-left: 0px;
 		font-weight: 700;
 		margin-right: 4px;
 		text-transform: capitalize;
-
 		cursor: pointer;
 		color: ${props => props.theme.accentText};
 		&:hover {
@@ -181,20 +133,14 @@ export const UserNameWrapper = styled.div`
 `;
 
 export const User = styled.div`
-	font-size: 12px;
 	font-weight: 400;
 	display: inline;
-	/* line-height: 16px; */
-
 	color: ${props => props.theme.accentRed};
 	padding-left: 3px;
 `;
 
 export const RightSide = styled.div`
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	align-items: flex-end;
+	${props => props.theme.flex('column', 'space-between', 'flex-end')};
 	height: 100%;
 	font-size: 20px;
 	svg {
@@ -203,24 +149,17 @@ export const RightSide = styled.div`
 `;
 
 export const FooterWrapper = styled.div`
-	display: flex;
-	align-items: flex-end;
-	font-size: 12px;
+	${props => props.theme.flex(undefined, undefined, 'flex-end')};
 	font-weight: 700;
 	.cookie {
 		&:hover {
 			color: #875818;
 		}
 	}
-
-	.pi-comments {
-		color: ${props => (props.quizCount > 0 ? props.theme.pink : 'grey')};
-	}
 `;
 
 export const QuestionCount = styled.div`
-	font-size: 12px;
-	display: flex;
+	${props => props.theme.flex()};
 	border-radius: 4px;
 	padding: 3px;
 	color: ${props => props.theme.darkPink};
@@ -233,11 +172,12 @@ export const QuestionCount = styled.div`
 `;
 
 export const MultiSelectWrapper = styled.div`
-	width: 50%;
 	.p-multiselect {
 		height: 43px;
-		display: flex;
-		align-items: center;
+		${props => props.theme.flex(undefined, undefined, 'center')};
+		background: ${props => props.theme.secondary};
+		border-color: ${props => props.theme.accent};
+		min-width: 120px;
 	}
 	.p-checkbox {
 		display: none;
@@ -255,21 +195,12 @@ export const MultiSelectWrapper = styled.div`
 		background-color: ${props => props.theme.pink};
 	}
 	.p-checkbox .p-checkbox-box.p-highlight {
-		border-color: ${props => props.theme.aqua};
-		background-color: ${props => props.theme.aqua};
+		${props => props.theme.backgroundBorder(props.theme.aqua)};
 	}
 	.p-checkbox .p-checkbox-box.p-highlight:not(.p-disabled):hover {
-		border-color: ${props => props.theme.darkAqua};
-		background-color: ${props => props.theme.darkAqua};
+		${props => props.theme.backgroundBorder(props.theme.darkAqua)};
 	}
-	.topics {
-		margin-left: 4px;
-		min-width: 100px;
-		.p-multiselect-panel .p-hidden .p-input-overlay .p-input-overlay-visible[style] {
-			right: 0 !important;
-			left: initial !important;
-		}
-	}
+
 	.p-inputtext {
 		background-color: ${props => props.theme.main};
 		border-color: ${props => props.theme.accent};
@@ -278,13 +209,7 @@ export const MultiSelectWrapper = styled.div`
 	.p-inputtext:enabled:hover:not(.p-error) {
 		border-color: ${props => props.theme.accent};
 	}
-	.p-multiselect {
-		height: 43px;
-		display: flex;
-		align-items: center;
-		background: ${props => props.theme.secondary};
-		border-color: ${props => props.theme.main};
-	}
+
 	.p-multiselect .p-multiselect-trigger {
 		background: ${props => props.theme.secondary};
 		color: ${props => props.theme.accent};
@@ -308,12 +233,14 @@ export const MultiSelectWrapper = styled.div`
 		border-color: ${props => props.theme.pink};
 	}
 	.p-multiselect-panel {
-		background-color: ${props => props.theme.secondary};
-		border-color: ${props => props.theme.secondary};
+		${props => props.theme.backgroundBorder(props.theme.secondary)};
 	}
 
 	.p-multiselect-panel .p-multiselect-items .p-multiselect-item {
 		color: ${props => props.theme.text};
+	}
+	.p-multiselect-panel .p-multiselect-header .p-multiselect-filter-container {
+		width: 80%;
 	}
 
 	.p-multiselect-panel
@@ -324,8 +251,7 @@ export const MultiSelectWrapper = styled.div`
 	}
 
 	.p-multiselect-panel .p-multiselect-header {
-		background-color: ${props => props.theme.secondary};
-		border-color: ${props => props.theme.secondary};
+		${props => props.theme.backgroundBorder(props.theme.secondary)};
 	}
 	.p-multiselect-panel
 		.p-multiselect-header
@@ -350,14 +276,9 @@ export const MultiSelectWrapper = styled.div`
 	}
 
 	.p-checkbox .p-checkbox-box.p-highlight {
-		border-color: ${props => props.theme.aqua};
-		background-color: ${props => props.theme.aqua};
+		${props => props.theme.backgroundBorder(props.theme.aqua)};
 	}
 	.p-checkbox .p-checkbox-box.p-highlight:not(.p-disabled):hover {
-		border-color: ${props => props.theme.darkAqua};
-		background-color: ${props => props.theme.darkAqua};
-	}
-	.topics {
-		margin-left: 4px;
+		${props => props.theme.backgroundBorder(props.theme.darkAqua)};
 	}
 `;
