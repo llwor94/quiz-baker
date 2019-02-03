@@ -105,7 +105,7 @@ const CreatePost = () => {
 								value={topic}
 								suggestions={searchTopics}
 								completeMethod={filterTopics}
-								placeholder='Topics'
+								placeholder='Search Topics'
 								minLength={1}
 								name='topic'
 								field='name'
