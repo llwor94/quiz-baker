@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
+import { ThemeCtx } from 'theme';
 import { Input } from 'styles/Components/Input';
 import { Button } from 'styles/Components/Button';
 import { LogoWrapper } from 'styles/Register/Logo';
 
 import hatIcon from 'assets/chef.svg';
+import darkHat from 'assets/hat.png';
 
 const FormWrapper = styled.div`
 	max-width: 550px;
@@ -51,6 +53,7 @@ const RegisterWrapper = styled.div`
 `;
 
 export const Wrapper = ({ type, handleSubmit, submitDisabled, error, children }) => {
+	const [ darkMode, setValue ] = useContext(ThemeCtx);
 	return (
 		<FormWrapper>
 			<h1>{type}</h1>
@@ -59,7 +62,7 @@ export const Wrapper = ({ type, handleSubmit, submitDisabled, error, children })
 					<span className='Q'>Q</span>
 					<span className='B'>B</span>
 					<div className='dot'>.</div>
-					<img src={hatIcon} alt='' />
+					<img src={darkMode ? darkHat : hatIcon} alt='' />
 				</LogoWrapper>
 				<form onSubmit={handleSubmit}>
 					{children}
