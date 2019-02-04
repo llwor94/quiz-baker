@@ -68,6 +68,10 @@ export const UserName = styled.a`
 	line-height: 16px;
 	color: ${props => props.theme.accentRed};
 	padding-left: 3px;
+	&:hover {
+
+	color: ${props => props.theme.accentRed};
+	}
 `;
 
 export const CommentBody = styled.div`
