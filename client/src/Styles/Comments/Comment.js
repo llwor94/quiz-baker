@@ -8,6 +8,9 @@ export const CommentArea = styled.div`
 	border-color: ${props => props.theme.accent};
 	margin: 10px 0;
 	background-color: ${props => props.theme.secondary};
+	@media (max-width: 500px) {
+		width: 100%;
+	}
 `;
 
 export const Wrapper = styled.div`

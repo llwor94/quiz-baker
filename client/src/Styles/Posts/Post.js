@@ -15,6 +15,10 @@ export const PostWrapper = styled.div`
 	&:hover {
 		border-color: ${props => props.theme.pink};
 	}
+	/* @media (max-width: 500px) {
+		width: auto;
+		margin: 10px;
+	} */
 `;
 export const CurrentWrapper = styled.div`
 	border-radius: 17px;

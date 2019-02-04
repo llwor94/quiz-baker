@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
+import MediaQuery from 'react-responsive';
 import { Link } from 'react-router-dom';
 
 import { ThemeCtx } from 'theme';
@@ -50,6 +51,9 @@ const Redirect = styled.div`
 const RegisterWrapper = styled.div`
 	${props => props.theme.center};
 	position: relative;
+	@media (max-width: 500px) {
+		flex-direction: column;
+	}
 `;
 
 export const Wrapper = ({ type, handleSubmit, submitDisabled, error, children }) => {
@@ -57,21 +61,33 @@ export const Wrapper = ({ type, handleSubmit, submitDisabled, error, children })
 	return (
 		<FormWrapper>
 			<h1>{type}</h1>
-			<RegisterWrapper style={{ display: 'flex', position: 'relative' }}>
-				<LogoWrapper style={{ position: 'relative' }}>
-					<span className='Q'>Q</span>
-					<span className='B'>B</span>
-					<div className='dot'>.</div>
-					<img src={darkMode ? darkHat : hatIcon} alt='' />
-				</LogoWrapper>
+			<RegisterWrapper>
+				<MediaQuery minWidth={500}>
+					<LogoWrapper style={{ position: 'relative' }}>
+						<span className='Q'>Q</span>
+						<span className='B'>B</span>
+						<div className='dot'>.</div>
+						<img src={darkMode ? darkHat : hatIcon} alt='' />
+					</LogoWrapper>
+				</MediaQuery>
 				<form onSubmit={handleSubmit}>
 					{children}
 					{error && <p>{error}</p>}
-					<Button
-						label={type}
-						disabled={submitDisabled}
-						style={{ marginTop: '20px', textTransform: 'uppercase' }}
-					/>
+					<MediaQuery minWidth={500}>
+						<Button
+							label={type}
+							disabled={submitDisabled}
+							style={{ marginTop: '20px', textTransform: 'uppercase' }}
+						/>
+					</MediaQuery>
+					<MediaQuery maxWidth={500}>
+						<Button
+							label={type}
+							disabled={submitDisabled}
+							style={{ marginTop: '20px', textTransform: 'uppercase' }}
+							full
+						/>
+					</MediaQuery>
 				</form>
 			</RegisterWrapper>
 			{type === 'login' ? (

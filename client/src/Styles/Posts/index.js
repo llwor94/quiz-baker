@@ -83,3 +83,14 @@ export const InnerWrapper = styled.div`
 		height: 100%;
 	}
 `;
+
+export const PostWrapper = styled.div`
+	width: 500px;
+	position: relative;
+	margin-top: 70px;
+
+	@media (max-width: 500px) {
+		width: 100%;
+		padding: 10px;
+	}
+`;

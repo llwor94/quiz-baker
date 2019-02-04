@@ -33,6 +33,8 @@ const Wrapper = styled.div`
 		height: auto;
 		right: 10px;
 		transform: translateX(110%);
+		background-color: ${props => props.theme.secondary};
+		border-color: ${props => props.theme.main};
 	}
 	.sidebar.p-sidebar-active {
 		transform: translateX(0);
