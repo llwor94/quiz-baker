@@ -16,7 +16,7 @@ const Filter = () => {
 	const userOptions = [
 		{ label: 'All', value: 'ALL' },
 		{ label: 'All Upvoted', value: 'ALLUP' },
-		{ label: 'My Upvotes', value: 'MUP' },
+		{ label: 'My Upvoted', value: 'MUP' },
 		{ label: 'My Favorites', value: 'MFV' },
 		{ label: 'Taken', value: 'T' },
 		{ label: 'Not Taken', value: 'NT' },
