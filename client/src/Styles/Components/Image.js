@@ -5,7 +5,7 @@ import blankProfile from '../../assets/blank-profile.png';
 import { userImage } from '../../utils/imgArray';
 
 const IconWrapper = styled.div`
-	background-color: #e4e6e7;
+	background-color: ${props => props.theme.accent};
 	margin-right: 3px;
 	${props => props.theme.square(40)};
 	border-radius: 10px;

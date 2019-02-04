@@ -95,8 +95,8 @@ const Quiz = ({ quiz, ...props }) => {
 							color: quiz.user_vote === 1 && '#DC758F',
 						}}
 						onClick={() => handleVote(1)}
-						onMouseEnter={bounceUp.play}
-						onMouseLeave={() => bounceUp(`.voting .up-${quiz.id}`).pause}
+						onMouseEnter={bounceUp(`.voting .up-${quiz.id}`).play}
+						onMouseLeave={bounceUp(`.voting .up-${quiz.id}`).pause}
 					/>
 					<p
 						style={{
