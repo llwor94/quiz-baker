@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from 'react';
-
+import MediaQuery from 'react-responsive';
 import server from 'server';
 
 import { AuthCtx } from 'auth';
@@ -43,13 +43,15 @@ const Quizzes = props => {
 	else
 		return (
 			<Wrapper>
-				<div className='filters'>
-					<Sort />
-					<div style={{ display: 'flex' }}>
-						<Topics />
-						<Filter />
+				<MediaQuery minWidth={500}>
+					<div className='filters'>
+						<Sort />
+						<div style={{ display: 'flex' }}>
+							<Topics />
+							<Filter />
+						</div>
 					</div>
-				</div>
+				</MediaQuery>
 				<div className='quizzes'>
 					{quizzes.map(quiz => <Quiz key={quiz.id} quiz={quiz} {...props} />)}
 				</div>

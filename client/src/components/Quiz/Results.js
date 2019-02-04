@@ -58,7 +58,7 @@ const Results = props => {
 	}, []);
 
 	const handleCopy = () => {
-		let value = `http://localhost:3000/quizzes/${quiz.id}`;
+		let value = `http://www.quiz-baker.com/quizzes/${quiz.id}`;
 		navigator.clipboard.writeText(value).then(() => {
 			growl.current.show({ severity: 'info', summary: 'Link Copied!' });
 		});

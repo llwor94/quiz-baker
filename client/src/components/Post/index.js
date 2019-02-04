@@ -28,7 +28,7 @@ const Post = props => {
 
 	const growl = React.createRef();
 	const handleCopy = id => {
-		let value = `http://localhost:3000/forum/${id}`;
+		let value = `http://www.quiz-baker.com/forum/${id}`;
 		navigator.clipboard.writeText(value).then(() => {
 			growl.current.show({ severity: 'info', summary: 'Link Copied!' });
 		});

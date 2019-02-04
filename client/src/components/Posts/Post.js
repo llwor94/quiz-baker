@@ -78,7 +78,7 @@ const Post = ({ post, showComments, currentPost, ...props }) => {
 	});
 
 	const handleCopy = () => {
-		let value = `http://localhost:3000/forum/${post.id}`;
+		let value = `http://www.quiz-baker.com/forum/${post.id}`;
 		navigator.clipboard.writeText(value).then(() => {
 			growl.current.show({ severity: 'info', summary: 'Link Copied!' });
 		});
