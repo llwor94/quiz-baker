@@ -2,11 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import { Input } from '../../Styles/Components/Input';
-import { Button } from '../../Styles/Components/Button';
-import { LogoWrapper } from '../../Styles/Register/Logo';
+import { Input } from 'styles/Components/Input';
+import { Button } from 'styles/Components/Button';
+import { LogoWrapper } from 'styles/Register/Logo';
 
-import hatIcon from '../../assets/chef.svg';
+import hatIcon from 'assets/chef.svg';
 
 const FormWrapper = styled.div`
 	max-width: 550px;
@@ -40,7 +40,7 @@ const Redirect = styled.div`
 	a {
 		color: ${props => props.theme.aqua};
 		&:hover {
-			color: ${props => props.theme.header};
+			color: ${props => props.theme.pink};
 		}
 	}
 `;
