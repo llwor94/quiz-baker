@@ -55,6 +55,7 @@ const Quiz = ({ quiz, ...props }) => {
 		});
 	};
 
+	
 	const handleFavoriteToggle = () => {
 		server
 			.patch(`quizzes/${quiz.id}`, { favorite: !quiz.favorite })
