@@ -48,6 +48,16 @@ const Quiz = ({ quiz, ...props }) => {
 		easing: 'easeInOutSine',
 	});
 
+	const bounceDown = anime({
+		targets: `.voting .down-${quiz.id}`,
+		translateY: 5,
+		direction: 'alternate',
+		loop: true,
+		duration: 200,
+		autoplay: false,
+		easing: 'easeInOutSine',
+	});
+
 	const handleCopy = () => {
 		let value = `http://localhost:3000/quizzes/${quiz.id}`;
 		navigator.clipboard.writeText(value).then(() => {
@@ -55,7 +65,6 @@ const Quiz = ({ quiz, ...props }) => {
 		});
 	};
 
-	
 	const handleFavoriteToggle = () => {
 		server
 			.patch(`quizzes/${quiz.id}`, { favorite: !quiz.favorite })
@@ -123,11 +132,16 @@ const Quiz = ({ quiz, ...props }) => {
 						{quiz.votes}
 					</p>
 					<i
-						className='pi pi-chevron-down'
+						className={`pi pi-chevron-down down-${quiz.id}`}
 						style={{
 							color: quiz.user_vote === -1 && '#E3D3E4',
 						}}
 						onClick={() => handleVote(-1)}
+						onMouseEnter={bounceDown.play}
+						onMouseLeave={() => {
+							bounceDown.pause();
+							bounceDown.seek(0);
+						}}
 					/>
 				</LeftSide>
 				<InnerWrapper>

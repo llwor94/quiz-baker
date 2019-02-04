@@ -19,14 +19,17 @@ const Question = () => {
 	const [ question, setQuestion ] = useState(quiz.questions[0]);
 	const [ selected, setSelected ] = useState(null);
 	const [ checking, setChecking ] = useState(false);
+	const tl = anime.timeline({
+		targets: '.wrapper',
+		easing: 'easeOutExpo',
+		duration: 500,
+	});
 
 	useEffect(
 		() => {
 			if (currentQuestion) {
-				anime({
-					targets: '.wrapper',
+				tl.add({
 					opacity: 0,
-					duration: 1500,
 					complete: function(anim) {
 						setQuestion(quiz.questions[currentQuestion]);
 					},
@@ -38,7 +41,7 @@ const Question = () => {
 
 	useEffect(
 		() => {
-			anime({ targets: '.wrapper', opacity: 1, duration: 2000 });
+			tl.add({ opacity: 1 });
 		},
 		[ question ],
 	);

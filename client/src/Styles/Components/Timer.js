@@ -1,26 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import styled, { keyframes } from 'styled-components';
-const countdown = keyframes`
-  from {
-    stroke-dashoffset: 0px;
-  }
-  to {
-    stroke-dashoffset: 138;
-  }
-`;
+import styled from 'styled-components';
+import anime from 'animejs';
 
 const Countdown = styled.div`
 	position: relative;
 	${props => props.theme.square(60)};
 	text-align: center;
 	circle {
-		stroke-dasharray: 138 138;
+		stroke-dasharray: 138;
 		stroke-dashoffset: 138;
 		stroke-linecap: round;
 		stroke-width: 4px;
 		stroke: ${props => props.theme.pink};
 		fill: none;
-		animation: ${countdown} ${props => props.startCount}s linear infinite forwards;
 	}
 	svg {
 		position: absolute;
@@ -39,16 +31,41 @@ const Text = styled.div`
 	line-height: 60px;
 `;
 
+const countdown = startCount =>
+	anime({
+		targets: '.circle circle',
+		strokeDashoffset: [ anime.setDashoffset, 0 ],
+		easing: 'easeInQuad',
+		duration: startCount * 1000,
+		autoplay: false,
+	});
+
 const Timer = ({ startCount, handleTimer, question, reset }) => {
 	const [ currentCount, setCount ] = useState(startCount);
+
 	const timer = () => setCount(currentCount - 1);
+	useEffect(() => {
+		countdown(startCount).play();
+	}, []);
+	useEffect(
+		() => {
+			setCount(startCount);
+			countdown(startCount).restart();
+		},
+		[ question ],
+	);
 
 	useEffect(
 		() => {
 			if (currentCount <= 0) {
 				setCount(startCount);
+				countdown(startCount).pause();
+				countdown(startCount).seek(0);
 				handleTimer();
 				return;
+			}
+			if (currentCount === startCount) {
+				countdown(startCount).restart();
 			}
 			const id = setInterval(timer, 1000);
 			return () => clearInterval(id);
@@ -65,9 +82,9 @@ const Timer = ({ startCount, handleTimer, question, reset }) => {
 	if (reset) return <Countdown />;
 	else
 		return (
-			<Countdown startCount={startCount}>
-				<Text>{currentCount}</Text>
-				<svg>
+			<Countdown startCount={startCount} className='countdown'>
+				<Text className='text'>{currentCount}</Text>
+				<svg className='circle'>
 					<circle r='22' cx='30' cy='30' />
 				</svg>
 			</Countdown>
