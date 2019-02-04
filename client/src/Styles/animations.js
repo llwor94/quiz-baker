@@ -29,6 +29,7 @@ export const bounceUp = name =>
 		direction: 'alternate',
 		loop: true,
 		duration: 200,
+		autoplay: false,
 		easing: 'easeInOutSine',
 	});
 
