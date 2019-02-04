@@ -77,16 +77,16 @@ const Post = ({ post }) => {
 							<i
 								className='pi pi-chevron-up'
 								style={{
-									color:
-										post.user_vote === 1 ? '#DC758F' : !user ? 'gray' : 'black',
+									color: post.user_vote === 1 && '#DC758F',
 								}}
 								onClick={() => handleVote(1)}
 							/>
 							<p
 								style={{
-									color: post.user_vote
-										? post.user_vote === 1 ? '#DC758F' : '#E3D3E4'
-										: 'black',
+									color:
+										post.user_vote === 1
+											? '#DC758F'
+											: post.user_vote === -1 && '#E3D3E4',
 								}}
 							>
 								{post.votes}
@@ -94,10 +94,7 @@ const Post = ({ post }) => {
 							<i
 								className='pi pi-chevron-down'
 								style={{
-									color:
-										post.user_vote === -1
-											? '#E3D3E4'
-											: !user ? 'gray' : 'black',
+									color: post.user_vote === -1 && '#E3D3E4',
 								}}
 								onClick={() => handleVote(-1)}
 							/>

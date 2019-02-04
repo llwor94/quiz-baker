@@ -229,5 +229,6 @@ export const LeftSide = styled.div`
 	margin: 0 10px 0 0;
 	i {
 		cursor: ${props => (props.user ? 'pointer' : 'default')};
+		color: ${props => (props.user ? props.theme.text : props.theme.accent)};
 	}
 `;

@@ -85,7 +85,9 @@ const Comments = ({ currentPost }) => {
 					<div className='inner'>
 						<PostComment>
 							<ProfileIcon src={user.img_url} />
+
 							<EmojiInput
+								user={user}
 								placeholder='Post a comment'
 								value={commentInput}
 								onChange={e => setCommentInput(e.target.value)}

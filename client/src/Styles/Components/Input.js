@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { Picker } from 'emoji-mart';
 import Smiley from '../../assets/smiley';
 const InputWrapper = styled.span`
@@ -294,6 +295,23 @@ const StyledEmojiInput = styled.div`
 	}
 `;
 
+const LoggedOut = styled.div`
+	font-style: italic;
+	color: ${props => props.theme.link};
+	border-radius: 3px;
+	font-size: 14px;
+	background: ${props => props.theme.secondary};
+	padding: 0.429em;
+	border: 1px solid ${props => props.theme.accent};
+	a {
+		font-style: normal;
+		color: ${props => props.theme.aqua};
+		&:hover {
+			color: ${props => props.theme.pink};
+		}
+	}
+`;
+
 export const EmojiInput = ({
 	value,
 	onChange,
@@ -302,6 +320,7 @@ export const EmojiInput = ({
 	onKeyUp,
 	style,
 	placeholder,
+	user,
 }) => {
 	const [ emojis, showEmojis ] = useState(false);
 
@@ -316,20 +335,29 @@ export const EmojiInput = ({
 
 	return (
 		<StyledEmojiInput style={style}>
-			<StyledInput
-				value={value}
-				onChange={onChange}
-				name={name}
-				onKeyUp={onKeyUp}
-				onClick={() => showEmojis(false)}
-				placeholder={placeholder}
-			/>
-			<Emojis onBlur={handleBlur} tabIndex='0'>
-				<EmojiPicker onClick={() => showEmojis(true)}>
-					<Smiley />
-				</EmojiPicker>
-				{emojis && <Picker style={{ width: '231px' }} onSelect={handleSelect} />}
-			</Emojis>
+			{user ? (
+				<Fragment>
+					<StyledInput
+						value={value}
+						onChange={onChange}
+						name={name}
+						onKeyUp={onKeyUp}
+						onClick={() => showEmojis(false)}
+						placeholder={placeholder}
+					/>
+					<Emojis onBlur={handleBlur} tabIndex='0'>
+						<EmojiPicker onClick={() => showEmojis(true)}>
+							<Smiley />
+						</EmojiPicker>
+						{emojis && <Picker style={{ width: '231px' }} onSelect={handleSelect} />}
+					</Emojis>
+				</Fragment>
+			) : (
+				<LoggedOut>
+					<Link to='/login'>Login</Link> or <Link to='/register'>sign up</Link> to
+					comment!
+				</LoggedOut>
+			)}
 		</StyledEmojiInput>
 	);
 };

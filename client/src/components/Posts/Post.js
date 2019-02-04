@@ -130,10 +130,12 @@ const Post = ({ post, showComments, currentPost, ...props }) => {
 						color: post.user_vote === 1 && '#DC758F',
 					}}
 					onClick={() => handleVote(1)}
-					onMouseEnter={bounceUp.play}
+					onMouseEnter={user && bounceUp.play}
 					onMouseLeave={() => {
-						bounceUp.pause();
-						bounceUp.seek(0);
+						if (user) {
+							bounceUp.pause();
+							bounceUp.seek(0);
+						}
 					}}
 				/>
 				<p

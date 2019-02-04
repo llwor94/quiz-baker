@@ -12,7 +12,6 @@ import Comments from 'components/Post/Comments';
 
 const PostContainer = props => {
 	const [ post, setPost ] = useContext(PostCtx);
-	const { user } = useContext(AuthCtx);
 
 	useEffect(() => {
 		server.get(`/posts/${props.match.params.id}`).then(({ data }) => {
@@ -25,7 +24,7 @@ const PostContainer = props => {
 		return (
 			<div style={{ width: '500px', position: 'relative', marginTop: '70px' }}>
 				<Post {...props} />
-				{user && <NewComment />}
+				<NewComment />
 				{post.comments.length > 0 && <Comments />}
 			</div>
 		);
