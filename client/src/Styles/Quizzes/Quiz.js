@@ -85,6 +85,7 @@ export const Topic = styled(FooterAccent)`
 export const Score = styled(FooterAccent)`
   font-size: 20px;
   padding: 0;
+	color: ${props => props.theme.text};
   color: ${props => props.noScore && props.theme.accent};
   margin-bottom: 10px;
 `;

@@ -25,7 +25,7 @@ const Sort = () => {
 
 	return (
 		<Dropdown
-			style={{ marginRight: '8px' }}
+			style={{ marginRight: '8px', width: '128px' }}
 			value={sortOption}
 			options={sortOptions}
 			onChange={e => {

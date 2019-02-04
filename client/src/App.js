@@ -36,7 +36,7 @@ const GlobalStyle = createGlobalStyle`
 		background-color: ${props => props.theme.secondary};
 		font-size: 12px;
 		
-		p, a {
+		p, a, div {
 		color: ${props => props.theme.text};
 	}
 	}

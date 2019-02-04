@@ -27,7 +27,7 @@ const Wrapper = ({ userPage, children, styles }) => {
 		);
 };
 
-const NewPost = ({ userPage, quiz }) => {
+const NewPost = ({ userPage, quiz, newComment, setNewComment }) => {
 	const [ posts, setPosts ] = useContext(PostsCtx);
 	const [ newPost, setNewPost ] = useState(false);
 	const [ post, setPost ] = useState({ title: '', body: '' });
@@ -41,7 +41,19 @@ const NewPost = ({ userPage, quiz }) => {
 			setTopics(data);
 			setSearchOptions(data);
 		});
+		if (quiz) {
+			setNewPost(true);
+		}
 	}, []);
+
+	// useEffect(
+	// 	() => {
+	// 		if (newComment) {
+	// 			setNewPost(true);
+	// 		}
+	// 	},
+	// 	[ newComment ],
+	// );
 
 	let input = React.createRef();
 	useEffect(
@@ -121,7 +133,7 @@ const NewPost = ({ userPage, quiz }) => {
 
 	return (
 		<NewPostWrapper>
-			{newPost ? (
+			{newPost || newComment ? (
 				<Transition in={newPost} appear timeout={400}>
 					{state => (
 						<Wrapper style={transitionStyles[state]}>
@@ -146,7 +158,9 @@ const NewPost = ({ userPage, quiz }) => {
 								}}
 								icon='pi pi-times'
 								white
-								onClick={() => setNewPost(false)}
+								onClick={() => {
+									quiz ? setNewComment(false) : setNewPost(false);
+								}}
 							/>
 
 							<InnerWrapper userPage={userPage}>
@@ -175,7 +189,7 @@ const NewPost = ({ userPage, quiz }) => {
 			) : (
 				<Fragment>
 					<div />
-					<Button label='Create a New Post' onClick={() => setNewPost(true)} />
+					{!quiz && <Button label='Create a New Post' onClick={() => setNewPost(true)} />}
 				</Fragment>
 			)}
 		</NewPostWrapper>

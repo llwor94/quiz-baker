@@ -1,11 +1,14 @@
 import React, { useEffect, useContext, Fragment } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCookieBite, faCookie } from '@fortawesome/free-solid-svg-icons';
-
+import anime from 'animejs';
+import { withTheme } from 'styled-components';
 import server from 'server';
 
 import { AuthCtx } from 'auth';
 import { ResponseCtx, QuizCtx } from 'pages/Quiz';
+
+import QuestionTracker from './QuestionTracker';
 
 import {
 	Wrapper,
@@ -16,8 +19,9 @@ import {
 	FooterWrapper,
 } from 'styles/Quiz/Results';
 import { Growl } from 'styles/Components/Growl';
+import { animateIn, animateOut } from 'styles/animations';
 
-const Results = () => {
+const Results = props => {
 	const [ questionResponse, setQuestionReponse ] = useContext(ResponseCtx);
 	const [ quiz, setQuiz ] = useContext(QuizCtx);
 	const { user } = useContext(AuthCtx);
@@ -71,6 +75,32 @@ const Results = () => {
 		}
 	};
 
+	const animateFavoriteIn = e => {
+		console.log(e.target);
+		let name = e.target.getAttribute('name');
+		anime({
+			targets: `.icon-wrapper .favorite`,
+
+			color: props.theme.aqua,
+			easing: 'easeInQuad',
+			scale: 1.1,
+			duration: 50,
+		});
+	};
+
+	const animateFavoriteOut = e => {
+		console.log(e.target);
+		let name = e.target.getAttribute('name');
+
+		anime({
+			targets: `.icon-wrapper .favorite`,
+			color: quiz.favorite ? '#875818' : props.theme.link,
+			easing: 'easeInQuad',
+			scale: 1,
+			duration: 100,
+		});
+	};
+
 	return (
 		<Fragment>
 			<Growl ref={growl} />
@@ -101,6 +131,7 @@ const Results = () => {
 					%
 				</h3>
 			</NumberWrapper>
+			<QuestionTracker />
 			<FooterWrapper>
 				{user && (
 					<Fragment>
@@ -129,18 +160,49 @@ const Results = () => {
 										color: quiz.user_vote === -1 && '#E3D3E4',
 									}}
 									onClick={() => handleVote(-1)}
+									onMouseEnter={animateOut}
 								/>{' '}
 							</div>
-							<i className='pi pi-share-alt' onClick={handleCopy} />
-							<span>Share</span>
-							<FontAwesomeIcon
-								title='Take a bite out of that, Boogin'
-								icon={quiz.favorite ? faCookieBite : faCookie}
-								color={quiz.favorite ? '#875818' : '#b2b2b2'}
-								style={{ cursor: 'pointer', height: '30px', width: '30px' }}
-								onClick={handleFavoriteToggle}
-							/>
-							<span>Favorite</span>
+							<div name='favorite' className='icon-wrapper'>
+								<FontAwesomeIcon
+									name='favorite'
+									className='favorite'
+									title='Take a bite out of that, Boogin'
+									icon={quiz.favorite ? faCookieBite : faCookie}
+									style={{
+										cursor: 'pointer',
+										height: '21px',
+										width: '21px',
+										color: quiz.favorite && '#875818',
+									}}
+									onClick={handleFavoriteToggle}
+									onMouseEnter={animateFavoriteIn}
+									onMouseLeave={animateFavoriteOut}
+								/>
+								<span className='icon-label favorite'>Favorite</span>
+							</div>
+							<div name='share' className='icon-wrapper'>
+								<i
+									className='pi pi-share-alt share'
+									name='share'
+									onClick={handleCopy}
+									onMouseEnter={e => animateIn(e, props.theme.aqua)}
+									onMouseLeave={e => animateOut(e, props.theme.link)}
+								/>
+								<span name='share' className='share'>
+									Share
+								</span>
+							</div>
+							<div name='comment-icon' className='icon-wrapper'>
+								<i
+									className='pi pi-comment comment-icon'
+									name='comment-icon'
+									onMouseEnter={e => animateIn(e, props.theme.aqua)}
+									onMouseLeave={e => animateOut(e, props.theme.link)}
+									onClick={() => props.setNewComment(true)}
+								/>
+								<span className='icon-label comment-icon'>Comment</span>
+							</div>
 						</div>
 					</Fragment>
 				)}
@@ -149,4 +211,4 @@ const Results = () => {
 	);
 };
 
-export default Results;
+export default withTheme(Results);
