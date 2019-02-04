@@ -174,7 +174,7 @@ export const QuestionCount = styled.div`
 
 export const MultiSelectWrapper = styled.div`
 	.p-multiselect {
-		height: 43px;
+		min-height: 43px;
 		${props => props.theme.flex(undefined, undefined, 'center')};
 		background: ${props => props.theme.secondary};
 		border-color: ${props => props.theme.accent};

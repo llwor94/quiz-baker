@@ -27,6 +27,25 @@ const Results = props => {
 	const { user } = useContext(AuthCtx);
 
 	const growl = React.createRef();
+	const bounceUp = anime({
+		targets: ` .up`,
+		translateY: -5,
+		direction: 'alternate',
+		loop: true,
+		duration: 200,
+		autoplay: false,
+		easing: 'easeInOutSine',
+	});
+
+	const bounceDown = anime({
+		targets: ` .down`,
+		translateY: 5,
+		direction: 'alternate',
+		loop: true,
+		duration: 200,
+		autoplay: false,
+		easing: 'easeInOutSine',
+	});
 
 	useEffect(() => {
 		let score = questionResponse.filter(result => result.correct).length;
@@ -138,11 +157,16 @@ const Results = props => {
 						<div className='vert'>
 							<div className='vote' style={{ textAlign: 'center' }}>
 								<i
-									className='pi pi-chevron-up'
+									className='pi pi-chevron-up up'
 									style={{
 										color: quiz.user_vote === 1 && '#DC758F',
 									}}
 									onClick={() => handleVote(1)}
+									onMouseEnter={bounceUp.play}
+									onMouseLeave={() => {
+										bounceUp.pause();
+										bounceUp.seek(0);
+									}}
 								/>
 								<p
 									style={{
@@ -155,12 +179,16 @@ const Results = props => {
 									{quiz.votes}
 								</p>
 								<i
-									className='pi pi-chevron-down'
+									className='pi pi-chevron-down down'
 									style={{
 										color: quiz.user_vote === -1 && '#E3D3E4',
 									}}
 									onClick={() => handleVote(-1)}
-									onMouseEnter={animateOut}
+									onMouseEnter={bounceDown.play}
+									onMouseLeave={() => {
+										bounceDown.pause();
+										bounceDown.seek(0);
+									}}
 								/>{' '}
 							</div>
 							<div name='favorite' className='icon-wrapper'>
