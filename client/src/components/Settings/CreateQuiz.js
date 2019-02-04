@@ -1,6 +1,5 @@
 import React, { useState, Fragment } from 'react';
 import { withRouter } from 'react-router-dom';
-import _ from 'lodash';
 
 import server from 'server';
 

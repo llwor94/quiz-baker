@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import MediaQuery from 'react-responsive';
 
 import server from 'server';
@@ -14,14 +14,7 @@ import { ProfileWrapper, ProfileButtonWrapper } from 'styles/Settings/Sidebar';
 const Profile = ({ setActiveTab }) => {
 	const [ imageUpdate, setImageUpdate ] = useState(false);
 	const [ usernameUpdate, setUsernameUpdate ] = useState(false);
-	const [ img_url, setImg ] = useState(null);
 	const { user, editUser } = useContext(AuthCtx);
-
-	useEffect(() => {
-		if (user.img_url) {
-			setImg(user.img_url);
-		}
-	}, []);
 
 	const updateUser = () => {
 		let userData = JSON.parse(localStorage.getItem('user'));
@@ -37,10 +30,10 @@ const Profile = ({ setActiveTab }) => {
 	return (
 		<ProfileWrapper>
 			<MediaQuery maxWidth={800}>
-				<a className='tab' onClick={() => setActiveTab('quizzes')}>
+				<a href='#quizzes' className='tab' onClick={() => setActiveTab('quizzes')}>
 					<span>Your Quizzes</span>
 				</a>
-				<a className='tab' onClick={() => setActiveTab('posts')}>
+				<a href='#posts' className='tab' onClick={() => setActiveTab('posts')}>
 					<span>Your Posts</span>
 				</a>
 			</MediaQuery>

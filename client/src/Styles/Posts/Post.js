@@ -79,12 +79,12 @@ export const HatWrapper = styled.img`
 
 export const InnerWrapper = styled.div`
 	padding: 8px 0;
-    margin: 0 8px;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+	margin: 0 8px;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 
 	.body {
 		display: flex;
@@ -109,14 +109,14 @@ export const BodyWrapper = styled.div`
 		margin: 15px 0;
 	}
 
-	span{
+	span {
 		color: ${props => props.theme.pink};
 	}
 
 	.header {
 		${props => props.theme.flex(undefined, 'space-between', 'center')};
 		.text {
-			padding-left: 3px;
+			font-size: 10px;
 		}
 	}
 `;

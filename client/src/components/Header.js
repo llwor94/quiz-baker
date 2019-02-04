@@ -172,7 +172,14 @@ const Header = props => {
 		},
 		[ props.history.location.pathname ],
 	);
-
+	const handleDarkMode = e => {
+		setValue(e.value);
+		if (e.value) {
+			localStorage.setItem('darkMode', true);
+		} else {
+			localStorage.removeItem('darkMode');
+		}
+	};
 	return (
 		<Wrapper>
 			<HeaderWrapper>
@@ -185,6 +192,7 @@ const Header = props => {
 					<Transition
 						in={menuShowing}
 						appear
+						timeout={0}
 						onExit={animateMenuDown}
 						onEnter={animateMenuUp}
 					>
@@ -199,6 +207,7 @@ const Header = props => {
 								<Transition
 									in={menuShowing}
 									appear
+									timeout={0}
 									onExit={animateLinkDown}
 									onEnter={animateLinkUp}
 								>
@@ -213,6 +222,7 @@ const Header = props => {
 							<Transition
 								in={menuShowing}
 								appear
+								timeout={0}
 								onExit={animateLogoDown}
 								onEnter={animateLogoUp}
 							>
@@ -229,6 +239,7 @@ const Header = props => {
 									<Transition
 										in={menuShowing}
 										appear
+										timeout={0}
 										onExit={animateSecondLinkDown}
 										onEnter={animateSecondLinkUp}
 									>
@@ -241,6 +252,7 @@ const Header = props => {
 									<Transition
 										in={menuShowing}
 										appear
+										timeout={0}
 										onExit={animateThirdLinkDown}
 										onEnter={animateThirdLinkUp}
 									>
@@ -268,6 +280,7 @@ const Header = props => {
 									<Transition
 										in={menuShowing}
 										appear
+										timeout={0}
 										onExit={animateSecondLinkDown}
 										onEnter={animateSecondLinkUp}
 									>
@@ -278,6 +291,7 @@ const Header = props => {
 									<Transition
 										in={menuShowing}
 										appear
+										timeout={0}
 										onExit={animateThirdLinkDown}
 										onEnter={animateThirdLinkUp}
 									>
@@ -296,7 +310,7 @@ const Header = props => {
 						onLabel='Dark Mode'
 						offLabel='Light Mode'
 						checked={darkMode}
-						onChange={e => setValue(e.value)}
+						onChange={handleDarkMode}
 					/>
 				</MediaQuery>
 				<MediaQuery maxWidth={915}>

@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useContext } from 'react';
-import _ from 'lodash';
 import anime from 'animejs';
 import { RadioButton } from 'primereact/radiobutton';
 

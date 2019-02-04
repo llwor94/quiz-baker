@@ -46,15 +46,6 @@ const NewPost = ({ userPage, quiz, newComment, setNewComment }) => {
 		}
 	}, []);
 
-	// useEffect(
-	// 	() => {
-	// 		if (newComment) {
-	// 			setNewPost(true);
-	// 		}
-	// 	},
-	// 	[ newComment ],
-	// );
-
 	let input = React.createRef();
 	useEffect(
 		() => {
@@ -64,14 +55,14 @@ const NewPost = ({ userPage, quiz, newComment, setNewComment }) => {
 		},
 		[ newPost ],
 	);
-	const handleBlur = e => {
-		let currentTarget = e.currentTarget;
-		setTimeout(() => {
-			if (!currentTarget.contains(document.activeElement)) {
-				setNewPost(false);
-			}
-		}, 0);
-	};
+	// const handleBlur = e => {
+	// 	let currentTarget = e.currentTarget;
+	// 	setTimeout(() => {
+	// 		if (!currentTarget.contains(document.activeElement)) {
+	// 			setNewPost(false);
+	// 		}
+	// 	}, 0);
+	// };
 
 	const filterTopics = e => {
 		setTimeout(() => {

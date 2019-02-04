@@ -161,7 +161,7 @@ const Post = ({ post, showComments, currentPost, ...props }) => {
 				<Header>
 					<div style={{ display: 'flex', alignItems: 'center' }}>
 						<ProfileIcon src={post.author_img} />
-						Posted by <a>{post.author}</a>
+						Posted by <a href='#author'>{post.author}</a>
 						<span style={{ padding: '0 3px' }}>&#8226;</span>
 						{moment(post.created_at).fromNow()}
 					</div>
@@ -209,9 +209,9 @@ const Post = ({ post, showComments, currentPost, ...props }) => {
 						{post.comment_count > 0 && (
 							<div className='expandComments'>
 								{currentPost && currentPost === post.id ? (
-									<img onClick={showComments} src={spoonpour} />
+									<img onClick={showComments} src={spoonpour} alt='' />
 								) : (
-									<img onClick={showComments} src={spoonfull} />
+									<img onClick={showComments} src={spoonfull} alt='' />
 								)}
 							</div>
 						)}

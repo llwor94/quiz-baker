@@ -1,4 +1,4 @@
-import { Cloudinary as CoreCloudinary, Util } from 'cloudinary-core';
+import { Util } from 'cloudinary-core';
 
 export const openUploadWidget = (options, callback) => {
 	options.cloudName = process.env.REACT_APP_CLOUD_NAME;

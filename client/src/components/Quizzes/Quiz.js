@@ -154,7 +154,7 @@ const Quiz = ({ quiz, ...props }) => {
 								{quiz.question_time_limit && <i className='pi pi-clock' />}
 								{quiz.post_count > 0 && (
 									<i
-										postCount={quiz.post_count}
+										// postCount={quiz.post_count}
 										className='pi pi-comments'
 										style={{ cursor: 'default' }}
 									/>

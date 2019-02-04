@@ -67,10 +67,9 @@ export const UserName = styled.a`
 	font-weight: 400;
 	line-height: 16px;
 	color: ${props => props.theme.accentRed};
-	padding-left: 3px;
+	padding: 0 3px;
 	&:hover {
-
-	color: ${props => props.theme.accentRed};
+		color: ${props => props.theme.accentRed};
 	}
 `;
 

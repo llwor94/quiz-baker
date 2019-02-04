@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useContext } from 'react';
-import _ from 'lodash';
 import { MultiSelect } from 'primereact/multiselect';
 
 import server from 'server';

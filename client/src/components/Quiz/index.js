@@ -1,7 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import _ from 'lodash';
 import anime from 'animejs';
-import { Transition } from 'react-transition-group';
 import MediaQuery from 'react-responsive';
 
 import { QuestionCtx } from 'containers/Quiz';

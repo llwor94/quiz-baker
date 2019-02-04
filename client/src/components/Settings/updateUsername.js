@@ -15,7 +15,7 @@ const checkData = debounce(async (username, setError) => {
 
 		if (user.data) {
 			setError('This username is unavailable.');
-		} else if (4 <= username.length >= 10) {
+		} else if (username.length < 4 || username.length > 10) {
 			setError('Username must be between 4 and 10 characters.');
 		} else {
 			setError(undefined);

@@ -108,12 +108,12 @@ export const NewMenu = ({ activeTab, setActiveTab }) => {
 					isActive={activeTab === 'quizzes'}
 					onClick={() => setActiveTab('quizzes')}
 				>
-					<a>
+					<a href='#quizzes'>
 						<span>Your Quizzes</span>
 					</a>
 				</ListItem>
 				<ListItem isActive={activeTab === 'posts'} onClick={() => setActiveTab('posts')}>
-					<a>
+					<a href='#posts'>
 						<span>Your Posts</span>
 					</a>
 				</ListItem>

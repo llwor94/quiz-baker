@@ -1,4 +1,4 @@
-import React, { useState, createContext, Fragment } from 'react';
+import React, { useState, createContext, useEffect, Fragment } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { DarkMode } from './Themes/dark';
 import { LightMode } from './Themes/light';
@@ -8,6 +8,13 @@ export const ThemeCtx = createContext([ undefined, () => {} ]);
 
 const ColorProvider = ({ children }) => {
 	const [ darkMode, setValue ] = useState(false);
+
+	useEffect(() => {
+		let dark = localStorage.getItem('darkMode');
+		if (dark) {
+			setValue(true);
+		}
+	}, []);
 
 	return (
 		<ThemeCtx.Provider value={[ darkMode, setValue ]}>

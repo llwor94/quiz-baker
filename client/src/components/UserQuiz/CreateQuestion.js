@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, Fragment } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import _ from 'lodash';
 import { ToggleButton } from 'primereact/togglebutton';
 

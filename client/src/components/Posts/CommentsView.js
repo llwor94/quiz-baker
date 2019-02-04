@@ -74,7 +74,7 @@ const Comments = ({ currentPost }) => {
 		return (
 			<CommentsWrapper>
 				<div className='image'>
-					<img className='quizBaker' src={darkModeLogo} />
+					<img className='quizBaker' src={darkModeLogo} alt='' />
 				</div>
 			</CommentsWrapper>
 		);

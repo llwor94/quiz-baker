@@ -59,7 +59,7 @@ export const Wrapper = ({ type, handleSubmit, submitDisabled, error, children })
 					<span className='Q'>Q</span>
 					<span className='B'>B</span>
 					<div className='dot'>.</div>
-					<img src={hatIcon} />
+					<img src={hatIcon} alt='' />
 				</LogoWrapper>
 				<form onSubmit={handleSubmit}>
 					{children}

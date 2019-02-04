@@ -80,11 +80,11 @@ const UserQuiz = ({ quiz, ...props }) => {
 				</div>
 				<FooterWrapper>
 					<div>
-						<a style={{ cursor: 'default', fontWeight: 'bold' }}>
+						<a href='#questions' style={{ cursor: 'default', fontWeight: 'bold' }}>
 							{quiz.question_count} questions
 						</a>
 						<span style={{ padding: '0 4px' }}>&#8226;</span>
-						<a style={{ cursor: 'default', fontWeight: 'bold' }}>
+						<a href='#votes' style={{ cursor: 'default', fontWeight: 'bold' }}>
 							{quiz.votes === 1 ? '1 vote' : `${quiz.votes} votes`}
 						</a>
 					</div>

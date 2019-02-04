@@ -33,7 +33,7 @@ const Post = ({ post }) => {
 				opacity: 0,
 				translateY: -60,
 				delay: anime.stagger(10, { easing: 'easeOutQuad' }),
-				complete: () => {
+				update: () => {
 					setShowingComments(false);
 				},
 			});
@@ -67,7 +67,7 @@ const Post = ({ post }) => {
 					<Header>
 						<div style={{ display: 'flex', alignItems: 'center' }}>
 							<ProfileIcon src={post.author_img} />
-							Posted by <a>{post.author}</a>
+							Posted by <a href='#author'>{post.author}</a>
 							<span style={{ padding: '0 3px' }}>&#8226;</span>
 							{moment(post.created_at).fromNow()}
 						</div>
