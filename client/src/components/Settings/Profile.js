@@ -21,7 +21,6 @@ const Profile = ({ setActiveTab }) => {
 		server.get(`/users/${user.id}`).then(({ data }) => {
 			let newUser = { ...userData, user: data };
 			editUser(newUser);
-
 			setUsernameUpdate(false);
 			setImageUpdate(false);
 		});
