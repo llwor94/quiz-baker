@@ -106,7 +106,10 @@ const Quiz = ({ quiz, ...props }) => {
 						}}
 						onClick={() => handleVote(1)}
 						onMouseEnter={bounceUp.play}
-						onMouseLeave={bounceUp.pause}
+						onMouseLeave={() => {
+							bounceUp.pause();
+							bounceUp.seek(0);
+						}}
 					/>
 					<p
 						style={{
