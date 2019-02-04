@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCookieBite, faCookie } from '@fortawesome/free-solid-svg-icons';
 import { withTheme } from 'styled-components';
+import anime from 'animejs';
 
 import server from 'server';
 
@@ -30,7 +31,7 @@ import { Growl } from 'styles/Components/Growl';
 
 import hatIcon from 'assets/chef.svg';
 import hatDark from 'assets/chef-dark.svg';
-import { animateIn, animateOut, bounceUp } from 'styles/animations';
+import { animateIn, animateOut} from 'styles/animations';
 
 const Quiz = ({ quiz, ...props }) => {
 	const growl = React.createRef();
@@ -44,6 +45,16 @@ const Quiz = ({ quiz, ...props }) => {
 			growl.current.show({ severity: 'info', summary: 'Link Copied!' });
 		});
 	};
+
+	const bounceUp = anime({
+        targets: `.voting .up-${quiz.id}`,
+        translateY: -5,
+        direction: 'alternate',
+        loop: true,
+        duration: 200,
+        autoplay: false,
+        easing: 'easeInOutSine',
+    });
 
 	const handleFavoriteToggle = () => {
 		server
@@ -95,8 +106,8 @@ const Quiz = ({ quiz, ...props }) => {
 							color: quiz.user_vote === 1 && '#DC758F',
 						}}
 						onClick={() => handleVote(1)}
-						onMouseEnter={bounceUp(`.voting .up-${quiz.id}`).play}
-						onMouseLeave={bounceUp(`.voting .up-${quiz.id}`).pause}
+						onMouseEnter={bounceUp.play}
+                        onMouseLeave={bounceUp.pause}
 					/>
 					<p
 						style={{
