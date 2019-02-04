@@ -22,8 +22,9 @@ export const animateOut = (e, color) => {
 	});
 };
 
-export const bounceUp = name =>
-	anime({
+export const bounceUp = name => {
+	console.log(name);
+	return anime({
 		targets: name,
 		translateY: -5,
 		direction: 'alternate',
@@ -32,7 +33,7 @@ export const bounceUp = name =>
 		autoplay: false,
 		easing: 'easeInOutSine',
 	});
-
+};
 export const bounceDown = name =>
 	anime({
 		targets: name,

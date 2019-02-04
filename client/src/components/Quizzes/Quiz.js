@@ -31,13 +31,22 @@ import { Growl } from 'styles/Components/Growl';
 
 import hatIcon from 'assets/chef.svg';
 import hatDark from 'assets/chef-dark.svg';
-import { animateIn, animateOut} from 'styles/animations';
+import { animateIn, animateOut } from 'styles/animations';
 
 const Quiz = ({ quiz, ...props }) => {
 	const growl = React.createRef();
 	const [ quizzes, setQuizzes ] = useContext(QuizzesCtx);
 	const { user } = useContext(AuthCtx);
 	const [ darkMode, setValue ] = useContext(ThemeCtx);
+	const bounceUp = anime({
+		targets: `.voting .up-${quiz.id}`,
+		translateY: -5,
+		direction: 'alternate',
+		loop: true,
+		duration: 200,
+		autoplay: false,
+		easing: 'easeInOutSine',
+	});
 
 	const handleCopy = () => {
 		let value = `http://localhost:3000/quizzes/${quiz.id}`;
@@ -46,16 +55,7 @@ const Quiz = ({ quiz, ...props }) => {
 		});
 	};
 
-	const bounceUp = anime({
-        targets: `.voting .up-${quiz.id}`,
-        translateY: -5,
-        direction: 'alternate',
-        loop: true,
-        duration: 200,
-        autoplay: false,
-        easing: 'easeInOutSine',
-    });
-
+	
 	const handleFavoriteToggle = () => {
 		server
 			.patch(`quizzes/${quiz.id}`, { favorite: !quiz.favorite })
@@ -107,7 +107,7 @@ const Quiz = ({ quiz, ...props }) => {
 						}}
 						onClick={() => handleVote(1)}
 						onMouseEnter={bounceUp.play}
-                        onMouseLeave={bounceUp.pause}
+						onMouseLeave={bounceUp.pause}
 					/>
 					<p
 						style={{
