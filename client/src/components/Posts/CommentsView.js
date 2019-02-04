@@ -98,18 +98,19 @@ const Comments = ({ currentPost }) => {
 								style={{ flexGrow: 1 }}
 							/>
 						</PostComment>
-
-						{comments ? (
-							comments.map(comment => (
-								<Comment
-									key={comment.id}
-									comment={comment}
-									deleteComment={deleteComment}
-								/>
-							))
-						) : (
-							<Loading />
-						)}
+						<div className='comments-wrapper'>
+							{comments ? (
+								comments.map(comment => (
+									<Comment
+										key={comment.id}
+										comment={comment}
+										deleteComment={deleteComment}
+									/>
+								))
+							) : (
+								<Loading />
+							)}
+						</div>
 					</div>
 				</InnerWrapper>
 			</CommentsWrapper>

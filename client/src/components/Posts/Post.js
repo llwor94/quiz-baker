@@ -3,6 +3,8 @@ import moment from 'moment';
 import MediaQuery from 'react-responsive';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCookieBite, faCookie } from '@fortawesome/free-solid-svg-icons';
+import { withTheme } from 'styled-components';
+import anime from 'animejs';
 
 import server from 'server';
 
@@ -26,13 +28,14 @@ import {
 	HatWrapper,
 } from 'styles/Posts/Post';
 import { ProfileIcon } from 'styles/Components/Image';
+import { animateIn, animateOut } from 'styles/animations';
 
 import spoonfull from 'assets/spoonfull.png';
 import spoonpour from 'assets/spoonpour.png';
 import hatDark from 'assets/chef-dark.svg';
 import hatLight from 'assets/chef.svg';
 
-const Wrapper = ({ children, isCurrent, userPage }) => {
+const Wrapper = ({ children, isCurrent, userPage, ...props }) => {
 	if (isCurrent)
 		return (
 			<Fragment>
@@ -54,6 +57,25 @@ const Post = ({ post, showComments, currentPost, ...props }) => {
 	const { user } = useContext(AuthCtx);
 	const [ darkMode, setValue ] = useContext(ThemeCtx);
 	const growl = React.createRef();
+	const bounceUp = anime({
+		targets: `.voting .up-${post.id}`,
+		translateY: -5,
+		direction: 'alternate',
+		loop: true,
+		duration: 200,
+		autoplay: false,
+		easing: 'easeInOutSine',
+	});
+
+	const bounceDown = anime({
+		targets: `.voting .down-${post.id}`,
+		translateY: 5,
+		direction: 'alternate',
+		loop: true,
+		duration: 200,
+		autoplay: false,
+		easing: 'easeInOutSine',
+	});
 
 	const handleCopy = () => {
 		let value = `http://localhost:3000/forum/${post.id}`;
@@ -102,13 +124,18 @@ const Post = ({ post, showComments, currentPost, ...props }) => {
 			{user &&
 			user.username === post.author && <HatWrapper src={darkMode ? hatDark : hatLight} />}
 			<Growl ref={growl} />
-			<LeftSide user={user}>
+			<LeftSide user={user} className='voting'>
 				<i
-					className='pi pi-chevron-up'
+					className={`pi pi-chevron-up up-${post.id}`}
 					style={{
 						color: post.user_vote === 1 && '#DC758F',
 					}}
 					onClick={() => handleVote(1)}
+					onMouseEnter={bounceUp.play}
+					onMouseLeave={() => {
+						bounceUp.pause();
+						bounceUp.seek(0);
+					}}
 				/>
 				<p
 					style={{
@@ -119,11 +146,16 @@ const Post = ({ post, showComments, currentPost, ...props }) => {
 					{post.votes}
 				</p>
 				<i
-					className='pi pi-chevron-down'
+					className={`pi pi-chevron-down down-${post.id}`}
 					style={{
 						color: post.user_vote === -1 && '#E3D3E4',
 					}}
 					onClick={() => handleVote(-1)}
+					onMouseEnter={bounceDown.play}
+					onMouseLeave={() => {
+						bounceDown.pause();
+						bounceDown.seek(0);
+					}}
 				/>
 			</LeftSide>
 			<InnerWrapper>
@@ -152,7 +184,12 @@ const Post = ({ post, showComments, currentPost, ...props }) => {
 							)}
 						</CommentCount>
 
-						<i className='pi pi-share-alt' onClick={handleCopy} />
+						<i
+							className='pi pi-share-alt'
+							onClick={handleCopy}
+							onMouseEnter={e => animateIn(e, props.theme.aqua)}
+							onMouseLeave={e => animateOut(e, props.theme.link)}
+						/>
 						{user ? (
 							<FontAwesomeIcon
 								title='Take a bite out of that, Boogin'
@@ -161,6 +198,9 @@ const Post = ({ post, showComments, currentPost, ...props }) => {
 								style={{ cursor: 'pointer' }}
 								className='cookie'
 								onClick={handleFavoriteToggle}
+								onMouseEnter={e => animateIn(e, props.theme.aqua)}
+								onMouseLeave={e =>
+									animateOut(e, post.favorite ? '#875818' : '#b2b2b2')}
 							/>
 						) : (
 							<div />
@@ -183,4 +223,4 @@ const Post = ({ post, showComments, currentPost, ...props }) => {
 	);
 };
 
-export default Post;
+export default withTheme(Post);

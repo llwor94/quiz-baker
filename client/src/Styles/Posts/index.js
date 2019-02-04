@@ -36,6 +36,7 @@ export const Wrapper = styled.div`
 export const CommentsWrapper = styled.div`
 	flex-grow: 1;
 	position: relative;
+
 	margin-left: 10px;
 	height: calc(100vh - 100px);
 	max-width: 500px;
@@ -55,7 +56,7 @@ export const CommentsWrapper = styled.div`
 `;
 export const InnerWrapper = styled.div`
 	position: fixed;
-	overflow: scroll;
+
 	height: calc(100vh - 50px);
 	border-right: 1px solid ${props => props.theme.pink};
 	border-left: 1px solid ${props => props.theme.pink};
@@ -70,9 +71,15 @@ export const InnerWrapper = styled.div`
 	.inner {
 		width: 400px;
 		padding-bottom: 50px;
+
 		/* .comment {
 			transform: translateY(-60px);
 			opacity: 0;
 		} */
+	}
+
+	.comments-wrapper {
+		overflow-y: scroll;
+		height: 100%;
 	}
 `;
