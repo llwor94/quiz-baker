@@ -152,10 +152,12 @@ const Post = ({ post, showComments, currentPost, ...props }) => {
 						color: post.user_vote === -1 && '#E3D3E4',
 					}}
 					onClick={() => handleVote(-1)}
-					onMouseEnter={bounceDown.play}
+					onMouseEnter={user && bounceDown.play}
 					onMouseLeave={() => {
-						bounceDown.pause();
-						bounceDown.seek(0);
+						if (user) {
+							bounceDown.pause();
+							bounceDown.seek(0);
+						}
 					}}
 				/>
 			</LeftSide>
