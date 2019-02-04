@@ -96,7 +96,6 @@ const Post = ({ post, showComments, currentPost, ...props }) => {
 	};
 
 	const handleVote = val => {
-		console.log(post.user_vote, val);
 		if (user) {
 			let user_vote;
 			if (val === post.user_vote) {
@@ -104,7 +103,7 @@ const Post = ({ post, showComments, currentPost, ...props }) => {
 			} else {
 				user_vote = val;
 			}
-			console.log(user_vote);
+
 			server
 				.patch(`posts/${post.id}/vote`, { vote: user_vote })
 				.then(({ data }) => {

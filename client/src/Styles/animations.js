@@ -23,7 +23,6 @@ export const animateOut = (e, color) => {
 };
 
 export const bounceUp = name => {
-	console.log(name);
 	return anime({
 		targets: name,
 		translateY: -5,

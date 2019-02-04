@@ -29,7 +29,6 @@ const Quiz = () => {
 			server
 				.patch(`quizzes/${quiz.id}/edit`, newQuiz)
 				.then(response => {
-					console.log(response);
 					server.get(`quizzes/${quiz.id}`).then(({ data }) => {
 						setQuiz(data);
 						setEdit(false);

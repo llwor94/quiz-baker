@@ -110,7 +110,6 @@ const NewPost = ({ userPage, quiz, newComment, setNewComment }) => {
 					server
 						.get(`/quizzes/${quiz.id}/posts`)
 						.then(({ data }) => {
-							console.log(data);
 							setQuizPosts(data.sort((a, b) => b.id - a.id));
 						})
 						.catch(error => console.log(error));

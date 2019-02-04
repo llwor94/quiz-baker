@@ -95,8 +95,6 @@ const Results = props => {
 	};
 
 	const animateFavoriteIn = e => {
-		console.log(e.target);
-		let name = e.target.getAttribute('name');
 		anime({
 			targets: `.icon-wrapper .favorite`,
 
@@ -108,9 +106,6 @@ const Results = props => {
 	};
 
 	const animateFavoriteOut = e => {
-		console.log(e.target);
-		let name = e.target.getAttribute('name');
-
 		anime({
 			targets: `.icon-wrapper .favorite`,
 			color: quiz.favorite ? '#875818' : props.theme.link,
