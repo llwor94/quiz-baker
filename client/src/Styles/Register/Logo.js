@@ -30,6 +30,6 @@ export const LogoWrapper = styled.div`
 		left: -93px;
 		transform: rotate(-40deg);
 		z-index: 1;
-		background-color: white;
+		background-color: ${props => props.theme.secondary};
 	}
 `;
