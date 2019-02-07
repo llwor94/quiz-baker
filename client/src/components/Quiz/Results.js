@@ -157,10 +157,14 @@ const Results = props => {
 										color: quiz.user_vote === 1 && '#DC758F',
 									}}
 									onClick={() => handleVote(1)}
-									onMouseEnter={bounceUp.play}
+									onMouseEnter={() => {
+										if (user) bounceUp.play();
+									}}
 									onMouseLeave={() => {
-										bounceUp.pause();
-										bounceUp.seek(0);
+										if (user) {
+											bounceUp.pause();
+											bounceUp.seek(0);
+										}
 									}}
 								/>
 								<p
@@ -179,10 +183,14 @@ const Results = props => {
 										color: quiz.user_vote === -1 && '#E3D3E4',
 									}}
 									onClick={() => handleVote(-1)}
-									onMouseEnter={bounceDown.play}
+									onMouseEnter={() => {
+										if (user) bounceDown.play();
+									}}
 									onMouseLeave={() => {
-										bounceDown.pause();
-										bounceDown.seek(0);
+										if (user) {
+											bounceDown.pause();
+											bounceDown.seek(0);
+										}
 									}}
 								/>{' '}
 							</div>

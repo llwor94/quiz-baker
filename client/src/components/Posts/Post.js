@@ -130,7 +130,9 @@ const Post = ({ post, showComments, currentPost, ...props }) => {
 						color: post.user_vote === 1 && '#DC758F',
 					}}
 					onClick={() => handleVote(1)}
-					onMouseEnter={user && bounceUp.play}
+					onMouseEnter={() => {
+						if (user) bounceUp.play();
+					}}
 					onMouseLeave={() => {
 						if (user) {
 							bounceUp.pause();
@@ -152,7 +154,9 @@ const Post = ({ post, showComments, currentPost, ...props }) => {
 						color: post.user_vote === -1 && '#E3D3E4',
 					}}
 					onClick={() => handleVote(-1)}
-					onMouseEnter={user && bounceDown.play}
+					onMouseEnter={() => {
+						if (user) bounceDown.play();
+					}}
 					onMouseLeave={() => {
 						if (user) {
 							bounceDown.pause();
