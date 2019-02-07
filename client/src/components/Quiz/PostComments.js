@@ -96,7 +96,7 @@ const Comments = ({ post }) => {
 							{' '}
 							<ProfileIcon src={comment.author_img} />
 							<UserName>{comment.author} </UserName>
-							<p>{comment.text}</p>
+							<p style={{ maxWidth: '400px' }}>{comment.text}</p>
 						</CommentHeader>
 						<RightSide>
 							{user &&

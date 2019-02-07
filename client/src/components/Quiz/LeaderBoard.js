@@ -51,7 +51,7 @@ const Leaderboard = ({ results }) => {
 								{' '}
 								<User>
 									<ProfileIcon src={userScore.img_url} />
-									<span>{userScore.username}</span>
+									<span style={{ marginLeft: '7px' }}>{userScore.username}</span>
 									<FontAwesomeIcon className='award' icon={faAward} />
 								</User>
 								<div>{userScore.score}</div>
@@ -60,7 +60,7 @@ const Leaderboard = ({ results }) => {
 							<div className='otherPlaces'>
 								<User>
 									<ProfileIcon src={userScore.img_url} />
-									<span>{userScore.username}</span>
+									<span style={{ marginLeft: '7px' }}>{userScore.username}</span>
 								</User>
 								<div>{userScore.score}</div>
 							</div>

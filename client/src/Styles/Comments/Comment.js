@@ -42,10 +42,10 @@ export const CommentHeader = styled.div`
 	line-height: 16px;
 	min-height: 18px;
 
-	img {
+	/* img {
 		min-width: 40px;
 		height: 40px;
-	}
+	} */
 
 	.p-button {
 		${props => props.theme.backgroundBorder(props.theme.secondary)};
@@ -83,6 +83,7 @@ export const CommentBody = styled.div`
 	font-weight: 400;
 	line-height: 21px;
 	overflow: auto;
+	margin-left: 7px;
 	${props => props.theme.flex('column', 'space-between')};
 `;
 

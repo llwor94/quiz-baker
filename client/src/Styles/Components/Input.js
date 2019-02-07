@@ -285,6 +285,7 @@ export const EmojiTextArea = ({ value, onChange, name, inputRef, handleSelect })
 
 const StyledEmojiInput = styled.div`
 	position: relative;
+	margin-left: 7px;
 	input {
 		width: 100%;
 		height: 100%;

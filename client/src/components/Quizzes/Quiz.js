@@ -181,7 +181,7 @@ const Quiz = ({ quiz, ...props }) => {
 					<FooterWrapper>
 						<UserNameWrapper className='icon-wrapper'>
 							<ProfileIcon src={quiz.author_img} />
-							<span>
+							<span style={{ marginLeft: '7px' }}>
 								Created by <User>{quiz.author}</User>
 							</span>
 

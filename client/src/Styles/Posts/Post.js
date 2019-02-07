@@ -133,6 +133,10 @@ export const Header = styled.div`
 	a {
 		color: ${props => props.theme.accentRed};
 		padding-left: 3px;
+		cursor: default;
+		&:hover {
+			color: ${props => props.theme.accentRed};
+		}
 	}
 `;
 

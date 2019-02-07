@@ -67,9 +67,11 @@ const Post = ({ post }) => {
 					<Header>
 						<div style={{ display: 'flex', alignItems: 'center' }}>
 							<ProfileIcon src={post.author_img} />
-							Posted by <a href='#author'>{post.author}</a>
-							<span style={{ padding: '0 3px' }}>&#8226;</span>
-							{moment(post.created_at).fromNow()}
+							<div style={{ marginLeft: '7px' }}>
+								Posted by <a href='#author'>{post.author}</a>
+								<span style={{ padding: '0 3px' }}>&#8226;</span>
+								{moment(post.created_at).fromNow()}
+							</div>
 						</div>
 					</Header>
 					<div className='body'>

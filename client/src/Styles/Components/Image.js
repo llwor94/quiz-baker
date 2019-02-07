@@ -6,14 +6,15 @@ import { userImage } from '../../utils/imgArray';
 
 const IconWrapper = styled.div`
 	background-color: ${props => props.theme.accent};
-	margin-right: 3px;
+
 	${props => props.theme.square(40)};
 	border-radius: 10px;
-	margin-right: 7px;
 `;
 const StyledIcon = styled.img`
 	max-width: 100%;
 	max-height: 100%;
+	width: ${props => props.image && '100%'};
+	height: ${props => props.image && '100%'};
 	margin: ${props => !props.image && '5px'};
 	border-radius: 10px;
 	opacity: ${props => !props.image && '.5'};
