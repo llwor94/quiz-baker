@@ -39,7 +39,6 @@ const Redirect = styled.div`
 		padding-right: 4px;
 		color: ${props => props.theme.text};
 	}
-
 	a {
 		color: ${props => props.theme.aqua};
 		&:hover {
