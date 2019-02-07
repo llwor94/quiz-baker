@@ -101,7 +101,6 @@ const Settings = props => {
 							<Posts {...props} />
 						</div>
 					)}
-					;
 				</div>
 			</SettingsWrapper>
 		);
