@@ -19,8 +19,9 @@ const AuthProvider = ({ children }) => {
 	};
 
 	const editUser = user => {
+		console.log(user);
 		localStorage.setItem('user', JSON.stringify(user));
-		setUser(user);
+		setUser(user.user);
 	};
 	return (
 		<AuthCtx.Provider value={{ user: user, login: login, logout: logout, editUser: editUser }}>
