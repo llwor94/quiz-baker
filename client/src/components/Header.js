@@ -175,11 +175,12 @@ const Header = props => {
 		[ props.history.location.pathname ],
 	);
 	const handleDarkMode = e => {
-		setValue(e.value);
 		if (e.value) {
 			localStorage.setItem('darkMode', true);
+			setValue(e.value);
 		} else {
 			localStorage.removeItem('darkMode');
+			setValue(e.value);
 		}
 	};
 	return (
