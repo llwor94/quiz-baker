@@ -1,17 +1,17 @@
-import React, { useState, createContext } from 'react';
+import React, { useState, createContext } from 'react'
 
-import PostsContainer from 'containers/Posts';
+import PostsContainer from 'containers/Posts'
 
-export const PostsCtx = createContext([ undefined, () => {} ]);
+export const PostsCtx = createContext([undefined, () => {}])
 
 const ForumPage = props => {
-	const [ posts, setPosts ] = useState(undefined);
+  const [posts, setPosts] = useState(undefined)
 
-	return (
-		<PostsCtx.Provider value={[ posts, setPosts ]}>
-			<PostsContainer {...props} />
-		</PostsCtx.Provider>
-	);
-};
+  return (
+    <PostsCtx.Provider value={[posts, setPosts]}>
+      <PostsContainer {...props} />
+    </PostsCtx.Provider>
+  )
+}
 
-export default ForumPage;
+export default ForumPage

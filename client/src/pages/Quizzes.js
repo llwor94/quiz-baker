@@ -1,17 +1,17 @@
-import React, { useState, createContext } from 'react';
+import React, { useState, createContext } from 'react'
 
-import QuizzesContainer from 'containers/Quizzes';
+import QuizzesContainer from 'containers/Quizzes'
 
-export const QuizzesCtx = createContext([ undefined, () => {} ]);
+export const QuizzesCtx = createContext([undefined, () => {}])
 
 const QuizzesPage = props => {
-	const [ quizzes, setQuizzes ] = useState(undefined);
+  const [quizzes, setQuizzes] = useState(undefined)
 
-	return (
-		<QuizzesCtx.Provider value={[ quizzes, setQuizzes ]}>
-			<QuizzesContainer {...props} />
-		</QuizzesCtx.Provider>
-	);
-};
+  return (
+    <QuizzesCtx.Provider value={[quizzes, setQuizzes]}>
+      <QuizzesContainer {...props} />
+    </QuizzesCtx.Provider>
+  )
+}
 
-export default QuizzesPage;
+export default QuizzesPage

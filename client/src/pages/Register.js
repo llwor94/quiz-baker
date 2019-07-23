@@ -1,9 +1,9 @@
-import React from 'react';
+import React from 'react'
 
-import RegisterContainer from 'containers/Register';
+import RegisterContainer from 'containers/Register'
 
 const Register = props => {
-	return <RegisterContainer {...props} />;
-};
+  return <RegisterContainer {...props} />
+}
 
-export default Register;
+export default Register
